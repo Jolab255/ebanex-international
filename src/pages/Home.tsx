@@ -6,7 +6,7 @@ import { CORE_SERVICES } from '../constants';
 
 const Home: React.FC = () => {
   const { scrollY } = useScroll();
-  
+
   // Parallax for specific section backgrounds
   const sectionRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-     <main className="overflow-hidden bg-slate-950">
+    <main className="overflow-hidden bg-slate-950">
       {/* SECTION 1: CINEMATIC HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
@@ -32,20 +32,20 @@ const Home: React.FC = () => {
               transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="inline-flex items-center gap-4 mb-12 overflow-hidden">
-                <motion.div 
+                <motion.div
                   initial={{ width: 0 }}
                   animate={{ width: 48 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
-                  className="h-[1px] bg-purple-500" 
+                  className="h-[1px] bg-purple-500"
                 />
                 <span className="text-purple-400 text-[10px] font-black tracking-[0.6em] uppercase">
                   Institutional Intelligence
                 </span>
               </div>
-              
+
               <h1 className="font-heading tracking-tight leading-[0.85] mb-20 text-white select-none">
                 <div className="flex flex-col gap-2">
-                  <motion.span 
+                  <motion.span
                     className="block text-[clamp(2rem,6vw,3.5rem)] font-light opacity-50 tracking-[-0.02em]"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 0.5, x: 0 }}
@@ -53,8 +53,8 @@ const Home: React.FC = () => {
                   >
                     EMPOWERING
                   </motion.span>
-                  
-                  <motion.span 
+
+                  <motion.span
                     className="block text-[clamp(4.5rem,11vw,8rem)] font-black tracking-[-0.05em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-purple-500/50"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -63,8 +63,8 @@ const Home: React.FC = () => {
                   >
                     RESILIENCE
                   </motion.span>
-                  
-                  <motion.span 
+
+                  <motion.span
                     className="block font-serif-stylish italic text-[clamp(2.5rem,7vw,4.5rem)] text-slate-400 ml-[12%] lg:ml-[20%] mt-[-10px] tracking-tight"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -74,7 +74,7 @@ const Home: React.FC = () => {
                   </motion.span>
                 </div>
               </h1>
-              
+
               <div className="flex flex-col md:flex-row gap-16 items-start md:items-end mt-4">
                 <p className="text-xl text-slate-400 max-w-sm leading-relaxed font-light border-l-2 border-purple-500/30 pl-10">
                   Ebanex International bridges the gap between potential and performance through elite training and bespoke institutional advisory.
@@ -91,9 +91,9 @@ const Home: React.FC = () => {
             </motion.div>
           </div>
         </div>
-        
+
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
@@ -104,16 +104,16 @@ const Home: React.FC = () => {
         </motion.div>
 
         <div className="absolute bottom-0 left-0 w-full h-16 border-t border-white/5 bg-slate-950/50 backdrop-blur-md overflow-hidden flex items-center z-20">
-           <div className="animate-marquee whitespace-nowrap flex gap-12 text-[10px] font-black tracking-[0.4em] text-slate-500 uppercase">
-              <span>GOVERNMENTAL ADVISORY • GLOBAL CYBER LABS • INSTITUTIONAL CAPACITY BUILDING • LEADERSHIP EXCELLENCE • DIGITAL TRANSFORMATION • GLOBAL COMPLIANCE • </span>
-              <span>GOVERNMENTAL ADVISORY • GLOBAL CYBER LABS • INSTITUTIONAL CAPACITY BUILDING • LEADERSHIP EXCELLENCE • DIGITAL TRANSFORMATION • GLOBAL COMPLIANCE • </span>
-           </div>
+          <div className="animate-marquee whitespace-nowrap flex gap-12 text-[10px] font-black tracking-[0.4em] text-slate-500 uppercase">
+            <span>GOVERNMENTAL ADVISORY • GLOBAL CYBER LABS • INSTITUTIONAL CAPACITY BUILDING • LEADERSHIP EXCELLENCE • DIGITAL TRANSFORMATION • GLOBAL COMPLIANCE • </span>
+            <span>GOVERNMENTAL ADVISORY • GLOBAL CYBER LABS • INSTITUTIONAL CAPACITY BUILDING • LEADERSHIP EXCELLENCE • DIGITAL TRANSFORMATION • GLOBAL COMPLIANCE • </span>
+          </div>
         </div>
       </section>
 
       {/* SECTION 2: WHO WE ARE (Scroll Triggered) */}
       <section className="py-32 bg-slate-950 relative overflow-hidden" ref={sectionRef}>
-        <motion.div 
+        <motion.div
           style={{ y: backgroundY }}
           className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none"
         >
@@ -122,7 +122,7 @@ const Home: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-12 gap-20 items-center">
-            <motion.div 
+            <motion.div
               className="lg:col-span-6"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -136,14 +136,14 @@ const Home: React.FC = () => {
               <p className="text-slate-400 text-lg mb-8 font-light leading-relaxed">
                 Ebanex International is a global powerhouse in institutional strengthening. We bridge the gap between complex theoretical frameworks and real-world operational resilience.
               </p>
-              
+
               <div className="space-y-4">
                 {[
                   "Multidisciplinary Global Training",
                   "Cybersecurity & Digital Resilience",
                   "Leadership Development Integration"
                 ].map((item, i) => (
-                  <motion.div 
+                  <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -159,8 +159,8 @@ const Home: React.FC = () => {
                 ))}
               </div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="lg:col-span-6"
               initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
               whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
@@ -168,10 +168,10 @@ const Home: React.FC = () => {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="relative glass aspect-square rounded-sm overflow-hidden border-white/10">
-                <motion.img 
+                <motion.img
                   style={{ y: useTransform(scrollYProgress, [0, 1], [-20, 20]) }}
-                  src="https://images.unsplash.com/photo-1573161559521-3832117b1622?q=80&w=1200" 
-                  className="w-full h-full object-cover scale-110" 
+                  src="https://images.unsplash.com/photo-1573161559521-3832117b1622?q=80&w=1200"
+                  className="w-full h-full object-cover scale-110"
                   alt="Elite Training Environment"
                 />
                 <div className="absolute inset-0 bg-slate-950/20" />
@@ -184,43 +184,43 @@ const Home: React.FC = () => {
       {/* SECTION 3: THE EBANEX ADVANTAGE (Perspective Stack Redesign) */}
       <section className="py-32 bg-slate-950 relative overflow-visible">
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent pointer-events-none" />
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-12 gap-12 mb-32">
-             <div className="lg:col-span-6">
-                <span className="text-purple-500 font-bold uppercase tracking-widest text-xs block mb-4">Strategic Differentiation</span>
-                <h2 className="text-5xl lg:text-7xl font-black font-heading tracking-tighter text-white leading-none">
-                   WHY <br />INSTITUTIONS <br />TRUST US.
-                </h2>
-             </div>
-             <div className="lg:col-span-6 flex items-end">
-                <p className="text-slate-500 text-lg font-light leading-relaxed max-w-sm">
-                   We bypass conventional methodologies to deliver high-velocity institutional strengthening and digital superiority.
-                </p>
-             </div>
+            <div className="lg:col-span-6">
+              <span className="text-purple-500 font-bold uppercase tracking-widest text-xs block mb-4">Strategic Differentiation</span>
+              <h2 className="text-5xl lg:text-7xl font-black font-heading tracking-tighter text-white leading-none">
+                WHY <br />INSTITUTIONS <br />TRUST US.
+              </h2>
+            </div>
+            <div className="lg:col-span-6 flex items-end">
+              <p className="text-slate-500 text-lg font-light leading-relaxed max-w-sm">
+                We bypass conventional methodologies to deliver high-velocity institutional strengthening and digital superiority.
+              </p>
+            </div>
           </div>
 
           <div className="relative h-[800px] lg:h-[600px] perspective-1000">
             {[
-              { 
-                title: "Practical Pedagogy", 
-                icon: <Zap />, 
+              {
+                title: "Practical Pedagogy",
+                icon: <Zap />,
                 desc: "Results-driven learning models utilizing hands-on labs and simulations that mirror enterprise reality.",
                 pos: "top-0 left-0",
                 zIndex: 30,
                 delay: 0
               },
-              { 
-                title: "Global Standards", 
-                icon: <Globe />, 
+              {
+                title: "Global Standards",
+                icon: <Globe />,
                 desc: "Elite delivery frameworks that adhere to international certifications while respecting local context.",
                 pos: "top-1/4 left-1/4 lg:left-1/3",
                 zIndex: 20,
                 delay: 0.1
               },
-              { 
-                title: "Digital Resilience", 
-                icon: <Shield />, 
+              {
+                title: "Digital Resilience",
+                icon: <Shield />,
                 desc: "Comprehensive security focus embedded into every institutional training and advisory module.",
                 pos: "top-1/2 left-0 lg:left-2/3",
                 zIndex: 10,
@@ -243,7 +243,7 @@ const Home: React.FC = () => {
                   <p className="text-slate-400 font-light leading-relaxed">
                     {card.desc}
                   </p>
-                  
+
                   {/* Digital pulse line */}
                   <div className="mt-10 h-[1px] w-full bg-white/5 relative overflow-hidden">
                     <div className="absolute top-0 left-0 h-full w-1/3 bg-gradient-to-r from-transparent via-purple-500 to-transparent animate-[marquee_2s_linear_infinite]" />
@@ -251,7 +251,7 @@ const Home: React.FC = () => {
                 </div>
               </motion.div>
             ))}
-            
+
             {/* Background Decorative Thread */}
             <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent -translate-y-1/2 pointer-events-none hidden lg:block" />
           </div>
@@ -261,7 +261,7 @@ const Home: React.FC = () => {
       {/* SECTION 4: CORE PILLARS (ECOSYSTEM) */}
       <section className="py-24 bg-slate-950 relative overflow-visible">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-full bg-gradient-to-b from-white/10 via-purple-500/20 to-transparent" />
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-20 text-center">
             <h2 className="text-6xl lg:text-8xl font-black font-heading tracking-tighter mb-6 text-white">
@@ -271,7 +271,7 @@ const Home: React.FC = () => {
               Non-linear institutional growth frameworks. Overlapping spheres of excellence.
             </p>
           </div>
-          
+
           <div className="relative space-y-[-100px] lg:space-y-[-150px]">
             {CORE_SERVICES.map((service, index) => {
               const isEven = index % 2 === 0;
@@ -299,11 +299,11 @@ const Home: React.FC = () => {
                       <div className="w-20 h-20 rounded-sm bg-purple-600/10 flex items-center justify-center shrink-0 border border-white/5 group-hover:border-purple-500/40 transition-colors">
                         {React.cloneElement(service.icon as React.ReactElement, { size: 32, className: "text-purple-400" })}
                       </div>
-                      
+
                       <div className="flex-1">
                         <div className="flex items-center gap-4 mb-4">
-                           <span className="text-[10px] font-mono text-purple-500 tracking-[0.3em] uppercase">Pillar {index + 1}</span>
-                           <div className="h-[1px] w-8 bg-white/10" />
+                          <span className="text-[10px] font-mono text-purple-500 tracking-[0.3em] uppercase">Pillar {index + 1}</span>
+                          <div className="h-[1px] w-8 bg-white/10" />
                         </div>
                         <h3 className="text-3xl lg:text-4xl font-black font-heading mb-6 tracking-tighter text-white">
                           {service.title.toUpperCase()}
@@ -312,14 +312,14 @@ const Home: React.FC = () => {
                           {service.description}
                         </p>
                         <button className="flex items-center gap-3 text-white font-black text-xs uppercase tracking-widest group/btn">
-                           Deploy Strategy 
-                           <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-slate-950 transition-all">
-                              <ExternalLink size={14} />
-                           </div>
+                          Deploy Strategy
+                          <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover/btn:bg-white group-hover/btn:text-slate-950 transition-all">
+                            <ExternalLink size={14} />
+                          </div>
                         </button>
                       </div>
                     </div>
-                    
+
                     {/* Bottom accent */}
                     <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
@@ -330,20 +330,46 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 5: GLOBAL TRUST */}
+      {/* SECTION 5: TESTIMONIALS & IMPACT */}
+      <section className="py-24 bg-slate-950/50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <span className="text-purple-500 font-bold uppercase tracking-widest text-xs block mb-4">Success Stories</span>
+            <h2 className="text-4xl font-black font-heading text-white">IMPACT & TESTIMONIALS</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="glass p-10 rounded-2xl border-white/5">
+              <p className="text-slate-400 italic mb-8 italic">"Ebanex transformed our cybersecurity posture through rigorous training and strategic advisory. Their hands-on approach is unparalleled."</p>
+              <div>
+                <p className="font-bold text-white">Chief Information Security Officer</p>
+                <p className="text-purple-500 text-sm">National Financial Institution</p>
+              </div>
+            </div>
+            <div className="glass p-10 rounded-2xl border-white/5">
+              <p className="text-slate-400 italic mb-8 italic">"The institutional capacity building programs delivered by Ebanex have significantly improved our operational efficiency and digital readiness."</p>
+              <div>
+                <p className="font-bold text-white">Director of Human Resources</p>
+                <p className="text-purple-500 text-sm">Strategic Government Agency</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6: PARTNERS & ACCREDITATION */}
       <section className="py-24 border-b border-white/5 bg-slate-950">
         <div className="max-w-7xl mx-auto px-6">
-           <div className="text-center mb-16">
-              <span className="text-[10px] font-black tracking-[0.4em] uppercase text-slate-600 block mb-4">Strategic Impact Domains</span>
-           </div>
-           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-40 hover:opacity-100 transition-opacity duration-700">
-              {['GOVERNMENTAL', 'FINANCIAL', 'DEFENSE', 'INDUSTRIAL'].map(label => (
-                <div key={label} className="text-center group">
-                   <div className="text-3xl font-black font-heading tracking-tighter group-hover:text-white transition-colors text-white">{label}</div>
-                   <div className="h-[1px] w-8 bg-purple-500/50 mx-auto mt-2" />
-                </div>
-              ))}
-           </div>
+          <div className="text-center mb-16">
+            <span className="text-[10px] font-black tracking-[0.4em] uppercase text-slate-600 block mb-4">Strategic & Institutional Partners</span>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 opacity-40 hover:opacity-100 transition-opacity duration-700 items-center">
+            {['GOVERNMENTAL', 'FINANCIAL', 'DEFENSE', 'INDUSTRIAL', 'ACADEMIC', 'GLOBAL'].map(label => (
+              <div key={label} className="text-center group p-4 border border-white/5 rounded-lg hover:border-purple-500/30 transition-all">
+                <div className="text-xl font-black font-heading tracking-tighter group-hover:text-white transition-colors text-slate-500">PARTNER</div>
+                <div className="text-[10px] font-bold text-slate-600 mt-1">{label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -351,19 +377,19 @@ const Home: React.FC = () => {
       <section className="py-32 relative">
         <div className="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000')] bg-fixed bg-cover opacity-10 grayscale" />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-           <div className="glass p-20 rounded-sm border-white/5 text-center">
-              <h2 className="text-5xl lg:text-7xl font-black font-heading mb-12 tracking-tighter text-white">
-                SECURE YOUR <span className="text-purple-500">INSTITUTIONAL</span> LEGACY.
-              </h2>
-              <div className="flex flex-wrap justify-center gap-8">
-                 <button className="h-16 px-12 bg-white text-slate-950 font-black uppercase tracking-widest text-sm hover:bg-purple-600 hover:text-white transition-all">
-                    Request Consultation
-                 </button>
-                 <button className="h-16 px-12 border border-white/20 font-black uppercase tracking-widest text-sm hover:bg-white hover:text-slate-950 transition-all text-white">
-                    Join Academy
-                 </button>
-              </div>
-           </div>
+          <div className="glass p-20 rounded-sm border-white/5 text-center">
+            <h2 className="text-5xl lg:text-7xl font-black font-heading mb-12 tracking-tighter text-white">
+              SECURE YOUR <span className="text-purple-500">INSTITUTIONAL</span> LEGACY.
+            </h2>
+            <div className="flex flex-wrap justify-center gap-8">
+              <button className="h-16 px-12 bg-white text-slate-950 font-black uppercase tracking-widest text-sm hover:bg-purple-600 hover:text-white transition-all">
+                Request Consultation
+              </button>
+              <button className="h-16 px-12 border border-white/20 font-black uppercase tracking-widest text-sm hover:bg-white hover:text-slate-950 transition-all text-white">
+                Join Academy
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </main>

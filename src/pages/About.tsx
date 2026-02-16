@@ -18,7 +18,7 @@ const About: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Section 1: Intro */}
         <div className="max-w-4xl mb-24">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl lg:text-7xl font-bold font-heading mb-8"
@@ -27,8 +27,8 @@ const About: React.FC = () => {
             <span className="text-purple-500">Resilience.</span>
           </motion.h1>
           <p className="text-xl text-slate-400 leading-relaxed">
-            Ebanex International stands at the intersection of expertise and execution. 
-            We are more than consultants; we are architects of institutional capacity, 
+            Ebanex International stands at the intersection of expertise and execution.
+            We are more than consultants; we are architects of institutional capacity,
             empowering global organizations to thrive in an era of rapid digital disruption.
           </p>
         </div>
@@ -41,7 +41,7 @@ const About: React.FC = () => {
             </div>
             <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
             <p className="text-slate-400 leading-relaxed">
-              To provide transformative training and strategic advisory that strengthens institutional 
+              To provide transformative training and strategic advisory that strengthens institutional
               frameworks, secures digital assets, and cultivates high-performance leadership worldwide.
             </p>
           </div>
@@ -51,7 +51,7 @@ const About: React.FC = () => {
             </div>
             <h3 className="text-3xl font-bold mb-4">Our Vision</h3>
             <p className="text-slate-400 leading-relaxed">
-              To be the premier global partner for professional development, known for setting 
+              To be the premier global partner for professional development, known for setting
               the standard in cybersecurity excellence and sustainable organizational evolution.
             </p>
           </div>
@@ -62,7 +62,7 @@ const About: React.FC = () => {
           <h2 className="text-4xl font-bold font-heading text-center mb-16">Core Values</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {values.map((val, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 whileHover={{ scale: 1.05 }}
                 className="glass p-8 rounded-2xl border-white/5 text-center flex flex-col items-center gap-4"
@@ -77,18 +77,18 @@ const About: React.FC = () => {
         </div>
 
         {/* Section 4: Founder Message */}
-        <div className="glass rounded-[3rem] p-12 lg:p-24 relative overflow-hidden">
+        <div className="glass rounded-[3rem] p-12 lg:p-24 relative overflow-hidden mb-32">
           <div className="absolute top-0 right-0 w-1/3 h-full opacity-20 hidden lg:block">
-            <img 
-              src="https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=800" 
-              className="w-full h-full object-cover" 
-              alt="Leadership" 
+            <img
+              src="https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=800"
+              className="w-full h-full object-cover"
+              alt="Leadership"
             />
           </div>
           <div className="relative z-10 max-w-2xl">
             <h2 className="text-3xl font-bold mb-8">Message from our Leadership</h2>
             <blockquote className="text-2xl font-medium italic text-slate-300 mb-8 leading-snug">
-              "In a world where digital boundaries are constantly shifting, the greatest asset 
+              "In a world where digital boundaries are constantly shifting, the greatest asset
               any organization possesses is its people. At Ebanex, we invest in that human potential."
             </blockquote>
             <div>
@@ -97,6 +97,24 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Section 5: Strategic Focus */}
+        <div className="mb-24">
+          <h2 className="text-4xl font-bold font-heading text-center mb-16">Our Strategic Focus</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              "Technology-led capacity building",
+              "Cybersecurity and digital resilience",
+              "Leadership and workforce development",
+              "Institutional strengthening"
+            ].map((focus, idx) => (
+              <div key={idx} className="glass p-8 rounded-2xl border-white/5 text-center border-t-2 border-t-purple-500/50">
+                <p className="font-bold text-slate-300">{focus}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );
