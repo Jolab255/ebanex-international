@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: clamp(14px, 1.5vw, 16px); /* Responsive base font size */
 }
 
 body {
@@ -19,6 +20,59 @@ body {
   cursor: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: clamp(14px, 1.5vw, 16px); /* Responsive base font size */
+}
+
+/* Responsive typography utilities */
+.text-responsive-xs {
+  font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+}
+
+.text-responsive-sm {
+  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+}
+
+.text-responsive-base {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.text-responsive-lg {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+}
+
+.text-responsive-xl {
+  font-size: clamp(1.125rem, 3vw, 1.25rem);
+}
+
+.text-responsive-2xl {
+  font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+}
+
+.text-responsive-3xl {
+  font-size: clamp(1.5rem, 4vw, 1.875rem);
+}
+
+.text-responsive-4xl {
+  font-size: clamp(1.875rem, 5vw, 2.25rem);
+}
+
+.text-responsive-5xl {
+  font-size: clamp(2.25rem, 6vw, 3rem);
+}
+
+.text-responsive-6xl {
+  font-size: clamp(2.5rem, 7vw, 3.75rem);
+}
+
+.text-responsive-7xl {
+  font-size: clamp(3rem, 8vw, 4.5rem);
+}
+
+/* Section title utility - ensures single line with responsive scaling */
+.section-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Custom Scrollbar */
@@ -132,4 +186,23 @@ body::after {
   opacity: 0.2 !important;
   background-color: rgba(139, 92, 246, 0.5) !important;
   border-color: transparent !important;
+}
+
+/* Skeleton Loading Animations */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

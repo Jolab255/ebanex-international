@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Globe as GlobeIcon, Shield, Zap, Target, Landmark, MapPin } from 'lucide-react';
 import Squares from '../../components/ui/Squares';
 import FeatureCard from './components/FeatureCard';
@@ -45,7 +44,7 @@ const WhyEbanexGridSection: React.FC = () => {
   ];
 
   return (
-    <section className="pt-32 pb-12 lg:pt-36 lg:pb-16 bg-slate-950 relative overflow-hidden">
+    <section className="pt-16 sm:pt-24 lg:pt-32 xl:pt-36 pb-8 sm:pb-12 lg:pb-16 bg-slate-950 relative overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Squares
           speed={0.13}
@@ -56,8 +55,8 @@ const WhyEbanexGridSection: React.FC = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {features.map((feature, i) => (
             <FeatureCard key={i} feature={feature} />
           ))}

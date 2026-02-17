@@ -32,14 +32,13 @@ export const ProgressSlider: React.FC<ProgressSliderProps> = ({
     vertical = false,
 }) => {
     const [activeSlider, setActiveSlider] = useState(initialActiveSlider);
-    const childrenArray = React.Children.toArray(children);
 
     // Find all slider values from SliderBtn children
     const sliderValues = useRef<string[]>([]);
 
     useEffect(() => {
         // Extract slider values from children
-        const extractSliderValues = (node: any): string[] => {
+        const extractSliderValues = (node: React.ReactNode): string[] => {
             const values: string[] = [];
             React.Children.forEach(node, (child) => {
                 if (React.isValidElement(child)) {

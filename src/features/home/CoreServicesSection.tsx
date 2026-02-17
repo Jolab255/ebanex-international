@@ -38,10 +38,10 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({ service, index, setActiveIn
             </span>
             <div className="h-[1px] w-12 bg-purple-500/50" />
           </div>
-          <h3 className="text-3xl lg:text-4xl font-black font-heading text-white uppercase leading-tight mb-6">
+          <h3 className="text-[clamp(1rem,4vw,2.5rem)] font-black font-heading text-white uppercase leading-tight mb-4 sm:mb-6 whitespace-nowrap">
             {service.title}
           </h3>
-          <p className="text-slate-400 text-lg leading-relaxed">{service.desc}</p>
+          <p className="text-slate-400 text-base sm:text-lg leading-relaxed">{service.desc}</p>
           <div className="mt-8">
             <button className="flex items-center gap-3 text-white uppercase tracking-widest text-xs font-bold group hover:text-purple-400 transition-colors">
               Explore Service
@@ -85,13 +85,13 @@ const CoreServicesSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-slate-950 border-t border-white/5 pt-10">
-      <div className="max-w-7xl mx-auto px-6 mb-20 relative z-10 text-center">
+    <section className="relative bg-slate-950 border-t border-white/5 pt-8 sm:pt-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16 lg:mb-20 relative z-10 text-center">
         <motion.h2
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
-          className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(2.5rem,12vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan"
+          className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.5rem,8vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan whitespace-nowrap"
           style={{
             backgroundImage:
               "url('https://assets.avant.org.au/cdf6134c-01d7-0292-26f5-2f5cf1db96f8/4645803d-67d3-4662-9f18-816e532b82a1/Responding-to-a-cyber-security-incident.jpg')",
@@ -106,14 +106,14 @@ const CoreServicesSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-8"
         >
-          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[20px] block">
+          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
             What We Deliver
           </span>
         </motion.div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20">
           <div className="hidden lg:block relative">
             <div className="sticky top-0 h-screen flex items-center justify-center py-20">
               <div className="w-full aspect-square relative rounded-sm overflow-hidden border border-white/10 shadow-2xl bg-slate-900/40 backdrop-blur-sm">
@@ -155,7 +155,7 @@ const CoreServicesSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative py-20 lg:py-0">
+          <div className="relative py-12 sm:py-16 lg:py-20 xl:py-0">
             {coreServiceData.map((service, i) => (
               <ServiceBlock key={i} service={service} index={i} setActiveIndex={setActiveServiceIndex} />
             ))}

@@ -10,13 +10,13 @@ const WhoWeAreSection: React.FC = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
   return (
-    <section className="pt-12 pb-32 lg:pt-16 lg:pb-40 bg-slate-950 relative z-20" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto px-6 mb-12 relative z-10 text-center">
+    <section className="pt-8 sm:pt-12 pb-16 sm:pb-24 lg:pb-32 xl:pb-40 bg-slate-950 relative z-20" ref={sectionRef}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 relative z-10 text-center">
         <motion.h2
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
-          className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(2.5rem,12vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan"
+          className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.5rem,8vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan whitespace-nowrap"
           style={{
             backgroundImage:
               "url('https://assets.avant.org.au/cdf6134c-01d7-0292-26f5-2f5cf1db96f8/4645803d-67d3-4662-9f18-816e532b82a1/Responding-to-a-cyber-security-incident.jpg')",
@@ -31,7 +31,7 @@ const WhoWeAreSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-8"
         >
-          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[20px] block">
+          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
             Who We Are
           </span>
         </motion.div>
@@ -43,8 +43,8 @@ const WhoWeAreSection: React.FC = () => {
         </motion.div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="relative h-[350px] lg:h-[450px]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="relative h-[250px] sm:h-[300px] md:h-[350px] lg:h-[450px]">
           <div className="absolute inset-0 z-0 overflow-hidden border border-white/10 shadow-2xl">
             <img
               src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200"
@@ -85,12 +85,12 @@ const WhoWeAreSection: React.FC = () => {
               <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none" />
             </motion.div>
 
-            <div className="max-w-7xl mx-auto px-6 mb-12 relative z-10 text-center mt-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 relative z-10 text-center mt-12 sm:mt-16 lg:mt-20">
               <motion.h2
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
-                className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(2.5rem,12vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan"
+                className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,7vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan whitespace-nowrap"
                 style={{
                   backgroundImage:
                     "url('https://assets.avant.org.au/cdf6134c-01d7-0292-26f5-2f5cf1db96f8/4645803d-67d3-4662-9f18-816e532b82a1/Responding-to-a-cyber-security-incident.jpg')",
@@ -103,9 +103,9 @@ const WhoWeAreSection: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 1 }}
-                className="mt-8"
+                className="mt-6 sm:mt-8"
               >
-                <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[20px] block">
+                <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
                   Global Expertise
                 </span>
               </motion.div>

@@ -18,9 +18,9 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     return { hasError: true };
   }
 
-  componentDidCatch(error: unknown, errorInfo: unknown) {
-    // eslint-disable-next-line no-console
-    console.error('[ErrorBoundary] Caught error:', error, errorInfo);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  componentDidCatch(_error: unknown, _errorInfo: unknown) {
+    // Intentionally left blank for now; integrate with logging infrastructure if needed.
   }
 
   handleReset = () => {

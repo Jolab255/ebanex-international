@@ -8,15 +8,15 @@ const HeroSection: React.FC = () => {
   const backgroundY = useTransform(scrollY, [0, 500], ['0%', '20%']);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-radial-at-t from-slate-900/20 via-slate-950/90 to-slate-950" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] max-w-[1200px] max-h-[1200px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
         <div className="absolute top-1/5 inset-y-0 right-0 w-full max-w-[100vw] pointer-events-none overflow-hidden">
-          <div className="absolute top-1/3 left-1/2 -translate-y-1/2 translate-x-[5%] w-[600px] h-[600px] opacity-100 py-10 lg:py-16">
+          <div className="absolute top-1/3 left-1/2 -translate-y-1/2 translate-x-[5%] w-[min(90vw,400px)] h-[min(90vw,400px)] sm:w-[min(80vw,500px)] sm:h-[min(80vw,500px)] lg:w-[600px] lg:h-[600px] opacity-100 py-4 sm:py-6 lg:py-10">
             <Globe
               baseColor="#050029"
               glowColor="#05010dff"
@@ -83,7 +83,7 @@ const HeroSection: React.FC = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8, duration: 1 }}
-                className="text-lg text-slate-400 max-w-2xl leading-relaxed font-light border-l border-purple-500/20 pl-8"
+                className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed font-light border-l border-purple-500/20 pl-4 sm:pl-6 lg:pl-8"
               >
                 Ebanex International is a global training and advisory firm delivering professional development,
                 cybersecurity training, digital transformation capacity building, and institutional strengthening
@@ -94,18 +94,18 @@ const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
-                className="flex flex-wrap gap-4"
+                className="flex flex-wrap gap-3 sm:gap-4"
               >
-                <button className="h-14 px-8 bg-white text-slate-950 rounded-sm font-bold text-[10px] lg:text-xs uppercase tracking-[0.2em] hover:bg-purple-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-xl active:scale-95">
+                <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 bg-white text-slate-950 rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-purple-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-xl active:scale-95">
                   View Training Programs
                 </button>
-                <button className="h-14 px-8 border border-white/10 text-white rounded-sm font-bold text-[10px] lg:text-xs uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95">
+                <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95">
                   Partner With Us
                 </button>
-                <button className="h-14 px-8 border border-white/10 text-white rounded-sm font-bold text-[10px] lg:text-xs uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95">
+                <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95">
                   Request Corporate Training
                 </button>
-                <button className="h-14 px-8 border border-white/10 text-white rounded-sm font-bold text-[10px] lg:text-xs uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-3 group">
+                <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2 sm:gap-3 group">
                   Contact Us
                   <ArrowRight className="text-white group-hover:translate-x-1 transition-transform" size={18} />
                 </button>

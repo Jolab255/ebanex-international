@@ -32,13 +32,13 @@ const TrainingApproachCarousel: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full" style={{ minHeight: '40vh' }}>
+    <div className="relative w-full" style={{ minHeight: 'clamp(300px, 40vh, 600px)' }}>
       <ProgressSlider vertical={false} activeSlider="practical">
         <SliderContent>
           {trainingItems.map((item, index) => (
             <SliderWrapper key={index} value={item.sliderName}>
               <img
-                className="rounded-xl h-[40vh] min-h-[400px] max-h-[600px] w-full object-cover"
+                className="rounded-lg sm:rounded-xl h-[clamp(300px,40vh,600px)] w-full object-cover"
                 src={item.img}
                 alt={item.desc}
                 loading="lazy"
@@ -52,13 +52,13 @@ const TrainingApproachCarousel: React.FC = () => {
             <SliderBtn
               key={index}
               value={item.sliderName}
-              className="text-left p-4 border-r border-white/10 last:border-r-0"
+              className="text-left p-3 sm:p-4 border-r border-white/10 last:border-r-0"
               progressBarClass="bg-purple-500 h-1"
             >
-              <h2 className="relative px-4 py-1 rounded-full w-fit bg-purple-500 text-white text-sm font-bold mb-2">
+              <h2 className="relative px-2 sm:px-4 py-1 rounded-full w-fit bg-purple-500 text-white text-xs sm:text-sm font-bold mb-1 sm:mb-2">
                 {item.title}
               </h2>
-              <p className="text-sm font-medium text-slate-300">{item.desc}</p>
+              <p className="text-xs sm:text-sm font-medium text-slate-300">{item.desc}</p>
             </SliderBtn>
           ))}
         </SliderBtnGroup>
@@ -69,7 +69,7 @@ const TrainingApproachCarousel: React.FC = () => {
 
 const TrainingApproachSection: React.FC = () => {
   return (
-    <section className="py-24 lg:py-32 bg-slate-950 relative overflow-hidden border-t border-white/5">
+    <section className="py-12 sm:py-16 lg:py-24 xl:py-32 bg-slate-950 relative overflow-hidden border-t border-white/5">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Squares
           speed={0.13}
@@ -80,13 +80,13 @@ const TrainingApproachSection: React.FC = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <motion.h2
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
-            className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(2.5rem,12vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan"
+            className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,7vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan whitespace-nowrap"
             style={{
               backgroundImage:
                 "url('https://assets.avant.org.au/cdf6134c-01d7-0292-26f5-2f5cf1db96f8/4645803d-67d3-4662-9f18-816e532b82a1/Responding-to-a-cyber-security-incident.jpg')",
@@ -99,9 +99,9 @@ const TrainingApproachSection: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 3 }}
-            className="mt-8"
+            className="mt-6 sm:mt-8"
           >
-            <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[20px] block">
+            <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
               How We Deliver Excellence
             </span>
           </motion.div>

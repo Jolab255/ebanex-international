@@ -101,53 +101,55 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-20">
+    <div className="pt-24 sm:pt-32 pb-16 sm:pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20">
           <div>
-            <h1 className="text-5xl font-bold font-heading mb-8">Let's <span className="text-purple-500">Connect.</span></h1>
-            <p className="text-xl text-slate-400 mb-12">
+            <h1 className="text-[clamp(1.5rem,4vw,3rem)] font-bold font-heading mb-6 sm:mb-8 whitespace-nowrap">
+              Let&apos;s <span className="text-purple-500">Connect.</span>
+            </h1>
+            <p className="text-base sm:text-lg lg:text-xl text-slate-400 mb-8 sm:mb-12">
               Have questions about our training programs or institutional advisory? 
               Our global team is ready to assist.
             </p>
 
             <div className="space-y-8 mb-12">
-              <div className="flex items-center gap-6">
-                <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center text-purple-400">
-                  <MapPin />
+              <div className="flex items-center gap-4 sm:gap-6">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-xl sm:rounded-2xl flex items-center justify-center text-purple-400 shrink-0">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold">Global Headquarters</h4>
-                  <p className="text-slate-400">122 Financial District, Cyber City</p>
+                  <h4 className="font-bold text-sm sm:text-base">Global Headquarters</h4>
+                  <p className="text-slate-400 text-sm sm:text-base">122 Financial District, Cyber City</p>
                 </div>
               </div>
-              <div className="flex items-center gap-6">
-                <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center text-purple-400">
-                  <Mail />
+              <div className="flex items-center gap-4 sm:gap-6">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-xl sm:rounded-2xl flex items-center justify-center text-purple-400 shrink-0">
+                  <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold">Email Us</h4>
-                  <p className="text-slate-400">advisory@ebanex.com</p>
+                  <h4 className="font-bold text-sm sm:text-base">Email Us</h4>
+                  <p className="text-slate-400 text-sm sm:text-base">advisory@ebanex.com</p>
                 </div>
               </div>
-              <div className="flex items-center gap-6">
-                <div className="w-14 h-14 glass rounded-2xl flex items-center justify-center text-purple-400">
-                  <Phone />
+              <div className="flex items-center gap-4 sm:gap-6">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-xl sm:rounded-2xl flex items-center justify-center text-purple-400 shrink-0">
+                  <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold">Call Center</h4>
-                  <p className="text-slate-400">+1 (800) EBANEX-INTL</p>
+                  <h4 className="font-bold text-sm sm:text-base">Call Center</h4>
+                  <p className="text-slate-400 text-sm sm:text-base">+1 (800) EBANEX-INTL</p>
                 </div>
               </div>
             </div>
             
-            <div className="h-64 rounded-3xl bg-slate-800 border border-white/5 overflow-hidden flex items-center justify-center text-slate-500">
+            <div className="h-48 sm:h-64 rounded-2xl sm:rounded-3xl bg-slate-800 border border-white/5 overflow-hidden flex items-center justify-center text-slate-500 text-sm sm:text-base">
                Interactive Global Map Interface
             </div>
           </div>
 
-          <div className="glass p-12 rounded-[2.5rem] border-white/5 self-start">
-            <h3 className="text-2xl font-bold mb-8">Send an Inquiry</h3>
+          <div className="glass p-6 sm:p-8 lg:p-12 rounded-2xl sm:rounded-[2.5rem] border-white/5 self-start">
+            <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Send an Inquiry</h3>
             <form className="space-y-6" onSubmit={handleSubmit} noValidate>
               {errors.form && (
                 <div className="mb-2 rounded-xl border border-red-500/40 bg-red-950/40 px-4 py-3 text-sm text-red-200">

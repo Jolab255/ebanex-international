@@ -87,10 +87,8 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
             }
         };
 
-        const resizeObserver = new ResizeObserver((entries) => {
-            for (let entry of entries) {
-                updatePath();
-            }
+        const resizeObserver = new ResizeObserver(() => {
+            updatePath();
         });
 
         if (containerRef.current) {

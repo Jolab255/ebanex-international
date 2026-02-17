@@ -5,11 +5,11 @@ import { ArrowUpRight, TrendingUp, ShieldCheck, Settings, LineChart } from 'luci
 
 const Consulting: React.FC = () => {
   return (
-    <div className="pt-32 pb-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <header className="max-w-3xl mb-24">
-          <h1 className="text-6xl font-bold font-heading mb-8">Strategic <span className="text-blue-500">Advisory.</span></h1>
-          <p className="text-xl text-slate-400">
+    <div className="pt-24 sm:pt-32 pb-16 sm:pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <header className="max-w-3xl mb-12 sm:mb-16 lg:mb-24">
+          <h1 className="text-[clamp(1.75rem,5vw,3.75rem)] font-bold font-heading mb-6 sm:mb-8 whitespace-nowrap">Strategic <span className="text-blue-500">Advisory.</span></h1>
+          <p className="text-base sm:text-lg lg:text-xl text-slate-400">
             We partner with governments and enterprises to navigate the intricacies of 
             digital transformation, governance, and institutional strengthening.
           </p>
@@ -43,14 +43,14 @@ const Consulting: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass p-12 rounded-[2.5rem] border-white/5 flex flex-col md:flex-row gap-8 items-center group cursor-pointer hover:border-blue-500/30 transition-colors"
+              className="glass p-6 sm:p-8 lg:p-12 rounded-2xl sm:rounded-[2.5rem] border-white/5 flex flex-col md:flex-row gap-6 sm:gap-8 items-center group cursor-pointer hover:border-blue-500/30 transition-colors"
             >
-              <div className="w-20 h-20 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-600/10 rounded-xl sm:rounded-2xl flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform shrink-0">
                 {item.icon}
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
-                <p className="text-slate-400">{item.desc}</p>
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">{item.title}</h3>
+                <p className="text-sm sm:text-base text-slate-400">{item.desc}</p>
               </div>
               <div className="hidden md:block">
                 <ArrowUpRight className="text-slate-600 group-hover:text-blue-500 transition-colors" size={32} />
@@ -59,12 +59,12 @@ const Consulting: React.FC = () => {
           ))}
         </div>
 
-        <div className="bg-slate-900 rounded-[3rem] p-12 lg:p-24 text-center">
-           <h2 className="text-4xl font-bold mb-8">Elevate Your Institution</h2>
-           <p className="text-slate-400 max-w-2xl mx-auto mb-12">
+        <div className="bg-slate-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 xl:p-24 text-center">
+           <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold mb-6 sm:mb-8 whitespace-nowrap">Elevate Your Institution</h2>
+           <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto mb-8 sm:mb-12">
              Our advisory services are bespoke, data-driven, and focused on long-term value creation.
            </p>
-           <button className="px-10 py-5 bg-blue-600 rounded-full font-bold hover:bg-blue-500 transition-all shadow-xl shadow-blue-900/20">
+           <button className="px-6 sm:px-8 lg:px-10 py-3 sm:py-4 lg:py-5 bg-blue-600 rounded-full font-bold text-sm sm:text-base hover:bg-blue-500 transition-all shadow-xl shadow-blue-900/20">
              Consult with an Expert
            </button>
         </div>

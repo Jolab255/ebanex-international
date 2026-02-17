@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, Brain, Users, LineChart, Cpu, Globe, GraduationCap, Building2 } from 'lucide-react';
+import { Shield, Users, GraduationCap, Building2 } from 'lucide-react';
 
 export const NAVIGATION_LINKS = [
   { label: 'Home', path: '/' },

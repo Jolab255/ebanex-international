@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
+import PageLoader from './components/ui/PageLoader';
 const Home = React.lazy(() => import('./pages/Home'));
 const About = React.lazy(() => import('./pages/About'));
 const Training = React.lazy(() => import('./pages/Training'));
@@ -22,15 +23,7 @@ const App: React.FC = () => {
         <Navbar />
         <div className="flex-grow">
           <ErrorBoundary>
-            <React.Suspense
-              fallback={
-                <div className="flex min-h-[60vh] items-center justify-center bg-slate-950 text-slate-300">
-                  <div className="animate-pulse rounded-xl border border-white/10 bg-slate-900/60 px-6 py-4 text-sm">
-                    Loading experience...
-                  </div>
-                </div>
-              }
-            >
+            <React.Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />

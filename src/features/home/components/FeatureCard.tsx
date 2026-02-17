@@ -53,24 +53,24 @@ const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => {
         </svg>
       </div>
 
-      <div className="h-full p-8 lg:p-10 flex flex-col items-start relative z-10 transition-all duration-700 bg-transparent">
+      <div className="h-full p-6 sm:p-8 lg:p-10 flex flex-col items-start relative z-10 transition-all duration-700 bg-transparent">
         <div
-          className={`text-purple-400 mb-6 transition-all transform ${
+          className={`text-purple-400 mb-4 sm:mb-6 transition-all transform ${
             isHovered ? 'scale-110' : 'scale-100'
           }`}
         >
-          {React.cloneElement(feature.icon as React.ReactElement, { size: 32 })}
+          {React.cloneElement(feature.icon as React.ReactElement, { size: 28 })}
         </div>
 
         <h3
-          className={`text-xl font-black font-heading mb-3 tracking-tight transition-colors uppercase ${
+          className={`text-lg sm:text-xl font-black font-heading mb-2 sm:mb-3 tracking-tight transition-colors uppercase ${
             isHovered ? 'text-purple-400' : 'text-white'
           }`}
         >
           {feature.title}
         </h3>
 
-        <p className="text-slate-400 font-light leading-relaxed text-sm max-w-xs text-justify">
+        <p className="text-slate-400 font-light leading-relaxed text-xs sm:text-sm max-w-xs text-justify">
           {feature.desc}
         </p>
       </div>
