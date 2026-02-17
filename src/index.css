@@ -111,11 +111,6 @@ body::after {
   letter-spacing: 0.1em;
 }
 
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
 
 /* Custom Cursor */
 .is-hovering {
