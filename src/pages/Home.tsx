@@ -21,22 +21,24 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-radial-at-t from-slate-900/20 via-slate-950/90 to-slate-950" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] max-w-[1200px] max-h-[1200px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
-
-          {/* 3D Globe Background */}
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] opacity-100 pointer-events-none hidden lg:block">
-            <Globe
-              baseColor="#050029"
-              glowColor="#05010dff"
-              markerColor="#ffffff"
-              scale={1.1}
-              mapBrightness={20}
-              diffuse={1.2}
-            />
-          </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10 w-full">
-          <div className="max-w-6xl">
+          {/* 3D Globe Background - Centered Anchor for Zoom Stability & No Clipping */}
+          <div className="absolute inset-y-0 right-0 w-full max-w-[100vw] pointer-events-none overflow-hidden ">
+            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 translate-x-[5%] w-[650px] h-[650px] opacity-100 py-10 lg:py-16">
+              <Globe
+                baseColor="#050029"
+                glowColor="#05010dff"
+                markerColor="#ffffff"
+                scale={1.2}
+                mapBrightness={30}
+                diffuse={1.2}
+              />
+            </div>
+          </div>
+
+          <div className="max-w-6xl relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
@@ -135,71 +137,82 @@ const Home: React.FC = () => {
       </section>
 
       {/* SECTION 2: WHO WE ARE (Scroll Triggered) */}
-      <section className="py-32 bg-slate-950 relative overflow-hidden" ref={sectionRef}>
-        <motion.div
-          style={{ y: backgroundY }}
-          className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none"
-        >
-          <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-blue-500 blur-[150px] rounded-full" />
-        </motion.div>
+      <section className="pt-12 pb-60 lg:pt-16 lg:pb-80 bg-slate-950 relative overflow-hidden" ref={sectionRef}>
+        {/* Large Clipped Title */}
+        <div className="max-w-7xl mx-auto px-6 mb-12 relative z-10 text-center">
+          <motion.h2
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
+            className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(2.5rem,12vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan"
+            style={{
+              backgroundImage: "url('https://assets.avant.org.au/cdf6134c-01d7-0292-26f5-2f5cf1db96f8/4645803d-67d3-4662-9f18-816e532b82a1/Responding-to-a-cyber-security-incident.jpg')",
+              WebkitBackgroundClip: "text",
+            }}
+          >
+            E b a n e x - I n t e r n a t i o n a l
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            className="mt-8"
+          >
+            <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[20px] block">Who We Are</span>
+          </motion.div>
+        </div>
+
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <motion.div
+            style={{ y: backgroundY }}
+            className="absolute top-0 left-0 w-full h-full opacity-5"
+          >
+            <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-blue-500 blur-[50px] rounded-full" />
+          </motion.div>
+        </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-20 items-center">
-            <motion.div
-              className="lg:col-span-6"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <span className="text-purple-500 font-bold uppercase tracking-widest text-xs block mb-6">Who We Are</span>
-              <h2 className="text-5xl font-black font-heading mb-8 leading-tight tracking-tighter text-white">
-                A LEGACY BUILT ON <br />PRACTICAL <br /><span className="text-slate-500">EXCELLENCE.</span>
-              </h2>
-              <p className="text-slate-400 text-lg mb-8 font-light leading-relaxed">
-                Ebanex International is a global powerhouse in institutional strengthening. We bridge the gap between complex theoretical frameworks and real-world operational resilience.
-              </p>
+          {/* Main Photo Container - No overflow-hidden so card can hang */}
+          <div className="relative h-[350px] lg:h-[450px]">
+            {/* Background Image Layer - Sharp edges, contained backdrop */}
+            <div className="absolute inset-0 z-0 overflow-hidden border border-white/10 shadow-2xl">
+              <img
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200"
+                className="w-full h-full object-cover opacity-60"
+                alt="Cybersecurity infrastructure"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950" />
+              <div className="absolute inset-0 bg-slate-950/40" />
+            </div>
 
-              <div className="space-y-4">
-                {[
-                  "Multidisciplinary Global Training",
-                  "Cybersecurity & Digital Resilience",
-                  "Leadership Development Integration"
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + i * 0.1 }}
-                    className="flex items-center gap-4 group"
-                  >
-                    <div className="w-8 h-8 rounded-sm bg-purple-500/10 border border-white/5 flex items-center justify-center text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition-all">
-                      <CheckCircle2 size={16} />
-                    </div>
-                    <span className="text-slate-300 font-medium tracking-tight">{item}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+            {/* Content Overlay - Positioned for 50% vertical hang */}
+            <div className="absolute bottom-0 left-0 w-full translate-y-1/2 z-10 px-6 flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                className="glass p-8 lg:p-10 rounded-[0.5rem] border border-white/10 max-w-4xl w-full shadow-2xl backdrop-blur-3xl overflow-hidden relative"
+              >
+                {/* Decorative accent thread */}
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
 
-            <motion.div
-              className="lg:col-span-6"
-              initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
-              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="relative glass aspect-square rounded-sm overflow-hidden border-white/10">
-                <motion.img
-                  style={{ y: useTransform(scrollYProgress, [0, 1], [-20, 20]) }}
-                  src="https://images.unsplash.com/photo-1573161559521-3832117b1622?q=80&w=1200"
-                  className="w-full h-full object-cover scale-110"
-                  alt="Elite Training Environment"
-                />
-                <div className="absolute inset-0 bg-slate-950/20" />
-              </div>
-            </motion.div>
+                <div className="space-y-6 text-slate-100 text-base font-light leading-relaxed relative z-10 text-justify">
+                  <p>
+                    Ebanex International is a multidisciplinary consulting and training firm focused on building skilled professionals, resilient institutions, and digitally secure organizations.
+                  </p>
+                  <p>
+                    Founded by professionals with strong expertise in information technology, cybersecurity, training, and organizational development, Ebanex provides practical, industry-aligned learning and advisory solutions tailored to institutional needs.
+                  </p>
+                  <p>
+                    We combine technical expertise, leadership development, and institutional capacity building to help organizations adapt, grow, and thrive in an evolving digital environment.
+                  </p>
+                </div>
+
+                {/* Subtle background glow inside card */}
+                <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none" />
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>

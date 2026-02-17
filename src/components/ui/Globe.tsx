@@ -57,6 +57,7 @@ const Globe: React.FC<GlobeProps> = ({
     const autoRotateSpeed = 0.003;
 
     useEffect(() => {
+        let resizeObserver: ResizeObserver | null = null;
         const canvas = canvasRef.current;
         if (!canvas) return;
 
@@ -73,17 +74,22 @@ const Globe: React.FC<GlobeProps> = ({
                 globeRef.current = null;
             }
 
-            const rect = canvas.getBoundingClientRect();
+            const container = canvas.parentElement;
+            if (!container) return;
+
+            const rect = container.getBoundingClientRect();
             const size = Math.min(rect.width, rect.height);
-            const devicePixelRatio = window.devicePixelRatio || 1;
-            const internalWidth = size * devicePixelRatio;
-            const internalHeight = size * devicePixelRatio;
+
+            // Re-query DPR during re-initialization (critical for correct zoom scaling)
+            const dpr = window.devicePixelRatio || 1;
+            const internalWidth = size * dpr;
+            const internalHeight = size * dpr;
 
             canvas.width = internalWidth;
             canvas.height = internalHeight;
 
             globeRef.current = createGlobe(canvas, {
-                devicePixelRatio: devicePixelRatio,
+                devicePixelRatio: dpr,
                 width: internalWidth,
                 height: internalHeight,
                 phi: phiRef.current,
@@ -109,6 +115,34 @@ const Globe: React.FC<GlobeProps> = ({
             });
         };
 
+        // Use ResizeObserver to detect layout-induced size changes
+        resizeObserver = new ResizeObserver(() => {
+            initGlobe();
+        });
+
+        const container = canvas.parentElement;
+        if (container) {
+            resizeObserver.observe(container);
+        }
+
+        // Custom listener for zoom (DPR) changes that ResizeObserver misses
+        let stopZoomTracking = false;
+        const trackZoom = () => {
+            if (stopZoomTracking) return;
+            const dpr = window.devicePixelRatio;
+            const match = window.matchMedia(`screen and (min-resolution: ${dpr}dppx) and (max-resolution: ${dpr}dppx)`);
+
+            const handler = () => {
+                if (!stopZoomTracking) {
+                    initGlobe();
+                    trackZoom(); // Re-attach for new resolution
+                }
+            };
+
+            match.addEventListener("change", handler, { once: true });
+        };
+        trackZoom();
+
         const onMouseDown = (e: MouseEvent) => {
             isDragging.current = true;
             lastMouseX.current = e.clientX;
@@ -131,17 +165,14 @@ const Globe: React.FC<GlobeProps> = ({
         const onMouseUp = () => { isDragging.current = false; canvas.style.cursor = "grab"; };
         const onMouseLeave = () => { if (isDragging.current) { isDragging.current = false; canvas.style.cursor = "grab"; } };
 
-        initGlobe();
         canvas.addEventListener("mousedown", onMouseDown);
         canvas.addEventListener("mousemove", onMouseMove);
         canvas.addEventListener("mouseup", onMouseUp);
         canvas.addEventListener("mouseleave", onMouseLeave);
 
-        const handleResize = () => initGlobe();
-        window.addEventListener("resize", handleResize);
-
         return () => {
-            window.removeEventListener("resize", handleResize);
+            stopZoomTracking = true;
+            if (resizeObserver) resizeObserver.disconnect();
             if (canvas) {
                 canvas.removeEventListener("mousedown", onMouseDown);
                 canvas.removeEventListener("mousemove", onMouseMove);

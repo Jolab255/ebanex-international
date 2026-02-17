@@ -111,6 +111,20 @@ body::after {
   letter-spacing: 0.1em;
 }
 
+@keyframes bg-pan-right {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-bg-pan {
+  animation: bg-pan-right 30s linear infinite alternate;
+  background-size: 200% auto;
+}
 
 /* Custom Cursor */
 .is-hovering {
