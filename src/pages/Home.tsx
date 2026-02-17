@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Globe as GlobeIcon, Shield, Zap, CheckCircle2, ExternalLink } from 'lucide-react';
+import { ArrowRight, Globe as GlobeIcon, Shield, Zap, CheckCircle2, ExternalLink, Target, Landmark, MapPin } from 'lucide-react';
 import { CORE_SERVICES } from '../constants';
 import Globe from '../components/ui/Globe';
 
@@ -137,7 +137,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* SECTION 2: WHO WE ARE (Scroll Triggered) */}
-      <section className="pt-12 pb-60 lg:pt-16 lg:pb-80 bg-slate-950 relative overflow-hidden" ref={sectionRef}>
+      <section className="pt-12 pb-32 lg:pt-16 lg:pb-40 bg-slate-950 relative z-20" ref={sectionRef}>
         {/* Large Clipped Title */}
         <div className="max-w-7xl mx-auto px-6 mb-12 relative z-10 text-center">
           <motion.h2
@@ -186,7 +186,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Content Overlay - Positioned for 50% vertical hang */}
-            <div className="absolute bottom-0 left-0 w-full translate-y-1/2 z-10 px-6 flex justify-center">
+            <div className="absolute bottom-0 left-0 w-full translate-y-1/2 z-10 px-6 flex flex-col items-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -212,84 +212,101 @@ const Home: React.FC = () => {
                 {/* Subtle background glow inside card */}
                 <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none" />
               </motion.div>
+
+              {/* WHY EBANEX title - Exactly 4px (mt-1) below the card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="mt-1 text-center"
+              >
+                <h2 className="text-5xl lg:text-7xl font-black font-heading tracking-tighter text-white leading-none mt-12 mb-6 uppercase">
+                  WHY <span className="text-purple-500">EBANEX</span> INTERNATIONAL
+                </h2>
+                <div className="h-1 w-24 bg-purple-500 mx-auto rounded-full" />
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 3: THE EBANEX ADVANTAGE (Perspective Stack Redesign) */}
-      <section className="py-32 bg-slate-950 relative overflow-visible">
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent pointer-events-none" />
+      {/* SECTION 3: WHY EBANEX INTERNATIONAL (Premium Feature Grid) */}
+      <section className="pt-60 pb-24 lg:pt-80 lg:pb-32 bg-slate-950 relative overflow-visible">
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 mb-32">
-            <div className="lg:col-span-6">
-              <span className="text-purple-500 font-bold uppercase tracking-widest text-xs block mb-4">Strategic Differentiation</span>
-              <h2 className="text-5xl lg:text-7xl font-black font-heading tracking-tighter text-white leading-none">
-                WHY <br />INSTITUTIONS <br />TRUST US.
-              </h2>
-            </div>
-            <div className="lg:col-span-6 flex items-end">
-              <p className="text-slate-500 text-lg font-light leading-relaxed max-w-sm">
-                We bypass conventional methodologies to deliver high-velocity institutional strengthening and digital superiority.
-              </p>
-            </div>
-          </div>
 
-          <div className="relative h-[800px] lg:h-[600px] perspective-1000">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                title: "Practical Pedagogy",
-                icon: <Zap />,
-                desc: "Results-driven learning models utilizing hands-on labs and simulations that mirror enterprise reality.",
-                pos: "top-0 left-0",
-                zIndex: 30,
+                title: "Global Training",
+                desc: "Multidisciplinary global training capability tailored for enterprise-scale professional development.",
+                icon: <GlobeIcon />,
                 delay: 0
               },
               {
-                title: "Global Standards",
-                icon: <GlobeIcon />,
-                desc: "Elite delivery frameworks that adhere to international certifications while respecting local context.",
-                pos: "top-1/4 left-1/4 lg:left-1/3",
-                zIndex: 20,
+                title: "Cyber Expertise",
+                desc: "Strong cybersecurity and digital transformation expertise focused on resilient infrastructure.",
+                icon: <Shield />,
                 delay: 0.1
               },
               {
-                title: "Digital Resilience",
-                icon: <Shield />,
-                desc: "Comprehensive security focus embedded into every institutional training and advisory module.",
-                pos: "top-1/2 left-0 lg:left-2/3",
-                zIndex: 10,
+                title: "Hands-on Learning",
+                desc: "Practical and hands-on learning methodology that translates theory into immediate operational value.",
+                icon: <Zap />,
                 delay: 0.2
+              },
+              {
+                title: "Custom Solutions",
+                desc: "Sector-customized training solutions designed to meet the unique challenges of specific industries.",
+                icon: <Target />,
+                delay: 0.3
+              },
+              {
+                title: "Capacity Building",
+                desc: "Institutional capacity-building capability to strengthen organizational foundations and processes.",
+                icon: <Landmark />,
+                delay: 0.4
+              },
+              {
+                title: "Global-Local Outlook",
+                desc: "Global outlook with strong local implementation capacity for seamless international integration.",
+                icon: <MapPin />,
+                delay: 0.5
               }
-            ].map((card, i) => (
+            ].map((feature, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9, rotateX: 20 }}
-                whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: card.delay, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className={`absolute ${card.pos} w-full lg:w-[450px] z-[${card.zIndex}] group`}
+                transition={{ delay: feature.delay, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="group h-full"
               >
-                <div className="glass p-10 lg:p-14 rounded-sm border-white/5 group-hover:border-purple-500/30 transition-all duration-500 shadow-2xl backdrop-blur-3xl">
-                  <div className="w-16 h-16 rounded-sm bg-purple-600/10 flex items-center justify-center mb-8 border border-white/5 text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all transform group-hover:rotate-12">
-                    {React.cloneElement(card.icon as React.ReactElement, { size: 28 })}
+                <div className="glass h-full p-8 lg:p-10 rounded-[0.5rem] border border-white/5 group-hover:border-purple-500/30 transition-all duration-500 shadow-xl backdrop-blur-3xl flex flex-col items-start relative overflow-hidden">
+                  {/* Hover Accent */}
+                  <div className="absolute top-0 left-0 w-2 h-0 bg-purple-500 group-hover:h-full transition-all duration-500" />
+
+                  <div className="w-14 h-14 rounded-[0.5rem] bg-purple-600/10 flex items-center justify-center mb-8 border border-white/10 text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-all transform group-hover:scale-110">
+                    {React.cloneElement(feature.icon as React.ReactElement, { size: 24 })}
                   </div>
-                  <h3 className="text-3xl font-black font-heading mb-6 tracking-tight text-white">{card.title}</h3>
-                  <p className="text-slate-400 font-light leading-relaxed">
-                    {card.desc}
+
+                  <h3 className="text-xl font-black font-heading mb-4 tracking-tight text-white uppercase group-hover:text-purple-400 transition-colors">
+                    {feature.title}
+                  </h3>
+
+                  <p className="text-slate-400 font-light leading-relaxed text-sm">
+                    {feature.desc}
                   </p>
 
-                  {/* Digital pulse line */}
-                  <div className="mt-10 h-[1px] w-full bg-white/5 relative overflow-hidden">
-                    <div className="absolute top-0 left-0 h-full w-1/3 bg-gradient-to-r from-transparent via-purple-500 to-transparent animate-[marquee_2s_linear_infinite]" />
+                  {/* Subtle corner highlight */}
+                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
+                    <div className="w-8 h-8 rounded-full border-t border-r border-purple-500/50" />
                   </div>
                 </div>
               </motion.div>
             ))}
-
-            {/* Background Decorative Thread */}
-            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/20 to-transparent -translate-y-1/2 pointer-events-none hidden lg:block" />
           </div>
         </div>
       </section>
