@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { PlayCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => (
   <footer className="bg-slate-950 border-t border-white/5 py-20">
@@ -9,18 +8,18 @@ const Footer: React.FC = () => (
         <div className="col-span-2">
           <div className="text-2xl font-bold font-heading mb-6">EBANEX<span className="text-purple-500">.</span></div>
           <p className="text-slate-400 max-w-md leading-relaxed">
-            Ebanex International is a global professional development institution. 
-            We build the capacity of people and organizations through elite training 
+            Ebanex International is a global professional development institution.
+            We build the capacity of people and organizations through elite training
             and strategic advisory.
           </p>
         </div>
         <div>
           <h4 className="font-bold mb-6">Quick Links</h4>
           <ul className="space-y-4 text-slate-400">
-            <li><a href="#/training" className="hover:text-white transition-colors">Training Programs</a></li>
-            <li><a href="#/about" className="hover:text-white transition-colors">About Us</a></li>
-            <li><a href="#/cyber-lab" className="hover:text-white transition-colors">Cyber Lab</a></li>
-            <li><a href="#/consulting" className="hover:text-white transition-colors">Advisory</a></li>
+            <li><Link to="/training" className="hover:text-white transition-colors">Training Programs</Link></li>
+            <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
+            <li><Link to="/cyber-lab" className="hover:text-white transition-colors">Cyber Lab</Link></li>
+            <li><Link to="/consulting" className="hover:text-white transition-colors">Advisory</Link></li>
           </ul>
         </div>
         <div>

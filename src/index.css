@@ -1,0 +1,126 @@
+/* Global Styles */
+
+:root {
+  --cyber-purple: #8b5cf6;
+  --deep-navy: #020617;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--deep-navy);
+  color: #f8fafc;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8b5cf6;
+}
+
+.font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  filter: contrast(150%) brightness(100%);
+  opacity: 0.04;
+  z-index: 9999;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Resilience Text Effect (v2) */
+.resilience-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #8b5cf6 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  display: block;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+}
+
+.drop-shadow-purple {
+  filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.1));
+}
+
+.font-serif-stylish {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Custom Cursor */
+.is-hovering {
+  transform: scale(2.5) !important;
+  opacity: 0.2 !important;
+  background-color: rgba(139, 92, 246, 0.5) !important;
+  border-color: transparent !important;
+}
