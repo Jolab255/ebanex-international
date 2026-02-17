@@ -5,12 +5,13 @@ import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop';
-import Home from './pages/Home';
-import About from './pages/About';
-import Training from './pages/Training';
-import CyberLab from './pages/CyberLab';
-import Consulting from './pages/Consulting';
-import Contact from './pages/Contact';
+import ErrorBoundary from './components/ErrorBoundary';
+const Home = React.lazy(() => import('./pages/Home'));
+const About = React.lazy(() => import('./pages/About'));
+const Training = React.lazy(() => import('./pages/Training'));
+const CyberLab = React.lazy(() => import('./pages/CyberLab'));
+const Consulting = React.lazy(() => import('./pages/Consulting'));
+const Contact = React.lazy(() => import('./pages/Contact'));
 
 const App: React.FC = () => {
   return (
@@ -20,16 +21,28 @@ const App: React.FC = () => {
         <CustomCursor />
         <Navbar />
         <div className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/training" element={<Training />} />
-            <Route path="/cyber-lab" element={<CyberLab />} />
-            <Route path="/consulting" element={<Consulting />} />
-            <Route path="/contact" element={<Contact />} />
-            {/* Fallback */}
-            <Route path="*" element={<Home />} />
-          </Routes>
+          <ErrorBoundary>
+            <React.Suspense
+              fallback={
+                <div className="flex min-h-[60vh] items-center justify-center bg-slate-950 text-slate-300">
+                  <div className="animate-pulse rounded-xl border border-white/10 bg-slate-900/60 px-6 py-4 text-sm">
+                    Loading experience...
+                  </div>
+                </div>
+              }
+            >
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/training" element={<Training />} />
+                <Route path="/cyber-lab" element={<CyberLab />} />
+                <Route path="/consulting" element={<Consulting />} />
+                <Route path="/contact" element={<Contact />} />
+                {/* Fallback */}
+                <Route path="*" element={<Home />} />
+              </Routes>
+            </React.Suspense>
+          </ErrorBoundary>
         </div>
         <Footer />
       </div>

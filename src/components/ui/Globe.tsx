@@ -46,8 +46,8 @@ const Globe: React.FC<GlobeProps> = ({
     markerColor = "#ffffff",
     glowColor = "#ffffff",
 }) => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const globeRef = useRef<any>(null);
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const globeRef = useRef<ReturnType<typeof createGlobe> | null>(null);
 
     const phiRef = useRef(0);
     const thetaRef = useRef(theta);
@@ -105,7 +105,7 @@ const Globe: React.FC<GlobeProps> = ({
                 opacity: 1,
                 offset: [0, 0],
                 markers: [],
-                onRender: (state: Record<string, any>) => {
+                onRender: (state: { phi: number; theta: number }) => {
                     if (!isDragging.current) {
                         phiRef.current += autoRotateSpeed;
                     }

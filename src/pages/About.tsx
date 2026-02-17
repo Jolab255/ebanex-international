@@ -83,6 +83,7 @@ const About: React.FC = () => {
               src="https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=800"
               className="w-full h-full object-cover"
               alt="Leadership"
+              loading="lazy"
             />
           </div>
           <div className="relative z-10 max-w-2xl">
