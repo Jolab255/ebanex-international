@@ -44,7 +44,7 @@ const WhyEbanexGridSection: React.FC = () => {
   ];
 
   return (
-    <section className="pt-16 sm:pt-24 lg:pt-32 xl:pt-36 pb-8 sm:pb-12 lg:pb-16 bg-slate-950 relative overflow-hidden">
+    <section className="pt-[5px] pb-8 sm:pb-12 lg:pb-16 bg-slate-950 relative overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Squares
           speed={0.13}
@@ -67,4 +67,3 @@ const WhyEbanexGridSection: React.FC = () => {
 };
 
 export default WhyEbanexGridSection;
-

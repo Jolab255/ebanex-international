@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Eye, ShieldCheck, Heart, Sparkles, Handshake } from 'lucide-react';
@@ -10,7 +9,7 @@ const About: React.FC = () => {
     { title: 'Innovation', icon: <Heart className="text-red-400" /> },
     { title: 'Impact', icon: <Target className="text-blue-400" /> },
     { title: 'Professionalism', icon: <Handshake className="text-purple-400" /> },
-    { title: 'Global Collaboration', icon: <Eye className="text-indigo-400" /> }
+    { title: 'Global Collaboration', icon: <Eye className="text-indigo-400" /> },
   ];
 
   return (
@@ -21,14 +20,14 @@ const About: React.FC = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[clamp(1.5rem,5vw,4.5rem)] font-bold font-heading mb-6 sm:mb-8 whitespace-nowrap"
+            className="text-[clamp(0.75rem,5vw,4.5rem)] font-bold font-heading mb-6 sm:mb-8 whitespace-nowrap overflow-hidden text-ellipsis"
           >
             Engineering Institutional <span className="text-purple-500">Resilience.</span>
           </motion.h1>
           <p className="text-base sm:text-lg lg:text-xl text-slate-400 leading-relaxed">
-            Ebanex International stands at the intersection of expertise and execution.
-            We are more than consultants; we are architects of institutional capacity,
-            empowering global organizations to thrive in an era of rapid digital disruption.
+            Ebanex International stands at the intersection of expertise and execution. We are more
+            than consultants; we are architects of institutional capacity, empowering global
+            organizations to thrive in an era of rapid digital disruption.
           </p>
         </div>
 
@@ -40,8 +39,9 @@ const About: React.FC = () => {
             </div>
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">Our Mission</h3>
             <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-              To provide transformative training and strategic advisory that strengthens institutional
-              frameworks, secures digital assets, and cultivates high-performance leadership worldwide.
+              To provide transformative training and strategic advisory that strengthens
+              institutional frameworks, secures digital assets, and cultivates high-performance
+              leadership worldwide.
             </p>
           </div>
           <div className="glass p-6 sm:p-8 lg:p-12 rounded-2xl sm:rounded-[2.5rem] border-white/5">
@@ -50,15 +50,17 @@ const About: React.FC = () => {
             </div>
             <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">Our Vision</h3>
             <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-              To be the premier global partner for professional development, known for setting
-              the standard in cybersecurity excellence and sustainable organizational evolution.
+              To be the premier global partner for professional development, known for setting the
+              standard in cybersecurity excellence and sustainable organizational evolution.
             </p>
           </div>
         </div>
 
         {/* Section 3: Values */}
         <div className="mb-32">
-          <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold font-heading text-center mb-8 sm:mb-12 lg:mb-16 whitespace-nowrap">Core Values</h2>
+          <h2 className="text-[clamp(0.9rem,4vw,2.5rem)] font-bold font-heading text-center mb-8 sm:mb-12 lg:mb-16 whitespace-nowrap overflow-hidden text-ellipsis px-4">
+            Core Values
+          </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {values.map((val, idx) => (
               <motion.div
@@ -86,10 +88,13 @@ const About: React.FC = () => {
             />
           </div>
           <div className="relative z-10 max-w-2xl">
-            <h2 className="text-[clamp(1.25rem,3.5vw,1.875rem)] font-bold mb-4 sm:mb-6 lg:mb-8 whitespace-nowrap">Message from our Leadership</h2>
+            <h2 className="text-[clamp(0.8rem,3.5vw,1.875rem)] font-bold mb-4 sm:mb-6 lg:mb-8 whitespace-nowrap overflow-hidden text-ellipsis">
+              Message from our Leadership
+            </h2>
             <blockquote className="text-lg sm:text-xl lg:text-2xl font-medium italic text-slate-300 mb-4 sm:mb-6 lg:mb-8 leading-snug">
               &quot;In a world where digital boundaries are constantly shifting, the greatest asset
-              any organization possesses is its people. At Ebanex, we invest in that human potential.&quot;
+              any organization possesses is its people. At Ebanex, we invest in that human
+              potential.&quot;
             </blockquote>
             <div>
               <p className="font-bold text-xl">Dr. Amara Okoro</p>
@@ -100,21 +105,25 @@ const About: React.FC = () => {
 
         {/* Section 5: Strategic Focus */}
         <div className="mb-24">
-          <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold font-heading text-center mb-8 sm:mb-12 lg:mb-16 whitespace-nowrap">Our Strategic Focus</h2>
+          <h2 className="text-[clamp(0.75rem,4vw,2.5rem)] font-bold font-heading text-center mb-8 sm:mb-12 lg:mb-16 whitespace-nowrap overflow-hidden text-ellipsis px-4">
+            Our Strategic Focus
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              "Technology-led capacity building",
-              "Cybersecurity and digital resilience",
-              "Leadership and workforce development",
-              "Institutional strengthening"
+              'Technology-led capacity building',
+              'Cybersecurity and digital resilience',
+              'Leadership and workforce development',
+              'Institutional strengthening',
             ].map((focus, idx) => (
-              <div key={idx} className="glass p-8 rounded-2xl border-white/5 text-center border-t-2 border-t-purple-500/50">
+              <div
+                key={idx}
+                className="glass p-8 rounded-2xl border-white/5 text-center border-t-2 border-t-purple-500/50"
+              >
                 <p className="font-bold text-slate-300">{focus}</p>
               </div>
             ))}
           </div>
         </div>
-
       </div>
     </div>
   );

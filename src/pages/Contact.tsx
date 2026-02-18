@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { sendContactInquiry } from '../lib/api';
@@ -91,7 +90,9 @@ const Contact: React.FC = () => {
       return;
     }
 
-    setSuccessMessage('Thank you. Your inquiry has been received, and our team will get back to you shortly.');
+    setSuccessMessage(
+      'Thank you. Your inquiry has been received, and our team will get back to you shortly.',
+    );
     setForm({
       fullName: '',
       email: '',
@@ -105,12 +106,12 @@ const Contact: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20">
           <div>
-            <h1 className="text-[clamp(1.5rem,4vw,3rem)] font-bold font-heading mb-6 sm:mb-8 whitespace-nowrap">
+            <h1 className="text-[clamp(1rem,4vw,3rem)] font-bold font-heading mb-6 sm:mb-8 whitespace-nowrap overflow-hidden text-ellipsis px-2">
               Let&apos;s <span className="text-purple-500">Connect.</span>
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-slate-400 mb-8 sm:mb-12">
-              Have questions about our training programs or institutional advisory? 
-              Our global team is ready to assist.
+              Have questions about our training programs or institutional advisory? Our global team
+              is ready to assist.
             </p>
 
             <div className="space-y-8 mb-12">
@@ -120,7 +121,9 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-sm sm:text-base">Global Headquarters</h4>
-                  <p className="text-slate-400 text-sm sm:text-base">122 Financial District, Cyber City</p>
+                  <p className="text-slate-400 text-sm sm:text-base">
+                    122 Financial District, Cyber City
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-4 sm:gap-6">
@@ -142,9 +145,9 @@ const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="h-48 sm:h-64 rounded-2xl sm:rounded-3xl bg-slate-800 border border-white/5 overflow-hidden flex items-center justify-center text-slate-500 text-sm sm:text-base">
-               Interactive Global Map Interface
+              Interactive Global Map Interface
             </div>
           </div>
 

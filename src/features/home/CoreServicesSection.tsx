@@ -29,8 +29,12 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({ service, index, setActiveIn
   const blur = useTransform(scrollYProgress, [0.1, 0.3, 0.7, 0.9], ['8px', '0px', '0px', '8px']);
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center py-12">
-      <motion.div ref={ref} style={{ opacity, scale, filter: `blur(${blur})` }} className="w-full max-w-xl">
+    <div className="min-h-[40vh] sm:min-h-[50vh] lg:min-h-[70vh] flex items-center justify-center py-6 sm:py-8 lg:py-12">
+      <motion.div
+        ref={ref}
+        style={{ opacity, scale, filter: `blur(${blur})` }}
+        className="w-full max-w-xl"
+      >
         <div className="mb-6">
           <div className="inline-flex items-center gap-4 mb-4">
             <span className="text-purple-500 font-bold uppercase tracking-widest text-xs">
@@ -38,12 +42,12 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({ service, index, setActiveIn
             </span>
             <div className="h-[1px] w-12 bg-purple-500/50" />
           </div>
-          <h3 className="text-[clamp(1rem,4vw,2.5rem)] font-black font-heading text-white uppercase leading-tight mb-4 sm:mb-6 whitespace-nowrap">
+          <h3 className="text-[clamp(0.7rem,3.5vw,2.5rem)] font-black font-heading text-white uppercase leading-tight mb-4 sm:mb-6 whitespace-nowrap overflow-hidden text-ellipsis">
             {service.title}
           </h3>
           <p className="text-slate-400 text-base sm:text-lg leading-relaxed">{service.desc}</p>
-          <div className="mt-8">
-            <button className="flex items-center gap-3 text-white uppercase tracking-widest text-xs font-bold group hover:text-purple-400 transition-colors">
+          <div className="mt-8 flex justify-center sm:justify-start">
+            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95">
               Explore Service
             </button>
           </div>
@@ -85,13 +89,13 @@ const CoreServicesSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-slate-950 border-t border-white/5 pt-8 sm:pt-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16 lg:mb-20 relative z-10 text-center">
+    <section className="relative isolate bg-slate-950 border-t border-white/5 pt-8 sm:pt-10 pb-12 sm:pb-16 lg:pb-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-[5px] relative z-10 text-center">
         <motion.h2
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
-          className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.5rem,8vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan whitespace-nowrap"
+          className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(0.6rem,7vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan whitespace-nowrap overflow-hidden text-ellipsis"
           style={{
             backgroundImage:
               "url('https://assets.avant.org.au/cdf6134c-01d7-0292-26f5-2f5cf1db96f8/4645803d-67d3-4662-9f18-816e532b82a1/Responding-to-a-cyber-security-incident.jpg')",
@@ -104,7 +108,7 @@ const CoreServicesSection: React.FC = () => {
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 1 }}
-          className="mt-8"
+          className="mt-[5px]"
         >
           <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
             What We Deliver
@@ -155,9 +159,14 @@ const CoreServicesSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="relative py-12 sm:py-16 lg:py-20 xl:py-0">
+          <div className="relative py-4 sm:py-8 lg:py-20 xl:py-0">
             {coreServiceData.map((service, i) => (
-              <ServiceBlock key={i} service={service} index={i} setActiveIndex={setActiveServiceIndex} />
+              <ServiceBlock
+                key={i}
+                service={service}
+                index={i}
+                setActiveIndex={setActiveServiceIndex}
+              />
             ))}
           </div>
         </div>
@@ -167,4 +176,3 @@ const CoreServicesSection: React.FC = () => {
 };
 
 export default CoreServicesSection;
-

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SkeletonCard, SkeletonText } from './Skeleton';
+import { SkeletonCard } from './Skeleton';
 
 export const PageLoader: React.FC = () => {
   return (
@@ -14,13 +14,7 @@ export const PageLoader: React.FC = () => {
         {/* Content skeleton */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {Array.from({ length: 6 }).map((_, i) => (
-            <SkeletonCard
-              key={i}
-              showImage={i < 3}
-              showTitle
-              showText
-              lines={3}
-            />
+            <SkeletonCard key={i} showImage={i < 3} showTitle showText lines={3} />
           ))}
         </div>
       </div>

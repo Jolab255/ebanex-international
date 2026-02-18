@@ -17,6 +17,6 @@ export interface Feature {
 export interface Service {
   title: string;
   desc: string;
+  icon: ReactElement;
   image: string;
 }
-
