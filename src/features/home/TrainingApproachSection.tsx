@@ -45,28 +45,26 @@ const TrainingApproachSection: React.FC = () => {
     },
   ];
 
-  const MobileOverlay: React.FC = () => {
+  const TrainingOverlay: React.FC = () => {
     const { activeSlider } = useProgressSlider();
     const activeItem = trainingItems.find((t) => t.sliderName === activeSlider) ?? trainingItems[0];
 
     return (
-      <div className="sm:hidden absolute inset-x-0 bottom-0 z-20 pointer-events-none">
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
-        <div className="relative p-3">
+      <div className="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
+        <div className="absolute inset-x-0 bottom-0 h-40 lg:h-84 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+        <div className="relative p-3 lg:p-4">
           <div className="rounded-lg border border-white/10 bg-slate-950/55 backdrop-blur-md overflow-hidden shadow-2xl">
-            <div className="px-3 pt-3 pb-2">
+            <div className="px-3 pt-3 pb-2 lg:px-4 lg:pt-4 lg:pb-3">
               <div className="flex items-center justify-between gap-3">
                 <div className="text-[10px] font-black tracking-[0.35em] uppercase text-purple-200/90">
-                  Training
+                  Training Approach
                 </div>
-                <div className="text-[10px] font-bold tracking-[0.25em] uppercase text-slate-200/70">
-                  Auto
-                </div>
+                
               </div>
               <div className="text-white font-black text-[clamp(0.9rem,3.8vw,1.05rem)] mt-2 leading-tight">
                 {activeItem.title}
               </div>
-              <div className="text-slate-100/85 text-xs leading-snug mt-1">
+              <div className="text-slate-100/85 text-xs leading-snug mt-1 lg:text-sm">
                 {activeItem.desc}
               </div>
             </div>
@@ -78,7 +76,7 @@ const TrainingApproachSection: React.FC = () => {
   };
 
   return (
-    <section className="mt-10 sm:mt-12 lg:mt-16 scroll-mt-24 sm:scroll-mt-28 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16 lg:pb-24 bg-slate-950 relative isolate overflow-hidden border-t border-white/5">
+    <section className="mt-10 sm:mt-12 lg:mt-16 scroll-mt-24 sm:scroll-mt-28 pt-12 sm:pt-16 lg:pt-20 pb-0 sm:pb-2 lg:pb-4 mb-0 bg-slate-950 relative isolate overflow-hidden border-t border-white/5">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Squares
           speed={0.13}
@@ -116,7 +114,7 @@ const TrainingApproachSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="relative w-full h-[clamp(250px,35vh,500px)] mt-6 sm:mt-8 overflow-hidden rounded-lg sm:rounded-xl">
+        <div className="relative w-full h-[clamp(350px,45vh,700px)] lg:h-[70vh] mt-6 sm:mt-8 overflow-hidden rounded-lg sm:rounded-xl">
           <ProgressSlider vertical={false} activeSlider="practical">
             <SliderContent>
               {trainingItems.map((item, index) => (
@@ -131,23 +129,7 @@ const TrainingApproachSection: React.FC = () => {
               ))}
             </SliderContent>
 
-            <MobileOverlay />
-
-            <SliderBtnGroup className="hidden sm:grid absolute inset-x-0 bottom-0 h-fit cursor-pointer text-white bg-slate-900/60 backdrop-blur-md overflow-hidden grid-cols-3 lg:grid-cols-5 rounded-md border border-white/10">
-              {trainingItems.map((item, index) => (
-                <SliderBtn
-                  key={index}
-                  value={item.sliderName}
-                  className="text-left p-3 sm:p-4 border-r border-white/10 last:border-r-0"
-                  progressBarClass="bg-purple-500 h-1"
-                >
-                  <h2 className="relative px-2 sm:px-4 py-1 rounded-full w-fit bg-purple-500 text-white text-xs sm:text-sm font-bold mb-1 sm:mb-2">
-                    {item.title}
-                  </h2>
-                  <p className="text-xs sm:text-sm font-medium text-slate-300">{item.desc}</p>
-                </SliderBtn>
-              ))}
-            </SliderBtnGroup>
+            <TrainingOverlay />
           </ProgressSlider>
         </div>
       </div>

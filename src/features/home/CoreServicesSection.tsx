@@ -89,7 +89,7 @@ const CoreServicesSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative isolate bg-slate-950 border-t border-white/5 pt-8 sm:pt-10 pb-12 sm:pb-16 lg:pb-24">
+    <section className="relative isolate bg-slate-950 border-t border-white/5 pt-8 sm:pt-10 pb-4 sm:pb-6 lg:pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-[5px] relative z-10 text-center">
         <motion.h2
           initial={{ opacity: 0, scale: 0.95 }}
@@ -160,6 +160,7 @@ const CoreServicesSection: React.FC = () => {
           </div>
 
           <div className="relative py-4 sm:py-8 lg:py-20 xl:py-0">
+            
             {coreServiceData.map((service, i) => (
               <ServiceBlock
                 key={i}
