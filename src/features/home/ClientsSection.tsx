@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import {
   Building2,
   HeartHandshake,
@@ -8,10 +8,17 @@ import {
   User,
   Briefcase,
   ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 
 const ClientsSection: React.FC = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  const isInView = useInView(sectionRef, { once: false, margin: '-100px' });
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -75,111 +82,50 @@ const ClientsSection: React.FC = () => {
     },
   ];
 
-  const ClientCard: React.FC<{ client: (typeof clients)[0]; index: number }> = ({
-    client,
-    index,
-  }) => {
-    const cardRef = useRef(null);
-    const isInView = useInView(cardRef, { once: true, margin: '-100px' });
-    const Icon = client.icon;
+  const totalSlides = Math.ceil(clients.length / 2);
 
-    return (
-      <motion.div
-        ref={cardRef}
-        initial={{ opacity: 0, y: 80, scale: 0.95 }}
-        animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-        transition={{ duration: 1, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-        className="group relative"
-      >
-        <div className="relative h-[400px] sm:h-[450px] lg:h-[500px] overflow-hidden cursor-pointer">
-          {/* Masked Image Background */}
-          <div className="absolute inset-0">
-            <motion.img
-              src={client.image}
-              alt={client.name}
-              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-              style={{
-                maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
-              }}
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.6 }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
-          </div>
+  // Auto-advance every 11 seconds (7s transition + 4s display)
+  useEffect(() => {
+    if (isPaused || !isInView) return;
 
-          {/* Accent Line */}
-          <motion.div
-            className="absolute left-0 top-0 w-1 h-full"
-            style={{ backgroundColor: client.accent }}
-            initial={{ scaleY: 0 }}
-            animate={isInView ? { scaleY: 1 } : {}}
-            transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
-          />
+    const interval = setInterval(() => {
+      handleNext();
+    }, 11000);
 
-          {/* Content */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-            {/* Category Tag */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 + 0.4 }}
-              className="flex items-center gap-2 mb-4"
-            >
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ backgroundColor: `${client.accent}20` }}
-              >
-                <Icon size={18} style={{ color: client.accent }} />
-              </div>
-              <span
-                className="text-[10px] font-bold uppercase tracking-[0.2em]"
-                style={{ color: client.accent }}
-              >
-                {client.category}
-              </span>
-            </motion.div>
+    return () => clearInterval(interval);
+  }, [isPaused, isInView, activeSlide]);
 
-            {/* Title */}
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 + 0.5 }}
-              className="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-400 transition-all duration-300"
-            >
-              {client.name}
-            </motion.h3>
+  const handleNext = useCallback(() => {
+    setDirection('next');
+    setActiveSlide((prev) => (prev + 1) % totalSlides);
+  }, [totalSlides]);
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 + 0.6 }}
-              className="text-slate-400 text-sm leading-relaxed max-w-xs"
-            >
-              {client.description}
-            </motion.p>
+  const handlePrev = useCallback(() => {
+    setDirection('prev');
+    setActiveSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  }, [totalSlides]);
 
-            {/* Arrow */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: index * 0.15 + 0.7 }}
-              className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-300"
-            >
-              <ArrowUpRight className="w-4 h-4 text-white/60 group-hover:text-slate-950 transition-colors duration-300" />
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
-    );
+  const handleGoTo = useCallback(
+    (index: number) => {
+      setDirection(index > activeSlide ? 'next' : 'prev');
+      setActiveSlide(index);
+    },
+    [activeSlide],
+  );
+
+  // Get current pair of clients
+  const getClientsForSlide = (slideIndex: number) => {
+    const idx1 = (slideIndex * 2) % clients.length;
+    const idx2 = (slideIndex * 2 + 1) % clients.length;
+    return [clients[idx1], clients[idx2]];
   };
 
+  const currentPair = getClientsForSlide(activeSlide);
+  const prevPair = getClientsForSlide((activeSlide - 1 + totalSlides) % totalSlides);
+  const nextPair = getClientsForSlide((activeSlide + 1) % totalSlides);
+
   return (
-    <section
-      ref={sectionRef}
-      className="py-24 sm:py-32 lg:py-40 bg-slate-950 relative overflow-hidden"
-    >
+    <section ref={sectionRef} className="py-[5px] bg-slate-950 relative overflow-hidden">
       {/* Floating Background Elements */}
       <motion.div
         style={{ y: y1, rotate: rotate1 }}
@@ -201,6 +147,7 @@ const ClientsSection: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8 }}
               className="flex items-center gap-4 mb-6"
             >
@@ -213,6 +160,7 @@ const ClientsSection: React.FC = () => {
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight"
             >
@@ -224,11 +172,21 @@ const ClientsSection: React.FC = () => {
             </motion.h2>
           </div>
 
+          {/* Vertical Separator Line */}
+          <motion.div
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="hidden lg:block w-[1px] h-24 bg-gradient-to-b from-transparent via-purple-500/50 to-transparent origin-center"
+          />
+
           <motion.p
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-slate-400 text-lg max-w-md lg:text-right"
+            className="text-slate-400 text-lg max-w-md text-left"
           >
             From innovative startups to Fortune 500 companies, our client list spans sectors, each
             with unique challenges we've navigated.
@@ -236,40 +194,112 @@ const ClientsSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Horizontal Scroll Container */}
-      <div className="relative">
-        <motion.div
-          style={{ x: y2 }}
-          className="flex gap-6 px-4 sm:px-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-8"
-        >
-          {clients.map((client, index) => (
-            <div
-              key={client.name}
-              className="flex-shrink-0 w-[85vw] sm:w-[60vw] lg:w-[40vw] snap-center"
-            >
-              <ClientCard client={client} index={index} />
-            </div>
-          ))}
-        </motion.div>
+      {/* Cards Container with Stacking Animation */}
+      <div
+        className="relative px-4 sm:px-6"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Navigation Arrows */}
+        <div className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30">
+          <button
+            onClick={handlePrev}
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-300"
+            aria-label="Previous pair"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white/60" />
+          </button>
+        </div>
 
-        {/* Scroll Indicators */}
-        <div className="flex justify-center gap-2 mt-8">
-          {clients.map((_, index) => (
-            <motion.div
+        <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30">
+          <button
+            onClick={handleNext}
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-300"
+            aria-label="Next pair"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white/60" />
+          </button>
+        </div>
+
+        {/* Two Cards with Push Animation */}
+        <div className="flex gap-6 max-w-6xl mx-auto h-[500px]">
+          {/* Left Column */}
+          <div className="flex-1 relative overflow-hidden">
+            <AnimatePresence mode="popLayout" initial={false}>
+              <motion.div
+                key={`left-${activeSlide}`}
+                className="absolute inset-0"
+                initial={{ y: direction === 'next' ? '100%' : '-100%' }}
+                animate={{ y: 0 }}
+                exit={{ y: direction === 'next' ? '-100%' : '100%' }}
+                transition={{
+                  y: { type: 'spring', stiffness: 20, damping: 10, duration: 7 },
+                }}
+              >
+                <ClientCard client={currentPair[0]} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Right Column */}
+          <div className="flex-1 relative overflow-hidden">
+            <AnimatePresence mode="popLayout" initial={false}>
+              <motion.div
+                key={`right-${activeSlide}`}
+                className="absolute inset-0"
+                initial={{ y: direction === 'next' ? '-100%' : '100%' }}
+                animate={{ y: 0 }}
+                exit={{ y: direction === 'next' ? '100%' : '-100%' }}
+                transition={{
+                  y: { type: 'spring', stiffness: 20, damping: 10, duration: 7 },
+                }}
+              >
+                <ClientCard client={currentPair[1]} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Progress Indicators */}
+        <div className="flex justify-center items-center gap-2 mt-12">
+          {Array.from({ length: totalSlides }).map((_, index) => (
+            <button
               key={index}
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="w-8 h-1 rounded-full bg-white/10"
-            />
+              onClick={() => handleGoTo(index)}
+              className="relative focus:outline-none"
+              aria-label={`Go to slide ${index + 1}`}
+            >
+              <div
+                className="w-2 h-2 rounded-full transition-all duration-300"
+                style={{
+                  backgroundColor: activeSlide === index ? '#a855f7' : 'rgba(255,255,255,0.2)',
+                  transform: activeSlide === index ? 'scale(1.3)' : 'scale(1)',
+                }}
+              />
+            </button>
           ))}
         </div>
+
+        {/* Counter */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-6"
+        >
+          <span className="text-white/40 text-sm font-mono">
+            <span className="text-white">{String(activeSlide + 1).padStart(2, '0')}</span>
+            <span className="mx-2">/</span>
+            <span>{String(totalSlides).padStart(2, '0')}</span>
+          </span>
+        </motion.div>
       </div>
 
       {/* Bottom Stats */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className="max-w-7xl mx-auto px-4 sm:px-6 mt-16 sm:mt-24 relative z-10"
       >
@@ -282,7 +312,8 @@ const ClientsSection: React.FC = () => {
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="text-center"
             >
@@ -294,18 +325,152 @@ const ClientsSection: React.FC = () => {
           ))}
         </div>
       </motion.div>
-
-      {/* Hide Scrollbar */}
-      <style>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
+  );
+};
+
+// Client Card Component
+interface ClientCardProps {
+  client: {
+    name: string;
+    category: string;
+    description: string;
+    icon: React.ElementType;
+    image: string;
+    accent: string;
+  };
+}
+
+const ClientCard: React.FC<ClientCardProps> = ({ client }) => {
+  const Icon = client.icon;
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: false, margin: '-50px' });
+
+  return (
+    <div ref={cardRef} className="group relative h-full">
+      {/* Masked Image Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <img
+          src={client.image}
+          alt={client.name}
+          className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-out"
+          style={{
+            maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+          }}
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+      </div>
+
+      {/* Vertical Colored Line with Wave Animation */}
+      <div className="absolute left-0 top-0 w-1 h-full z-10 overflow-hidden">
+        {/* Main solid line */}
+        <motion.div
+          className="absolute left-0 top-0 w-full h-full"
+          style={{ backgroundColor: client.accent }}
+          initial={{ scaleY: 0 }}
+          animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        />
+
+        {/* Traveling wave effect - moves up */}
+        <motion.div
+          className="absolute left-0 w-full h-1/3"
+          style={{
+            background: `linear-gradient(to bottom, transparent, ${client.accent}, transparent)`,
+            filter: 'blur(2px)',
+          }}
+          animate={
+            isInView
+              ? {
+                  top: ['-33%', '100%'],
+                }
+              : {}
+          }
+          transition={{
+            duration: 2.5,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+        />
+
+        {/* Traveling light effect - moves down */}
+        <motion.div
+          className="absolute left-0 w-full h-1/4"
+          style={{
+            background: `linear-gradient(to bottom, ${client.accent}, transparent)`,
+            opacity: 0.6,
+          }}
+          animate={
+            isInView
+              ? {
+                  top: ['100%', '-25%'],
+                }
+              : {}
+          }
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: 'linear',
+            delay: 0.5,
+          }}
+        />
+
+        {/* Pulsing glow */}
+        <motion.div
+          className="absolute left-0 top-0 w-full h-full"
+          style={{
+            backgroundColor: client.accent,
+            filter: 'blur(4px)',
+          }}
+          animate={
+            isInView
+              ? {
+                  opacity: [0.3, 0.8, 0.3],
+                }
+              : {}
+          }
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-20">
+        {/* Category Tag */}
+        <div className="flex items-center gap-2 mb-4">
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+            style={{ backgroundColor: `${client.accent}20` }}
+          >
+            <Icon size={18} style={{ color: client.accent }} />
+          </div>
+          <span
+            className="text-[10px] font-bold uppercase tracking-[0.2em]"
+            style={{ color: client.accent }}
+          >
+            {client.category}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-400 transition-all duration-300">
+          {client.name}
+        </h3>
+
+        {/* Description */}
+        <p className="text-slate-400 text-sm leading-relaxed max-w-xs">{client.description}</p>
+
+        {/* Arrow */}
+        <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-300">
+          <ArrowUpRight className="w-4 h-4 text-white/60 group-hover:text-slate-950 transition-colors duration-300" />
+        </div>
+      </div>
+    </div>
   );
 };
 
