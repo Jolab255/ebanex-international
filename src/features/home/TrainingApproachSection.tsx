@@ -1,13 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Squares from '../../components/ui/Squares';
 import {
   useProgressSlider,
   ProgressSlider,
   SliderContent,
   SliderWrapper,
-  SliderBtnGroup,
-  SliderBtn,
   AutoProgressBar,
 } from '../../components/ui/progressive-carousel';
 
@@ -45,30 +44,112 @@ const TrainingApproachSection: React.FC = () => {
     },
   ];
 
-  const TrainingOverlay: React.FC = () => {
+  const SlideImage: React.FC<{ item: (typeof trainingItems)[0] }> = ({ item }) => {
     const { activeSlider } = useProgressSlider();
-    const activeItem = trainingItems.find((t) => t.sliderName === activeSlider) ?? trainingItems[0];
+    const isActive = activeSlider === item.sliderName;
 
     return (
-      <div className="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
-        <div className="absolute inset-x-0 bottom-0 h-40 lg:h-84 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
-        <div className="relative p-3 lg:p-4">
-          <div className="rounded-lg border border-white/10 bg-slate-950/55 backdrop-blur-md overflow-hidden shadow-2xl">
-            <div className="px-3 pt-3 pb-2 lg:px-4 lg:pt-4 lg:pb-3">
-              <div className="flex items-center justify-between gap-3">
-                <div className="text-[10px] font-black tracking-[0.35em] uppercase text-purple-200/90">
-                  Training Approach
+      <div className="relative w-full h-full overflow-hidden">
+        <img
+          key={isActive ? 'active' : 'inactive'}
+          className={`w-full h-full object-cover ${isActive ? 'animate-zoom-slow' : ''}`}
+          src={item.img}
+          alt={item.title}
+          loading="lazy"
+        />
+        {/* Subtle image overlay for better text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-slate-950/10" />
+      </div>
+    );
+  };
+
+  const TrainingOverlay: React.FC = () => {
+    const { activeSlider, setActiveSlider } = useProgressSlider();
+    const activeIndex = trainingItems.findIndex((t) => t.sliderName === activeSlider);
+    const activeItem = trainingItems[activeIndex] ?? trainingItems[0];
+
+    const goToNext = () => {
+      const nextIndex = (activeIndex + 1) % trainingItems.length;
+      setActiveSlider(trainingItems[nextIndex].sliderName);
+    };
+
+    const goToPrev = () => {
+      const prevIndex = activeIndex === 0 ? trainingItems.length - 1 : activeIndex - 1;
+      setActiveSlider(trainingItems[prevIndex].sliderName);
+    };
+
+    return (
+      <div className="absolute inset-x-0 bottom-0 z-20">
+        {/* Gradient Overlay */}
+        <div className="absolute inset-x-0 bottom-0 h-48 sm:h-56 lg:h-64 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent" />
+
+        {/* Content Card */}
+        <div className="relative px-4 pb-4 sm:px-6 sm:pb-6 lg:px-8 lg:pb-8">
+          <div className="max-w-3xl mx-auto">
+            <div className="rounded-2xl border border-white/10 bg-slate-950/60 backdrop-blur-xl overflow-hidden shadow-2xl">
+              {/* Progress Bar */}
+              <AutoProgressBar
+                className="h-1 bg-white/5"
+                barClassName="bg-gradient-to-r from-purple-500 via-fuchsia-500 to-blue-500"
+              />
+
+              <div className="p-4 sm:p-6 lg:p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    {/* Label */}
+                    <div className="inline-flex items-center gap-2 px-3 py-1  bg-purple-500/10 border border-purple-500/20 mb-3">
+                      <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-purple-300">
+                        Training Approach
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-white font-bold text-lg sm:text-xl lg:text-2xl mb-2 leading-tight">
+                      {activeItem.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                      {activeItem.desc}
+                    </p>
+                  </div>
+
+                  {/* Navigation Buttons */}
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button
+                      onClick={goToPrev}
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300 group"
+                      aria-label="Previous slide"
+                    >
+                      <ChevronLeft className="w-5 h-5 text-white group-hover:text-purple-400 transition-colors" />
+                    </button>
+                    <button
+                      onClick={goToNext}
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300 group"
+                      aria-label="Next slide"
+                    >
+                      <ChevronRight className="w-5 h-5 text-white group-hover:text-purple-400 transition-colors" />
+                    </button>
+                  </div>
                 </div>
-                
-              </div>
-              <div className="text-white font-black text-[clamp(0.9rem,3.8vw,1.05rem)] mt-2 leading-tight">
-                {activeItem.title}
-              </div>
-              <div className="text-slate-100/85 text-xs leading-snug mt-1 lg:text-sm">
-                {activeItem.desc}
+
+                {/* Slide Indicators */}
+                <div className="flex items-center justify-center gap-2 mt-6">
+                  {trainingItems.map((item, index) => (
+                    <button
+                      key={item.sliderName}
+                      onClick={() => setActiveSlider(item.sliderName)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        index === activeIndex
+                          ? 'w-8 bg-gradient-to-r from-purple-500 to-blue-500'
+                          : 'w-1.5 bg-white/20 hover:bg-white/40'
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
-            <AutoProgressBar className="bg-white/10" barClassName="bg-gradient-to-r from-purple-500 via-fuchsia-500 to-blue-500" />
           </div>
         </div>
       </div>
@@ -76,8 +157,9 @@ const TrainingApproachSection: React.FC = () => {
   };
 
   return (
-    <section className="mt-10 sm:mt-12 lg:mt-16 scroll-mt-24 sm:scroll-mt-28 pt-12 sm:pt-16 lg:pt-20 pb-0 sm:pb-2 lg:pb-4 mb-0 bg-slate-950 relative isolate overflow-hidden border-t border-white/5">
-      <div className="absolute inset-0 z-0 pointer-events-none">
+    <section className="py-16 sm:py-20 lg:py-24 bg-slate-950 relative isolate overflow-hidden border-t border-white/5">
+      {/* Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
         <Squares
           speed={0.13}
           squareSize={40}
@@ -87,6 +169,7 @@ const TrainingApproachSection: React.FC = () => {
         />
       </div>
 
+      {/* Section Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 lg:mb-16 relative z-10 text-center">
         <motion.h2
           initial={{ opacity: 0, scale: 0.95 }}
@@ -107,24 +190,20 @@ const TrainingApproachSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-6 sm:mt-8"
         >
-          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
+          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(0.875rem,2vw,1rem)] block">
             How We Deliver Excellence
           </span>
         </motion.div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="relative w-full h-[clamp(350px,45vh,700px)] lg:h-[70vh] mt-6 sm:mt-8 overflow-hidden rounded-lg sm:rounded-xl">
+      {/* Carousel Container */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] overflow-hidden">
           <ProgressSlider vertical={false} activeSlider="practical">
             <SliderContent>
               {trainingItems.map((item, index) => (
                 <SliderWrapper key={index} value={item.sliderName}>
-                  <img
-                    className="h-full w-full object-cover"
-                    src={item.img}
-                    alt={item.desc}
-                    loading="lazy"
-                  />
+                  <SlideImage item={item} />
                 </SliderWrapper>
               ))}
             </SliderContent>
@@ -133,6 +212,24 @@ const TrainingApproachSection: React.FC = () => {
           </ProgressSlider>
         </div>
       </div>
+
+      {/* Zoom Animation Styles - 100% to 120% over 9.8s */}
+      <style>{`
+        @keyframes zoomProgressive {
+          0% {
+            transform: scale(1);
+          }
+          100% {
+            transform: scale(1.2);
+          }
+        }
+        
+        .animate-zoom-slow {
+          animation: zoomProgressive 9.8s linear forwards;
+          will-change: transform;
+          transform-origin: center center;
+        }
+      `}</style>
     </section>
   );
 };

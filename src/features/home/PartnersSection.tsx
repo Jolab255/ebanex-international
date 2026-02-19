@@ -4,44 +4,44 @@ import { motion } from 'framer-motion';
 const PartnersSection: React.FC = () => {
   const partners = [
     {
-      name: 'CRDB Bank',
-      initials: 'CRDB',
-      url: 'https://www.crdbbank.co.tz',
+      name: 'Palo Alto Networks',
+      logo: 'https://cdn.brandfetch.io/idfPYio-v-/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
     },
     {
-      name: 'NMB Bank',
-      initials: 'NMB',
-      url: 'https://www.nmbbank.co.tz',
+      name: 'CrowdStrike',
+      logo: 'https://cdn.brandfetch.io/idfOAAUeK0/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
     },
     {
-      name: 'Tanzania Breweries',
-      initials: 'TBL',
-      url: 'https://www.tbl.co.tz',
+      name: 'Fortinet',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Fortinet_logo.svg',
     },
     {
-      name: 'MIC Tanzania',
-      initials: 'MIC',
-      url: 'https://www.mic.co.tz',
+      name: 'Cisco',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/6/64/Cisco_logo.svg',
     },
     {
-      name: 'Twiga Cement',
-      initials: 'TCCL',
-      url: 'https://www.twiga-cement.com',
+      name: 'Check Point',
+      logo: 'https://cdn.brandfetch.io/idu77Civ2h/theme/dark/logo.svg?c=1dxbfHSJFAPEGdCLU4o5B',
     },
     {
-      name: 'Tanzania Tourist Board',
-      initials: 'TTB',
-      url: 'https://www.tanzaniatouristboard.com',
+      name: 'FireEye',
+      logo: 'https://cdn.brandfetch.io/idiGgQesnl/w/400/h/400/theme/dark/icon.png?c=1dxbfHSJFAPEGdCLU4o5B',
     },
     {
-      name: 'Tanzania Revenue Authority',
-      initials: 'TRA',
-      url: 'https://www.tra.go.tz',
+      name: 'Splunk',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Splunk_logo.svg',
     },
     {
-      name: 'TPDC',
-      initials: 'TPDC',
-      url: 'https://www.tpdc.co.tz',
+      name: 'IBM Security',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg',
+    },
+    {
+      name: 'Microsoft',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg',
+    },
+    {
+      name: 'Amazon AWS',
+      logo: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg',
     },
   ];
 
@@ -84,25 +84,36 @@ const PartnersSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Partners Grid - Simple and Clean */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-          {partners.map((partner, index) => (
-            <motion.a
-              key={partner.name}
-              href={partner.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
-              whileHover={{ scale: 1.05, borderColor: 'rgba(168, 85, 247, 0.5)' }}
-              className="group flex items-center justify-center h-24 sm:h-28 rounded-xl border border-white/10 bg-slate-900/50 hover:bg-slate-800/50 transition-all duration-300 p-4"
-            >
-              <span className="text-2xl sm:text-3xl font-black text-white opacity-60 group-hover:opacity-100 transition-opacity duration-300">
-                {partner.initials}
-              </span>
-            </motion.a>
-          ))}
+        {/* Marquee Container */}
+        <div className="marquee-container overflow-hidden w-full relative max-w-5xl mx-auto select-none py-8">
+          {/* Left Fade */}
+          <div className="absolute left-0 top-0 h-full w-20 sm:w-32 z-10 pointer-events-none bg-gradient-to-r from-slate-950 to-transparent" />
+
+          {/* Right Fade */}
+          <div className="absolute right-0 top-0 h-full w-20 sm:w-32 z-10 pointer-events-none bg-gradient-to-l from-slate-950 to-transparent" />
+
+          {/* Marquee Track - 4 copies for smooth seamless loop */}
+          <div className="marquee-track flex">
+            {[...Array(4)].map((_, copyIndex) => (
+              <div key={copyIndex} className="marquee-set flex shrink-0">
+                {partners.map((partner, index) => (
+                  <div
+                    key={`${partner.name}-${copyIndex}-${index}`}
+                    className="marquee-item flex-shrink-0 px-3 sm:px-4"
+                  >
+                    <div className="h-20 sm:h-24 w-36 sm:w-44 rounded-xl border border-white/10 bg-slate-900/50 flex items-center justify-center overflow-hidden hover:bg-slate-800/50 hover:border-purple-500/30 transition-all duration-300 group p-6">
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 filter brightness-200"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* CTA Button */}
@@ -117,6 +128,60 @@ const PartnersSection: React.FC = () => {
           See all partners
         </motion.button>
       </div>
+
+      {/* Marquee Animation Styles */}
+      <style>{`
+        .marquee-container {
+          -webkit-mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+          );
+          mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 10%,
+            black 90%,
+            transparent
+          );
+        }
+
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marqueeScroll 80s linear infinite;
+          will-change: transform;
+        }
+
+        .marquee-track:hover {
+          animation-play-state: paused;
+        }
+
+        .marquee-set {
+          display: flex;
+        }
+
+        .marquee-item {
+          display: flex;
+        }
+
+        @keyframes marqueeScroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        /* Force GPU acceleration */
+        .marquee-track {
+          transform: translateZ(0);
+          backface-visibility: hidden;
+        }
+      `}</style>
     </section>
   );
 };

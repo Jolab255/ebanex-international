@@ -11,7 +11,7 @@ const WhoWeAreSection: React.FC = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
   return (
-    <section className="pt-8 sm:pt-12 pb-[5px] bg-slate-950 relative z-20" ref={sectionRef}>
+    <section className="pt-8 sm:pt-5 pb-[5px] bg-slate-950 relative z-20" ref={sectionRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12 relative z-10 text-center">
         <motion.h2
           initial={{ opacity: 0, scale: 0.95 }}

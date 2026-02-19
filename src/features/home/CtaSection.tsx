@@ -22,7 +22,7 @@ const CtaSection: React.FC = () => (
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="relative h-[300px] lg:h-full overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-transparent z-10 lg:hidden" />
+          <div className="absolute inset-0 z-10 lg:hidden" />
           <img
             src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1000&auto=format&fit=crop"
             alt="Professional team collaboration"
@@ -30,29 +30,6 @@ const CtaSection: React.FC = () => (
           />
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent z-10" />
-
-          {/* Decorative Elements */}
-          <div className="absolute bottom-10 left-10 z-20 hidden lg:block">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full bg-purple-500/20 backdrop-blur-sm flex items-center justify-center border border-purple-500/30">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="text-purple-400"
-                >
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-white font-semibold text-sm">Enterprise Security</p>
-                <p className="text-slate-400 text-xs">Trusted by 500+ companies</p>
-              </div>
-            </div>
-          </div>
         </motion.div>
 
         {/* Right Side - Content */}
@@ -68,9 +45,9 @@ const CtaSection: React.FC = () => (
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 mb-6"
             >
-              <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+              
               <span className="text-purple-400 text-sm font-medium uppercase tracking-wider">
                 Call to Action
               </span>
