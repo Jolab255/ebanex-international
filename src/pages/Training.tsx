@@ -37,7 +37,7 @@ const Training: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <header className="mb-12 sm:mb-16 lg:mb-20">
           <h1 className="text-[clamp(0.85rem,4vw,3rem)] font-bold font-heading mb-4 sm:mb-6 whitespace-nowrap overflow-hidden text-ellipsis">
-            World-Class <span className="text-purple-500">Curricula.</span>
+            World-Class <span className="text-blue-500">Curricula.</span>
           </h1>
           <p className="text-base sm:text-lg lg:text-xl text-slate-400 max-w-2xl">
             Our training programs are industry-aligned, evidence-based, and designed to deliver
@@ -61,7 +61,7 @@ const Training: React.FC = () => {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {cat.items.map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-slate-400 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
                       {item}
                     </li>
                   ))}
@@ -80,7 +80,7 @@ const Training: React.FC = () => {
             {CERTIFICATIONS.map((cert) => (
               <div
                 key={cert}
-                className="px-4 sm:px-6 lg:px-8 py-3 sm:py-4 glass border-white/10 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base hover:border-purple-500/50 transition-colors"
+                className="px-4 sm:px-6 lg:px-8 py-3 sm:py-4 glass border-white/10 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base hover:border-blue-500/50 transition-colors"
               >
                 {cert}
               </div>

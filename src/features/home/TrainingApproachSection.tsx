@@ -90,15 +90,15 @@ const TrainingApproachSection: React.FC = () => {
               {/* Progress Bar */}
               <AutoProgressBar
                 className="h-1 bg-white/5"
-                barClassName="bg-gradient-to-r from-purple-500 via-fuchsia-500 to-blue-500"
+                barClassName="bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600"
               />
 
               <div className="p-4 sm:p-6 lg:p-8">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     {/* Label */}
-                    <div className="inline-flex items-center gap-2 px-3 py-1  bg-purple-500/10 border border-purple-500/20 mb-3">
-                      <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-purple-300">
+                    <div className="inline-flex items-center gap-2 px-3 py-1  bg-blue-500/10 border border-blue-500/20 mb-3">
+                      <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-blue-300">
                         Training Approach
                       </span>
                     </div>
@@ -118,17 +118,17 @@ const TrainingApproachSection: React.FC = () => {
                   <div className="flex items-center gap-2 shrink-0">
                     <button
                       onClick={goToPrev}
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300 group"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-blue-500/50 flex items-center justify-center transition-all duration-300 group"
                       aria-label="Previous slide"
                     >
-                      <ChevronLeft className="w-5 h-5 text-white group-hover:text-purple-400 transition-colors" />
+                      <ChevronLeft className="w-5 h-5 text-white group-hover:text-blue-400 transition-colors" />
                     </button>
                     <button
                       onClick={goToNext}
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300 group"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-blue-500/50 flex items-center justify-center transition-all duration-300 group"
                       aria-label="Next slide"
                     >
-                      <ChevronRight className="w-5 h-5 text-white group-hover:text-purple-400 transition-colors" />
+                      <ChevronRight className="w-5 h-5 text-white group-hover:text-blue-400 transition-colors" />
                     </button>
                   </div>
                 </div>
@@ -141,7 +141,7 @@ const TrainingApproachSection: React.FC = () => {
                       onClick={() => setActiveSlider(item.sliderName)}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
                         index === activeIndex
-                          ? 'w-8 bg-gradient-to-r from-purple-500 to-blue-500'
+                          ? 'w-8 bg-gradient-to-r from-blue-500 to-cyan-500'
                           : 'w-1.5 bg-white/20 hover:bg-white/40'
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
@@ -190,7 +190,7 @@ const TrainingApproachSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-6 sm:mt-8"
         >
-          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(0.875rem,2vw,1rem)] block">
+          <span className="text-blue-500 font-bold uppercase tracking-[0.4em] text-[clamp(0.875rem,2vw,1rem)] block">
             How We Deliver Excellence
           </span>
         </motion.div>

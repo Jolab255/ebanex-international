@@ -54,7 +54,7 @@ const PartnersSection: React.FC = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-purple-500 font-bold uppercase tracking-[0.3em] text-sm block mb-4"
+            className="text-blue-500 font-bold uppercase tracking-[0.3em] text-sm block mb-4"
           >
             More than 50+ brands trust us
           </motion.span>
@@ -101,7 +101,7 @@ const PartnersSection: React.FC = () => {
                     key={`${partner.name}-${copyIndex}-${index}`}
                     className="marquee-item flex-shrink-0 px-3 sm:px-4"
                   >
-                    <div className="h-20 sm:h-24 w-36 sm:w-44 rounded-xl border border-white/10 bg-slate-900/50 flex items-center justify-center overflow-hidden hover:bg-slate-800/50 hover:border-purple-500/30 transition-all duration-300 group p-6">
+                    <div className="h-20 sm:h-24 w-36 sm:w-44 rounded-xl border border-white/10 bg-slate-900/50 flex items-center justify-center overflow-hidden hover:bg-slate-800/50 hover:border-blue-500/30 transition-all duration-300 group p-6">
                       <img
                         src={partner.logo}
                         alt={partner.name}
@@ -123,7 +123,7 @@ const PartnersSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 0.4 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="mt-10 mx-auto flex items-center gap-2 px-8 py-3 rounded-lg border border-white/20 text-white font-medium hover:bg-white/5 hover:border-purple-500/50 transition-all duration-300"
+          className="mt-10 mx-auto flex items-center gap-2 px-8 py-3 rounded-lg border border-white/20 text-white font-medium hover:bg-white/5 hover:border-blue-500/50 transition-all duration-300"
         >
           See all partners
         </motion.button>

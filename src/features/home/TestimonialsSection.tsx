@@ -153,7 +153,7 @@ const TestimonialsSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-8"
         >
-          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
+          <span className="text-blue-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
             Client Success Stories
           </span>
         </motion.div>

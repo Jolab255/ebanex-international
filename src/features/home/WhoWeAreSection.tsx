@@ -37,7 +37,7 @@ const WhoWeAreSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-8"
         >
-          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
+          <span className="text-blue-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
             Who We Are
           </span>
         </motion.div>
@@ -76,7 +76,7 @@ const WhoWeAreSection: React.FC = () => {
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             className="glass p-8 lg:p-10 rounded-[0.5rem] border border-white/10 max-w-4xl w-full shadow-2xl backdrop-blur-3xl overflow-hidden relative"
           >
-            <div className="absolute top-0 left-0  w-full h-[1px] bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
+            <div className="absolute top-0 left-0  w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
             <div className="space-y-6 text-slate-100 text-base font-light leading-relaxed relative z-10 text-justify">
               <p>
@@ -96,7 +96,7 @@ const WhoWeAreSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none" />
+            <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
           </motion.div>
 
           {/* Why Ebanex Title - Below the card */}
@@ -125,7 +125,7 @@ const WhoWeAreSection: React.FC = () => {
               transition={{ delay: 0.5, duration: 1 }}
               className="mt-6 sm:mt-8"
             >
-              <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
+              <span className="text-blue-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
                 Global Expertise
               </span>
             </motion.div>

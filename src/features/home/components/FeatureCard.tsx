@@ -30,7 +30,7 @@ const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => {
           <motion.path
             d="M 4,99.5 H 96 A 3.5,3.5 0 0 0 99.5,96 V 4 A 3.5,3.5 0 0 0 96,0.5 H 4 A 3.5,3.5 0 0 0 0.5,4 V 96 A 3.5,3.5 0 0 0 4,99.5"
             fill="none"
-            stroke="#A855F7"
+            stroke="#3B82F6"
             strokeWidth="0.2"
             strokeLinecap="round"
             animate={{
@@ -45,9 +45,9 @@ const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => {
 
           <defs>
             <linearGradient id="fade-grad-new" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#A855F7" />
-              <stop offset="40%" stopColor="#A855F7" stopOpacity="0.4" />
-              <stop offset="80%" stopColor="#A855F7" stopOpacity="0" />
+              <stop offset="0%" stopColor="#3B82F6" />
+              <stop offset="40%" stopColor="#3B82F6" stopOpacity="0.4" />
+              <stop offset="80%" stopColor="#3B82F6" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>
@@ -55,7 +55,7 @@ const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => {
 
       <div className="h-full p-6 sm:p-8 lg:p-10 flex flex-col items-start relative z-10 transition-all duration-700 bg-transparent">
         <div
-          className={`text-purple-400 mb-4 sm:mb-6 transition-all transform ${
+          className={`text-blue-400 mb-4 sm:mb-6 transition-all transform ${
             isHovered ? 'scale-110' : 'scale-100'
           }`}
         >
@@ -64,7 +64,7 @@ const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => {
 
         <h3
           className={`text-lg sm:text-xl font-black font-heading mb-2 sm:mb-3 tracking-tight transition-colors uppercase ${
-            isHovered ? 'text-purple-400' : 'text-white'
+            isHovered ? 'text-blue-400' : 'text-white'
           }`}
         >
           {feature.title}
@@ -79,4 +79,3 @@ const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => {
 };
 
 export default FeatureCard;
-

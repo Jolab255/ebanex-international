@@ -37,17 +37,17 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({ service, index, setActiveIn
       >
         <div className="mb-6">
           <div className="inline-flex items-center gap-4 mb-4">
-            <span className="text-purple-500 font-bold uppercase tracking-widest text-xs">
+            <span className="text-blue-500 font-bold uppercase tracking-widest text-xs">
               Service 0{index + 1}
             </span>
-            <div className="h-[1px] w-12 bg-purple-500/50" />
+            <div className="h-[1px] w-12 bg-blue-500/50" />
           </div>
           <h3 className="text-[clamp(0.7rem,3.5vw,2.5rem)] font-black font-heading text-white uppercase leading-tight mb-4 sm:mb-6 whitespace-nowrap overflow-hidden text-ellipsis">
             {service.title}
           </h3>
           <p className="text-slate-400 text-base sm:text-lg leading-relaxed">{service.desc}</p>
           <div className="mt-8 flex justify-center sm:justify-start">
-            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95">
+            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-blue-500 transition-all transform hover:-translate-y-1 active:scale-95">
               Explore Service
             </button>
           </div>
@@ -110,7 +110,7 @@ const CoreServicesSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-[5px]"
         >
-          <span className="text-purple-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
+          <span className="text-blue-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
             What We Deliver
           </span>
         </motion.div>
@@ -160,7 +160,6 @@ const CoreServicesSection: React.FC = () => {
           </div>
 
           <div className="relative py-4 sm:py-8 lg:py-20 xl:py-0">
-            
             {coreServiceData.map((service, i) => (
               <ServiceBlock
                 key={i}

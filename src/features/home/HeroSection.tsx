@@ -53,9 +53,9 @@ const HeroSection: React.FC = () => {
                   initial={{ width: 0 }}
                   animate={{ width: 48 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
-                  className="h-[1px] bg-purple-500"
+                  className="h-[1px] bg-blue-500"
                 />
-                <span className="text-purple-400 text-[10px] font-black tracking-[0.6em] uppercase">
+                <span className="text-blue-400 text-[10px] font-black tracking-[0.6em] uppercase">
                   Institutional Intelligence
                 </span>
               </div>
@@ -86,8 +86,8 @@ const HeroSection: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.6, duration: 0.8 }}
                   >
-                    <span className="h-[1px] w-12 bg-purple-500/50 hidden sm:block" />
-                    Securing the Future<span className="text-purple-500 font-heading">.</span>
+                    <span className="h-[1px] w-12 bg-blue-500/50 hidden sm:block" />
+                    Securing the Future<span className="text-blue-500 font-heading">.</span>
                   </motion.span>
                 </div>
               </h1>
@@ -97,7 +97,7 @@ const HeroSection: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.8, duration: 1 }}
-                  className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed font-light border-l border-purple-500/20 pl-4 sm:pl-6 lg:pl-8"
+                  className="text-base sm:text-lg text-slate-400 max-w-2xl leading-relaxed font-light border-l border-blue-500/20 pl-4 sm:pl-6 lg:pl-8"
                 >
                   Ebanex International is a global training and advisory firm delivering
                   professional development, cybersecurity training, digital transformation capacity
@@ -116,16 +116,16 @@ const HeroSection: React.FC = () => {
             transition={{ delay: 1, duration: 0.8 }}
             className="flex flex-wrap gap-3 sm:gap-4 "
           >
-            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 bg-white text-slate-950 rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-purple-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-xl active:scale-95">
+            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 bg-white text-slate-950 rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-blue-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-xl active:scale-95">
               View Training Programs
             </button>
-            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95">
+            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-blue-500 transition-all transform hover:-translate-y-1 active:scale-95">
               Partner With Us
             </button>
-            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95">
+            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-blue-500 transition-all transform hover:-translate-y-1 active:scale-95">
               Request Corporate Training
             </button>
-            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2 sm:gap-3 group">
+            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-blue-500 transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2 sm:gap-3 group">
               Contact Us
               <ArrowRight
                 className="text-white group-hover:translate-x-1 transition-transform"

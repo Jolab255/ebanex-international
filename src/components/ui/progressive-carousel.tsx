@@ -207,7 +207,7 @@ export const AutoProgressBar: React.FC<AutoProgressBarProps> = ({
       <div className={cn('relative h-1 w-full overflow-hidden', className)}>
         <div
           key={animationKey}
-          className={cn('absolute left-0 top-0 h-full bg-purple-500', barClassName)}
+          className={cn('absolute left-0 top-0 h-full bg-blue-500', barClassName)}
           style={{
             width: '0%',
             animation: `${animationId} ${durationMs}ms linear forwards`,

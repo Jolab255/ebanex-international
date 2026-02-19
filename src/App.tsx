@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
+import TopBar from './components/TopBar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -18,8 +17,8 @@ const App: React.FC = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col selection:bg-purple-500 selection:text-white">
-        <CustomCursor />
+      <div className="min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+        <TopBar />
         <Navbar />
         <div className="flex-grow">
           <ErrorBoundary>
@@ -31,7 +30,6 @@ const App: React.FC = () => {
                 <Route path="/cyber-lab" element={<CyberLab />} />
                 <Route path="/consulting" element={<Consulting />} />
                 <Route path="/contact" element={<Contact />} />
-                {/* Fallback */}
                 <Route path="*" element={<Home />} />
               </Routes>
             </React.Suspense>

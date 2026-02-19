@@ -107,7 +107,7 @@ const Contact: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20">
           <div>
             <h1 className="text-[clamp(1rem,4vw,3rem)] font-bold font-heading mb-6 sm:mb-8 whitespace-nowrap overflow-hidden text-ellipsis px-2">
-              Let&apos;s <span className="text-purple-500">Connect.</span>
+              Let&apos;s <span className="text-blue-500">Connect.</span>
             </h1>
             <p className="text-base sm:text-lg lg:text-xl text-slate-400 mb-8 sm:mb-12">
               Have questions about our training programs or institutional advisory? Our global team
@@ -116,7 +116,7 @@ const Contact: React.FC = () => {
 
             <div className="space-y-8 mb-12">
               <div className="flex items-center gap-4 sm:gap-6">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-xl sm:rounded-2xl flex items-center justify-center text-purple-400 shrink-0">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-xl sm:rounded-2xl flex items-center justify-center text-blue-400 shrink-0">
                   <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
@@ -127,7 +127,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-4 sm:gap-6">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-xl sm:rounded-2xl flex items-center justify-center text-purple-400 shrink-0">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-xl sm:rounded-2xl flex items-center justify-center text-blue-400 shrink-0">
                   <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
@@ -136,7 +136,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-4 sm:gap-6">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-xl sm:rounded-2xl flex items-center justify-center text-purple-400 shrink-0">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-xl sm:rounded-2xl flex items-center justify-center text-blue-400 shrink-0">
                   <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
@@ -172,7 +172,7 @@ const Contact: React.FC = () => {
                     name="fullName"
                     value={form.fullName}
                     onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-purple-500 transition-colors outline-none"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-blue-500 transition-colors outline-none"
                     placeholder="John Doe"
                     aria-invalid={!!errors.fullName}
                     aria-describedby={errors.fullName ? 'fullName-error' : undefined}
@@ -190,7 +190,7 @@ const Contact: React.FC = () => {
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-purple-500 transition-colors outline-none"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-blue-500 transition-colors outline-none"
                     placeholder="john@enterprise.com"
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? 'email-error' : undefined}
@@ -208,7 +208,7 @@ const Contact: React.FC = () => {
                   name="service"
                   value={form.service}
                   onChange={handleChange}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-purple-500 transition-colors outline-none appearance-none"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-blue-500 transition-colors outline-none appearance-none"
                   aria-invalid={!!errors.service}
                   aria-describedby={errors.service ? 'service-error' : undefined}
                 >
@@ -229,7 +229,7 @@ const Contact: React.FC = () => {
                   name="message"
                   value={form.message}
                   onChange={handleChange}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-purple-500 transition-colors outline-none min-h-[150px]"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-blue-500 transition-colors outline-none min-h-[150px]"
                   placeholder="How can we help you?"
                   aria-invalid={!!errors.message}
                   aria-describedby={errors.message ? 'message-error' : undefined}
@@ -243,7 +243,7 @@ const Contact: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 bg-purple-600 rounded-xl font-bold text-white flex items-center justify-center gap-2 hover:bg-purple-500 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full py-4 bg-blue-600 rounded-xl font-bold text-white flex items-center justify-center gap-2 hover:bg-blue-500 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'} <Send size={18} />
               </button>

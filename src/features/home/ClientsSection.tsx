@@ -46,7 +46,7 @@ const ClientsSection: React.FC = () => {
       description: 'Empowering private sector organizations with cutting-edge training.',
       icon: Building2,
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800',
-      accent: '#8b5cf6',
+      accent: '#2563eb',
     },
     {
       name: 'NGOs & Agencies',
@@ -129,7 +129,7 @@ const ClientsSection: React.FC = () => {
       {/* Floating Background Elements */}
       <motion.div
         style={{ y: y1, rotate: rotate1 }}
-        className="absolute -left-20 top-1/4 w-96 h-96 bg-purple-500/5 blur-[100px] rounded-full"
+        className="absolute -left-20 top-1/4 w-96 h-96 bg-blue-500/5 blur-[100px] rounded-full"
       />
       <motion.div
         style={{ y: y2, rotate: rotate2 }}
@@ -137,7 +137,7 @@ const ClientsSection: React.FC = () => {
       />
       <motion.div
         style={{ y: y3 }}
-        className="absolute left-1/3 top-1/2 w-64 h-64 bg-fuchsia-500/5 blur-[100px] rounded-full"
+        className="absolute left-1/3 top-1/2 w-64 h-64 bg-blue-500/5 blur-[100px] rounded-full"
       />
 
       {/* Section Header */}
@@ -151,8 +151,8 @@ const ClientsSection: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="flex items-center gap-4 mb-6"
             >
-              <div className="w-12 h-[1px] bg-gradient-to-r from-purple-500 to-transparent" />
-              <span className="text-purple-400 text-[10px] font-black tracking-[0.4em] uppercase">
+              <div className="w-12 h-[1px] bg-gradient-to-r from-blue-500 to-transparent" />
+              <span className="text-blue-400 text-[10px] font-black tracking-[0.4em] uppercase">
                 Who We Serve
               </span>
             </motion.div>
@@ -166,7 +166,7 @@ const ClientsSection: React.FC = () => {
             >
               Trusted by Industry
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-blue-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-400 to-blue-400">
                 Leaders Worldwide
               </span>
             </motion.h2>
@@ -178,7 +178,7 @@ const ClientsSection: React.FC = () => {
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="hidden lg:block w-[1px] h-24 bg-gradient-to-b from-transparent via-purple-500/50 to-transparent origin-center"
+            className="hidden lg:block w-[1px] h-24 bg-gradient-to-b from-transparent via-blue-500/50 to-transparent origin-center"
           />
 
           <motion.p
@@ -204,7 +204,7 @@ const ClientsSection: React.FC = () => {
         <div className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30">
           <button
             onClick={handlePrev}
-            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-300"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-blue-500/20 hover:border-blue-500/50 transition-all duration-300"
             aria-label="Previous pair"
           >
             <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white/60" />
@@ -214,7 +214,7 @@ const ClientsSection: React.FC = () => {
         <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30">
           <button
             onClick={handleNext}
-            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-300"
+            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-blue-500/20 hover:border-blue-500/50 transition-all duration-300"
             aria-label="Next pair"
           >
             <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white/60" />

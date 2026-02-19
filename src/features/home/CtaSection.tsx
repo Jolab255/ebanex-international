@@ -45,10 +45,9 @@ const CtaSection: React.FC = () => (
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 mb-6"
             >
-              
-              <span className="text-purple-400 text-sm font-medium uppercase tracking-wider">
+              <span className="text-blue-400 text-sm font-medium uppercase tracking-wider">
                 Call to Action
               </span>
             </motion.div>
@@ -61,7 +60,7 @@ const CtaSection: React.FC = () => (
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6"
             >
               Ready to strengthen your{' '}
-              <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
                 workforce
               </span>{' '}
               and secure your organization?
@@ -86,12 +85,12 @@ const CtaSection: React.FC = () => (
               className="flex flex-row gap-3 sm:gap-4"
             >
               {/* Primary Button */}
-              <button className="h-12 sm:h-14 px-3 sm:px-5 lg:px-6 bg-white text-slate-950 rounded-sm font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] hover:bg-purple-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-xl active:scale-95 whitespace-nowrap">
+              <button className="h-12 sm:h-14 px-3 sm:px-5 lg:px-6 bg-white text-slate-950 rounded-sm font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] hover:bg-blue-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-xl active:scale-95 whitespace-nowrap">
                 Explore Training
               </button>
 
               {/* Secondary Button */}
-              <button className="h-12 sm:h-14 px-3 sm:px-5 lg:px-6 border border-white/10 text-white rounded-sm font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] hover:bg-white/5 hover:border-purple-500 transition-all transform hover:-translate-y-1 active:scale-95 whitespace-nowrap">
+              <button className="h-12 sm:h-14 px-3 sm:px-5 lg:px-6 border border-white/10 text-white rounded-sm font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] hover:bg-white/5 hover:border-blue-500 transition-all transform hover:-translate-y-1 active:scale-95 whitespace-nowrap">
                 Request Training
               </button>
             </motion.div>

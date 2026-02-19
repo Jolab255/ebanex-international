@@ -11,7 +11,7 @@ const Footer: React.FC = () => (
         <div className="lg:col-span-4">
           <div className="mb-6">
             <span className="text-2xl font-bold tracking-tight text-white">
-              EBANEX<span className="text-purple-500">.</span>
+              EBANEX<span className="text-blue-500">.</span>
             </span>
           </div>
           <p className="text-slate-400 text-sm leading-relaxed mb-8 max-w-sm">
@@ -22,11 +22,11 @@ const Footer: React.FC = () => (
           {/* Contact Information */}
           <div className="space-y-3">
             <div className="flex items-start gap-3 text-slate-400 text-sm">
-              <MapPin size={16} className="text-purple-500 flex-shrink-0 mt-0.5" />
+              <MapPin size={16} className="text-blue-500 flex-shrink-0 mt-0.5" />
               <span>Office Location (HQ) – 19 Mori Street, Sinza, Dar es Salaam, Tanzania</span>
             </div>
             <div className="flex items-center gap-3 text-slate-400 text-sm">
-              <Phone size={16} className="text-purple-500 flex-shrink-0" />
+              <Phone size={16} className="text-blue-500 flex-shrink-0" />
               <span>+255745326627 / +255755963001</span>
             </div>
           </div>
@@ -104,7 +104,7 @@ const Footer: React.FC = () => (
                   href={item.href}
                   className="text-slate-400 text-sm hover:text-white transition-colors duration-200 flex items-center gap-2 group"
                 >
-                  <item.icon size={14} className="text-purple-500" />
+                  <item.icon size={14} className="text-blue-500" />
                   {item.label}
                 </a>
               </li>

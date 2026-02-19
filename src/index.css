@@ -1,14 +1,14 @@
 /* Global Styles */
 
 :root {
-  --cyber-purple: #8b5cf6;
+  --cyber-blue: #3b82f6;
   --deep-navy: #020617;
   --glass-bg: rgba(255, 255, 255, 0.03);
   --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   font-size: clamp(14px, 1.5vw, 16px); /* Responsive base font size */
 }
 
@@ -17,7 +17,6 @@ body {
   background-color: var(--deep-navy);
   color: #f8fafc;
   overflow-x: hidden;
-  cursor: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: clamp(14px, 1.5vw, 16px); /* Responsive base font size */
@@ -90,7 +89,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8b5cf6;
+  background: #3b82f6;
 }
 
 .font-heading {
@@ -99,8 +98,8 @@ body {
 
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
 }
 
@@ -108,19 +107,7 @@ body {
   writing-mode: vertical-rl;
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  filter: contrast(150%) brightness(100%);
-  opacity: 0.04;
-  z-index: 9999;
-}
+/* Noise texture removed for better scroll performance */
 
 @keyframes marquee {
   0% {
@@ -145,17 +132,17 @@ body::after {
 
 /* Resilience Text Effect (v2) */
 .resilience-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #8b5cf6 50%, #3b82f6 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #3b82f6 50%, #06b6d4 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent !important;
   display: block;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3));
 }
 
-.drop-shadow-purple {
-  filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.1));
+.drop-shadow-blue {
+  filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.1));
 }
 
 .font-serif-stylish {
@@ -180,12 +167,15 @@ body::after {
   background-size: 200% auto;
 }
 
-/* Custom Cursor */
-.is-hovering {
-  transform: scale(2.5) !important;
-  opacity: 0.2 !important;
-  background-color: rgba(139, 92, 246, 0.5) !important;
-  border-color: transparent !important;
+/* Custom cursor removed - using default system cursor */
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* Skeleton Loading Animations */
@@ -199,7 +189,8 @@ body::after {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
