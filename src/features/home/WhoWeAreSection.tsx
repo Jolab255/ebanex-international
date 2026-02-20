@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import FitText from '../../components/ui/FitText';
+import { FitText } from '../../components/common';
 
 const WhoWeAreSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement | null>(null);

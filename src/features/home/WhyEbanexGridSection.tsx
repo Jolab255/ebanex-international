@@ -1,6 +1,6 @@
 import React from 'react';
 import { Globe as GlobeIcon, Shield, Zap, Target, Landmark, MapPin } from 'lucide-react';
-import Squares from '../../components/ui/Squares';
+import { Squares } from '../../components/animations';
 import FeatureCard from './components/FeatureCard';
 
 const WhyEbanexGridSection: React.FC = () => {

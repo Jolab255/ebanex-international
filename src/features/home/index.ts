@@ -1,0 +1,9 @@
+export { default as HeroSection } from './HeroSection';
+export { default as WhoWeAreSection } from './WhoWeAreSection';
+export { default as WhyEbanexGridSection } from './WhyEbanexGridSection';
+export { default as CoreServicesSection } from './CoreServicesSection';
+export { default as TrainingApproachSection } from './TrainingApproachSection';
+export { default as ClientsSection } from './ClientsSection';
+export { default as TestimonialsSection } from './TestimonialsSection';
+export { default as PartnersSection } from './PartnersSection';
+export { default as CtaSection } from './CtaSection';

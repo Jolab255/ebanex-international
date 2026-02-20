@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Squares from '../../components/ui/Squares';
+import { Squares } from '../../components/animations';
 import {
   useProgressSlider,
   ProgressSlider,
   SliderContent,
   SliderWrapper,
   AutoProgressBar,
-} from '../../components/ui/progressive-carousel';
+} from '../../components/common/progressive-carousel';
 
 const TrainingApproachSection: React.FC = () => {
   const trainingItems = [

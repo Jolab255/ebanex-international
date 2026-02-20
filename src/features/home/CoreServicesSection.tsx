@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
-import Squares from '../../components/ui/Squares';
+import { Squares } from '../../components/animations';
 import type { Service } from '../../types/content';
 
 interface ServiceBlockProps {

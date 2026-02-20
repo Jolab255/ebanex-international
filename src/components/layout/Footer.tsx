@@ -23,11 +23,15 @@ const Footer: React.FC = () => (
           <div className="space-y-3">
             <div className="flex items-start gap-3 text-slate-400 text-sm">
               <MapPin size={16} className="text-blue-500 flex-shrink-0 mt-0.5" />
-              <span>Office Location (HQ) – 19 Mori Street, Sinza, Dar es Salaam, Tanzania</span>
+              <span>HQ: 19 Mori Street, Sinza, Dar es Salaam, Tanzania</span>
             </div>
             <div className="flex items-center gap-3 text-slate-400 text-sm">
               <Phone size={16} className="text-blue-500 flex-shrink-0" />
-              <span>+255745326627 / +255755963001</span>
+              <span>+255 745 326 627 / +255 755 963 001</span>
+            </div>
+            <div className="flex items-center gap-3 text-slate-400 text-sm">
+              <Mail size={16} className="text-blue-500 flex-shrink-0" />
+              <span>info@ebanex.com</span>
             </div>
           </div>
         </div>
@@ -40,9 +44,9 @@ const Footer: React.FC = () => (
           <ul className="space-y-3">
             {[
               { label: 'Training Programs', to: '/training' },
-              { label: 'Cybersecurity', to: '/cyber-lab' },
+              { label: 'Corporate Solutions', to: '/corporate-solutions' },
               { label: 'Advisory', to: '/consulting' },
-              { label: 'Certifications', to: '/training' },
+              { label: 'Cyber Labs', to: '/cyber-lab' },
             ].map((item) => (
               <li key={item.label}>
                 <Link
@@ -68,9 +72,10 @@ const Footer: React.FC = () => (
           <ul className="space-y-3">
             {[
               { label: 'About Us', to: '/about' },
-              { label: 'Our Team', to: '/about' },
-              { label: 'Careers', to: '/contact' },
-              { label: 'Partners', to: '/about' },
+              { label: 'Partnerships', to: '/partnerships' },
+              { label: 'Research', to: '/research' },
+              { label: 'News & Events', to: '/news' },
+              { label: 'Careers', to: '/careers' },
             ].map((item) => (
               <li key={item.label}>
                 <Link

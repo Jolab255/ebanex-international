@@ -3,13 +3,15 @@ import React from 'react';
 import { Shield, Users, GraduationCap, Building2 } from 'lucide-react';
 
 export const NAVIGATION_LINKS = [
-  { label: 'Home', path: '/' },
-  { label: 'About', path: '/about' },
-  { label: 'Training', path: '/training' },
-  { label: 'Cyber Lab', path: '/cyber-lab' },
-  { label: 'Consulting', path: '/consulting' },
-  { label: 'Research', path: '/research' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'About Us', path: '/about' },
+  { label: 'Training Programs', path: '/training' },
+  { label: 'Corporate Solutions', path: '/corporate-solutions' },
+  { label: 'Consulting & Advisory', path: '/consulting' },
+  { label: 'Cyber Labs', path: '/cyber-lab' },
+  { label: 'Research & Insights', path: '/research' },
+  { label: 'Partnerships', path: '/partnerships' },
+  { label: 'Careers', path: '/careers' },
+  { label: 'News & Events', path: '/news' },
 ];
 
 export const CORE_SERVICES = [
