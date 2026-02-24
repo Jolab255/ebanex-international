@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
   }, [location]);
 
   return (
-    <nav className="w-full z-40 py-1 bg-slate-950/95 backdrop-blur-md shadow-lg border-b border-white/10 sticky top-[36px]">
+    <nav className="w-full z-40 py-1 bg-slate-950/95 backdrop-blur-md shadow-lg border-b border-white/10 sticky top-0">
       <div className="w-full px-4 sm:px-6 flex items-center">
         <Link
           to="/"
@@ -27,10 +27,10 @@ const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-4 xl:gap-6 flex-1 justify-end">
+        <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-1 justify-end">
           <Link
             to="/"
-            className={`text-xs font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${location.pathname === '/' ? 'text-blue-500' : 'text-slate-300 hover:text-white'
+            className={`text-[10px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${location.pathname === '/' ? 'text-blue-500' : 'text-slate-300 hover:text-white'
               }`}
           >
             Home
@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`text-xs font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${location.pathname === link.path
+              className={`text-[10px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${location.pathname === link.path
                   ? 'text-blue-500'
                   : 'text-slate-300 hover:text-white'
                 }`}
