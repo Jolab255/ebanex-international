@@ -1,7 +1,124 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Globe as GlobeIcon } from 'lucide-react';
 import { DataFlowMap } from '../../components/animations';
+
+const CyberLines: React.FC = () => {
+  const [packets, setPackets] = useState<Array<{ id: number; line: number; delay: number }>>([]);
+
+  useEffect(() => {
+    // Create initial packets
+    const initialPackets = Array.from({ length: 8 }, (_, i) => ({
+      id: i,
+      line: i % 4,
+      delay: Math.random() * 3,
+    }));
+    setPackets(initialPackets);
+
+    // Add new packets periodically
+    const interval = setInterval(() => {
+      setPackets(prev => [
+        ...prev.slice(-6), // Keep only last 6 packets
+        {
+          id: Date.now(),
+          line: Math.floor(Math.random() * 4),
+          delay: 0,
+        }
+      ]);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="absolute right-2 top-0 bottom-0 w-40 pointer-events-none z-10 hidden lg:block">
+      {/* Vertical Cyber Lines */}
+      {[0, 1, 2, 3].map((lineIndex) => (
+        <motion.div
+          key={lineIndex}
+          className="absolute top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-blue-500/30 to-transparent"
+          style={{
+            right: `${lineIndex * 16 + 20}px`,
+          }}
+          initial={{ scaleY: 0 }}
+          animate={{ scaleY: 1 }}
+          transition={{ delay: lineIndex * 0.2, duration: 1.5 }}
+        >
+          {/* Animated glow effect */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-b from-blue-400/50 via-cyan-400/30 to-blue-400/50"
+            animate={{
+              opacity: [0.3, 0.8, 0.3],
+              scaleY: [0.8, 1.2, 0.8],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        </motion.div>
+      ))}
+
+      {/* Moving Packets */}
+      {packets.map((packet) => (
+        <motion.div
+          key={packet.id}
+          className="absolute w-2 h-2 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50"
+          style={{
+            right: `${packet.line * 16 + 19}px`,
+          }}
+          initial={{ y: '100vh', opacity: 0 }}
+          animate={{
+            y: '-100px',
+            opacity: [0, 1, 1, 0],
+          }}
+          transition={{
+            duration: 4,
+            delay: packet.delay,
+            ease: "easeInOut",
+            repeat: Infinity,
+            repeatDelay: 2,
+          }}
+        >
+          {/* Packet trail */}
+          <motion.div
+            className="absolute inset-0 bg-cyan-300 rounded-full"
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.8, 0.4, 0.8],
+            }}
+            transition={{
+              duration: 0.5,
+              repeat: Infinity,
+            }}
+          />
+        </motion.div>
+      ))}
+
+      {/* Electric pulses */}
+      {[0, 1, 2, 3].map((lineIndex) => (
+        <motion.div
+          key={`pulse-${lineIndex}`}
+          className="absolute w-1 h-8 bg-gradient-to-b from-transparent via-blue-400 to-transparent"
+          style={{
+            right: `${lineIndex * 16 + 19.5}px`,
+          }}
+          animate={{
+            y: ['-20px', '100vh'],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 2.5,
+            delay: lineIndex * 0.7,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const HeroSection: React.FC = () => {
   const { scrollY } = useScroll();
@@ -14,6 +131,9 @@ const HeroSection: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vw] max-w-[1200px] max-h-[1200px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
         <DataFlowMap className="absolute inset-0 w-full h-full pointer-events-none z-[1] opacity-50" />
       </div>
+
+      {/* Cyber Lines on the right */}
+      <CyberLines />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full overflow-visible">
         {/* First Container: Globe + Title + Subtitle */}

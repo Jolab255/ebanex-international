@@ -63,24 +63,24 @@ const TopBar: React.FC = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed top-1/2 -translate-y-1/2 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-l border-slate-700 shadow-2xl"
+            className="fixed top-1/2 -translate-y-1/2 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-l border-slate-700 shadow-2xl w-full max-w-[320px] sm:max-w-[280px]"
           >
-            <div className="p-4 flex items-center gap-3 min-w-[280px]">
-              <div className="flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full">
+            <div className="p-3 sm:p-4 flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full flex-shrink-0">
                 <Phone size={18} className="text-white" />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <div className="text-xs text-slate-400 uppercase tracking-wide">Phone</div>
                 <a
                   href="tel:+255745326627"
-                  className="text-white font-semibold hover:text-blue-400 transition-colors"
+                  className="text-white font-semibold hover:text-blue-400 transition-colors block truncate"
                 >
                   +255 745 326 627
                 </a>
               </div>
               <button
                 onClick={() => setActivePanel(null)}
-                className="ml-auto p-1 text-slate-400 hover:text-white transition-colors"
+                className="ml-auto p-1 text-slate-400 hover:text-white transition-colors flex-shrink-0"
               >
                 <X size={16} />
               </button>
@@ -94,24 +94,24 @@ const TopBar: React.FC = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed top-1/2 -translate-y-1/2 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-l border-slate-700 shadow-2xl"
+            className="fixed top-1/2 -translate-y-1/2 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-l border-slate-700 shadow-2xl w-full max-w-[320px] sm:max-w-[280px]"
           >
-            <div className="p-4 flex items-center gap-3 min-w-[280px]">
-              <div className="flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full">
+            <div className="p-3 sm:p-4 flex items-center gap-3">
+              <div className="flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full flex-shrink-0">
                 <Mail size={18} className="text-white" />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <div className="text-xs text-slate-400 uppercase tracking-wide">Email</div>
                 <a
                   href="mailto:hello@ebanex.com"
-                  className="text-white font-semibold hover:text-blue-400 transition-colors"
+                  className="text-white font-semibold hover:text-blue-400 transition-colors block truncate"
                 >
                   hello@ebanex.com
                 </a>
               </div>
               <button
                 onClick={() => setActivePanel(null)}
-                className="ml-auto p-1 text-slate-400 hover:text-white transition-colors"
+                className="ml-auto p-1 text-slate-400 hover:text-white transition-colors flex-shrink-0"
               >
                 <X size={16} />
               </button>
@@ -125,24 +125,24 @@ const TopBar: React.FC = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="fixed top-1/2 -translate-y-1/2 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-l border-slate-700 shadow-2xl"
+            className="fixed top-1/2 -translate-y-1/2 right-0 z-50 bg-slate-900/95 backdrop-blur-md border-l border-slate-700 shadow-2xl w-full max-w-[320px] sm:max-w-[280px]"
           >
-            <div className="p-4">
+            <div className="p-3 sm:p-4">
               <div className="flex items-center gap-3 mb-3">
                 <div className="text-xs text-slate-400 uppercase tracking-wide">Social Links</div>
                 <button
                   onClick={() => setActivePanel(null)}
-                  className="ml-auto p-1 text-slate-400 hover:text-white transition-colors"
+                  className="ml-auto p-1 text-slate-400 hover:text-white transition-colors flex-shrink-0"
                 >
                   <X size={16} />
                 </button>
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-2 sm:gap-3 flex-wrap">
                 {socialLinks.map((social) => (
                   <a
                     key={social.id}
                     href={social.href}
-                    className="flex items-center justify-center w-10 h-10 bg-slate-800 hover:bg-blue-600 rounded-full text-slate-300 hover:text-white transition-all duration-200"
+                    className="flex items-center justify-center w-10 h-10 bg-slate-800 hover:bg-blue-600 rounded-full text-slate-300 hover:text-white transition-all duration-200 flex-shrink-0"
                     title={social.label}
                   >
                     <social.icon size={18} />
@@ -155,7 +155,7 @@ const TopBar: React.FC = () => {
       </AnimatePresence>
 
       {/* Side Icons */}
-      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2">
+      <div className="fixed right-2 sm:right-4 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-2 hidden sm:flex">
         {contactInfo.map((item) => (
           <motion.button
             key={item.id}

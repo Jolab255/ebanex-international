@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
         <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-1 justify-end">
           <Link
             to="/"
-            className={`text-[10px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${location.pathname === '/' ? 'text-blue-500' : 'text-slate-300 hover:text-white'
+            className={`text-[11px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${location.pathname === '/' ? 'text-blue-500' : 'text-slate-300 hover:text-white'
               }`}
           >
             Home
@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
             <Link
               key={link.path}
               to={link.path}
-              className={`text-[10px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${location.pathname === link.path
+              className={`text-[11px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${location.pathname === link.path
                   ? 'text-blue-500'
                   : 'text-slate-300 hover:text-white'
                 }`}
