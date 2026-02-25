@@ -4,7 +4,7 @@ import { Menu, X, ChevronDown } from 'lucide-react';
 import { NAVIGATION_LINKS } from '../../constants';
 import logo from '../../assets/ebanex-logo.png';
 
-// Dropdown content based on documentation pages 3-9
+// Dropdown content based on documentation. Each main link has an overview and categories with items. This structure allows for flexible rendering of dropdowns based on the link label.
 const DROPDOWN_CONTENT = {
   'Training Programs': {
     overview: 'Industry-aligned training programs designed to develop technical competence, leadership capability, and institutional effectiveness.',
@@ -166,21 +166,34 @@ const DROPDOWN_CONTENT = {
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
   const location = useLocation();
 
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
+    if (dropdownTimeout) {
+      clearTimeout(dropdownTimeout);
+      setDropdownTimeout(null);
+    }
   }, [location]);
 
   const handleMouseEnter = (label: string) => {
     if (DROPDOWN_CONTENT[label as keyof typeof DROPDOWN_CONTENT]) {
+      if (dropdownTimeout) {
+        clearTimeout(dropdownTimeout);
+        setDropdownTimeout(null);
+      }
       setActiveDropdown(label);
     }
   };
 
   const handleMouseLeave = () => {
-    setActiveDropdown(null);
+    // Add delay before closing dropdown to allow cursor movement
+    const timeout = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 300); // 300ms delay
+    setDropdownTimeout(timeout);
   };
 
   return (
@@ -231,20 +244,41 @@ const Navbar: React.FC = () => {
 
                 {/* Dropdown Menu */}
                 {hasDropdown && activeDropdown === link.label && (
-                  <div className="absolute top-full right-0 mt-2 w-max max-w-[90vw] lg:max-w-2xl bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-lg shadow-2xl z-50">
-                    <div className="p-4 lg:p-6">
-                      {/* Overview */}
-                      <div className="mb-3 lg:mb-4 pb-3 border-b border-slate-700">
-                        <p className="text-xs lg:text-sm text-slate-300 leading-relaxed">
+                  <div className={`fixed top-full mt-1 bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-lg shadow-2xl z-50 ${
+                    // Individual widths based on content
+                    link.label === 'Training Programs'
+                      ? 'left-[5px] right-[5px] w-[calc(100vw-10px)] max-w-none'
+                      : link.label === 'Corporate Solutions'
+                      ? 'left-1/2 -translate-x-1/2 w-max max-w-[95vw] lg:max-w-2xl xl:max-w-3xl'
+                      : link.label === 'Consulting & Advisory' || link.label === 'Cyber Labs' || link.label === 'Research & Insights' || link.label === 'Partnerships' || link.label === 'Careers'
+                      ? 'left-1/2 -translate-x-1/2 w-max max-w-[95vw] lg:max-w-xl xl:max-w-2xl'
+                      : 'left-[5px] right-[5px] w-[calc(100vw-10px)] max-w-none'
+                  }`}>
+                    <div className="p-4 sm:p-5 lg:p-6">
+                      {/* Overview - now fits within columns */}
+                      <div className="mb-4 lg:mb-5 pb-3 border-b border-slate-700">
+                        <h4 className="text-xs sm:text-sm font-semibold text-blue-400 uppercase tracking-wide mb-2">
+                          Overview
+                        </h4>
+                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-none lg:max-w-4xl text-justify">
                           {DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT].overview}
                         </p>
                       </div>
 
                       {/* Categories */}
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+                      <div className={`grid gap-4 lg:gap-6 ${
+                        // Special grid for Training Programs - 5 columns on large screens
+                        link.label === 'Training Programs'
+                          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
+                          : DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT].categories.length > 2
+                          ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                          : DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT].categories.length > 1
+                          ? 'grid-cols-1 lg:grid-cols-2'
+                          : 'grid-cols-1'
+                      }`}>
                         {DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT].categories.map((category, categoryIndex) => (
-                          <div key={categoryIndex} className="space-y-2 lg:space-y-3">
-                            <h3 className="text-xs lg:text-sm font-semibold text-blue-400 uppercase tracking-wide">
+                          <div key={categoryIndex} className="space-y-2 lg:space-y-3 min-w-0">
+                            <h3 className="text-xs sm:text-sm font-semibold text-blue-400 uppercase tracking-wide leading-tight">
                               {category.title}
                             </h3>
                             <ul className="space-y-1 lg:space-y-2">
@@ -252,9 +286,12 @@ const Navbar: React.FC = () => {
                                 <li key={itemIndex}>
                                   <Link
                                     to={item.path}
-                                    className="text-xs lg:text-sm text-slate-300 hover:text-white hover:bg-slate-800/50 px-2 py-1 rounded transition-all duration-200 block"
+                                    className="group text-xs sm:text-sm text-slate-300 hover:text-white transition-all duration-200 block p-2 rounded-md hover:bg-slate-800/60 hover:shadow-sm"
+                                    title={item.label}
                                   >
-                                    {item.label}
+                                    <span className="group-hover:translate-x-1 transition-transform duration-200 inline-block">
+                                      {item.label}
+                                    </span>
                                   </Link>
                                 </li>
                               ))}
