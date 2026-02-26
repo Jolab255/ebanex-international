@@ -13,8 +13,15 @@ import {
   ArrowRight,
   PlayCircle,
   FileText,
-  Zap
+  Zap,
 } from 'lucide-react';
+import {
+  FaCertificate,
+  FaClock,
+  FaChalkboardTeacher,
+  FaLevelUpAlt,
+  FaLaptopCode,
+} from 'react-icons/fa';
 
 const CybersecurityAwarenessPrograms: React.FC = () => {
   const { scrollYProgress } = useScroll();
@@ -23,80 +30,106 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6 },
   };
 
   const staggerChildren = {
     animate: {
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const programFeatures = [
     {
       icon: <Shield className="w-8 h-8 text-blue-400" />,
-      title: "Comprehensive Security Fundamentals",
-      description: "Master the core principles of cybersecurity including confidentiality, integrity, and availability (CIA triad)."
+      title: 'Comprehensive Security Fundamentals',
+      description:
+        'Master the core principles of cybersecurity including confidentiality, integrity, and availability (CIA triad).',
     },
     {
       icon: <Users className="w-8 h-8 text-purple-400" />,
-      title: "Human-Centric Security",
-      description: "Learn why humans are often the weakest link and how to build a security-aware culture."
+      title: 'Human-Centric Security',
+      description:
+        'Learn why humans are often the weakest link and how to build a security-aware culture.',
     },
     {
       icon: <AlertTriangle className="w-8 h-8 text-red-400" />,
-      title: "Threat Recognition",
-      description: "Identify common cyber threats including phishing, malware, social engineering, and insider threats."
+      title: 'Threat Recognition',
+      description:
+        'Identify common cyber threats including phishing, malware, social engineering, and insider threats.',
     },
     {
       icon: <CheckCircle className="w-8 h-8 text-green-400" />,
-      title: "Best Practices Implementation",
-      description: "Apply industry-standard security practices for password management, data handling, and incident reporting."
-    }
+      title: 'Best Practices Implementation',
+      description:
+        'Apply industry-standard security practices for password management, data handling, and incident reporting.',
+    },
   ];
 
   const learningObjectives = [
-    "Understand fundamental cybersecurity concepts and terminology",
-    "Recognize and respond to common cyber threats",
-    "Implement secure practices in daily work activities",
-    "Contribute to organizational security culture",
-    "Report security incidents appropriately",
-    "Protect sensitive information and systems"
+    'Understand fundamental cybersecurity concepts and terminology',
+    'Recognize and respond to common cyber threats',
+    'Implement secure practices in daily work activities',
+    'Contribute to organizational security culture',
+    'Report security incidents appropriately',
+    'Protect sensitive information and systems',
   ];
 
   const modules = [
     {
-      title: "Cybersecurity Foundations",
-      duration: "2 hours",
-      topics: ["CIA Triad", "Security Principles", "Risk Concepts", "Compliance Basics"]
+      title: 'Cybersecurity Foundations',
+      duration: '2 hours',
+      topics: ['CIA Triad', 'Security Principles', 'Risk Concepts', 'Compliance Basics'],
     },
     {
-      title: "Common Threats & Attacks",
-      duration: "3 hours",
-      topics: ["Phishing & Social Engineering", "Malware Types", "Network Attacks", "Physical Security"]
+      title: 'Common Threats & Attacks',
+      duration: '3 hours',
+      topics: [
+        'Phishing & Social Engineering',
+        'Malware Types',
+        'Network Attacks',
+        'Physical Security',
+      ],
     },
     {
-      title: "Secure Practices",
-      duration: "2 hours",
-      topics: ["Password Security", "Data Handling", "Remote Work Security", "Device Security"]
+      title: 'Secure Practices',
+      duration: '2 hours',
+      topics: ['Password Security', 'Data Handling', 'Remote Work Security', 'Device Security'],
     },
     {
-      title: "Incident Response",
-      duration: "2 hours",
-      topics: ["Incident Recognition", "Reporting Procedures", "Basic Response Actions", "Prevention Strategies"]
-    }
+      title: 'Incident Response',
+      duration: '2 hours',
+      topics: [
+        'Incident Recognition',
+        'Reporting Procedures',
+        'Basic Response Actions',
+        'Prevention Strategies',
+      ],
+    },
   ];
 
   return (
     <>
       <Helmet>
         <title>Cybersecurity Awareness Programs | EBANEX International</title>
-        <meta name="description" content="Comprehensive cybersecurity awareness training programs designed to build security-conscious organizations. Learn threat recognition, secure practices, and incident response." />
-        <meta name="keywords" content="cybersecurity awareness, security training, threat recognition, secure practices, incident response, cybersecurity education" />
-        <meta property="og:title" content="Cybersecurity Awareness Programs | EBANEX International" />
-        <meta property="og:description" content="Build a security-aware culture with our comprehensive cybersecurity awareness training programs." />
+        <meta
+          name="description"
+          content="Comprehensive cybersecurity awareness training programs designed to build security-conscious organizations. Learn threat recognition, secure practices, and incident response."
+        />
+        <meta
+          name="keywords"
+          content="cybersecurity awareness, security training, threat recognition, secure practices, incident response, cybersecurity education"
+        />
+        <meta
+          property="og:title"
+          content="Cybersecurity Awareness Programs | EBANEX International"
+        />
+        <meta
+          property="og:description"
+          content="Build a security-aware culture with our comprehensive cybersecurity awareness training programs."
+        />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://ebanex.com/training/cybersecurity-awareness" />
       </Helmet>
@@ -123,7 +156,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
               <motion.div
                 className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-medium mb-6"
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
                 <Shield className="w-4 h-4" />
                 Cybersecurity Awareness
@@ -132,25 +165,90 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                 Build a <span className="text-blue-500">Security-Aware</span> Culture
               </h1>
               <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                Our comprehensive cybersecurity awareness programs empower individuals and organizations
-                to recognize threats, implement secure practices, and respond effectively to security incidents.
+                Our comprehensive cybersecurity awareness programs empower individuals and
+                organizations to recognize threats, implement secure practices, and respond
+                effectively to security incidents.
               </p>
             </motion.div>
           </div>
-        </motion.div>
 
-        {/* Program Overview */}
+        </motion.div>
+      </div>
+
+      {/* Certification Info Section */}
+      <div className="px-5">
+        <div className="max-w-7xl mx-auto">
+          <div className="border-t border-slate-700 my-5"></div>
+          <div className="grid grid-cols-5 gap-[5px]">
+            <div className="text-left">
+              <FaCertificate className="w-6 h-6 text-blue-400 mb-2" />
+              <div className="text-lg font-light text-slate-300 mb-1">CISSP</div>
+              <div className="text-sm font-light text-slate-500">
+                Certified Information Systems Security Professional - Industry-recognized certification for security leadership and management
+              </div>
+              <button className="mt-2 text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                Read about certification
+                <ArrowRight className="w-3 h-3" />
+              </button>
+            </div>
+            <div className="text-left">
+              <FaClock className="w-6 h-6 text-green-400 mb-2" />
+              <div className="text-lg font-light text-slate-300 mb-1">32 CPE</div>
+              <div className="text-sm font-light text-slate-500">
+                Continuing Professional Education credits to maintain your certification status and stay current in the field
+              </div>
+            </div>
+            <div className="text-left">
+              <FaChalkboardTeacher className="w-6 h-6 text-purple-400 mb-2" />
+              <div className="text-lg font-light text-slate-300 mb-1">Instructor-Led</div>
+              <div className="text-sm font-light text-slate-500">
+                Virtual and self-paced options available to suit your schedule and learning preferences
+              </div>
+            </div>
+            <div className="text-left">
+              <FaLevelUpAlt className="w-6 h-6 text-orange-400 mb-2" />
+              <div className="text-lg font-light text-slate-300 mb-1">Foundation</div>
+              <div className="text-sm font-light text-slate-500">
+                Intermediate skill level - suitable for professionals with IT or cybersecurity background
+              </div>
+            </div>
+            <div className="text-left">
+              <FaLaptopCode className="w-6 h-6 text-cyan-400 mb-2" />
+              <div className="text-lg font-light text-slate-300 mb-1">Hands-On Labs</div>
+              <div className="text-sm font-light text-slate-500">
+                Practical exercises and simulation exercises to apply your knowledge in real-world scenarios
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto mt-5">
+          <div className="border-t border-slate-700 my-5"></div>
+        </div>
+      </div>
+
+      {/* Program Overview */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+        <motion.div
+          className="text-center mb-16"
+          {...fadeInUp}
+        >
+          <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-bold font-heading mb-6">
+            Program Overview
+          </h2>
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+            Designed for all levels of employees, our awareness programs combine interactive learning
+            with practical scenarios to ensure lasting security knowledge.
+          </p>
+        </motion.div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-          <motion.div
-            className="text-center mb-16"
-            {...fadeInUp}
-          >
+          <motion.div className="text-center mb-16" {...fadeInUp}>
             <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-bold font-heading mb-6">
               Program Overview
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-              Designed for all levels of employees, our awareness programs combine interactive learning
-              with practical scenarios to ensure lasting security knowledge.
+              Designed for all levels of employees, our awareness programs combine interactive
+              learning with practical scenarios to ensure lasting security knowledge.
             </p>
           </motion.div>
 
@@ -271,20 +369,38 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
           >
             <div className="text-center mb-8">
               <h3 className="text-2xl font-bold mb-4">Flexible Delivery Options</h3>
-              <p className="text-slate-400">Choose the format that works best for your organization</p>
+              <p className="text-slate-400">
+                Choose the format that works best for your organization
+              </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: <BookOpen className="w-6 h-6" />, title: "Self-Paced Online", desc: "Learn at your own schedule" },
-                { icon: <Users className="w-6 h-6" />, title: "Instructor-Led", desc: "Interactive classroom sessions" },
-                { icon: <PlayCircle className="w-6 h-6" />, title: "Video Modules", desc: "Engaging multimedia content" },
-                { icon: <Target className="w-6 h-6" />, title: "Custom Workshops", desc: "Tailored to your needs" }
+                {
+                  icon: <BookOpen className="w-6 h-6" />,
+                  title: 'Self-Paced Online',
+                  desc: 'Learn at your own schedule',
+                },
+                {
+                  icon: <Users className="w-6 h-6" />,
+                  title: 'Instructor-Led',
+                  desc: 'Interactive classroom sessions',
+                },
+                {
+                  icon: <PlayCircle className="w-6 h-6" />,
+                  title: 'Video Modules',
+                  desc: 'Engaging multimedia content',
+                },
+                {
+                  icon: <Target className="w-6 h-6" />,
+                  title: 'Custom Workshops',
+                  desc: 'Tailored to your needs',
+                },
               ].map((method, index) => (
                 <motion.div
                   key={index}
                   className="text-center p-6 rounded-xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-colors"
                   whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                 >
                   <div className="w-12 h-12 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto mb-4 text-blue-400">
                     {method.icon}

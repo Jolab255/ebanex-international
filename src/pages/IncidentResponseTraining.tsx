@@ -110,7 +110,7 @@ const IncidentResponseTraining: React.FC = () => {
         <link rel="canonical" href="https://ebanex.com/training/incident-response" />
       </Helmet>
 
-      <div className="pt-24 sm:pt-32 pb-16 sm:pb-24">
+      <div className="pt-12 sm:pt-16 pb-8 sm:pb-12i">
         {/* Hero Section */}
         <motion.div
           className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-yellow-900/20 to-slate-900"
