@@ -1,3 +1,5 @@
+@import 'tailwindcss';
+
 /* Global Styles */
 
 :root {
@@ -8,7 +10,7 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
   font-size: clamp(14px, 1.5vw, 16px); /* Responsive base font size */
 }
 

@@ -1,331 +1,677 @@
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
 import {
-  AlertTriangle,
-  TrendingUp,
-  Shield,
-  BarChart3,
   Users,
-  FileText,
   CheckCircle,
+  Clock,
   ArrowRight,
   PlayCircle,
+  BookOpen,
+  Calendar,
+  Shield,
+  AlertTriangle,
   Target,
-  Zap,
-  Scale
+  Award,
+  Globe,
+  Briefcase
 } from 'lucide-react';
+import {
+  FaCertificate,
+  FaClock,
+  FaChalkboardTeacher,
+  FaLevelUpAlt,
+  FaLaptopCode,
+} from 'react-icons/fa';
+
+const Counter: React.FC<{ target: number; suffix?: string; duration?: number }> = ({
+  target,
+  suffix = '',
+  duration = 2,
+}) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    let start = 0;
+    const increment = target / (duration * 60);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start * 10) / 10);
+      }
+    }, 1000 / 60);
+
+    return () => clearInterval(timer);
+  }, [isInView, target, duration]);
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
+};
 
 const DigitalRiskManagement: React.FC = () => {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const [activeSection, setActiveSection] = useState('overview');
+  const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [isInSyllabus, setIsInSyllabus] = useState(false);
+  const syllabusRef = useRef<HTMLDivElement>(null);
+
+  const syllabusScrollY = useScroll({
+    target: syllabusRef,
+    offset: ['start end', 'end start'],
+  }).scrollYProgress;
+
+  useEffect(() => {
+    const unsubscribe = syllabusScrollY.on('change', (latest) => {
+      setIsInSyllabus(latest > 0 && latest < 1);
+    });
+    return unsubscribe;
+  }, [syllabusScrollY]);
+
+  const sections = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'outline', label: 'Course Outline' },
+    { id: 'prerequisites', label: 'Prerequisites' },
+    { id: 'objectives', label: 'Objectives' },
+    { id: 'pricing', label: 'Pricing & Dates' },
+  ];
+
+  const scrollToSection = (id: string) => {
+    setActiveSection(id);
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 120;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6 },
   };
 
-  const staggerChildren = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
+  // Wave animation variables for testimonial
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  const waveScale = useTransform(smoothProgress, [0, 1], [0.9, 1.3]);
+  const waveOpacity = useTransform(smoothProgress, [0, 0.5, 1], [0.4, 0.8, 0.4]);
+  const waveRotate = useTransform(smoothProgress, [0, 1], [-5, 20]);
+
+  const circle1Scale = useTransform(smoothProgress, [0, 1], [1, 1.1]);
+  const circle2Scale = useTransform(smoothProgress, [0, 1], [1, 1.15]);
+  const circle3Scale = useTransform(smoothProgress, [0, 1], [1, 1.2]);
 
   const programFeatures = [
     {
-      icon: <BarChart3 className="w-8 h-8 text-orange-400" />,
-      title: "Risk Assessment & Analysis",
-      description: "Master quantitative and qualitative risk assessment methodologies to identify and prioritize organizational risks."
+      icon: <Briefcase className="w-8 h-8 text-blue-400" />,
+      title: 'Enterprise Risk Frameworks',
+      description:
+        'Bridge the gap between IT risks and corporate strategy utilizing frameworks like ISO 27005 and NIST RMF.',
     },
     {
-      icon: <TrendingUp className="w-8 h-8 text-green-400" />,
-      title: "Risk Mitigation Strategies",
-      description: "Develop comprehensive risk mitigation plans and implement controls to reduce exposure to cyber threats."
+      icon: <Shield className="w-8 h-8 text-purple-400" />,
+      title: 'IT Governance & Compliance',
+      description:
+        'Navigate the complicated landscape of data regulations, corporate governance, and continuous audit readiness.',
     },
     {
-      icon: <Scale className="w-8 h-8 text-blue-400" />,
-      title: "Compliance & Governance",
-      description: "Navigate regulatory requirements and establish governance frameworks for effective risk management."
+      icon: <AlertTriangle className="w-8 h-8 text-yellow-400" />,
+      title: 'Quantitative Risk Assessment',
+      description:
+        'Translate cyber threats into financial impact using advanced quantitative modeling (e.g., FAIR methodology).',
     },
     {
-      icon: <Users className="w-8 h-8 text-purple-400" />,
-      title: "Stakeholder Management",
-      description: "Learn to communicate risk effectively with stakeholders and build risk-aware organizational culture."
-    }
+      icon: <Globe className="w-8 h-8 text-green-400" />,
+      title: 'Third-Party & Supply Chain Risk',
+      description:
+        'Secure your ecosystem by assessing and managing threats originating from vendors and external partners.',
+    },
   ];
 
   const learningObjectives = [
-    "Conduct comprehensive risk assessments using industry-standard frameworks",
-    "Develop and implement risk mitigation strategies and controls",
-    "Navigate regulatory compliance requirements and standards",
-    "Create risk management policies and procedures",
-    "Perform risk monitoring and reporting",
-    "Build risk-aware organizational culture and governance"
+    'Design and implement an enterprise-wide IT risk management program',
+    'Align IT risk strategy with overall corporate governance objectives',
+    'Conduct comprehensive qualitative and quantitative risk assessments',
+    'Establish continuous monitoring and key risk indicators (KRIs)',
+    'Prepare for ISACA CRISC examination and related governance certs',
+    'Manage vendor and third-party cyber risk effectively',
   ];
 
   const modules = [
     {
-      title: "Risk Management Fundamentals",
-      duration: "4 hours",
-      topics: ["Risk Concepts", "Risk Frameworks", "Assessment Methodologies", "Risk Appetite"]
+      title: 'IT Risk Identification & Framing',
+      duration: '4 hours',
+      topics: ['Risk Taxonomy', 'Asset Valuation', 'Threat Scenarios', 'Business Context'],
     },
     {
-      title: "Digital Risk Assessment",
-      duration: "6 hours",
-      topics: ["Cyber Risk Analysis", "Threat Modeling", "Vulnerability Assessment", "Impact Analysis"]
+      title: 'Risk Assessment & Analysis',
+      duration: '5 hours',
+      topics: [
+        'Vulnerability vs. Threat',
+        'Quantitative Analysis (FAIR)',
+        'Qualitative Matrices',
+        'Risk Registers',
+      ],
     },
     {
-      title: "Risk Mitigation & Controls",
-      duration: "5 hours",
-      topics: ["Control Frameworks", "Mitigation Strategies", "Business Continuity", "Incident Response"]
+      title: 'Risk Response & Mitigation',
+      duration: '4 hours',
+      topics: ['Control Frameworks', 'Risk Acceptance, Transfer & Avoidance', 'Cost-Benefit Analysis', 'Insurance'],
     },
     {
-      title: "Compliance & Governance",
-      duration: "4 hours",
-      topics: ["Regulatory Requirements", "Governance Frameworks", "Audit & Assurance", "Risk Reporting"]
-    }
-  ];
-
-  const frameworks = [
-    { name: "NIST Cybersecurity Framework", category: "Risk Management" },
-    { name: "ISO 27001", category: "Information Security" },
-    { name: "COBIT", category: "IT Governance" },
-    { name: "ISO 31000", category: "Risk Management" },
-    { name: "PCI DSS", category: "Payment Security" },
-    { name: "GDPR", category: "Data Protection" }
+      title: 'Risk Monitoring & Reporting',
+      duration: '3 hours',
+      topics: [
+        'Key Risk Indicators (KRIs)',
+        'Continuous Compliance',
+        'Executive Dashboards',
+        'Audit Preparation',
+      ],
+    },
   ];
 
   return (
     <>
-      <Helmet>
-        <title>Digital Risk Management | EBANEX International</title>
-        <meta name="description" content="Comprehensive digital risk management training programs. Master risk assessment, mitigation strategies, and compliance frameworks." />
-        <meta name="keywords" content="digital risk management, risk assessment, compliance, cybersecurity governance, risk mitigation, regulatory compliance" />
-        <meta property="og:title" content="Digital Risk Management | EBANEX International" />
-        <meta property="og:description" content="Master digital risk management with comprehensive training in risk assessment, mitigation, and compliance." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://ebanex.com/training/digital-risk" />
-      </Helmet>
-
-      <div className="pt-24 sm:pt-32 pb-16 sm:pb-24">
-        {/* Hero Section */}
-        <motion.div
-          className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-orange-900/20 to-slate-900"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <motion.div
-            className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200')] bg-cover bg-center opacity-10"
-            style={{ y }}
+      <div>
+        <Helmet>
+          <title>Digital Risk Management | EBANEX International</title>
+          <meta
+            name="description"
+            content="Align cyber risk with business strategy. Master IT governance, continuous compliance, and enterprise risk management."
           />
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-            <motion.div
-              className="text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <motion.div
-                className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/10 border border-orange-500/20 rounded-full text-orange-400 text-sm font-medium mb-6"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                <AlertTriangle className="w-4 h-4" />
-                Digital Risk Management
-              </motion.div>
-              <h1 className="text-[clamp(1.5rem,5vw,4rem)] font-bold font-heading mb-6">
-                Protect Your <span className="text-orange-500">Digital Assets</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                Master the art and science of digital risk management. Learn to identify, assess,
-                and mitigate cyber risks while ensuring regulatory compliance.
-              </p>
-            </motion.div>
-          </div>
-        </motion.div>
+          <meta
+            name="keywords"
+            content="digital risk management, CRISC, IT governance, enterprise risk, compliance, cybersecurity risk"
+          />
+          <meta
+            property="og:title"
+            content="Digital Risk Management | EBANEX International"
+          />
+          <meta
+            property="og:description"
+            content="Transform how your organization identifies, assesses, and mitigates digital risk across the enterprise."
+          />
+          <meta property="og:type" content="website" />
+          <link rel="canonical" href="https://ebanex.com/training/digital-risk" />
+        </Helmet>
 
-        {/* Program Overview */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-          <motion.div
-            className="text-center mb-16"
-            {...fadeInUp}
-          >
-            <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-bold font-heading mb-6">
-              Strategic Risk Management
-            </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-              Our comprehensive program equips you with the knowledge and tools to manage digital risks
-              effectively, ensuring business continuity and regulatory compliance.
-            </p>
-          </motion.div>
-
-          {/* Key Features */}
-          <motion.div
-            className="grid md:grid-cols-2 gap-8 mb-20"
-            variants={staggerChildren}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {programFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="glass p-8 rounded-2xl border-white/5 hover:border-orange-500/20 transition-all duration-300"
-                variants={fadeInUp}
-                whileHover={{ y: -5 }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center shrink-0">
-                    {feature.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                    <p className="text-slate-400 leading-relaxed">{feature.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Learning Objectives */}
-          <motion.div
-            className="glass rounded-3xl p-8 sm:p-12 mb-20"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-4">Learning Objectives</h3>
-              <p className="text-slate-400">What participants will achieve</p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {learningObjectives.map((objective, index) => (
+        {/* Hero Section */}
+        <header className="bg-slate-950 text-white pt-12 pb-20 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col lg:flex-row gap-12 items-center">
+              <div className="flex-1">
+                {/* Breadcrumbs & Badges */}
                 <motion.div
-                  key={index}
-                  className="flex items-start gap-3"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="flex flex-wrap items-center gap-3 mb-8"
                 >
-                  <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 shrink-0" />
-                  <span className="text-slate-300">{objective}</span>
+                  <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-300">
+                    <span>Cybersecurity Programs</span>
+                    <span className="text-slate-500">/</span>
+                    <span>Governance & Strategy</span>
+                  </div>
+                  <span className="bg-[#FFD700] text-black text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-tighter">
+                    Executive Track
+                  </span>
                 </motion.div>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Course Modules */}
-          <motion.div
-            className="mb-20"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center mb-12">
-              <h3 className="text-[clamp(1.25rem,3vw,2rem)] font-bold font-heading mb-4">
-                Course Modules
-              </h3>
-              <p className="text-slate-400 max-w-xl mx-auto">
-                Comprehensive curriculum covering all aspects of digital risk management
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {modules.map((module, index) => (
                 <motion.div
-                  key={index}
-                  className="glass p-6 sm:p-8 rounded-2xl border-white/5"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.02 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="mb-6"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-                    <h4 className="text-xl font-bold">{module.title}</h4>
-                    <div className="flex items-center gap-2 text-orange-400">
-                      <Zap className="w-4 h-4" />
-                      <span className="text-sm font-medium">{module.duration}</span>
+                  <span className="bg-[#00C4D4] text-black text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-tight">
+                    CRISC Aligned
+                  </span>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="flex items-center gap-2 text-slate-400 text-sm font-medium mb-4"
+                >
+                  <span className="font-bold text-white">Ebanex International</span>
+                  <span className="w-1 h-1 bg-slate-500 rounded-full"></span>
+                  <span>Strategic Leadership</span>
+                </motion.div>
+
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="text-3xl md:text-4xl lg:text-5xl font-heading leading-[1.1] mb-8 max-w-3xl"
+                >
+                  Digital Risk Management
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="text-lg text-slate-300 mb-8 max-w-2xl"
+                >
+                  Bridge the critical gap between technical security controls and executive business strategy. Learn to quantify, govern, and mitigate IT risk across your enterprise ecosystem.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="flex items-center gap-6 md:gap-8"
+                >
+                  {/* Left Column - Duration Info */}
+                  <div className="flex flex-col gap-3 text-sm font-medium text-slate-300">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-5 h-5 text-blue-400" />
+                      <span>5 Days (Instructor-Led)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-5 h-5 text-green-400" />
+                      <span>32 Hours (Blended)</span>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {module.topics.map((topic, topicIndex) => (
-                      <span
-                        key={topicIndex}
-                        className="px-3 py-1 bg-orange-500/10 text-orange-400 text-sm rounded-full border border-orange-500/20"
-                      >
-                        {topic}
-                      </span>
-                    ))}
+
+                  {/* Vertical Separator */}
+                  <div className="w-px bg-slate-700 h-12"></div>
+
+                  {/* Right Column - Designer Info */}
+                  <div className="text-sm font-medium text-white">
+                    <p className="text-[11px] text-slate-400 uppercase font-bold tracking-wider">
+                      Target Audience
+                    </p>
+                    <p className="text-sm md:text-base font-semibold text-white">
+                      Risk Managers, CISOs, IT Auditors
+                    </p>
                   </div>
                 </motion.div>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Frameworks & Standards */}
-          <motion.div
-            className="glass rounded-3xl p-8 sm:p-12 mb-20"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold mb-4">Frameworks & Standards</h3>
-              <p className="text-slate-400">Industry standards you'll master</p>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {frameworks.map((framework, index) => (
                 <motion.div
-                  key={index}
-                  className="p-6 rounded-xl bg-white/5 border border-white/10 hover:border-orange-500/30 transition-colors"
-                  whileHover={{ y: -5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  className="flex flex-wrap gap-4 py-8"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <FileText className="w-6 h-6 text-orange-400" />
-                    <h4 className="font-bold">{framework.name}</h4>
-                  </div>
-                  <p className="text-sm text-slate-400">{framework.category}</p>
+                  <button className="bg-[#00C4D4] text-black px-6 py-2 rounded-full font-bold hover:bg-[#00b0c0] transition-all flex items-center gap-4 group">
+                    Register Now{' '}
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  <button className="bg-transparent text-white border-2 border-white px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-all flex items-center gap-4 group">
+                    Download Brochure{' '}
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </motion.div>
-              ))}
-            </div>
-          </motion.div>
+              </div>
 
-          {/* Call to Action */}
+              {/* Video Preview Image */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="w-full lg:w-[500px] relative group cursor-pointer"
+              >
+                <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-sm shadow-2xl">
+                  <img
+                    src="https://picsum.photos/seed/riskmanagement/800/800"
+                    alt="Course Preview"
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  {/* Overlay with red bar and play button */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+                  {/* Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-[#00C4D4] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-black border-b-[10px] border-b-transparent ml-1"></div>
+                    </div>
+                  </div>
+
+                  {/* Yellow bar at bottom */}
+                  <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#FFD700]"></div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </header>
+
+        {/* Certification Info Section */}
+        <div className="px-5">
+          <div className="max-w-7xl mx-auto">
+            <div className="border-t border-slate-700 my-5"></div>
+            <div className="grid grid-cols-5 gap-[5px]">
+              <div className="text-left">
+                <FaCertificate className="w-6 h-6 text-blue-400 mb-2" />
+                <div className="text-lg font-light text-slate-300 mb-1">CRISC Prep</div>
+                <div className="text-sm font-light text-slate-500">
+                  Certified in Risk and Information Systems Control aligned curriculum
+                </div>
+                <button className="mt-2 text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                  Read about certification
+                  <ArrowRight className="w-3 h-3" />
+                </button>
+              </div>
+              <div className="text-left">
+                <FaClock className="w-6 h-6 text-green-400 mb-2" />
+                <div className="text-lg font-light text-slate-300 mb-1">32 CPE</div>
+                <div className="text-sm font-light text-slate-500">
+                  Earn credits mapped directly to ISACA continuing education requirements
+                </div>
+              </div>
+              <div className="text-left">
+                <FaChalkboardTeacher className="w-6 h-6 text-purple-400 mb-2" />
+                <div className="text-lg font-light text-slate-300 mb-1">Expert-Led</div>
+                <div className="text-sm font-light text-slate-500">
+                  Instructed by veteran Risk Officers with global consulting experience
+                </div>
+              </div>
+              <div className="text-left">
+                <FaLevelUpAlt className="w-6 h-6 text-orange-400 mb-2" />
+                <div className="text-lg font-light text-slate-300 mb-1">Strategic</div>
+                <div className="text-sm font-light text-slate-500">
+                  High-level focus requiring an understanding of business operations and IT
+                </div>
+              </div>
+              <div className="text-left">
+                <FaLaptopCode className="w-6 h-6 text-cyan-400 mb-2" />
+                <div className="text-lg font-light text-slate-300 mb-1">Case Studies</div>
+                <div className="text-sm font-light text-slate-500">
+                  Analyze real-world breaches and build complete executive risk portfolios
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="max-w-7xl mx-auto mt-5">
+            <div className="border-t border-slate-700 my-5"></div>
+          </div>
+        </div>
+
+        {/* Jump To Navigation - Sticky */}
+        <div
+          className={`sticky top-0 z-50 backdrop-blur-md pt-12 py-6 transition-all duration-500 ${
+            isInSyllabus
+              ? 'bg-gradient-to-r from-[#0a1628] via-[#0f2744] to-[#0a1628] border-b border-yellow-500/20'
+              : 'bg-slate-950/95'
+          }`}
+          style={{ scrollBehavior: 'smooth' }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+            {/* Left side - Jump to label */}
+            <div
+              className={`text-sm font-semibold pl-0 transition-colors duration-300 ${
+                isInSyllabus ? 'text-[#FFD700]' : 'text-white'
+              }`}
+            >
+              Jump to:
+            </div>
+
+            {/* Right side - Navigation links */}
+            <div className="flex items-center gap-6 mr-[3%]">
+              <button
+                onClick={() => scrollToSection('overview')}
+                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${
+                  isInSyllabus
+                    ? 'border-[#FFD700]/40 text-slate-200 hover:text-[#FFD700] hover:border-[#FFD700]'
+                    : 'border-white/40 text-white hover:text-yellow-400'
+                }`}
+              >
+                Overview
+              </button>
+              <button
+                onClick={() => scrollToSection('syllabus')}
+                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${
+                  isInSyllabus
+                    ? 'border-[#FFD700]/40 text-slate-200 hover:text-[#FFD700] hover:border-[#FFD700]'
+                    : 'border-white/40 text-white hover:text-yellow-400'
+                }`}
+              >
+                Syllabus
+              </button>
+              <button
+                onClick={() => scrollToSection('faqs')}
+                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${
+                  isInSyllabus
+                    ? 'border-[#FFD700]/40 text-slate-200 hover:text-[#FFD700] hover:border-[#FFD700]'
+                    : 'border-white/40 text-white hover:text-yellow-400'
+                }`}
+              >
+                FAQs
+              </button>
+              <button
+                onClick={() => scrollToSection('schedule')}
+                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${
+                  isInSyllabus
+                    ? 'border-[#FFD700]/40 text-slate-200 hover:text-[#FFD700] hover:border-[#FFD700]'
+                    : 'border-white/40 text-white hover:text-yellow-400'
+                }`}
+              >
+                Schedule & Pricing
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Section Title */}
+        <div className="w-full py-16 sm:pt-24 sm:pb-8">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-[100px]"
+          >
+            Digital risk is business risk. <br className="hidden md:block" />
+            Empower your leadership with the frameworks <br className="hidden md:block" />
+            needed to make informed, data-driven security <br className="hidden md:block" />
+            investments while maintaining strict compliance.
+          </motion.h1>
+        </div>
+
+        {/* Testimonial Section with Animated Wave Background */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
           <motion.div
-            className="text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="relative overflow-visible rounded-2xl bg-[#142217] p-10 md:p-16 border border-[#FFD700]/20 shadow-2xl"
           >
-            <div className="glass rounded-3xl p-8 sm:p-12 max-w-2xl mx-auto">
-              <Shield className="w-16 h-16 text-orange-400 mx-auto mb-6" />
-              <h3 className="text-2xl font-bold mb-4">Ready to Master Risk Management?</h3>
-              <p className="text-slate-400 mb-8">
-                Join our comprehensive digital risk management program and learn to protect
-                your organization from cyber threats while ensuring compliance.
+            {/* Animated Wave Background */}
+            <motion.div
+              style={{
+                scale: waveScale,
+                opacity: waveOpacity,
+                rotate: waveRotate,
+              }}
+              className="absolute -right-20 -bottom-40 w-[600px] h-[600px] pointer-events-none z-0"
+            >
+              <svg viewBox="0 0 200 200" className="w-full h-full">
+                <defs>
+                  <radialGradient id="waveGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                    <stop offset="0%" stopColor="#FFD700" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#FFD700" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+
+                <motion.circle
+                  style={{ scale: circle1Scale }}
+                  cx="100" cy="100" r="40" fill="none" stroke="url(#waveGradient)" strokeWidth="8"
+                />
+                <motion.circle
+                  style={{ scale: circle2Scale }}
+                  cx="100" cy="100" r="70" fill="none" stroke="url(#waveGradient)" strokeWidth="12"
+                />
+                <motion.circle
+                  style={{ scale: circle3Scale }}
+                  cx="100" cy="100" r="100" fill="none" stroke="url(#waveGradient)" strokeWidth="16"
+                />
+              </svg>
+            </motion.div>
+
+            <div className="relative z-10">
+              <p className="font-serif text-xl md:text-2xl leading-relaxed text-slate-200 italic">
+                "Ebanex transformed our approach to IT risk. We shifted from a 'culture of compliance checklists' to a dynamic risk management strategy. This training gave our CISO and Risk teams a unified language to communicate cyber threats effectively to the Board of Directors."
               </p>
-              <motion.button
-                className="inline-flex items-center gap-2 px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-colors"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Start Learning
-                <ArrowRight className="w-5 h-5" />
-              </motion.button>
+
+              <div className="mt-8">
+                <h4 className="font-bold text-lg text-white">Elena Rostova</h4>
+                <p className="text-[#FFD700] font-medium italic">
+                  Chief Risk Officer, Global Logistics Corp
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
+
+        {/* Program Overview */}
+        <div id="overview" className="w-full px-[100px] py-0 sm:py-4">
+          <motion.div {...fadeInUp}>
+            <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
+              Program Overview
+            </h2>
+
+            <div className="w-full">
+              <p className="text-slate-300 text-lg font-light leading-relaxed text-justify">
+                Digital Risk Management (DRM) is no longer a niche technical discipline—it is a core pillar of modern corporate governance. As organizations migrate to the cloud and integrate complex third-party supply chains, the attack surface expands exponentially. This executive-focused program provides the strategic tools required to identify vulnerabilities, quantify their potential business impact, and implement controls that align perfectly with enterprise risk tolerance.
+              </p>
+
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{
+                  opacity: isOverviewExpanded ? 1 : 0,
+                  height: isOverviewExpanded ? 'auto' : 0,
+                }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className="overflow-hidden"
+              >
+                <p className="text-slate-300 text-lg font-light leading-relaxed text-justify mt-8">
+                  Moving beyond technical jargon, this course trains professionals to translate cyber risk into financial terms using quantitative methodologies. You will explore globally recognized frameworks such as ISO 31000, ISO 27005, NIST RMF, and COBIT. By learning how to build comprehensive risk registers and establish Key Risk Indicators (KRIs), you will enable continuous compliance tracking and more effective board-level reporting.
+                </p>
+              </motion.div>
+
+              <motion.button
+                onClick={() => setIsOverviewExpanded(!isOverviewExpanded)}
+                className="mt-8 text-[#FFD700] hover:text-yellow-300 font-medium flex items-center gap-2 transition-colors"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                {isOverviewExpanded ? 'Show Less' : 'Read More'}
+                <motion.span
+                  animate={{ rotate: isOverviewExpanded ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ArrowRight className="w-4 h-4" />
+                </motion.span>
+              </motion.button>
+            </div>
+          </motion.div>
+
+          {/* Combined Section */}
+          <div
+            ref={syllabusRef}
+            className="relative mt-20"
+            style={{ background: 'linear-gradient(135deg, #111a1f 0%, #17241d 50%, #111a1f 100%)' }}
+          >
+            <div className="relative z-10 px-8 py-16 md:px-16 md:py-24 max-w-7xl mx-auto border border-[#FFD700]/10 rounded-2xl shadow-2xl backdrop-blur-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+                
+                {/* Left Column */}
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-light font-heading text-white mb-8 border-b border-[#FFD700]/30 pb-4">
+                    Strategic Focus Areas
+                  </h3>
+                  
+                  <div className="space-y-6">
+                    {programFeatures.map((feature, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className="flex gap-4 group"
+                      >
+                        <div className="mt-1 bg-slate-900/50 p-2 rounded-lg border border-[#FFD700]/20 group-hover:border-[#FFD700]/60 transition-colors shrink-0">
+                          {feature.icon}
+                        </div>
+                        <div>
+                          <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-[#FFD700] transition-colors">
+                            {feature.title}
+                          </h4>
+                          <p className="text-slate-400 leading-relaxed text-sm">
+                            {feature.description}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Column */}
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-light font-heading text-white mb-8 border-b border-[#FFD700]/30 pb-4">
+                    Governance Modules
+                  </h3>
+                  
+                  <div className="space-y-8 mb-12">
+                    {modules.map((module, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-0.5 before:bg-slate-700 last:before:hidden"
+                      >
+                        <div className="absolute left-[-4px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#FFD700] ring-4 ring-slate-950"></div>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                          <h4 className="text-xl font-medium text-white">{module.title}</h4>
+                          <span className="text-xs font-semibold px-2 py-1 bg-slate-800 text-slate-300 rounded whitespace-nowrap w-fit">
+                            {module.duration}
+                          </span>
+                        </div>
+                        <p className="text-slate-400 text-sm leading-relaxed mb-3">
+                          {module.topics.join(' • ')}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </>
   );

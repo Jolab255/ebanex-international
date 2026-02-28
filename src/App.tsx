@@ -18,10 +18,13 @@ const Careers = lazy(() => import('./pages/Careers'));
 const News = lazy(() => import('./pages/News'));
 const Contact = lazy(() => import('./pages/Contact'));
 const CybersecurityAwarenessPrograms = lazy(() => import('./pages/CybersecurityAwarenessPrograms'));
-const EthicalHackingThreatIntelligence = lazy(() => import('./pages/EthicalHackingThreatIntelligence'));
+const EthicalHackingThreatIntelligence = lazy(
+  () => import('./pages/EthicalHackingThreatIntelligence'),
+);
 const DigitalRiskManagement = lazy(() => import('./pages/DigitalRiskManagement'));
 const IncidentResponseTraining = lazy(() => import('./pages/IncidentResponseTraining'));
 const DataPrivacyProtection = lazy(() => import('./pages/DataPrivacyProtection'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App: React.FC = () => {
   return (
@@ -168,7 +171,7 @@ const App: React.FC = () => {
                       path="*"
                       element={
                         <Suspense fallback={<PageLoader />}>
-                          <Home />
+                          <NotFound />
                         </Suspense>
                       }
                     />
