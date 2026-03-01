@@ -172,12 +172,10 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
   const modules = [
     {
       title: 'Introduction to Ethical Hacking & Footprinting',
-      duration: '4 hours',
       topics: ['Hacking Methodologies', 'Reconnaissance Techniques', 'Network Scanning', 'OSINT Fundamentals'],
     },
     {
       title: 'Network & System Exploitation',
-      duration: '6 hours',
       topics: [
         'Vulnerability Analysis',
         'System Hacking',
@@ -187,12 +185,10 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
     },
     {
       title: 'Web Application & Wireless Security',
-      duration: '6 hours',
       topics: ['SQL Injection', 'Cross-Site Scripting (XSS)', 'Wireless Network Exploitation', 'Session Hijacking'],
     },
     {
       title: 'Threat Intelligence & Defensive Strategies',
-      duration: '4 hours',
       topics: [
         'Cyber Threat Intelligence (CTI)',
         'Threat Actors & APTs',
@@ -244,7 +240,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
                     <span className="text-slate-500">/</span>
                     <span>Offensive Security</span>
                   </div>
-                  <span className="bg-[#FF4500] text-white text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-tighter">
+                  <span className="bg-[#00C4D4] text-white text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-tighter">
                     High Demand
                   </span>
                 </motion.div>
@@ -255,7 +251,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="mb-6"
                 >
-                  <span className="bg-[#00C4D4] text-black text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-tight">
+                  <span className="bg-[#00C4D4] text-[#0a1628] text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-tight">
                     New 2026 Curriculum
                   </span>
                 </motion.div>
@@ -327,7 +323,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
                   transition={{ duration: 0.8, delay: 0.7 }}
                   className="flex flex-wrap gap-4 py-8"
                 >
-                  <button className="bg-[#00C4D4] text-black px-6 py-2 rounded-full font-bold hover:bg-[#00b0c0] transition-all flex items-center gap-4 group">
+                  <button className="bg-[#00C4D4] text-[#0a1628] px-6 py-2 rounded-full font-bold hover:bg-[#00b0c0] transition-all flex items-center gap-4 group">
                     Enroll in Cohort{' '}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -424,19 +420,17 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
 
         {/* Jump To Navigation - Sticky */}
         <div
-          className={`sticky top-0 z-50 backdrop-blur-md pt-12 py-6 transition-all duration-500 ${
-            isInSyllabus
-              ? 'bg-gradient-to-r from-[#0a1628] via-[#0f2744] to-[#0a1628] border-b border-blue-500/20'
-              : 'bg-slate-950/95'
-          }`}
+          className={`sticky top-0 z-50 backdrop-blur-md pt-12 py-6 transition-all duration-500 ${isInSyllabus
+            ? 'bg-gradient-to-r from-[#0a1628] via-[#0f2744] to-[#0a1628] border-b border-blue-500/20'
+            : 'bg-slate-950/95'
+            }`}
           style={{ scrollBehavior: 'smooth' }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
             {/* Left side - Jump to label */}
             <div
-              className={`text-sm font-semibold pl-0 transition-colors duration-300 ${
-                isInSyllabus ? 'text-[#00C4D4]' : 'text-white'
-              }`}
+              className={`text-sm font-semibold pl-0 transition-colors duration-300 ${isInSyllabus ? 'text-[#00C4D4]' : 'text-white'
+                }`}
             >
               Jump to:
             </div>
@@ -445,51 +439,46 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
             <div className="flex items-center gap-6 mr-[3%]">
               <button
                 onClick={() => scrollToSection('overview')}
-                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${
-                  isInSyllabus
-                    ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                    : 'border-white/40 text-white hover:text-blue-400'
-                }`}
+                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${isInSyllabus
+                  ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
+                  : 'border-white/40 text-white hover:text-blue-400'
+                  }`}
               >
                 Overview
               </button>
               <button
                 onClick={() => scrollToSection('syllabus')}
-                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${
-                  isInSyllabus
-                    ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                    : 'border-white/40 text-white hover:text-blue-400'
-                }`}
+                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${isInSyllabus
+                  ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
+                  : 'border-white/40 text-white hover:text-blue-400'
+                  }`}
               >
                 Syllabus
               </button>
               <button
                 onClick={() => scrollToSection('faqs')}
-                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${
-                  isInSyllabus
-                    ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                    : 'border-white/40 text-white hover:text-blue-400'
-                }`}
+                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${isInSyllabus
+                  ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
+                  : 'border-white/40 text-white hover:text-blue-400'
+                  }`}
               >
                 FAQs
               </button>
               <button
                 onClick={() => scrollToSection('schedule')}
-                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${
-                  isInSyllabus
-                    ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                    : 'border-white/40 text-white hover:text-blue-400'
-                }`}
+                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${isInSyllabus
+                  ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
+                  : 'border-white/40 text-white hover:text-blue-400'
+                  }`}
               >
                 Schedule & Pricing
               </button>
               <button
                 onClick={() => scrollToSection('register')}
-                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${
-                  isInSyllabus
-                    ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                    : 'border-white/40 text-white hover:text-blue-400'
-                }`}
+                className={`text-sm transition-all duration-300 border-2 px-4 py-2 rounded-full ${isInSyllabus
+                  ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
+                  : 'border-white/40 text-white hover:text-blue-400'
+                  }`}
               >
                 Register
               </button>
@@ -519,7 +508,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative overflow-visible rounded-2xl bg-[#1e1e1e] p-10 md:p-16 border border-[#ff4500]/20 shadow-2xl"
+            className="relative overflow-visible rounded-2xl bg-[#0a2a43] p-10 md:p-16 border border-[#00C4D4]/20 shadow-2xl"
           >
             {/* Animated Wave Background - Extended outside the box */}
             <motion.div
@@ -533,8 +522,8 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <defs>
                   <radialGradient id="waveGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                    <stop offset="0%" stopColor="#ff4500" stopOpacity="0.3" />
-                    <stop offset="100%" stopColor="#ff4500" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#2dd4bf" stopOpacity="0" />
                   </radialGradient>
                 </defs>
 
@@ -571,7 +560,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
                   cy="100"
                   r="40"
                   fill="none"
-                  stroke="#ff4500"
+                  stroke="#2dd4bf"
                   strokeOpacity="0.3"
                   strokeWidth="0.5"
                 />
@@ -580,7 +569,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
                   cy="100"
                   r="70"
                   fill="none"
-                  stroke="#ff4500"
+                  stroke="#2dd4bf"
                   strokeOpacity="0.3"
                   strokeWidth="0.5"
                 />
@@ -589,7 +578,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
                   cy="100"
                   r="100"
                   fill="none"
-                  stroke="#ff4500"
+                  stroke="#2dd4bf"
                   strokeOpacity="0.3"
                   strokeWidth="0.5"
                 />
@@ -605,8 +594,8 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <defs>
                   <radialGradient id="waveGradientLeft" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#ff8c00" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="#ff8c00" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
                   </radialGradient>
                 </defs>
                 <circle
@@ -630,7 +619,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
                   cy="100"
                   r="40"
                   fill="none"
-                  stroke="#ff8c00"
+                  stroke="#3b82f6"
                   strokeOpacity="0.2"
                   strokeWidth="0.5"
                 />
@@ -644,7 +633,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
 
               <div className="mt-8">
                 <h4 className="font-bold text-lg text-white">David Osei</h4>
-                <p className="text-[#ff4500] font-medium italic">
+                <p className="text-[#00C4D4] font-medium italic">
                   Head of Information Security, Pan-African Financial Group
                 </p>
               </div>
@@ -686,7 +675,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
               {/* Read More Button */}
               <motion.button
                 onClick={() => setIsOverviewExpanded(!isOverviewExpanded)}
-                className="mt-8 text-[#ff4500] hover:text-[#ff6347] font-medium flex items-center gap-2 transition-colors"
+                className="mt-8 text-[#00C4D4] hover:text-blue-300 font-medium flex items-center gap-2 transition-colors"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -706,7 +695,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
           <div
             ref={syllabusRef}
             className="relative mt-20"
-            style={{ background: 'linear-gradient(135deg, #1e1e1e 0%, #2a110a 50%, #1e1e1e 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0f2744 50%, #0a1628 100%)' }}
           >
             {/* Wave Background */}
             <motion.div
@@ -716,8 +705,8 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <defs>
                   <radialGradient id="waveGradientCombined" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#ff4500" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="#ff4500" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#00C4D4" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#00C4D4" stopOpacity="0" />
                   </radialGradient>
                 </defs>
                 <motion.circle
@@ -747,117 +736,264 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
                   stroke="url(#waveGradientCombined)"
                   strokeWidth="16"
                 />
-                <circle cx="100" cy="100" r="40" fill="none" stroke="#ff4500" strokeOpacity="0.1" strokeWidth="0.5" />
-                <circle cx="100" cy="100" r="70" fill="none" stroke="#ff4500" strokeOpacity="0.1" strokeWidth="0.5" />
-                <circle cx="100" cy="100" r="100" fill="none" stroke="#ff4500" strokeOpacity="0.1" strokeWidth="0.5" />
+                <circle cx="100" cy="100" r="40" fill="none" stroke="#00C4D4" strokeOpacity="0.2" strokeWidth="0.5" />
+                <circle cx="100" cy="100" r="70" fill="none" stroke="#00C4D4" strokeOpacity="0.2" strokeWidth="0.5" />
+                <circle cx="100" cy="100" r="100" fill="none" stroke="#00C4D4" strokeOpacity="0.2" strokeWidth="0.5" />
               </svg>
             </motion.div>
 
-            <div className="relative z-10 px-8 py-16 md:px-16 md:py-24 max-w-7xl mx-auto border border-[#ff4500]/10 rounded-2xl shadow-2xl backdrop-blur-sm">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-                
-                {/* Left Column: What You'll Learn */}
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-light font-heading text-white mb-8 border-b border-[#ff4500]/30 pb-4">
-                    Offensive Frameworks Learning Pathway
-                  </h3>
-                  
-                  <div className="space-y-6">
-                    {programFeatures.map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        className="flex gap-4 group"
-                      >
-                        <div className="mt-1 bg-slate-900/50 p-2 rounded-lg border border-[#ff4500]/20 group-hover:border-[#ff4500]/60 transition-colors shrink-0">
-                          {feature.icon}
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-[#ff4500] transition-colors">
-                            {feature.title}
-                          </h4>
-                          <p className="text-slate-400 leading-relaxed text-sm">
-                            {feature.description}
-                          </p>
-                        </div>
-                      </motion.div>
-                    ))}
+            <motion.div
+              className="absolute -left-20 top-20 w-[400px] h-[400px] pointer-events-none"
+              animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <svg viewBox="0 0 200 200" className="w-full h-full">
+                <defs>
+                  <radialGradient id="waveGradientCombined2" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="60"
+                  fill="none"
+                  stroke="url(#waveGradientCombined2)"
+                  strokeWidth="10"
+                />
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="90"
+                  fill="none"
+                  stroke="url(#waveGradientCombined2)"
+                  strokeWidth="6"
+                />
+              </svg>
+            </motion.div>
+
+            <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20">
+              {/* What You'll Learn Content */}
+              <motion.div
+                id="syllabus"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="mb-20"
+              >
+                <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
+                  What You'll Learn
+                </h2>
+
+                <div className="grid md:grid-cols-2 gap-12">
+                  {/* Technical Skills */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-slate-200 mb-6 flex items-center gap-3">
+                      <span className="w-2 h-8 bg-[#00C4D4] rounded-full"></span>
+                      Technical Skills
+                    </h3>
+                    <ul className="space-y-4">
+                      {[
+                        'Execute complex penetration tests across network, web, and cloud environments',
+                        'Write custom exploit scripts and automate vulnerability discovery',
+                        'Perform advanced active directory exploitation and privilege escalation',
+                        'Analyze cyber threat intelligence feeds and attribute attacks to specific threat actors',
+                        'Conduct evasion techniques against modern EDR and firewall solutions',
+                        'Reverse engineer basic malware samples and extract indicators of compromise',
+                      ].map((item, index) => (
+                        <motion.li
+                          key={index}
+                          className="flex items-start gap-3 text-slate-300 font-light leading-relaxed"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 shrink-0 flex-shrink-0" />
+                          {item}
+                        </motion.li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <div className="mt-10 p-6 bg-slate-900/50 rounded-xl border border-slate-700">
-                    <h4 className="flex items-center gap-2 text-white font-semibold mb-4">
-                      <BookOpen className="w-5 h-5 text-[#ff4500]" />
-                      Core Capabilities Required
-                    </h4>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {learningObjectives.map((objective, index) => (
-                        <li key={index} className="flex gap-3 text-slate-300 text-sm">
-                          <CheckCircle className="w-4 h-4 text-[#ff4500] shrink-0 mt-0.5" />
-                          <span className="leading-tight">{objective}</span>
-                        </li>
+                  {/* Business Benefits */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-slate-200 mb-6 flex items-center gap-3">
+                      <span className="w-2 h-8 bg-teal-500 rounded-full"></span>
+                      Business Benefits
+                    </h3>
+                    <ul className="space-y-4">
+                      {[
+                        'Proactively identify critical vulnerabilities before they are exploited by real attackers',
+                        'Demonstrate rigorous security testing compliance for PCI-DSS, SOC2, and ISO 27001',
+                        'Reduce external penetration testing costs by building internal Red Team capabilities',
+                        'Minimize the blast radius of potential breaches through architectural hardening',
+                        'Improve incident response metrics through intelligence-driven defense strategies',
+                        'Protect intellectual property and maintain customer trust in your digital platforms',
+                      ].map((item, index) => (
+                        <motion.li
+                          key={index}
+                          className="flex items-start gap-3 text-slate-300 font-light leading-relaxed"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <CheckCircle className="w-5 h-5 text-teal-400 mt-0.5 shrink-0 flex-shrink-0" />
+                          {item}
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
                 </div>
+              </motion.div>
 
-                {/* Right Column: Training Modules / Impact */}
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-light font-heading text-white mb-8 border-b border-[#ff4500]/30 pb-4">
-                    Curriculum & Impact
-                  </h3>
-                  
-                  <div className="space-y-8 mb-12">
-                    {modules.map((module, index) => (
-                      <motion.div
+              {/* Measurable Impact Section */}
+              <div className="grid lg:grid-cols-2 gap-16">
+                {/* Left Side - Static/Sticky */}
+                <div className="lg:sticky lg:top-[120px] lg:h-fit">
+                  <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-light font-heading mb-8 text-white">
+                    Measurable Impact
+                  </h2>
+
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    {[
+                      { metric: 80, suffix: '%', label: 'Faster Remediation' },
+                      { metric: 100, suffix: '%', label: 'Lab Certified' },
+                    ].map((stat, index) => (
+                      <div
                         key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        className="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-0.5 before:bg-slate-700 last:before:hidden"
+                        className="text-center p-4 border border-white/10 bg-transparent/30"
                       >
-                        <div className="absolute left-[-4px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#ff4500] ring-4 ring-slate-950"></div>
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
-                          <h4 className="text-xl font-medium text-white">{module.title}</h4>
-                          <span className="text-xs font-semibold px-2 py-1 bg-slate-800 text-slate-300 rounded whitespace-nowrap w-fit">
-                            {module.duration}
-                          </span>
+                        <div className="text-4xl font-light text-[#00C4D4] mb-1">
+                          <Counter target={stat.metric} suffix={stat.suffix} />
                         </div>
-                        <p className="text-slate-400 text-sm leading-relaxed mb-3">
-                          {module.topics.join(' • ')}
+                        <div className="text-sm text-slate-300 font-light">{stat.label}</div>
+                        <p className="text-xs text-slate-500 mt-2">
+                          {index === 0 ? 'Identify flaws before exploitation' : 'Tested in live cyber ranges'}
                         </p>
-                      </motion.div>
+                      </div>
                     ))}
                   </div>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button className="bg-[#00C4D4] text-[#0a1628] px-6 py-3 rounded-full font-medium hover:bg-[#00b0c0] transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+                      Request Corporate Training
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                    <button className="bg-transparent text-white border border-white/30 px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center whitespace-nowrap">
+                      Schedule & Pricing
+                    </button>
+                  </div>
+                </div>
 
-                  {/* Measurable Impact Metrics */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <motion.div 
-                      className="bg-slate-900/80 p-6 rounded-xl border border-[#ff4500]/20 text-center"
-                      whileHover={{ y: -5, borderColor: 'rgba(255,69,0,0.5)' }}
-                    >
-                      <div className="text-3xl font-bold text-white mb-2">
-                        <Counter target={80} suffix="%" />
-                      </div>
-                      <div className="text-sm text-slate-400 uppercase tracking-wide font-medium">Faster Remediation</div>
-                      <p className="text-xs text-slate-500 mt-2">Identify flaws before exploitation</p>
-                    </motion.div>
-                    
-                    <motion.div 
-                      className="bg-[#ff4500]/10 p-6 rounded-xl border border-[#ff4500]/30 text-center"
-                      whileHover={{ y: -5, borderColor: 'rgba(255,69,0,0.6)' }}
-                    >
-                      <div className="text-3xl font-bold text-[#ff4500] mb-2">
-                        <Counter target={100} suffix="%" />
-                      </div>
-                      <div className="text-sm justify-center items-center text-slate-300 uppercase tracking-wide font-medium flex gap-2">
-                        <Award className="w-4 h-4" /> Lab Certified
-                      </div>
-                      <p className="text-xs text-slate-400 mt-2">Tested in live cyber ranges</p>
-                    </motion.div>
+                {/* Right Side - Scrollable */}
+                <div className="space-y-12 pb-32">
+                  <div>
+                    <h3 className="text-2xl font-light text-white mb-8 pb-3 border-b border-white/10">
+                      Curriculum Overview
+                    </h3>
+                    <div className="space-y-8 mb-12">
+                      {modules.map((module, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: index * 0.1 }}
+                          viewport={{ once: true }}
+                          className="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-0.5 before:bg-slate-700 last:before:hidden"
+                        >
+                          <div className="absolute left-[-4px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#2dd4bf] ring-4 ring-slate-950"></div>
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                            <h4 className="text-xl font-medium text-white">{module.title}</h4>
+                          </div>
+                          <p className="text-slate-400 text-sm leading-relaxed mb-3">
+                            {module.topics.join(' • ')}
+                          </p>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
+                      Offensive Frameworks Learning Pathway
+                    </h3>
+                    <p className="text-sm text-slate-400 mb-6">
+                      Master industry-standard adversarial frameworks and methodologies used by elite red teams globally
+                    </p>
+                    <ul className="space-y-4">
+                      {[
+                        {
+                          title: 'Offensive Security Fundamentals',
+                          desc: 'Master the mindset and techniques used by malicious hackers to exploit vulnerabilities before they do',
+                        },
+                        {
+                          title: 'Active Defense & Threat Hunting',
+                          desc: 'Proactively identify invisible threats in your network environments using advanced intelligence',
+                        },
+                        {
+                          title: 'Vulnerability Exploitation',
+                          desc: 'Learn the practical execution of penetration testing methodologies from reconnaissance to post-exploitation',
+                        },
+                        {
+                          title: 'Open Source Intelligence (OSINT)',
+                          desc: 'Gather and analyze actionable threat data from public sources and the dark web to secure your perimeter',
+                        },
+                      ].map((item, index) => (
+                        <li
+                          key={index}
+                          className="flex items-start gap-4 p-4 bg-transparent/30 border border-white/5"
+                        >
+                          <span className="w-2 h-2 rounded-full bg-teal-400 mt-2 flex-shrink-0"></span>
+                          <div>
+                            <span className="text-white font-medium text-sm block">
+                              {item.title}
+                            </span>
+                            <span className="text-slate-400 text-sm font-light">{item.desc}</span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
+                      How You'll Be Evaluated
+                    </h3>
+                    <p className="text-sm text-slate-400 mb-6">
+                      Our comprehensive assessment framework ensures you master every competency
+                      through four key phases
+                    </p>
+                    <ul className="space-y-4">
+                      {[
+                        {
+                          phase: 'Phase 1: Pre-Assessment',
+                          desc: 'Baseline knowledge evaluation, security posture questionnaire, skill gap analysis',
+                        },
+                        {
+                          phase: 'Phase 2: Module Assessments',
+                          desc: 'End-of-module quizzes, practical lab exercises, scenario-based evaluations',
+                        },
+                        {
+                          phase: 'Phase 3: Final Examination',
+                          desc: 'Comprehensive written exam, hands-on simulation test, case study analysis',
+                        },
+                        {
+                          phase: 'Phase 4: Continuous Evaluation',
+                          desc: 'Phishing simulation results, behavior tracking metrics, peer assessments',
+                        },
+                      ].map((phase, index) => (
+                        <li
+                          key={index}
+                          className="flex items-start gap-4 p-4 bg-transparent/30 border border-white/5"
+                        >
+                          <span className="w-2 h-2 rounded-full bg-[#00C4D4] mt-2 flex-shrink-0"></span>
+                          <div>
+                            <span className="text-white font-light block mb-1">{phase.phase}</span>
+                            <span className="text-slate-400 text-sm font-light">{phase.desc}</span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -865,6 +1001,283 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
           </div>
         </div>
 
+        {/* Meet Your Instructor Section */}
+        <div className="w-full py-16 px-[100px] bg-transparent">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-5xl mx-auto"
+          >
+            <motion.h2
+              className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-4 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              Meet Your Instructor
+            </motion.h2>
+            <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
+              Learn from industry experts with years of hands-on experience in cybersecurity
+            </p>
+
+            <div className="flex flex-col md:flex-row gap-12 items-start">
+              {/* Instructor Photo */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="w-full md:w-72 flex-shrink-0"
+              >
+                <div className="relative">
+                  <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-800">
+                    <img
+                      src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces"
+                      alt="Instructor"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 bg-[#00C4D4] text-[#0a1628] px-4 py-2 rounded-full text-sm font-bold">
+                    {['CISSP', 'CISM', 'CEH', 'CISA', 'CRMA', 'ISO 27001 Lead Auditor'][0]}, {['CISSP', 'CISM', 'CEH', 'CISA', 'CRMA', 'ISO 27001 Lead Auditor'][1]}
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Instructor Details */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="flex-1"
+              >
+                <h3 className="text-2xl font-bold text-white mb-2">Sarah Chen</h3>
+                <p className="text-[#00C4D4] font-medium mb-4">
+                  Lead Red Team Operator & Threat Intelligence Analyst
+                </p>
+                <p className="text-slate-300 font-light leading-relaxed mb-6">
+                  Sarah brings over a decade of offensive security experience from both the financial sector and defense contractor environments. She has discovered multiple zero-day vulnerabilities in enterprise software and frequently presents at major security conferences like DEF CON and Black Hat. Her training emphasizes the hacker mindset over automated tools.
+                </p>
+
+                {/* Certifications */}
+                <div className="mb-6">
+                  <h4 className="text-white font-semibold mb-3">Certifications</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      'OSCP', 'OSCE', 'CTI', 'CISSP', 'GPEN'
+                    ].map(
+                      (cert, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-slate-800 border border-white/10 rounded-full text-sm text-slate-300"
+                        >
+                          {cert}
+                        </span>
+                      ),
+                    )}
+                  </div>
+                </div>
+
+                {/* Experience Stats */}
+                <div className="grid grid-cols-3 gap-4">
+                  {[
+                    { number: '15+', label: 'Years Experience' },
+                    { number: '5000+', label: 'Professionals Trained' },
+                    { number: '200+', label: 'Organizations Served' },
+                  ].map((stat, index) => (
+                    <div key={index} className="text-center p-3 bg-slate-800/50 rounded-lg">
+                      <div className="text-xl font-bold text-[#00C4D4]">{stat.number}</div>
+                      <div className="text-xs text-slate-400">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div >
+
+        {/* FAQ Section */}
+        < motion.div
+          id="faqs"
+          className="w-full py-16 px-[100px]"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Frequently Asked Questions
+          </motion.h2>
+
+          <div className="max-w-5xl mx-auto">
+            {[
+              {
+                question: 'Do I need programming experience for this course?',
+                answer: 'Yes, basic proficiency in Python and bash scripting is highly recommended. While we cover the fundamentals of exploit modification, you will need to understand how to read and execute custom scripts during the practical labs.'
+              },
+              {
+                question: 'Are the lab environments realistic?',
+                answer: 'We utilize a fully isolated, ephemeral cyber range that accurately mimics modern enterprise networks, complete with Active Directory domains, simulated user traffic, and multi-tier web applications.'
+              },
+              {
+                question: 'Is this course focused on network or web application hacking?',
+                answer: 'The program provides a comprehensive methodology covering both. The first half focuses on infrastructure and network penetration, while the second half dives deeply into web application vulnerabilities (OWASP Top 10) and API exploitation.'
+              }
+            ].map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="mb-4"
+              >
+                <motion.div
+                  className={`relative overflow-hidden rounded-2xl transition-all duration-500 ${openFaq === index
+                    ? 'bg-gradient-to-r from-[#0a2a43]/40 to-[#0f2744]/30 border-[#00C4D4]/30'
+                    : 'bg-[#0a2a43]/50 border border-white/10 hover:border-white/20'
+                    }`}
+                >
+                  {/* Background glow effect when open */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: openFaq === index ? 1 : 0 }}
+                    className="absolute inset-0 bg-gradient-to-r from-[#00C4D4]/5 to-[#00C4D4]/5"
+                  />
+
+                  <button
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                    className="relative w-full flex items-center justify-between p-6 text-left group"
+                  >
+                    <div className="flex items-center gap-4">
+                      <motion.span
+                        className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${openFaq === index
+                          ? 'bg-[#00C4D4] text-white'
+                          : 'bg-white/10 text-slate-400 group-hover:bg-white/20'
+                          }`}
+                        animate={{ scale: openFaq === index ? 1 : 1 }}
+                      >
+                        {index + 1}
+                      </motion.span>
+                      <span
+                        className={`font-medium text-lg transition-colors ${openFaq === index ? 'text-white' : 'text-slate-300 group-hover:text-white'
+                          }`}
+                      >
+                        {faq.question}
+                      </span>
+                    </div>
+
+                    <motion.div
+                      animate={{ rotate: openFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center ${openFaq === index
+                        ? 'bg-[#00C4D4] text-white'
+                        : 'bg-white/10 text-slate-400 group-hover:bg-white/20 group-hover:text-white'
+                        }`}
+                    >
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </motion.div>
+                  </button>
+
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{
+                      height: openFaq === index ? 'auto' : 0,
+                      opacity: openFaq === index ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  >
+                    <div className="relative px-6 pb-6 pl-[72px] pr-16">
+                      <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{
+                          opacity: openFaq === index ? 1 : 0,
+                          y: openFaq === index ? 0 : 10,
+                        }}
+                        transition={{ duration: 0.3, delay: 0.1 }}
+                        className="text-slate-400 font-light leading-relaxed"
+                      >
+                        {faq.answer}
+                      </motion.p>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div >
+
+        {/* Call to Action */}
+        < motion.div
+          id="register"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="relative min-h-[500px] flex items-center">
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] via-[#0a1628]/90 to-[#0a2a43]/70" />
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20 w-full">
+              <div className="max-w-2xl">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                    Ready to Build Offensive Security Capabilities?
+                  </h2>
+                  <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+                    Train your team to think and act like advanced persistent threats. Partner with Ebanex International to develop a world-class internal Red Team that proactively defends your enterprise.
+                  </p>
+                  <div className="flex flex-wrap gap-4">
+                    <motion.button
+                      className="inline-flex items-center gap-3 px-8 py-4 bg-[#00C4D4] hover:bg-[#00b0c0] text-[#0a1628] font-bold rounded-full transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Request Corporate Training
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.button>
+                    <motion.button
+                      className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white font-semibold rounded-full transition-colors"
+                      whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      View All Programs
+                    </motion.button>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Decorative elements */}
+            <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#00C4D4]/10 to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 right-20 w-40 h-40 bg-[#00C4D4]/20 rounded-full blur-3xl pointer-events-none" />
+          </div>
+        </motion.div >
       </div>
     </>
   );
