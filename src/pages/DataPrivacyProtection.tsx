@@ -225,7 +225,7 @@ const DataPrivacyProtection: React.FC = () => {
                     <span className="text-slate-500">/</span>
                     <span>Compliance & Legal</span>
                   </div>
-                  <span className="bg-[#00C4D4] text-white text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-tighter">
+                  <span className="bg-[#00C4D4] text-[#0a1628] text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-tighter">
                     Essential Regulatory
                   </span>
                 </motion.div>
@@ -1108,7 +1108,7 @@ const DataPrivacyProtection: React.FC = () => {
                     <div className="flex items-center gap-4">
                       <motion.span
                         className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${openFaq === index
-                          ? 'bg-[#00C4D4] text-white'
+                          ? 'bg-[#00C4D4] text-[#0a1628]'
                           : 'bg-white/10 text-slate-400 group-hover:bg-white/20'
                           }`}
                         animate={{ scale: openFaq === index ? 1 : 1 }}
@@ -1127,7 +1127,7 @@ const DataPrivacyProtection: React.FC = () => {
                       animate={{ rotate: openFaq === index ? 180 : 0 }}
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                       className={`w-10 h-10 rounded-full flex items-center justify-center ${openFaq === index
-                        ? 'bg-[#00C4D4] text-white'
+                        ? 'bg-[#00C4D4] text-[#0a1628]'
                         : 'bg-white/10 text-slate-400 group-hover:bg-white/20 group-hover:text-white'
                         }`}
                     >
