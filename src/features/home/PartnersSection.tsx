@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Squares } from '../../components/animations';
+import { FitText } from '../../components/common';
 
 const PartnersSection: React.FC = () => {
   const partners = [
@@ -46,52 +48,46 @@ const PartnersSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 border-b border-white/5 bg-slate-950 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section className="relative z-30 h-[90vh] flex flex-col justify-center overflow-hidden w-full bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)]">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-100">
+        <Squares
+          speed={0.13}
+          squareSize={40}
+          direction="diagonal"
+          borderColor="rgba(255,255,255,0.15)"
+          hoverFillColor="rgba(0,191,255,0.05)"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-10 sm:mb-12">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-blue-500 font-bold uppercase tracking-[0.3em] text-sm block mb-4"
-          >
-            More than 50+ brands trust us
-          </motion.span>
+        <div className="text-center mb-8 sm:mb-10">
+          <div className="select-none mb-3 inline-block bg-black py-4 px-8">
+            <FitText
+              minScale={0.35}
+              textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
+            >
+              <span 
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                TRUSTED PARTNERS
+              </span>
+            </FitText>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
-            className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(0.6rem,7vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan whitespace-nowrap overflow-hidden text-ellipsis mb-4"
-            style={{
-              backgroundImage:
-                "url('https://assets.avant.org.au/cdf6134c-01d7-0292-26f5-2f5cf1db96f8/4645803d-67d3-4662-9f18-816e532b82a1/Responding-to-a-cyber-security-incident.jpg')",
-              WebkitBackgroundClip: 'text',
-            }}
-          >
-            T r u s t e d - P a r t n e r s
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="text-slate-400 max-w-2xl mx-auto text-center text-base sm:text-lg"
-          >
-            From innovative startups to Fortune 500 companies, our client list spans a spectrum of
-            sectors, each with unique challenges that we've successfully navigated.
-          </motion.p>
+          <div className="mt-3">
+            <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] inline-block bg-black py-1.5 px-6">
+              More than 50+ brands trust us
+            </span>
+          </div>
         </div>
 
         {/* Marquee Container */}
-        <div className="marquee-container overflow-hidden w-full relative max-w-5xl mx-auto select-none py-8">
-          {/* Left Fade */}
-          <div className="absolute left-0 top-0 h-full w-20 sm:w-32 z-10 pointer-events-none bg-gradient-to-r from-slate-950 to-transparent" />
-
-          {/* Right Fade */}
-          <div className="absolute right-0 top-0 h-full w-20 sm:w-32 z-10 pointer-events-none bg-gradient-to-l from-slate-950 to-transparent" />
-
+        <div className="marquee-container overflow-hidden w-full relative max-w-5xl mx-auto select-none py-6">
           {/* Marquee Track - 4 copies for smooth seamless loop */}
           <div className="marquee-track flex">
             {[...Array(4)].map((_, copyIndex) => (
@@ -101,11 +97,11 @@ const PartnersSection: React.FC = () => {
                     key={`${partner.name}-${copyIndex}-${index}`}
                     className="marquee-item flex-shrink-0 px-3 sm:px-4"
                   >
-                    <div className="h-20 sm:h-24 w-36 sm:w-44 rounded-xl border border-white/10 bg-slate-900/50 flex items-center justify-center overflow-hidden hover:bg-slate-800/50 hover:border-blue-500/30 transition-all duration-300 group p-6">
+                    <div className="h-18 sm:h-22 w-34 sm:w-42 rounded-none border border-white/5 bg-black flex items-center justify-center overflow-hidden hover:border-[#00BFFF]/50 transition-all duration-300 group p-5 sm:p-6">
                       <img
                         src={partner.logo}
                         alt={partner.name}
-                        className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 filter brightness-200"
+                        className="w-full h-full object-contain opacity-100 transition-opacity duration-300"
                         loading="lazy"
                       />
                     </div>
@@ -117,16 +113,13 @@ const PartnersSection: React.FC = () => {
         </div>
 
         {/* CTA Button */}
-        <motion.button
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.4 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="mt-10 mx-auto flex items-center gap-2 px-8 py-3 rounded-lg border border-white/20 text-white font-medium hover:bg-white/5 hover:border-blue-500/50 transition-all duration-300"
-        >
-          See all partners
-        </motion.button>
+        <div className="flex justify-center mt-8">
+          <button
+            className="px-8 py-3 rounded-none border-2 border-black bg-black text-white font-bold uppercase tracking-widest text-xs hover:bg-[#00BFFF] hover:border-[#00BFFF] hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.3)]"
+          >
+            See all partners
+          </button>
+        </div>
       </div>
 
       {/* Marquee Animation Styles */}

@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from '../components/layout';
 import {
-  Users,
+  Shield,
+
   CheckCircle,
   Clock,
   ArrowRight,
@@ -201,27 +202,12 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
   return (
     <>
       <div>
-        <Helmet>
-          <title>Ethical Hacking & Threat Intelligence | EBANEX International</title>
-          <meta
-            name="description"
-            content="Master offensive security tactics and threat intelligence. Learn penetration testing, vulnerability assessment, and proactive defense with EBANEX International."
-          />
-          <meta
-            name="keywords"
-            content="ethical hacking, penetration testing, threat intelligence, vulnerability assessment, CEH training, cyber defense"
-          />
-          <meta
-            property="og:title"
-            content="Ethical Hacking & Threat Intelligence | EBANEX International"
-          />
-          <meta
-            property="og:description"
-            content="Become a certified ethical hacker and learn to neutralize threats before they exploit your network."
-          />
-          <meta property="og:type" content="website" />
-          <link rel="canonical" href="https://ebanex.com/training/ethical-hacking" />
-        </Helmet>
+        <SEO 
+          title="Ethical Hacking & Threat Intelligence | Ebanex International"
+          description="Master offensive security tactics and threat intelligence. Learn penetration testing, vulnerability assessment, and proactive defense with Ebanex International."
+          keywords="ethical hacking, penetration testing, threat intelligence, vulnerability assessment, CEH training, cyber defense"
+          canonical="https://ebanexint.co.tz/training/ethical-hacking"
+        />
 
         {/* Hero Section */}
         <header className="bg-slate-950 text-white pt-12 pb-20 relative overflow-hidden">
@@ -642,7 +628,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
         </div>
 
         {/* Program Overview */}
-        <div id="overview" className="w-full px-[100px] py-0 sm:py-4">
+        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[100px] py-0 sm:py-4">
           <motion.div {...fadeInUp}>
             <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
               Program Overview
@@ -1097,10 +1083,10 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
               </motion.div>
             </div>
           </motion.div>
-        </div >
+        </div>
 
         {/* FAQ Section */}
-        < motion.div
+        <motion.div
           id="faqs"
           className="w-full py-16 px-[100px]"
           initial={{ opacity: 0 }}
@@ -1221,10 +1207,10 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div >
+        </motion.div>
 
         {/* Call to Action */}
-        < motion.div
+        <motion.div
           id="register"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -1277,7 +1263,7 @@ const EthicalHackingThreatIntelligence: React.FC = () => {
             <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#00C4D4]/10 to-transparent pointer-events-none" />
             <div className="absolute bottom-0 right-20 w-40 h-40 bg-[#00C4D4]/20 rounded-full blur-3xl pointer-events-none" />
           </div>
-        </motion.div >
+        </motion.div>
       </div>
     </>
   );

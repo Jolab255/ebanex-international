@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { NAVIGATION_LINKS } from '../../constants';
 import logo from '../../assets/ebanex-logo.png';
+import { cn } from '../../lib/utils';
 
-// Dropdown content based on documentation. Each main link has an overview and categories with items. This structure allows for flexible rendering of dropdowns based on the link label.
+// Dropdown content based on documentation.
 const DROPDOWN_CONTENT = {
   'Training Programs': {
     overview:
@@ -70,23 +71,23 @@ const DROPDOWN_CONTENT = {
       {
         title: 'Institutional Training & Advisory',
         items: [
-          { label: 'Training Needs Assessments', path: '/corporate/training-assessment' },
-          { label: 'Workforce Upskilling Programs', path: '/corporate/upskilling' },
-          { label: 'Digital Transformation Advisory', path: '/corporate/digital-transformation' },
-          { label: 'Organizational Risk Training', path: '/corporate/risk-training' },
-          { label: 'Leadership Development Programs', path: '/corporate/leadership' },
-          { label: 'Train-the-Trainer Programs', path: '/corporate/train-trainer' },
+          { label: 'Training Needs Assessments', path: '/corporate-solutions#services' },
+          { label: 'Workforce Upskilling Programs', path: '/corporate-solutions#services' },
+          { label: 'Digital Transformation Advisory', path: '/corporate-solutions#services' },
+          { label: 'Organizational Risk Training', path: '/corporate-solutions#services' },
+          { label: 'Leadership Development Programs', path: '/corporate-solutions#services' },
+          { label: 'Train-the-Trainer Programs', path: '/corporate-solutions#services' },
         ],
       },
       {
         title: 'Industries Served',
         items: [
-          { label: 'Government & Public Sector', path: '/corporate/government' },
-          { label: 'Financial Institutions', path: '/corporate/financial' },
-          { label: 'Mining & Industrial Sector', path: '/corporate/mining' },
-          { label: 'Telecommunications', path: '/corporate/telecom' },
-          { label: 'Energy & Infrastructure', path: '/corporate/energy' },
-          { label: 'Development & NGOs', path: '/corporate/development' },
+          { label: 'Government & Public Sector', path: '/corporate-solutions#industries' },
+          { label: 'Financial Institutions', path: '/corporate-solutions#industries' },
+          { label: 'Mining & Industrial Sector', path: '/corporate-solutions#industries' },
+          { label: 'Telecommunications', path: '/corporate-solutions#industries' },
+          { label: 'Energy & Infrastructure', path: '/corporate-solutions#industries' },
+          { label: 'Development & NGOs', path: '/corporate-solutions#industries' },
         ],
       },
     ],
@@ -173,24 +174,16 @@ const DROPDOWN_CONTENT = {
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [dropdownTimeout, setDropdownTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [mobileCategoryExpanded, setMobileCategoryExpanded] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
     setIsOpen(false);
     setActiveDropdown(null);
-    if (dropdownTimeout) {
-      clearTimeout(dropdownTimeout);
-      setDropdownTimeout(null);
-    }
+    setMobileExpanded(null);
+    setMobileCategoryExpanded(null);
   }, [location]);
-
-  const handleDropdownClick = (label: string) => {
-    if (DROPDOWN_CONTENT[label as keyof typeof DROPDOWN_CONTENT]) {
-      // Toggle dropdown - if same dropdown is clicked, close it
-      setActiveDropdown(activeDropdown === label ? null : label);
-    }
-  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -202,27 +195,44 @@ const Navbar: React.FC = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
+  const handleDropdownClick = (label: string) => {
+    if (DROPDOWN_CONTENT[label as keyof typeof DROPDOWN_CONTENT]) {
+      setActiveDropdown(activeDropdown === label ? null : label);
+    }
+  };
+
+  const toggleMobileExpanded = (label: string) => {
+    setMobileExpanded(mobileExpanded === label ? null : label);
+    setMobileCategoryExpanded(null);
+  };
+
+  const toggleMobileCategory = (title: string) => {
+    setMobileCategoryExpanded(mobileCategoryExpanded === title ? null : title);
+  };
+
   return (
-    <nav className="w-full z-40 py-0 bg-slate-950/95 backdrop-blur-md shadow-lg border-b border-white/10 sticky top-0">
-      <div className="w-full px-4 sm:px-6 flex items-center">
+    <nav className="w-full z-50 py-0 bg-black/50 backdrop-blur-xl border-b border-[#00BFFF]/10 sticky top-0" role="navigation" aria-label="Main Navigation">
+      <div className="w-full px-4 sm:px-6 flex items-center h-16 sm:h-20 lg:h-24">
         <Link
           to="/"
-          className="flex items-center group transition-opacity duration-300 shrink-0 -my-3"
+          className="flex items-center group transition-opacity duration-300 shrink-0"
+          aria-label="Ebanex International Home"
         >
           <img
             src={logo}
-            alt="Ebanex Logo"
-            className="h-24 sm:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            alt=""
+            className="h-12 sm:h-16 lg:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105 brightness-110"
           />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-1 justify-end relative">
+        <div className="hidden lg:flex items-center gap-3 xl:gap-4 flex-1 justify-end relative h-full">
           <Link
             to="/"
-            className={`text-[11px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${
-              location.pathname === '/' ? 'text-blue-500' : 'text-slate-300 hover:text-white'
-            }`}
+            className={cn(
+              "text-[11px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap",
+              location.pathname === '/' ? 'text-[#00BFFF]' : 'text-white hover:text-[#00BFFF]'
+            )}
           >
             Home
           </Link>
@@ -235,7 +245,7 @@ const Navbar: React.FC = () => {
             return (
               <div
                 key={link.path}
-                className="relative"
+                className="relative h-full flex items-center"
               >
                 {hasDropdown ? (
                   <button
@@ -243,26 +253,31 @@ const Navbar: React.FC = () => {
                       e.stopPropagation();
                       handleDropdownClick(link.label);
                     }}
-                    className={`text-[11px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap flex items-center gap-1 ${
+                    aria-expanded={activeDropdown === link.label}
+                    aria-haspopup="true"
+                    className={cn(
+                      "text-[11px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap flex items-center gap-1 focus:outline-none",
                       isActive || activeDropdown === link.label 
-                        ? 'text-blue-500' 
-                        : 'text-slate-300 hover:text-white'
-                    }`}
+                        ? 'text-[#00BFFF]' 
+                        : 'text-white hover:text-[#00BFFF]'
+                    )}
                   >
                     {link.label}
                     <ChevronDown 
                       size={10} 
-                      className={`opacity-70 transition-transform duration-200 ${
+                      className={cn(
+                        "opacity-70 transition-transform duration-200",
                         activeDropdown === link.label ? 'rotate-180' : ''
-                      }`} 
+                      )} 
                     />
                   </button>
                 ) : (
                   <Link
                     to={link.path}
-                    className={`text-[11px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap ${
-                      isActive ? 'text-blue-500' : 'text-slate-300 hover:text-white'
-                    }`}
+                    className={cn(
+                      "text-[11px] font-semibold tracking-tight uppercase transition-colors whitespace-nowrap focus:outline-none",
+                      isActive ? 'text-[#00BFFF]' : 'text-white hover:text-[#00BFFF]'
+                    )}
                   >
                     {link.label}
                   </Link>
@@ -271,65 +286,49 @@ const Navbar: React.FC = () => {
                 {/* Dropdown Menu */}
                 {hasDropdown && activeDropdown === link.label && (
                   <div
-                    className={`fixed top-full mt-1 bg-slate-900/95 backdrop-blur-md border border-slate-700 rounded-lg shadow-2xl z-50 ${
-                      // Individual widths based on content
+                    className={cn(
+                      "bg-black/95 backdrop-blur-2xl border border-[#00BFFF]/20 rounded-b-xl shadow-2xl z-50 overflow-y-auto",
                       link.label === 'Training Programs'
-                        ? 'left-[5px] right-[5px] w-[calc(100vw-10px)] max-w-none'
-                        : link.label === 'Corporate Solutions'
-                          ? 'left-1/2 -translate-x-1/2 w-max max-w-[95vw] lg:max-w-2xl xl:max-w-3xl'
-                          : link.label === 'Consulting & Advisory' ||
-                              link.label === 'Cyber Labs' ||
-                              link.label === 'Research & Insights' ||
-                              link.label === 'Partnerships' ||
-                              link.label === 'Careers'
-                            ? 'left-1/2 -translate-x-1/2 w-max max-w-[95vw] lg:max-w-xl xl:max-w-2xl'
-                            : 'left-[5px] right-[5px] w-[calc(100vw-10px)] max-w-none'
-                    }`}
+                        ? 'fixed top-[64px] sm:top-[80px] lg:top-[96px] left-[10px] right-[10px] w-[calc(100vw-20px)] max-h-[calc(100vh-120px)]'
+                        : 'absolute top-full right-0 w-max max-w-[90vw] lg:max-w-4xl max-h-[80vh]'
+                    )}
                   >
-                    <div className="p-4 sm:p-5 lg:p-6">
-                      {/* Overview - now fits within columns */}
-                      <div className="mb-4 lg:mb-5 pb-3 border-b border-slate-700">
-                        <h4 className="text-xs sm:text-sm font-light text-blue-400 uppercase tracking-wide mb-2">
+                    <div className="p-6 lg:p-8">
+                      {/* Overview */}
+                      <div className="mb-6 pb-4 border-b border-white/10">
+                        <h4 className="text-[10px] font-bold text-[#00BFFF] uppercase tracking-widest mb-2">
                           Overview
                         </h4>
-                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-none lg:max-w-4xl text-justify">
+                        <p className="text-sm text-white/70 leading-relaxed max-w-4xl">
                           {DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT].overview}
                         </p>
                       </div>
 
                       {/* Categories */}
                       <div
-                        className={`grid gap-4 lg:gap-6 ${
-                          // Special grid for Training Programs - 5 columns on large screens
+                        className={cn(
+                          "grid gap-8",
                           link.label === 'Training Programs'
-                            ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
-                            : DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT]
-                                  .categories.length > 2
-                              ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-                              : DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT]
-                                    .categories.length > 1
-                                ? 'grid-cols-1 lg:grid-cols-2'
-                                : 'grid-cols-1'
-                        }`}
+                            ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
+                            : 'grid-cols-1 md:grid-cols-2'
+                        )}
                       >
                         {DROPDOWN_CONTENT[
                           link.label as keyof typeof DROPDOWN_CONTENT
                         ].categories.map((category, categoryIndex) => (
-                          <div key={categoryIndex} className="space-y-2 lg:space-y-3 min-w-0">
-                            <h3 className="text-xs sm:text-sm font-light text-blue-400 uppercase tracking-wide leading-tight">
+                          <div key={categoryIndex} className="space-y-4">
+                            <h3 className="text-[11px] font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                              <span className="w-1 h-3 bg-[#00BFFF] rounded-full" />
                               {category.title}
                             </h3>
-                            <ul className="space-y-1 lg:space-y-2">
+                            <ul className="space-y-2">
                               {category.items.map((item, itemIndex) => (
                                 <li key={itemIndex}>
                                   <Link
                                     to={item.path}
-                                    className="group text-xs sm:text-sm font-light text-slate-300 hover:text-white transition-all duration-200 block p-2 rounded-md hover:bg-slate-800/60 hover:shadow-sm"
-                                    title={item.label}
+                                    className="text-[13px] text-white/50 hover:text-[#00BFFF] transition-colors block py-1"
                                   >
-                                    <span className="group-hover:translate-x-1 transition-transform duration-200 inline-block">
-                                      {item.label}
-                                    </span>
+                                    {item.label}
                                   </Link>
                                 </li>
                               ))}
@@ -343,39 +342,130 @@ const Navbar: React.FC = () => {
               </div>
             );
           })}
+          
+          <Link
+            to="/contact"
+            className="ml-4 px-5 py-2.5 bg-[#00BFFF] hover:bg-white text-black text-[11px] font-bold uppercase tracking-widest rounded-sm transition-all shadow-[0_0_20px_rgba(0,191,255,0.3)] active:scale-95"
+          >
+            Contact
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="lg:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+        <button 
+          className="lg:hidden ml-auto text-white p-2 focus:outline-none" 
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+        >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed inset-0 z-50 bg-slate-950 transition-transform duration-500 transform ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={cn(
+          "lg:hidden fixed inset-0 z-50 bg-slate-950 transition-all duration-300 ease-in-out transform flex flex-col",
+          isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+        )}
       >
-        <div className="flex flex-col items-center justify-center h-full gap-8">
+        {/* Mobile Header */}
+        <div className="flex items-center justify-between px-4 h-16 border-b border-white/10">
+          <img src={logo} alt="" className="h-10 w-auto" />
+          <button 
+            className="text-white p-2" 
+            onClick={() => setIsOpen(false)}
+            aria-label="Close menu"
+          >
+            <X size={28} />
+          </button>
+        </div>
+
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto py-6 px-4 space-y-2">
           <Link
             to="/"
-            className="text-xl sm:text-2xl font-heading font-semibold text-white hover:text-blue-500"
+            className={cn(
+              "block py-3 px-4 text-lg font-bold rounded-xl",
+              location.pathname === '/' ? 'bg-blue-500/10 text-blue-400' : 'text-white'
+            )}
           >
             Home
           </Link>
-          {NAVIGATION_LINKS.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className="text-xl sm:text-2xl font-heading font-semibold text-white hover:text-blue-500"
-            >
-              {link.label}
-            </Link>
-          ))}
+          
+          {NAVIGATION_LINKS.map((link) => {
+            const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
+            const isExpanded = mobileExpanded === link.label;
+
+            return (
+              <div key={link.path} className="space-y-1">
+                {hasDropdown ? (
+                  <>
+                    <button
+                      onClick={() => toggleMobileExpanded(link.label)}
+                      className={cn(
+                        "w-full flex items-center justify-between py-3 px-4 text-lg font-bold rounded-xl transition-colors",
+                        isExpanded ? 'bg-slate-900 text-blue-400' : 'text-white active:bg-slate-900'
+                      )}
+                    >
+                      {link.label}
+                      <ChevronDown size={20} className={cn("transition-transform duration-200", isExpanded ? 'rotate-180' : '')} />
+                    </button>
+                    
+                    {/* Expandable Categories */}
+                    {isExpanded && (
+                      <div className="mt-2 ml-4 border-l-2 border-slate-800 space-y-1">
+                        {DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT].categories.map((cat) => {
+                          const isCatExpanded = mobileCategoryExpanded === cat.title;
+                          return (
+                            <div key={cat.title}>
+                              <button
+                                onClick={() => toggleMobileCategory(cat.title)}
+                                className="w-full flex items-center justify-between py-2 px-4 text-sm font-semibold text-slate-300"
+                              >
+                                {cat.title}
+                                <ChevronRight size={16} className={cn("transition-transform", isCatExpanded ? 'rotate-90' : '')} />
+                              </button>
+                              {isCatExpanded && (
+                                <div className="ml-4 space-y-1 mb-2">
+                                  {cat.items.map((item) => (
+                                    <Link
+                                      key={item.path}
+                                      to={item.path}
+                                      className="block py-2 px-4 text-sm text-slate-400 active:text-blue-400"
+                                    >
+                                      {item.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    to={link.path}
+                    className={cn(
+                      "block py-3 px-4 text-lg font-bold rounded-xl",
+                      location.pathname === link.path ? 'bg-blue-500/10 text-blue-400' : 'text-white'
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Mobile Footer */}
+        <div className="p-6 border-t border-white/10 bg-slate-900/50">
           <Link
             to="/contact"
-            className="px-8 py-3 bg-blue-500 text-white rounded-full font-bold hover:bg-blue-600"
+            className="block w-full py-4 bg-blue-600 text-white text-center rounded-xl font-bold shadow-lg shadow-blue-500/20"
           >
             Contact Expert
           </Link>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Shield, Code, GraduationCap, Briefcase, PlayCircle } from 'lucide-react';
+import { Shield, Code, GraduationCap, Briefcase, PlayCircle, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { SEO } from '../components/layout';
 import { CERTIFICATIONS } from '../constants';
 
 const Training: React.FC = () => {
@@ -8,32 +10,54 @@ const Training: React.FC = () => {
     {
       title: 'Cybersecurity & Information Security',
       icon: <Shield className="text-purple-400" />,
-      items: ['Ethical Hacking', 'Incident Response', 'Network Defense', 'Cloud Security'],
+      items: [
+        { name: 'Cybersecurity Awareness', path: '/training/cybersecurity-awareness' },
+        { name: 'Ethical Hacking', path: '/training/ethical-hacking' },
+        { name: 'Incident Response', path: '/training/incident-response' },
+        { name: 'Digital Risk Management', path: '/training/digital-risk' },
+        { name: 'Data Privacy & Protection', path: '/training/data-privacy' },
+      ],
     },
     {
       title: 'IT & Digital Skills',
       icon: <Code className="text-blue-400" />,
-      items: ['Full-stack Development', 'DevSecOps', 'AI & Machine Learning', 'Data Science'],
+      items: [
+        { name: 'Networking & Infrastructure', path: '#' },
+        { name: 'Cloud Computing', path: '#' },
+        { name: 'AI & Machine Learning', path: '#' },
+        { name: 'Systems Administration', path: '#' },
+      ],
     },
     {
       title: 'Governance, Risk & Compliance',
       icon: <GraduationCap className="text-indigo-400" />,
-      items: ['ISO Standards', 'GDPR/Data Privacy', 'Enterprise Risk Mgmt', 'Internal Audit'],
+      items: [
+        { name: 'IT Governance', path: '#' },
+        { name: 'Enterprise Risk Mgmt', path: '#' },
+        { name: 'Internal Audit', path: '#' },
+        { name: 'Regulatory Compliance', path: '#' },
+      ],
     },
     {
       title: 'Leadership & Development',
       icon: <Briefcase className="text-cyan-400" />,
       items: [
-        'Strategic Management',
-        'Agile Leadership',
-        'Emotional Intelligence',
-        'Change Management',
+        { name: 'Strategic Management', path: '#' },
+        { name: 'Agile Leadership', path: '#' },
+        { name: 'Emotional Intelligence', path: '#' },
+        { name: 'Change Management', path: '#' },
       ],
     },
   ];
 
   return (
     <div className="pt-24 sm:pt-32 pb-16 sm:pb-24">
+      <SEO 
+        title="Training Programs | Ebanex International"
+        description="Explore our elite training programs in cybersecurity, IT governance, leadership, and professional development. Industry-aligned and results-driven."
+        keywords="training programs, cybersecurity awareness, ethical hacking, digital risk, IT governance, leadership development"
+        canonical="https://ebanexint.co.tz/training"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <header className="mb-12 sm:mb-16 lg:mb-20">
           <h1 className="text-[clamp(0.85rem,4vw,3rem)] font-bold font-heading mb-4 sm:mb-6 whitespace-nowrap overflow-hidden text-ellipsis">
@@ -50,19 +74,34 @@ const Training: React.FC = () => {
           {categories.map((cat, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.01 }}
               className="glass p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-[2.5rem] border-white/5 flex flex-col lg:flex-row gap-6 sm:gap-8 items-start"
             >
               <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/5 flex items-center justify-center shrink-0">
                 {cat.icon}
               </div>
-              <div>
+              <div className="flex-1 w-full">
                 <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">{cat.title}</h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <ul className="grid grid-cols-1 gap-3">
                   {cat.items.map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-slate-400 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                      {item}
+                    <li key={i}>
+                      {item.path !== '#' ? (
+                        <Link 
+                          to={item.path}
+                          className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-blue-500/10 hover:text-blue-400 transition-all group"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                            <span className="text-sm font-medium">{item.name}</span>
+                          </div>
+                          <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </Link>
+                      ) : (
+                        <div className="flex items-center gap-3 p-3 text-slate-500">
+                          <div className="w-1.5 h-1.5 rounded-full bg-slate-700" />
+                          <span className="text-sm font-light">{item.name}</span>
+                        </div>
+                      )}
                     </li>
                   ))}
                 </ul>

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from '../components/layout';
 import {
   Users,
   CheckCircle,
@@ -198,27 +198,12 @@ const IncidentResponseTraining: React.FC = () => {
   return (
     <>
       <div>
-        <Helmet>
-          <title>Incident Response Training | EBANEX International</title>
-          <meta
-            name="description"
-            content="Equip your team to handle cyber breaches effectively. Learn containment, digital forensics, and crisis management protocols."
-          />
-          <meta
-            name="keywords"
-            content="incident response, CSIRT, digital forensics, cyber breach, malware analysis, crisis management"
-          />
-          <meta
-            property="og:title"
-            content="Incident Response Training | EBANEX International"
-          />
-          <meta
-            property="og:description"
-            content="Stop breaches in their tracks with advanced Incident Response methodology training."
-          />
-          <meta property="og:type" content="website" />
-          <link rel="canonical" href="https://ebanex.com/training/incident-response" />
-        </Helmet>
+        <SEO 
+          title="Incident Response Training | Ebanex International"
+          description="Equip your team to handle cyber breaches effectively. Learn containment, digital forensics, and crisis management protocols."
+          keywords="incident response, CSIRT, digital forensics, cyber breach, malware analysis, crisis management"
+          canonical="https://ebanexint.co.tz/training/incident-response"
+        />
 
         {/* Hero Section */}
         <header className="bg-slate-950 text-white pt-12 pb-20 relative overflow-hidden">
@@ -475,12 +460,12 @@ const IncidentResponseTraining: React.FC = () => {
         </div>
 
         {/* Section Title */}
-        <div className="w-full py-16 sm:pt-24 sm:pb-8">
+        <div className="w-full py-10 sm:py-16 lg:py-24">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-[100px]"
+            className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-4 sm:px-6 lg:px-[100px]"
           >
             It’s not a matter of if you will be breached, <br className="hidden md:block" />
             but when. Turn panic into precision with structured, <br className="hidden md:block" />
@@ -616,7 +601,7 @@ const IncidentResponseTraining: React.FC = () => {
         </div>
 
         {/* Program Overview */}
-        <div id="overview" className="w-full px-[100px] py-0 sm:py-4">
+        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[100px] py-10 sm:py-16">
           <motion.div {...fadeInUp}>
             <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
               Program Overview
@@ -765,7 +750,7 @@ const IncidentResponseTraining: React.FC = () => {
               </svg>
             </motion.div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-[100px] py-10 sm:py-16 lg:py-20">
               <motion.div
                 id="syllabus"
                 initial={{ opacity: 0 }}
@@ -1040,7 +1025,7 @@ const IncidentResponseTraining: React.FC = () => {
       </div>
 
 
-      <div className="w-full py-16 px-[100px] bg-transparent">
+      <div className="w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-[100px] bg-transparent">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

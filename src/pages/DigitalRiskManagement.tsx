@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from '../components/layout';
 import {
-  Users,
+  Shield,
+
   CheckCircle,
   Clock,
   ArrowRight,
@@ -199,27 +200,12 @@ const DigitalRiskManagement: React.FC = () => {
   return (
     <>
       <div>
-        <Helmet>
-          <title>Digital Risk Management | EBANEX International</title>
-          <meta
-            name="description"
-            content="Align cyber risk with business strategy. Master IT governance, continuous compliance, and enterprise risk management."
-          />
-          <meta
-            name="keywords"
-            content="digital risk management, CRISC, IT governance, enterprise risk, compliance, cybersecurity risk"
-          />
-          <meta
-            property="og:title"
-            content="Digital Risk Management | EBANEX International"
-          />
-          <meta
-            property="og:description"
-            content="Transform how your organization identifies, assesses, and mitigates digital risk across the enterprise."
-          />
-          <meta property="og:type" content="website" />
-          <link rel="canonical" href="https://ebanex.com/training/digital-risk" />
-        </Helmet>
+        <SEO 
+          title="Digital Risk Management | Ebanex International"
+          description="Align cyber risk with business strategy. Master IT governance, continuous compliance, and enterprise risk management."
+          keywords="digital risk management, CRISC, IT governance, enterprise risk, compliance, cybersecurity risk"
+          canonical="https://ebanexint.co.tz/training/digital-risk"
+        />
 
         {/* Hero Section */}
         <header className="bg-slate-950 text-white pt-12 pb-20 relative overflow-hidden">
@@ -632,7 +618,7 @@ const DigitalRiskManagement: React.FC = () => {
         </div>
 
         {/* Program Overview */}
-        <div id="overview" className="w-full px-[100px] py-0 sm:py-4">
+        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[100px] py-0 sm:py-4">
           <motion.div {...fadeInUp}>
             <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
               Program Overview

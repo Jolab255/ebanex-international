@@ -1,19 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from '../components/layout';
 import { ArrowRight, Home, Search, AlertTriangle } from 'lucide-react';
 
 const NotFound: React.FC = () => {
   return (
     <>
-      <Helmet>
-        <title>Page Not Found | EBANEX International</title>
-        <meta
-          name="description"
-          content="The page you're looking for doesn't exist or has been moved. Explore our training programs or contact us for assistance."
-        />
-      </Helmet>
+      <SEO 
+        title="Page Not Found | Ebanex International"
+        description="The page you're looking for doesn't exist or has been moved. Explore our training programs or contact us for assistance."
+        canonical="https://ebanexint.co.tz/404"
+      />
 
       <div className="min-h-[80vh] flex items-center justify-center px-4 py-20 relative overflow-hidden">
         {/* Animated Background */}

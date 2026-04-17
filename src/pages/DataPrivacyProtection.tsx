@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from '../components/layout';
 import {
-  Users,
+  Lock,
+
   CheckCircle,
   Clock,
   ArrowRight,
@@ -186,27 +187,12 @@ const DataPrivacyProtection: React.FC = () => {
   return (
     <>
       <div>
-        <Helmet>
-          <title>Data Privacy & Protection | EBANEX International</title>
-          <meta
-            name="description"
-            content="Master data compliance and privacy engineering. Learn GDPR, encryption strategies, and Privacy by Design principles."
-          />
-          <meta
-            name="keywords"
-            content="data privacy, CDPSE, GDPR, data protection, privacy by design, compliance"
-          />
-          <meta
-            property="og:title"
-            content="Data Privacy & Protection | EBANEX International"
-          />
-          <meta
-            property="og:description"
-            content="Secure sensitive information and maintain regulatory compliance in a data-driven world."
-          />
-          <meta property="og:type" content="website" />
-          <link rel="canonical" href="https://ebanex.com/training/data-privacy" />
-        </Helmet>
+        <SEO 
+          title="Data Privacy & Protection | Ebanex International"
+          description="Master data compliance and privacy engineering. Learn GDPR, encryption strategies, and Privacy by Design principles."
+          keywords="data privacy, CDPSE, GDPR, data protection, privacy by design, compliance"
+          canonical="https://ebanexint.co.tz/training/data-privacy"
+        />
 
         {/* Hero Section */}
         <header className="bg-slate-950 text-white pt-12 pb-20 relative overflow-hidden">
@@ -604,7 +590,7 @@ const DataPrivacyProtection: React.FC = () => {
         </div>
 
         {/* Program Overview */}
-        <div id="overview" className="w-full px-[100px] py-0 sm:py-4">
+        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[100px] py-0 sm:py-4">
           <motion.div {...fadeInUp}>
             <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
               Program Overview

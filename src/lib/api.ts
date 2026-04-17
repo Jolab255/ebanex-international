@@ -9,48 +9,54 @@ export interface ContactInquiryPayload {
   message: string;
 }
 
-export interface ApiResponse<T = unknown> {
+export interface ApiResponse<T = any> {
   ok: boolean;
   data?: T;
   error?: string;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+
 /**
- * Send a contact inquiry.
- *
- * NOTE:
- * - This is currently a frontend stub. Replace the implementation with a call
- *   to your backend (e.g. /api/contact) once it exists.
- * - Do NOT call third‑party APIs with private keys directly from here.
+ * Sends a contact inquiry to the backend.
+ * Currently simulates a network call if VITE_API_URL is not provided.
  */
-export async function sendContactInquiry(
-  payload: ContactInquiryPayload,
-): Promise<ApiResponse> {
+export async function sendContactInquiry(payload: ContactInquiryPayload): Promise<ApiResponse> {
   try {
-    // TODO: Replace with real backend endpoint.
-    // Example:
-    // const res = await fetch('/api/contact', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(payload),
-    // });
-    //
-    // if (!res.ok) {
-    //   const errorBody = await res.json().catch(() => ({}));
-    //   return { ok: false, error: errorBody?.message ?? 'Failed to send inquiry' };
-    // }
-    //
-    // return { ok: true, data: await res.json() };
+    console.log('[sendContactInquiry] Payload:', payload);
 
-    console.info('[sendContactInquiry] Stubbed payload:', payload);
+    if (API_BASE_URL) {
+      const response = await fetch(`${API_BASE_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
 
-    // Simulate network latency for better UX testing
-    await new Promise((resolve) => setTimeout(resolve, 800));
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to send inquiry');
+      }
+
+      const data = await response.json();
+      return { ok: true, data };
+    }
+
+    // Fallback: Simulate a delay for prototyping when no API URL is set
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+
+    // For prototyping: randomly fail 5% of the time to test error states
+    if (Math.random() < 0.05) {
+      throw new Error('Server is temporarily unavailable. Please try again later.');
+    }
 
     return { ok: true };
-  } catch (err) {
+  } catch (err: any) {
     console.error('[sendContactInquiry] Error:', err);
-    return { ok: false, error: 'Something went wrong while sending your inquiry. Please try again.' };
+    return { 
+      ok: false, 
+      error: err.message || 'Something went wrong while sending your inquiry. Please try again.' 
+    };
   }
 }
-

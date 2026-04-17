@@ -228,7 +228,7 @@ export const MeetInstructor: React.FC<InstructorProps> = ({
   imageUrl,
 }) => {
   return (
-    <div className="w-full py-16 px-[100px] bg-slate-900">
+    <div className="w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-[100px] bg-slate-900">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -318,7 +318,7 @@ export const FAQSection: React.FC<{ faqs: FAQItem[] }> = ({ faqs }) => {
   return (
     <motion.div
       id="faqs"
-      className="w-full py-16 px-[100px]"
+      className="w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-[100px]"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -449,7 +449,7 @@ export const CTASection: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-900/70" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-[100px] py-10 sm:py-16 lg:py-20 w-full">
           <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -468,9 +468,9 @@ export const CTASection: React.FC = () => {
                 of defense against cyber threats. Our comprehensive training programs are tailored
                 to your organization's unique needs.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <motion.button
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#00C4D4] hover:bg-[#00b0c0] text-black font-bold rounded-full transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#00C4D4] hover:bg-[#00b0c0] text-black font-bold rounded-full transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -478,7 +478,7 @@ export const CTASection: React.FC = () => {
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
                 <motion.button
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white font-semibold rounded-full transition-colors"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white font-semibold rounded-full transition-colors"
                   whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
                   whileTap={{ scale: 0.95 }}
                 >

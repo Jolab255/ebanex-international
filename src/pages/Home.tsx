@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactLenis } from 'lenis/react';
 import { PageLoader } from '../components/common';
+import { SEO } from '../components/layout';
 import {
   HeroSection,
   WhoWeAreSection,
@@ -16,7 +17,13 @@ import {
 const Home: React.FC = () => {
   return (
     <ReactLenis root>
-      <main className="bg-slate-950">
+      <SEO 
+        title="Home | Ebanex International"
+        description="Ebanex International is a global professional development institution building the capacity of people and organizations through elite training and strategic advisory."
+        keywords="cybersecurity, training, digital transformation, consulting, advisory, Ebanex"
+        canonical="https://ebanexint.co.tz/"
+      />
+      <main className="bg-gray-950">
         <HeroSection />
         <WhoWeAreSection />
         <WhyEbanexGridSection />

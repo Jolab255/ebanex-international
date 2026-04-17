@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useInView, useSpring } from 'framer-motion';
 import { Squares } from '../../components/animations';
+import { FitText } from '../../components/common';
 import type { Service } from '../../types/content';
 
 interface ServiceBlockProps {
@@ -19,46 +20,55 @@ const ServiceBlock: React.FC<ServiceBlockProps> = ({ service, index, setActiveIn
     }
   }, [isInView, index, setActiveIndex]);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0.1, 0.3, 0.7, 0.9], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0.1, 0.3, 0.7, 0.9], [0.9, 1, 1, 0.9]);
-  const blur = useTransform(scrollYProgress, [0.1, 0.3, 0.7, 0.9], ['8px', '0px', '0px', '8px']);
-
   return (
-    <div className="min-h-[40vh] sm:min-h-[50vh] lg:min-h-[70vh] flex items-center justify-center py-6 sm:py-8 lg:py-12">
-      <motion.div
+    <div className="min-h-[40vh] sm:min-h-[50vh] lg:min-h-[70vh] flex items-center justify-end py-6 sm:py-8 lg:py-12">
+      <div
         ref={ref}
-        style={{ opacity, scale, filter: `blur(${blur})` }}
-        className="w-full max-w-xl"
+        className="w-full max-w-md shadow-2xl lg:translate-x-12"
       >
-        <div className="mb-6">
-          <div className="inline-flex items-center gap-4 mb-4">
-            <span className="text-blue-500 font-bold uppercase tracking-widest text-xs">
-              Service 0{index + 1}
-            </span>
-            <div className="h-[1px] w-12 bg-blue-500/50" />
-          </div>
-          <h3 className="text-[clamp(0.7rem,3.5vw,2.5rem)] font-black font-heading text-white uppercase leading-tight mb-4 sm:mb-6 whitespace-nowrap overflow-hidden text-ellipsis">
-            {service.title}
-          </h3>
-          <p className="text-slate-400 text-base sm:text-lg leading-relaxed">{service.desc}</p>
-          <div className="mt-8 flex justify-center sm:justify-start">
-            <button className="h-12 sm:h-14 px-4 sm:px-6 lg:px-8 border border-white/10 text-white rounded-sm font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] hover:bg-white/5 hover:border-blue-500 transition-all transform hover:-translate-y-1 active:scale-95">
-              Explore Service
-            </button>
+        <div 
+          className="p-6 sm:p-8 border border-white/5"
+          style={{
+            background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+          }}
+        >
+          <div className="mb-4 text-left">
+            <div className="inline-flex items-center gap-4 mb-3">
+              <span className="text-[#00BFFF] font-black uppercase tracking-widest text-xs">
+                Service 0{index + 1}
+              </span>
+              <div className="h-[1px] w-12 bg-[#00BFFF]/50" />
+            </div>
+            <h3 className="text-[clamp(0.9rem,2vw,1.5rem)] font-black font-heading text-white uppercase leading-tight mb-3 sm:mb-4">
+              {service.title}
+            </h3>
+            <p className="text-white/70 text-sm sm:text-base leading-relaxed">{service.desc}</p>
+            <div className="mt-6 flex justify-start">
+              <button className="h-11 sm:h-12 px-4 sm:px-6 border border-[#00bfff] text-[#00bfff] bg-transparent rounded-none font-bold text-[clamp(0.625rem,1.5vw,0.75rem)] uppercase tracking-[0.2em] transition-none hover:bg-transparent hover:text-[#00bfff] hover:border-[#00bfff]">
+                Explore Service
+              </button>
+            </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
-};
+  };
 
 const CoreServicesSection: React.FC = () => {
   const [activeServiceIndex, setActiveServiceIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   const coreServiceData: Service[] = [
     {
@@ -89,85 +99,95 @@ const CoreServicesSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative isolate bg-slate-950 border-t border-white/5 pt-8 sm:pt-10 pb-4 sm:pb-6 lg:pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-[5px] relative z-10 text-center">
-        <motion.h2
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
-          className="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(0.6rem,7vw,5rem)] bg-center bg-no-repeat bg-clip-text text-transparent select-none filter brightness-125 animate-bg-pan whitespace-nowrap overflow-hidden text-ellipsis"
-          style={{
-            backgroundImage:
-              "url('https://assets.avant.org.au/cdf6134c-01d7-0292-26f5-2f5cf1db96f8/4645803d-67d3-4662-9f18-816e532b82a1/Responding-to-a-cyber-security-incident.jpg')",
-            WebkitBackgroundClip: 'text',
-          }}
-        >
-          C o r e - S e r v i c e s
-        </motion.h2>
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="mt-[5px]"
-        >
-          <span className="text-blue-500 font-bold uppercase tracking-[0.4em] text-[clamp(1rem,2.5vw,1.25rem)] block">
-            What We Deliver
-          </span>
-        </motion.div>
-      </div>
+    <section 
+      ref={sectionRef} 
+      className="relative z-30 h-[360vh]"
+    >
+      <div className="sticky top-16 sm:top-20 lg:top-24 h-[90vh] overflow-hidden flex flex-col w-full bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)]">
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-100">
+          <Squares
+            speed={0.13}
+            squareSize={40}
+            direction="diagonal"
+            borderColor="rgba(255,255,255,0.15)"
+            hoverFillColor="rgba(0,191,255,0.05)"
+          />
+        </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20">
-          <div className="hidden lg:block relative">
-            <div className="sticky top-0 h-screen flex items-center justify-center py-20">
-              <div className="w-full aspect-square relative rounded-sm overflow-hidden border border-white/10 shadow-2xl bg-slate-900/40 backdrop-blur-sm">
-                <div className="absolute inset-0 z-0">
-                  <Squares
-                    speed={0.05}
-                    squareSize={60}
-                    direction="diagonal"
-                    borderColor="#271E37"
-                    hoverFillColor="#1a1a1a"
-                  />
-                </div>
-
-                <div className="relative w-full h-full p-8 md:p-12">
-                  <AnimatePresence mode="wait">
-                    {coreServiceData.map((service, i) =>
-                      activeServiceIndex === i ? (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 1.05 }}
-                          transition={{ duration: 0.5 }}
-                          className="absolute inset-0"
-                        >
-                          <img
-                            src={service.image}
-                            className="w-full h-full object-cover opacity-60 filter brightness-90"
-                            alt={service.title}
-                            loading="lazy"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80" />
-                        </motion.div>
-                      ) : null,
-                    )}
-                  </AnimatePresence>
-                </div>
-              </div>
+        <div className="h-full pt-4 sm:pt-6 pb-4 sm:pb-6 lg:pb-8 flex flex-col relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-[20px] relative z-10 text-center shrink-0">
+            <div className="select-none mb-3 inline-block bg-black py-4 px-8">
+              <FitText
+                minScale={0.35}
+                textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
+              >
+                <span 
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  CORE SERVICES
+                </span>
+              </FitText>
+            </div>
+            <div className="mt-4">
+              <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] inline-block bg-black py-1.5 px-6">
+                What We Deliver
+              </span>
             </div>
           </div>
 
-          <div className="relative py-4 sm:py-8 lg:py-20 xl:py-0">
-            {coreServiceData.map((service, i) => (
-              <ServiceBlock
-                key={i}
-                service={service}
-                index={i}
-                setActiveIndex={setActiveServiceIndex}
-              />
-            ))}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex-grow overflow-hidden relative">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 h-full items-center">
+              <div className="hidden lg:block relative h-full flex items-center translate-y-4">
+                <div className="w-full aspect-video h-[45vh] relative rounded-none border border-black shadow-[10px_20px_0px_0px_rgba(0,0,0,1)] bg-black">
+                  <div className="relative w-full h-full overflow-hidden">
+                    <AnimatePresence mode="wait">
+                      {coreServiceData.map((service, i) =>
+                        activeServiceIndex === i ? (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 1.05 }}
+                            transition={{ duration: 0.5 }}
+                            className="absolute inset-0"
+                          >
+                            <img
+                              src={service.image}
+                              className="w-full h-full object-cover opacity-100"
+                              alt={service.title}
+                              loading="lazy"
+                            />
+                          </motion.div>
+                        ) : null,
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative h-full overflow-hidden pr-12">
+                <motion.div 
+                  style={{ 
+                    y: useTransform(smoothProgress, [0, 1], [0, -1335]) 
+                  }}
+                  className="flex flex-col"
+                >
+                  {coreServiceData.map((service, i) => (
+                    <ServiceBlock
+                      key={i}
+                      service={service}
+                      index={i}
+                      setActiveIndex={setActiveServiceIndex}
+                    />
+                  ))}
+                  <div className="min-h-[50vh]" /> {/* Managed space */}
+                </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

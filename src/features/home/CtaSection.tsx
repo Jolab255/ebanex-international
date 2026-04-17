@@ -1,156 +1,90 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Squares } from '../../components/animations';
+import { FitText } from '../../components/common';
+import { ArrowRight } from 'lucide-react';
 
 const CtaSection: React.FC = () => (
-  <section className="relative min-h-[600px] lg:min-h-[700px] overflow-hidden">
-    {/* Background Pattern */}
-    <div className="absolute inset-0 bg-slate-950">
-      <div
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
+  <section className="h-[90vh] relative z-40 overflow-visible bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col items-center justify-center py-8 sm:py-12 px-4">
+    {/* Background */}
+    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <Squares
+        speed={0.13}
+        squareSize={40}
+        direction="diagonal"
+        borderColor="rgba(255,255,255,0.08)"
+        hoverFillColor="rgba(255,255,255,0.05)"
       />
     </div>
 
-    <div className="relative z-10 max-w-7xl mx-auto h-full min-h-[600px] lg:min-h-[700px]">
-      <div className="grid lg:grid-cols-2 h-full min-h-[600px] lg:min-h-[700px]">
-        {/* Left Side - Image */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="relative h-[300px] lg:h-full overflow-hidden"
-        >
-          <div className="absolute inset-0 z-10 lg:hidden" />
-          <img
-            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1000&auto=format&fit=crop"
-            alt="Professional team collaboration"
-            className="w-full h-full object-cover"
-          />
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/40 to-transparent z-10" />
-        </motion.div>
-
-        {/* Right Side - Content */}
-        <div className="flex items-center justify-center p-8 lg:p-16">
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-lg"
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
+      {/* Header */}
+      <div className="text-center mb-6 sm:mb-8">
+        <div className="select-none mb-2 inline-block bg-black py-4 px-8">
+          <FitText
+            minScale={0.35}
+            textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
           >
-            {/* Label */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 mb-6"
+            <span 
+              style={{
+                backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
             >
-              <span className="text-blue-400 text-sm font-medium uppercase tracking-wider">
-                Call to Action
-              </span>
-            </motion.div>
+              TAKE THE NEXT STEP
+            </span>
+          </FitText>
+        </div>
+        <div className="mt-2">
+          <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.6rem,1vw,0.75rem)] inline-block bg-black py-1.5 px-6">
+            Elite Advisory & Training
+          </span>
+        </div>
+      </div>
 
-            {/* Headline */}
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6"
-            >
-              Ready to strengthen your{' '}
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                workforce
-              </span>{' '}
-              and secure your organization?
-            </motion.h2>
+      {/* CTA Card Container */}
+      <div className="relative w-full max-w-4xl flex items-center justify-center lg:justify-start">
+        {/* Background Image (Stacked Under) */}
+        <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-square z-0 opacity-100">
+          <img 
+            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1000&auto=format&fit=crop" 
+            className="w-full h-full object-cover rounded-full border-[10px] border-black"
+            alt="Decoration"
+          />
+        </div>
 
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-slate-400 text-base sm:text-lg mb-10 leading-relaxed"
-            >
-              Take the first step towards comprehensive cybersecurity training and institutional
-              excellence. Our programs are tailored to meet your organization's unique needs.
-            </motion.p>
+        {/* CTA Card */}
+        <div 
+          className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-10 overflow-hidden"
+          style={{
+            background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+          }}
+        >
+          <div className="relative z-10 text-center sm:text-left">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight mb-4 uppercase tracking-tighter">
+              Ready to <span className="text-[#00BFFF]">Secure</span> Your <br className="hidden sm:block" /> 
+              Institutional Future?
+            </h2>
+            
+            <p className="text-white/80 text-xs sm:text-sm mb-8 leading-relaxed font-medium max-w-lg">
+              Empower your workforce with industry-leading cybersecurity competencies and strategic advisory 
+              tailored to your organization's unique digital landscape.
+            </p>
 
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="flex flex-row gap-3 sm:gap-4"
-            >
-              {/* Primary Button */}
-              <button className="h-12 sm:h-14 px-3 sm:px-5 lg:px-6 bg-white text-slate-950 rounded-sm font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] hover:bg-blue-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-xl active:scale-95 whitespace-nowrap">
-                Explore Training
+            <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3">
+              <button className="h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2">
+                Explore Programs <ArrowRight size={14} />
               </button>
 
-              {/* Secondary Button */}
-              <button className="h-12 sm:h-14 px-3 sm:px-5 lg:px-6 border border-white/10 text-white rounded-sm font-bold text-[10px] sm:text-xs uppercase tracking-[0.15em] hover:bg-white/5 hover:border-blue-500 transition-all transform hover:-translate-y-1 active:scale-95 whitespace-nowrap">
-                Request Training
+              <button className="h-11 sm:h-12 px-6 border-2 border-white text-white rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95">
+                Contact Expert
               </button>
-            </motion.div>
-
-            {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.6 }}
-              className="mt-10 pt-8 border-t border-white/10"
-            >
-              <div className="flex flex-wrap items-center gap-6 text-slate-500 text-sm">
-                <div className="flex items-center gap-2">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    className="text-green-400"
-                  >
-                    <path
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span>ISO 27001 Certified</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    className="text-green-400"
-                  >
-                    <path
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span>99.9% Uptime</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    className="text-green-400"
-                  >
-                    <path
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span>24/7 Support</span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
+          
+          {/* Decorative corner accent */}
+          <div className="absolute top-0 right-0 w-24 h-24 bg-[#00BFFF]/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
         </div>
       </div>
     </div>

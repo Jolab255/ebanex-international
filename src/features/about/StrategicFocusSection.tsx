@@ -102,7 +102,12 @@ const StrategicFocusSection: React.FC = () => {
                   idx % 2 === 0 ? 'rotate-1' : '-rotate-1'
                 } group-hover:rotate-0 transition-transform duration-300`}
               />
-              <div className="relative bg-slate-900 rounded-2xl p-8 lg:p-10 shadow-lg border border-white/10 group-hover:border-blue-500/50 group-hover:shadow-xl transition-all duration-300">
+              <div 
+                className="relative rounded-2xl p-8 lg:p-10 shadow-lg border border-white/10 group-hover:border-blue-500/50 group-hover:shadow-xl transition-all duration-300"
+                style={{
+                  background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+                }}
+              >
                 <div className="flex items-start gap-4">
                   <div className="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
                     {area.icon}

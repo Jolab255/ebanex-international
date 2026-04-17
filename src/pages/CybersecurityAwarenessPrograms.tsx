@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
+import { SEO } from '../components/layout';
 import {
   Users,
   CheckCircle,
@@ -205,27 +205,12 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
   return (
     <>
       <div>
-        <Helmet>
-          <title>Cybersecurity Awareness Programs | EBANEX International</title>
-          <meta
-            name="description"
-            content="Comprehensive cybersecurity awareness training programs designed to build security-conscious organizations. Learn threat recognition, secure practices, and incident response."
-          />
-          <meta
-            name="keywords"
-            content="cybersecurity awareness, security training, threat recognition, secure practices, incident response, cybersecurity education"
-          />
-          <meta
-            property="og:title"
-            content="Cybersecurity Awareness Programs | EBANEX International"
-          />
-          <meta
-            property="og:description"
-            content="Build a security-aware culture with our comprehensive cybersecurity awareness training programs."
-          />
-          <meta property="og:type" content="website" />
-          <link rel="canonical" href="https://ebanex.com/training/cybersecurity-awareness" />
-        </Helmet>
+        <SEO 
+          title="Cybersecurity Awareness Programs | Ebanex International"
+          description="Comprehensive cybersecurity awareness training programs designed to build security-conscious organizations. Learn threat recognition, secure practices, and incident response."
+          keywords="cybersecurity awareness, security training, threat recognition, secure practices, incident response, cybersecurity education"
+          canonical="https://ebanexint.co.tz/training/cybersecurity-awareness"
+        />
 
         {/* Hero Section */}
         <header className="bg-slate-950 text-white pt-12 pb-20 relative overflow-hidden">
@@ -664,7 +649,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
         </div>
 
         {/* Program Overview */}
-        <div id="overview" className="w-full px-[100px] py-0 sm:py-4">
+        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[100px] py-0 sm:py-4">
           <motion.div {...fadeInUp}>
             <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
               Program Overview

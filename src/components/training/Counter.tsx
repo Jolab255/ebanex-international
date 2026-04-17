@@ -5,29 +5,38 @@ interface CounterProps {
   target: number;
   suffix?: string;
   duration?: number;
+  once?: boolean;
 }
 
-export const Counter: React.FC<CounterProps> = ({ target, suffix = '', duration = 2 }) => {
+export const Counter: React.FC<CounterProps> = ({ target, suffix = '', duration = 2, once = true }) => {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once, margin: '-20px' });
 
   useEffect(() => {
     if (!isInView) return;
 
-    let start = 0;
-    const increment = target / (duration * 60);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start * 10) / 10);
-      }
-    }, 1000 / 60);
+    let startTimestamp: number | null = null;
+    let animationFrameId: number;
 
-    return () => clearInterval(timer);
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+      
+      setCount(Math.floor(progress * target));
+
+      if (progress < 1) {
+        animationFrameId = window.requestAnimationFrame(step);
+      }
+    };
+
+    animationFrameId = window.requestAnimationFrame(step);
+
+    return () => {
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, [isInView, target, duration]);
 
   return (

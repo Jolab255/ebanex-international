@@ -8,6 +8,8 @@ interface SquaresProps {
     squareSize?: number;
     hoverFillColor?: string;
     className?: string;
+    activeGradient?: boolean;
+    gradientColor?: string;
 }
 
 const Squares: FC<SquaresProps> = ({
@@ -16,7 +18,9 @@ const Squares: FC<SquaresProps> = ({
     borderColor = '#999',
     squareSize = 40,
     hoverFillColor = '#222',
-    className = ''
+    className = '',
+    activeGradient = true,
+    gradientColor = 'rgba(0, 0, 0, 1)'
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const requestRef = useRef<number>(null);
@@ -66,21 +70,6 @@ const Squares: FC<SquaresProps> = ({
                     ctx.strokeRect(squareX, squareY, squareSize, squareSize);
                 }
             }
-
-            // Add a fading gradient to the edges for better integration
-            const gradient = ctx.createRadialGradient(
-                canvas.width / 2,
-                canvas.height / 2,
-                0,
-                canvas.width / 2,
-                canvas.height / 2,
-                Math.sqrt(canvas.width ** 2 + canvas.height ** 2) / 2
-            );
-            gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
-            gradient.addColorStop(1, 'rgba(0, 0, 0, 1)'); // Fade to solid background color at the edges
-
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
         };
 
         const updateAnimation = () => {
@@ -145,7 +134,7 @@ const Squares: FC<SquaresProps> = ({
             canvas.removeEventListener('mousemove', handleMouseMove);
             canvas.removeEventListener('mouseleave', handleMouseLeave);
         };
-    }, [direction, speed, borderColor, hoverFillColor, squareSize]);
+    }, [direction, speed, borderColor, hoverFillColor, squareSize, activeGradient]);
 
     return <canvas ref={canvasRef} className={`squares-canvas ${className}`}></canvas>;
 };

@@ -32,12 +32,12 @@ const App: React.FC = () => {
       <ThemeProvider>
         <Router>
           <ScrollToTop />
-          <div className="min-h-screen flex flex-col selection:bg-blue-500 selection:text-white bg-slate-950 text-white">
+          <div className="min-h-screen flex flex-col selection:bg-[#00BFFF] selection:text-black bg-black text-white">
             <TopBar />
             <Navbar />
             <main className="flex-grow">
               <ErrorBoundary>
-                <NavigationLoader minDuration={800}>
+                <NavigationLoader minDuration={300}>
                   <Routes>
                     <Route
                       path="/"

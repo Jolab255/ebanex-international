@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { SEO } from '../components/layout';
 import { sendContactInquiry } from '../lib/api';
 
 interface ContactFormState {
@@ -103,6 +104,12 @@ const Contact: React.FC = () => {
 
   return (
     <div className="pt-24 sm:pt-32 pb-16 sm:pb-24">
+      <SEO 
+        title="Contact Us | Ebanex International"
+        description="Get in touch with Ebanex International for elite training programs and strategic advisory services. Our global team is ready to assist you."
+        keywords="contact ebanex, training inquiry, consulting services, cybersecurity advice"
+        canonical="https://ebanexint.co.tz/contact"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20">
           <div>
