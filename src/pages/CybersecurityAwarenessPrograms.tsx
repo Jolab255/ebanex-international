@@ -237,9 +237,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                         <div className="mb-4 md:mb-8 text-center shrink-0 relative z-50">
                             <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
                                 <motion.h2
-                                    initial={{ opacity: 0, y: 10 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
                                     className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
                                 >
                                     Cybersecurity <span className="text-[#00C4D4]">Awareness</span>
@@ -299,9 +296,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
 
                             {/* Main Content Box */}
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
                                 className="w-full max-w-2xl p-5 sm:p-6 border-[10px] border-black shadow-none relative overflow-hidden z-10 ml-auto"
                                 style={{
                                     background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
@@ -310,9 +304,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                 <div className="relative z-10 space-y-3 sm:space-y-4">
                                     {/* Badges */}
                                     <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
                                         className="flex flex-wrap items-center gap-2"
                                     >
                                         <span className="bg-[#00C4D4] text-black text-[9px] sm:text-[10px] font-extrabold px-2 py-0.5  uppercase tracking-tighter shadow-sm">
@@ -324,9 +315,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                     </motion.div>
 
                                     <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
                                         className="flex items-center gap-2 text-slate-300 text-xs sm:text-sm font-medium pt-1"
                                     >
                                         <span className="w-6 sm:w-8 h-px bg-[#00C4D4]"></span>
@@ -334,9 +322,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                     </motion.div>
 
                                     <motion.p
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
                                         className="text-sm sm:text-base text-white/90 leading-relaxed font-normal text-start"
                                     >
                                         Build a security-aware workforce equipped to recognize threats, protect sensitive
@@ -344,9 +329,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                     </motion.p>
 
                                     <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
                                         className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-3 border-t border-white/10"
                                     >
                                         {/* Left Column - Duration Info */}
@@ -377,9 +359,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                     </motion.div>
 
                                     <motion.div
-                                        initial={{ opacity: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
                                         className="flex flex-wrap gap-2 sm:gap-3 pt-3"
                                     >
                                         <button className="bg-[#00C4D4] text-black px-4 sm:px-5 py-2 font-bold hover:bg-[#00b0c0] hover:scale-105 active:scale-95 transition-all flex items-center gap-2 group text-xs sm:text-sm shadow-lg">
@@ -826,10 +805,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                             {/* What You'll Learn Content */}
                             <motion.div
                                 id="syllabus"
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                transition={{ duration: 0.8 }}
-                                viewport={{ once: true }}
                                 className="mb-20"
                             >
                                 <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12 text-black">
@@ -855,10 +830,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                                 <motion.li
                                                     key={index}
                                                     className="flex items-start gap-3 text-white/80 font-medium leading-relaxed"
-                                                    initial={{ opacity: 0, x: -20 }}
-                                                    whileInView={{ opacity: 1, x: 0 }}
-                                                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                                                    viewport={{ once: true }}
                                                 >
                                                     <CheckCircle className="w-5 h-5 text-[#00C4D4] mt-0.5 shrink-0 flex-shrink-0" />
                                                     {item}
@@ -885,10 +856,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                                 <motion.li
                                                     key={index}
                                                     className="flex items-start gap-3 text-white/80 font-medium leading-relaxed"
-                                                    initial={{ opacity: 0, x: -20 }}
-                                                    whileInView={{ opacity: 1, x: 0 }}
-                                                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                                                    viewport={{ once: true }}
                                                 >
                                                     <CheckCircle className="w-5 h-5 text-[#00C4D4] mt-0.5 shrink-0 flex-shrink-0" />
                                                     {item}
@@ -1096,10 +1063,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                         </div>
 
                         {/* Main Message Box */}
-                        <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                        <motion.div
                             className="w-full max-w-2xl p-4 sm:p-6 border-[10px] border-black shadow-none relative overflow-hidden z-30 ml-auto bg-[#0a1628]"
                             style={{
                                 background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
@@ -1162,14 +1126,9 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
             </section>
 
             {/* FAQ Section */}
-            {/* FAQ Section */}
             <motion.div
                 id="faqs"
-                className="relative w-full py-16 sm:py-24 px-4 sm:px-6 bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] border-y-8 border-black overflow-hidden isolate"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
+                className="relative w-full py-16 sm:py-24 px-4 sm:px-6 bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] overflow-hidden isolate"
             >
                 {/* Background Squares */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
@@ -1186,9 +1145,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                 <div className="mb-12 md:mb-16 text-center shrink-0 relative z-50">
                     <div className="select-none inline-block bg-black py-3 px-6 sm:px-8 border border-white/10 shadow-none">
                         <motion.h2
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
                             className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
                         >
                             Frequently Asked <span className="text-[#00C4D4]">Questions</span>
@@ -1323,10 +1279,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                 </motion.div>
 
                 {/* Show All FAQs Button */}
-                <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                <motion.div
                     className="mt-8 flex justify-center relative z-10"
                 >
                     <button
@@ -1349,10 +1302,6 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
             {/* Call to Action */}
             <motion.div
                 id="register"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
             >
                 <section className="h-[90vh] relative z-40 overflow-visible bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center py-8 sm:py-12 px-4">
                     {/* Background */}
