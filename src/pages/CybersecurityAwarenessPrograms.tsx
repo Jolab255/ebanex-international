@@ -234,7 +234,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                     <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center">
                         {/* Title Area */}
                         <div className="mb-6 relative z-50">
-                            <div className="bg-black py-4 px-6 md:px-10 border border-white/10 shadow-2xl mt-16 sm:mt-24">
+                            <div className="bg-black py-4 px-6 md:px-10 border border-white/10 shadow-2xl">
                                 <motion.h1
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
@@ -251,7 +251,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="inline-flex flex-wrap justify-center items-center gap-3 bg-black py-2.5 px-6 border border-white/10 shadow-lg text-sm mb-16"
+                            className="inline-flex flex-wrap justify-center items-center gap-3 bg-black py-2.5 px-6 border border-white/10 shadow-lg text-sm"
                         >
                             <Link to="/" className="flex items-center gap-2 hover:text-[#00C4D4] transition-colors font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-xs text-slate-300">
                                 <Home size={14} className="sm:w-4 sm:h-4 text-[#00C4D4]" />
@@ -452,7 +452,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                 </section>
 
                 {/* Certification Info Section */}
-                <section className="w-full bg-black pt-8 sm:pt-12 pb-16 sm:pb-24 relative z-20 overflow-hidden">
+                <section className="w-full bg-black pt-8 sm:pt-12 pb-[30px] relative z-20 overflow-hidden">
                     {/* Animated Grid Boxes Background: Removed opacity-50 and added brighter borders per user request */}
                     <div className="absolute inset-0 z-0 pointer-events-none">
                         <Squares
@@ -542,64 +542,58 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
 
                 {/* Jump To Navigation - Sticky */}
                 <div
-                    className={`sticky top-0 z-50 backdrop-blur-md pt-12 py-6 transition-all duration-500 ${isInSyllabus
-                            ? 'bg-gradient-to-r from-[#0a1628] via-[#0f2744] to-[#0a1628] border-b border-blue-500/20'
-                            : 'bg-slate-950/95'
-                        }`}
+                    className="sticky top-0 z-50 py-4 sm:py-6 transition-all duration-500 border-b-[4px] border-black shadow-2xl bg-[#00C4D4]"
                     style={{ scrollBehavior: 'smooth' }}
                 >
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
                         {/* Left side - Jump to label */}
-                        <div
-                            className={`text-sm font-semibold pl-0 transition-colors duration-300 ${isInSyllabus ? 'text-[#00C4D4]' : 'text-white'
-                                }`}
-                        >
+                        <div className="text-[11px] font-black uppercase tracking-[0.2em] text-black pl-0">
                             Jump to:
                         </div>
 
                         {/* Right side - Navigation links */}
-                        <div className="flex items-center gap-6 mr-[3%]">
+                        <div className="flex items-center gap-4 sm:gap-6 mr-[3%]">
                             <button
                                 onClick={() => scrollToSection('overview')}
-                                className={`text-sm transition-all duration-300 border-2 px-4 py-2  ${isInSyllabus
-                                        ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                                        : 'border-white/40 text-white hover:text-blue-400'
+                                className={`text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border-2 px-4 py-2 ${isInSyllabus
+                                        ? 'border-transparent text-black hover:bg-black hover:text-[#00C4D4]'
+                                        : 'border-black bg-black text-[#00C4D4]'
                                     }`}
                             >
                                 Overview
                             </button>
                             <button
                                 onClick={() => scrollToSection('syllabus')}
-                                className={`text-sm transition-all duration-300 border-2 px-4 py-2  ${isInSyllabus
-                                        ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                                        : 'border-white/40 text-white hover:text-blue-400'
+                                className={`text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border-2 px-4 py-2 ${isInSyllabus
+                                        ? 'border-black bg-black text-[#00C4D4]'
+                                        : 'border-transparent text-black hover:bg-black hover:text-[#00C4D4]'
                                     }`}
                             >
                                 Syllabus
                             </button>
                             <button
                                 onClick={() => scrollToSection('faqs')}
-                                className={`text-sm transition-all duration-300 border-2 px-4 py-2  ${isInSyllabus
-                                        ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                                        : 'border-white/40 text-white hover:text-blue-400'
+                                className={`text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border-2 px-4 py-2 ${isInSyllabus
+                                        ? 'border-transparent text-black hover:bg-black hover:text-[#00C4D4]'
+                                        : 'border-transparent text-black hover:bg-black hover:text-[#00C4D4]'
                                     }`}
                             >
                                 FAQs
                             </button>
                             <button
                                 onClick={() => scrollToSection('schedule')}
-                                className={`text-sm transition-all duration-300 border-2 px-4 py-2  ${isInSyllabus
-                                        ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                                        : 'border-white/40 text-white hover:text-blue-400'
+                                className={`text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border-2 px-4 py-2 ${isInSyllabus
+                                        ? 'border-transparent text-black hover:bg-black hover:text-[#00C4D4]'
+                                        : 'border-transparent text-black hover:bg-black hover:text-[#00C4D4]'
                                     }`}
                             >
                                 Schedule & Pricing
                             </button>
                             <button
                                 onClick={() => scrollToSection('register')}
-                                className={`text-sm transition-all duration-300 border-2 px-4 py-2  ${isInSyllabus
-                                        ? 'border-[#00C4D4]/40 text-slate-200 hover:text-[#00C4D4] hover:border-[#00C4D4]'
-                                        : 'border-white/40 text-white hover:text-blue-400'
+                                className={`text-[10px] font-bold uppercase tracking-widest transition-all duration-300 border-2 px-5 py-2 ${isInSyllabus
+                                        ? 'border-black bg-black text-[#00C4D4] hover:bg-white hover:text-black hover:border-white'
+                                        : 'border-black bg-black text-[#00C4D4] hover:bg-white hover:text-black hover:border-white'
                                     }`}
                             >
                                 Register
@@ -608,170 +602,94 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Section Title */}
-                <div className="w-full py-16 sm:pt-24 sm:pb-8">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: 'easeOut' }}
-                        className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-[100px]"
-                    >
-                        Build a security-aware workforce that <br className="hidden md:block" />
-                        recognizes threats, protects sensitive data, <br className="hidden md:block" />
-                        and responds effectively to incidents. In today's <br className="hidden md:block" />
-                        digital landscape, your people are your first <br className="hidden md:block" />
-                        line of defense.
-                    </motion.h1>
-                </div>
 
-                {/* Testimonial Section with Animated Wave Background */}
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true }}
-                        className="relative overflow-visible  bg-[#0a2a43] p-10 md:p-16 border border-white/10 shadow-2xl"
-                    >
-                        {/* Animated Wave Background - Extended outside the box */}
-                        <motion.div
-                            style={{
-                                scale: waveScale,
-                                opacity: waveOpacity,
-                                rotate: waveRotate,
-                            }}
-                            className="absolute -right-20 -bottom-40 w-[600px] h-[600px] pointer-events-none z-0"
-                        >
-                            <svg viewBox="0 0 200 200" className="w-full h-full">
-                                <defs>
-                                    <radialGradient id="waveGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                                        <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0.4" />
-                                        <stop offset="100%" stopColor="#2dd4bf" stopOpacity="0" />
-                                    </radialGradient>
-                                </defs>
+                {/* Client Success Story (Styled like CTA Section) */}
+                <section className="relative z-40 overflow-visible bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center min-h-[50vh] pt-8 sm:pt-12 pb-8 sm:pb-16 px-4 w-full">
+                    {/* Background */}
+                    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                        <Squares
+                            speed={0.13}
+                            squareSize={40}
+                            direction="diagonal"
+                            borderColor="rgba(255,255,255,0.08)"
+                            hoverFillColor="rgba(255,255,255,0.05)"
+                        />
+                    </div>
 
-                                <motion.circle
-                                    style={{ scale: circle1Scale }}
-                                    cx="100"
-                                    cy="100"
-                                    r="40"
-                                    fill="none"
-                                    stroke="url(#waveGradient)"
-                                    strokeWidth="8"
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
+                        {/* Card Container */}
+                        <div className="relative w-full max-w-5xl flex items-center justify-center lg:justify-start mt-4">
+                            {/* Background Image (Stacked Under, Right Side) */}
+                            <div className="hidden lg:block absolute right-[-5%] lg:right-[-10%] top-1/2 -translate-y-1/2 w-[280px] sm:w-[380px] lg:w-[450px] aspect-square z-0 opacity-100">
+                                <img
+                                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop"
+                                    className="w-full h-full object-cover border-[10px] border-black"
+                                    alt="Client Testimonial"
+                                    referrerPolicy="no-referrer"
                                 />
-                                <motion.circle
-                                    style={{ scale: circle2Scale }}
-                                    cx="100"
-                                    cy="100"
-                                    r="70"
-                                    fill="none"
-                                    stroke="url(#waveGradient)"
-                                    strokeWidth="12"
-                                />
-                                <motion.circle
-                                    style={{ scale: circle3Scale }}
-                                    cx="100"
-                                    cy="100"
-                                    r="100"
-                                    fill="none"
-                                    stroke="url(#waveGradient)"
-                                    strokeWidth="16"
-                                />
+                            </div>
 
-                                {/* Thin sharp lines for detail */}
-                                <circle
-                                    cx="100"
-                                    cy="100"
-                                    r="40"
-                                    fill="none"
-                                    stroke="#2dd4bf"
-                                    strokeOpacity="0.3"
-                                    strokeWidth="0.5"
+                            {/* Mobile Image */}
+                            <div className="lg:hidden w-full max-w-[280px] sm:max-w-[340px] aspect-square mx-auto mb-[-60px] relative z-40">
+                                <img
+                                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop"
+                                    className="w-full h-full object-cover border-[8px] border-black"
+                                    alt="Client Testimonial"
+                                    referrerPolicy="no-referrer"
                                 />
-                                <circle
-                                    cx="100"
-                                    cy="100"
-                                    r="70"
-                                    fill="none"
-                                    stroke="#2dd4bf"
-                                    strokeOpacity="0.3"
-                                    strokeWidth="0.5"
-                                />
-                                <circle
-                                    cx="100"
-                                    cy="100"
-                                    r="100"
-                                    fill="none"
-                                    stroke="#2dd4bf"
-                                    strokeOpacity="0.3"
-                                    strokeWidth="0.5"
-                                />
-                            </svg>
-                        </motion.div>
+                            </div>
 
-                        {/* Additional decorative circles on left - extended outside */}
-                        <motion.div
-                            className="absolute -left-32 top-10 w-[400px] h-[400px] pointer-events-none z-0"
-                            animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-                            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-                        >
-                            <svg viewBox="0 0 200 200" className="w-full h-full">
-                                <defs>
-                                    <radialGradient id="waveGradientLeft" cx="50%" cy="50%" r="50%">
-                                        <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
-                                        <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
-                                    </radialGradient>
-                                </defs>
-                                <circle
-                                    cx="100"
-                                    cy="100"
-                                    r="60"
-                                    fill="none"
-                                    stroke="url(#waveGradientLeft)"
-                                    strokeWidth="10"
-                                />
-                                <circle
-                                    cx="100"
-                                    cy="100"
-                                    r="90"
-                                    fill="none"
-                                    stroke="url(#waveGradientLeft)"
-                                    strokeWidth="6"
-                                />
-                                <circle
-                                    cx="100"
-                                    cy="100"
-                                    r="40"
-                                    fill="none"
-                                    stroke="#3b82f6"
-                                    strokeOpacity="0.2"
-                                    strokeWidth="0.5"
-                                />
-                            </svg>
-                        </motion.div>
+                            {/* Content Card */}
+                            <div
+                                className="w-full max-w-2xl p-5 sm:p-8 border-[10px] border-black relative z-10 overflow-hidden shadow-2xl mr-auto"
+                                style={{
+                                    background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+                                }}
+                            >
+                                <div className="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left">
+                                    {/* Quote Mark */}
+                                    <div className="text-[#00C4D4] font-serif text-6xl leading-none h-8 -ml-1 select-none">"</div>
 
-                        <div className="relative z-10">
-                            <p className="font-serif text-xl md:text-2xl leading-relaxed text-slate-200 italic">
-                                "The cybersecurity awareness training from Ebanex International transformed how our
-                                entire organization approaches security. What used to be ignored as 'IT stuff' is
-                                now part of our daily conversations. The phishing simulations alone reduced our
-                                click-through rate by 85% within three months."
-                            </p>
+                                    <p className="text-white/90 text-base sm:text-lg mb-5 leading-relaxed font-medium italic mt-2 text-justify">
+                                        The cybersecurity awareness training from Ebanex International transformed how our
+                                        entire organization approaches security. What used to be ignored as 'IT stuff' is
+                                        now part of our daily conversations. The phishing simulations alone reduced our
+                                        click-through rate by 85% within three months.
+                                    </p>
 
-                            <div className="mt-8">
-                                <h4 className="font-bold text-lg text-white">Sarah Mitchell</h4>
-                                <p className="text-teal-400 font-medium italic">
-                                    Chief Operating Officer, Regional Healthcare Network
-                                </p>
+                                    <div className="flex items-center gap-4 border-t border-white/10 pt-4 w-full justify-center lg:justify-start">
+                                        <div className="w-12 h-px bg-[#00C4D4]" />
+                                        <div>
+                                            <h4 className="font-black text-sm sm:text-base text-white uppercase tracking-widest text-left">Sarah Mitchell</h4>
+                                            <p className="text-[#00C4D4] font-bold uppercase tracking-[0.2em] text-[10px] mt-1 text-left">
+                                                Chief Operating Officer
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Decorative corner accent */}
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-[#00C4D4]/10 blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                             </div>
                         </div>
-                    </motion.div>
-                </div>
+                    </div>
+                </section>
 
                 {/* Program Overview */}
-                <div id="overview" className="w-full px-4 sm:px-6 lg:px-[100px] py-0 sm:py-4">
-                    <motion.div {...fadeInUp}>
-                        <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
+                <section id="overview" className="relative z-20 overflow-hidden bg-black py-16 sm:py-24">
+                    {/* Animated Grid Boxes Background */}
+                    <div className="absolute inset-0 z-0 pointer-events-none">
+                        <Squares
+                            speed={0.13}
+                            squareSize={40}
+                            direction="diagonal"
+                            borderColor="rgba(255,255,255,0.08)"
+                            hoverFillColor="rgba(255,255,255,0.05)"
+                        />
+                    </div>
+                    <div className="w-full px-4 sm:px-6 lg:px-[100px] relative z-10">
+                        <motion.div {...fadeInUp}>
+                            <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12 text-white">
                             Program Overview
                         </h2>
 
@@ -835,8 +753,10 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                             </motion.button>
                         </div>
                     </motion.div>
+                    </div>
+                </section>
 
-                    {/* What You'll Learn & Measurable Impact - Combined Section */}
+                {/* What You'll Learn & Measurable Impact - Combined Section */}
                     <div
                         ref={syllabusRef}
                         className="relative"
@@ -1183,9 +1103,8 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                         </svg>
                     </motion.div>
                 </div>
-            </div>
 
-            {/* Meet Your Instructor Section */}
+                {/* Meet Your Instructor Section */}
             <div className="w-full py-16 px-[100px] bg-slate-900">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
