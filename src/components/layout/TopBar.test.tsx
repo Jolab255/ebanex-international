@@ -28,6 +28,6 @@ describe('TopBar', () => {
         <TopBar />
       </BrowserRouter>,
     );
-    expect(screen.getByText('hello@ebanex.com')).toBeInTheDocument();
+    expect(screen.getByText('info@ebanexint.co.tz')).toBeInTheDocument();
   });
 });

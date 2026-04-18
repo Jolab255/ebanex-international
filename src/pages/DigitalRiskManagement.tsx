@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
+import { ReactLenis } from 'lenis/react';
 import { SEO } from '../components/layout';
+import { Squares } from '../components/animations';
+import { CtaSection } from '../features/home';
 import {
-  Shield,
-
+  Users,
   CheckCircle,
   Clock,
   ArrowRight,
@@ -198,8 +200,8 @@ const DigitalRiskManagement: React.FC = () => {
   ];
 
   return (
-    <>
-      <div>
+    <ReactLenis root>
+      <main className="bg-gray-950 overflow-x-hidden">
         <SEO 
           title="Digital Risk Management | Ebanex International"
           description="Align cyber risk with business strategy. Master IT governance, continuous compliance, and enterprise risk management."
@@ -208,8 +210,8 @@ const DigitalRiskManagement: React.FC = () => {
         />
 
         {/* Hero Section */}
-        <header className="bg-slate-950 text-white pt-12 pb-20 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <header className="bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] text-white pt-12 pb-20 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-[10%] relative z-10">
             <div className="flex flex-col lg:flex-row gap-12 items-center">
               <div className="flex-1">
                 {/* Breadcrumbs & Badges */}
@@ -244,7 +246,7 @@ const DigitalRiskManagement: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="flex items-center gap-2 text-slate-400 text-sm font-medium mb-4"
+                  className="flex items-center gap-2 text-slate-300 text-sm font-medium mb-4"
                 >
                   <span className="font-bold text-white">Ebanex International</span>
                   <span className="w-1 h-1 bg-slate-500 rounded-full"></span>
@@ -255,16 +257,16 @@ const DigitalRiskManagement: React.FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-3xl md:text-4xl lg:text-5xl font-heading leading-[1.1] mb-8 max-w-3xl"
+                  className="text-3xl md:text-4xl lg:text-5xl font-heading font-black text-white uppercase tracking-tight leading-[1.1] mb-8 max-w-3xl"
                 >
-                  Digital Risk Management
+                  Digital Risk <span className="text-[#00C4D4]">Management</span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
-                  className="text-lg text-slate-300 mb-8 max-w-2xl"
+                  className="text-lg text-slate-200 mb-8 max-w-2xl"
                 >
                   Bridge the critical gap between technical security controls and executive business strategy. Learn to quantify, govern, and mitigate IT risk across your enterprise ecosystem.
                 </motion.p>
@@ -276,9 +278,9 @@ const DigitalRiskManagement: React.FC = () => {
                   className="flex items-center gap-6 md:gap-8"
                 >
                   {/* Left Column - Duration Info */}
-                  <div className="flex flex-col gap-3 text-sm font-medium text-slate-300">
+                  <div className="flex flex-col gap-3 text-sm font-medium text-slate-200">
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-blue-400" />
+                      <Calendar className="w-5 h-5 text-[#00C4D4]" />
                       <span>5 Days (Instructor-Led)</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -288,7 +290,7 @@ const DigitalRiskManagement: React.FC = () => {
                   </div>
 
                   {/* Vertical Separator */}
-                  <div className="w-px bg-slate-700 h-12"></div>
+                  <div className="w-px bg-slate-600 h-12"></div>
 
                   {/* Right Column - Designer Info */}
                   <div className="text-sm font-medium text-white">
@@ -467,7 +469,7 @@ const DigitalRiskManagement: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-[100px]"
+            className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-[10%]"
           >
             Digital risk is business risk. <br className="hidden md:block" />
             Empower your leadership with the frameworks <br className="hidden md:block" />
@@ -618,7 +620,7 @@ const DigitalRiskManagement: React.FC = () => {
         </div>
 
         {/* Program Overview */}
-        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[100px] py-0 sm:py-4">
+        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[10%] pt-24 pb-[15px]">
           <motion.div {...fadeInUp}>
             <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
               Program Overview
@@ -660,12 +662,23 @@ const DigitalRiskManagement: React.FC = () => {
               </motion.button>
             </div>
           </motion.div>
+        </div>
 
-          {/* What You'll Learn & Measurable Impact - Combined Section */}
+        {/* What You'll Learn & Measurable Impact - Combined Section */}
+        <section className="relative bg-black pt-[15px] pb-20 overflow-hidden">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <Squares
+              speed={0.13}
+              squareSize={40}
+              direction="diagonal"
+              borderColor="rgba(255,255,255,0.08)"
+              hoverFillColor="rgba(255,255,255,0.05)"
+            />
+          </div>
           <div
             ref={syllabusRef}
-            className="relative"
-            style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0f2744 50%, #0a1628 100%)' }}
+            className="relative mx-[10%] overflow-hidden"
+            style={{ backgroundColor: '#00bfff' }}
           >
             {/* Wave Background */}
             <motion.div
@@ -767,7 +780,7 @@ const DigitalRiskManagement: React.FC = () => {
               </svg>
             </motion.div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
               <motion.div
                 id="syllabus"
                 initial={{ opacity: 0 }}
@@ -848,8 +861,7 @@ const DigitalRiskManagement: React.FC = () => {
               {/* Measurable Impact Section */}
               <div className="grid lg:grid-cols-2 gap-16">
                 {/* Left Side - Static/Sticky */}
-                <div className="lg:sticky lg:top-[120px] lg:h-fit">
-                  <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-light font-heading mb-8 text-white">
+                <div className="lg:sticky lg:top-[150px] lg:h-fit">                  <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-light font-heading mb-8 text-white">
                     Measurable Impact
                   </h2>
                   <div className="grid grid-cols-2 gap-4 mb-8">
@@ -861,148 +873,243 @@ const DigitalRiskManagement: React.FC = () => {
                     ].map((stat, index) => (
                       <div
                         key={index}
-                        className="text-center p-4 border border-white/10 bg-slate-900/30"
+                        className="text-center p-4 border border-white/10"
+                        style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
                       >
-                        <div className="text-4xl font-light text-[#00C4D4] mb-1">
+                        <div className="text-4xl font-light text-[#00BFFF] mb-1">
                           <Counter target={stat.metric} suffix={stat.suffix} />
                         </div>
                         <div className="text-sm text-slate-300 font-light">{stat.label}</div>
                       </div>
                     ))}
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <button className="bg-[#00C4D4] text-black px-6 py-3 rounded-full font-medium hover:bg-[#00b0c0] transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
-                      Request Corporate Training
-                      <ArrowRight className="w-4 h-4" />
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <button className="bg-black text-[#00C4D4] px-4 py-3 rounded-none font-black uppercase tracking-tight hover:bg-slate-900 transition-all flex items-center justify-center gap-2 border-2 border-black group text-xs flex-1">
+                      <span className="text-center">Request Training</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
                     </button>
-                    <button className="bg-transparent text-white border border-white/30 px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center whitespace-nowrap">
+                    <button className="bg-transparent text-black border-2 border-black px-4 py-3 rounded-none font-black uppercase tracking-tight hover:bg-black/5 transition-all flex items-center justify-center text-xs flex-1">
                       Schedule & Pricing
                     </button>
-                  </div>
-                </div>
+                  </div>                </div>
 
                 {/* Right Side - Scrollable */}
-                <div className="space-y-12 pb-32">
-                  <div>
-                    <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
-                      Governance Modules
-                    </h3>
-                    <p className="text-sm text-slate-400 mb-6">
-                      Master the core pillars of IT risk management through our comprehensive four-step identification and response framework.
-                    </p>
-                    <ul className="space-y-4">
-                      {[
-                        {
-                          phase: 'IT Risk Identification & Framing',
-                          desc: 'Risk Taxonomy, Asset Valuation, Threat Scenarios, Business Context',
-                        },
-                        {
-                          phase: 'IT Risk Assessment & Analysis',
-                          desc: 'Risk Assessment Methodologies, Vulnerability Analysis, Threat Modeling, Risk Scoring',
-                        },
-                        {
-                          phase: 'Risk Response & Mitigation',
-                          desc: 'Control Frameworks, Risk Acceptance, Transfer & Avoidance, Cost-Benefit Analysis, Insurance',
-                        },
-                        {
-                          phase: 'Risk Monitoring & Reporting',
-                          desc: 'Risk Monitoring Frameworks, Key Risk Indicators (KRIs), Reporting & Communication, Continuous Improvement',
-                        },
-                      ].map((phase, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
-                        >
-                          <span className="w-2 h-2 rounded-full bg-[#00C4D4] mt-2 flex-shrink-0"></span>
-                          <div>
-                            <span className="text-white font-light block mb-1">{phase.phase}</span>
-                            <span className="text-slate-400 text-sm font-light">{phase.desc}</span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                <div 
+                  className="lg:sticky lg:top-[150px] h-[650px] overflow-y-auto pr-4 custom-scrollbar relative"
+                  data-lenis-prevent
+                >
+                  <div className="space-y-12 pb-32 text-white font-medium">
+                    <div className="relative">
+                      <div className="sticky top-0 bg-[#00bfff] z-30 pt-4 pb-2">
+                        <h3 className="text-xl font-black text-black mb-0 pb-3 border-b-2 border-black/20 uppercase tracking-tighter">
+                          Governance Modules
+                        </h3>
+                      </div>
+                      <div className="pt-6">
+                        <p className="text-sm text-slate-300 font-bold mb-6">
+                          Strategic risk management and governance frameworks.
+                        </p>
+                        <ul className="space-y-4">
+                          {[
+                            {
+                              phase: 'IT Risk Identification & Framing',
+                              desc: 'Risk Taxonomy, Asset Valuation, Threat Scenarios, Business Context',
+                            },
+                            {
+                              phase: 'IT Risk Assessment',
+                              desc: 'Quantitative vs Qualitative Analysis, Risk Ranking, Vulnerability Assessment',
+                            },
+                            {
+                              phase: 'Risk Response & Mitigation',
+                              desc: 'Acceptance, Avoidance, Transfer, Mitigation Strategies, Control Selection',
+                            },
+                            {
+                              phase: 'IT Risk Monitoring & Reporting',
+                              desc: 'Key Risk Indicators (KRIs), Continuous Monitoring, Board Reporting',
+                            },
+                          ].map((phase, index) => (
+                            <li
+                              key={index}
+                              className="flex items-start gap-4 p-5 border-2 border-black/10 transition-all hover:border-[#00BFFF]/50"
+                              style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                            >
+                              <span className="w-2 h-2 rounded-none bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                              <div>
+                                <span className="text-[#00BFFF] font-black uppercase tracking-tighter block mb-1">{phase.phase}</span>
+                                <span className="text-slate-200 text-sm font-medium leading-snug">{phase.desc}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
 
+                    <div className="relative">
+                      <div className="sticky top-0 bg-[#00bfff] z-30 pt-4 pb-2">
+                        <h3 className="text-xl font-black text-black mb-0 pb-3 border-b-2 border-black/20 uppercase tracking-tighter">
+                          Industry Vertical Focus
+                        </h3>
+                      </div>
+                      <div className="pt-6">
+                        <p className="text-sm text-slate-300 font-bold mb-6">
+                          Governance and risk strategies tailored to sector-specific requirements.
+                        </p>
+                        <ul className="space-y-4">
+                          {[
+                            {
+                              title: 'Financial Services',
+                              desc: 'Regulatory compliance (Basel III, Sarbanes-Oxley), fraud risk management',
+                            },
+                            {
+                              title: 'Energy & Utilities',
+                              desc: 'Critical infrastructure protection (CIP), OT/IT risk integration',
+                            },
+                            {
+                              title: 'Healthcare',
+                              desc: 'Patient data privacy (HIPAA), medical device security risk',
+                            },
+                            {
+                              title: 'Government',
+                              desc: 'National security frameworks, public-private partnership risk',
+                            },
+                          ].map((item, index) => (
+                            <li
+                              key={index}
+                              className="flex items-start gap-4 p-5 border-2 border-black/10 transition-all hover:border-[#00BFFF]/50"
+                              style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                            >
+                              <span className="w-2 h-2 rounded-none bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                              <div>
+                                <span className="text-[#00BFFF] font-black uppercase tracking-tighter text-sm block mb-1">
+                                  {item.title}
+                                </span>
+                                <span className="text-slate-200 text-sm font-medium leading-snug">{item.desc}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                        <p className="text-sm text-slate-300 font-bold mb-6">
+                          Master the core pillars of IT risk management through our comprehensive four-step identification and response framework.
+                        </p>
+                        <ul className="space-y-4">
+                          {[
+                            {
+                              phase: 'IT Risk Identification & Framing',
+                              desc: 'Risk Taxonomy, Asset Valuation, Threat Scenarios, Business Context',
+                            },
+                            {
+                              phase: 'IT Risk Assessment & Analysis',
+                              desc: 'Risk Assessment Methodologies, Vulnerability Analysis, Threat Modeling, Risk Scoring',
+                            },
+                            {
+                              phase: 'Risk Response & Mitigation',
+                              desc: 'Control Frameworks, Risk Acceptance, Transfer & Avoidance, Cost-Benefit Analysis, Insurance',
+                            },
+                            {
+                              phase: 'Risk Monitoring & Reporting',
+                              desc: 'Risk Monitoring Frameworks, Key Risk Indicators (KRIs), Reporting & Communication, Continuous Improvement',
+                            },
+                          ].map((phase, index) => (
+                            <li
+                              key={index}
+                              className="flex items-start gap-4 p-4 border border-white/10"
+                              style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                            >
+                              <span className="w-2 h-2 rounded-full bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                              <div>
+                                <span className="text-white font-bold block mb-1">{phase.phase}</span>
+                                <span className="text-slate-300 text-sm font-medium">{phase.desc}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
 
-                    <div>
-                      <h3 className="text-xl font-light text-white pt-10 mb-4 pb-3 border-b border-white/10">
-                        Strategic Focus Areas
+                        <div>
+                          <h3 className="text-xl font-bold text-white pt-10 mb-4 pb-3 border-b border-white/10">
+                            Strategic Focus Areas
+                          </h3>
+                          <p className="text-sm text-slate-300 font-bold mb-6">
+                            Align IT risk with organizational strategy through advanced methodologies, compliance governance, and quantitative modeling.
+                          </p>
+                          <ul className="space-y-4">
+                            {[
+                              {
+                                phase: 'Enterprise Risk Frameworks',
+                                desc: 'Bridge the gap between IT risks and corporate strategy utilizing frameworks like ISO 27005 and NIST RMF.',
+                              },
+                              {
+                                phase: 'IT Governance & Compliance',
+                                desc: 'Navigate the complicated landscape of data regulations, corporate governance, and continuous audit readiness.',
+                              },
+                              {
+                                phase: 'Quantitative Risk Assessment',
+                                desc: 'Translate cyber threats into financial impact using advanced quantitative modeling (e.g., FAIR methodology).',
+                              },
+                              {
+                                phase: 'Third-Party & Supply Chain Risk',
+                                desc: 'Secure your ecosystem by assessing and managing threats originating from vendors and external partners.',
+                              },
+                            ].map((phase, index) => (
+                              <li
+                                key={index}
+                                className="flex items-start gap-4 p-4 border border-white/10"
+                                style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                              >
+                                <span className="w-2 h-2 rounded-full bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                                <div>
+                                  <span className="text-white font-bold block mb-1">{phase.phase}</span>
+                                  <span className="text-slate-300 text-sm font-medium">{phase.desc}</span>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-4 pb-3 border-b border-white/10">
+                        How You'll Be Assessed
                       </h3>
-                      <p className="text-sm text-slate-400 mb-6">
-                        Align IT risk with organizational strategy through advanced methodologies, compliance governance, and quantitative modeling.
+                      <p className="text-sm text-slate-300 font-bold mb-6">
+                        Our comprehensive evaluation framework ensures you master every competency
+                        through four key phases
                       </p>
                       <ul className="space-y-4">
                         {[
                           {
-                            phase: 'Enterprise Risk Frameworks',
-                            desc: 'Bridge the gap between IT risks and corporate strategy utilizing frameworks like ISO 27005 and NIST RMF.',
+                            phase: 'Phase 1: Pre-Assessment',
+                            desc: 'Baseline knowledge evaluation, risk posture questionnaire, and skill gap analysis',
                           },
                           {
-                            phase: 'IT Governance & Compliance',
-                            desc: 'Navigate the complicated landscape of data regulations, corporate governance, and continuous audit readiness.',
+                            phase: 'Phase 2: Module Assessments',
+                            desc: 'End-of-module quizzes, risk strategy workshops, and scenario evaluations',
                           },
                           {
-                            phase: 'Quantitative Risk Assessment',
-                            desc: 'Translate cyber threats into financial impact using advanced quantitative modeling (e.g., FAIR methodology).',
+                            phase: 'Phase 3: Final Examination',
+                            desc: 'Comprehensive governance exam and hands-on risk modeling simulation',
                           },
                           {
-                            phase: 'Third-Party & Supply Chain Risk',
-                            desc: 'Secure your ecosystem by assessing and managing threats originating from vendors and external partners.',
+                            phase: 'Phase 4: Post-Program Evaluation',
+                            desc: '90-day progress tracking, ROI analysis, and leadership review',
                           },
                         ].map((phase, index) => (
                           <li
                             key={index}
-                            className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
+                            className="flex items-start gap-4 p-4 border border-white/10"
+                            style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
                           >
-                            <span className="w-2 h-2 rounded-full bg-[#00C4D4] mt-2 flex-shrink-0"></span>
+                            <span className="w-2 h-2 rounded-full bg-[#00BFFF] mt-2 flex-shrink-0"></span>
                             <div>
-                              <span className="text-white font-light block mb-1">{phase.phase}</span>
-                              <span className="text-slate-400 text-sm font-light">{phase.desc}</span>
+                              <span className="text-white font-bold block mb-1">{phase.phase}</span>
+                              <span className="text-slate-300 text-sm font-medium">{phase.desc}</span>
                             </div>
                           </li>
                         ))}
                       </ul>
                     </div>
-
                   </div>
-                  <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
-                    How You'll Be Assessed
-                  </h3>
-                  <p className="text-sm text-slate-400 mb-6">
-                    Our comprehensive evaluation framework ensures you master every competency
-                    through four key phases
-                  </p>
-                  <ul className="space-y-4">
-                    {[
-                      {
-                        phase: 'Phase 1: Pre-Assessment',
-                        desc: 'Baseline knowledge evaluation, risk posture questionnaire, and skill gap analysis',
-                      },
-                      {
-                        phase: 'Phase 2: Module Assessments',
-                        desc: 'End-of-module quizzes, risk strategy workshops, and scenario evaluations',
-                      },
-                      {
-                        phase: 'Phase 3: Final Examination',
-                        desc: 'Comprehensive governance exam and hands-on risk modeling simulation',
-                      },
-                      {
-                        phase: 'Phase 4: Post-Program Evaluation',
-                        desc: '90-day progress tracking, ROI analysis, and leadership review',
-                      },
-                    ].map((phase, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
-                      >
-                        <span className="w-2 h-2 rounded-full bg-[#00C4D4] mt-2 flex-shrink-0"></span>
-                        <div>
-                          <span className="text-white font-light block mb-1">{phase.phase}</span>
-                          <span className="text-slate-400 text-sm font-light">{phase.desc}</span>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
@@ -1036,48 +1143,11 @@ const DigitalRiskManagement: React.FC = () => {
                 strokeWidth="6"
               />
             </svg>
-          </motion.div>
+            </motion.div>
+            </div>
+            </section>
 
-
-
-
-        </div>
-
-
-
-        <motion.div
-          className="absolute -left-20 top-20 w-[400px] h-[400px] pointer-events-none"
-          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <svg viewBox="0 0 200 200" className="w-full h-full">
-            <defs>
-              <radialGradient id="waveGradientSticky2" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-            <circle
-              cx="100"
-              cy="100"
-              r="60"
-              fill="none"
-              stroke="url(#waveGradientSticky2)"
-              strokeWidth="10"
-            />
-            <circle
-              cx="100"
-              cy="100"
-              r="90"
-              fill="none"
-              stroke="url(#waveGradientSticky2)"
-              strokeWidth="6"
-            />
-          </svg>
-        </motion.div>
-
-        <div className="w-full py-16 px-[100px] bg-transparent">
-          <motion.div
+            <div className="w-full py-16 px-[10%] bg-transparent">          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -1171,7 +1241,7 @@ const DigitalRiskManagement: React.FC = () => {
 
         <motion.div
           id="faqs"
-          className="w-full py-16 px-[100px]"
+          className="w-full py-16 px-[10%]"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -1291,65 +1361,9 @@ const DigitalRiskManagement: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          id="register"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="relative min-h-[500px] flex items-center">
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] via-[#0a1628]/90 to-[#0a2a43]/70" />
-            </div>
-
-            <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20 w-full">
-              <div className="max-w-2xl">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                    Govern Your Cybersecurity Future
-                  </h2>
-                  <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-                    Cyber risk is business risk. Partner with Ebanex International to develop executives and managers capable of navigating complex data regulations and demonstrating clear ROI on your security investments.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <motion.button
-                      className="inline-flex items-center gap-3 px-8 py-4 bg-[#00C4D4] hover:bg-[#00b0c0] text-[#0a1628] font-bold rounded-full transition-colors"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Request Corporate Training
-                      <ArrowRight className="w-5 h-5" />
-                    </motion.button>
-                    <motion.button
-                      className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white font-semibold rounded-full transition-colors"
-                      whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      View All Programs
-                    </motion.button>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-
-            <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#00C4D4]/10 to-transparent pointer-events-none" />
-            <div className="absolute bottom-0 right-20 w-40 h-40 bg-[#00C4D4]/20 rounded-full blur-3xl pointer-events-none" />
-          </div>
-        </motion.div>
-
-
-
-
-      </div>
-    </>
-
+        <CtaSection />
+      </main>
+    </ReactLenis>
   );
 };
 

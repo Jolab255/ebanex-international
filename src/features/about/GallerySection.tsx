@@ -30,11 +30,15 @@ const GallerySection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center h-full max-h-full overflow-hidden">
         {/* Section Header */}
-        <div className="text-center mb-6 shrink-0">
-          <div className="mt-4">
-            <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.6rem,1vw,0.75rem)] inline-block bg-black py-1.5 px-6">
-              Gallery & Moments
-            </span>
+        <div className="mb-8 text-center shrink-0 relative z-50">
+          <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
+            >
+              Gallery & <span className="text-[#00BFFF]">Moments</span>
+            </motion.h2>
           </div>
         </div>
 

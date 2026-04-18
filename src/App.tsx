@@ -35,7 +35,7 @@ const App: React.FC = () => {
           <div className="min-h-screen flex flex-col selection:bg-[#00BFFF] selection:text-black bg-black text-white">
             <TopBar />
             <Navbar />
-            <main className="flex-grow">
+            <main className="flex-grow overflow-x-clip">
               <ErrorBoundary>
                 <NavigationLoader minDuration={300}>
                   <Routes>

@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
+import { ReactLenis } from 'lenis/react';
 import { SEO } from '../components/layout';
+import { Squares } from '../components/animations';
+import { CtaSection } from '../features/home';
 import {
-  Lock,
-
+  Shield,
   CheckCircle,
   Clock,
   ArrowRight,
@@ -185,8 +187,8 @@ const DataPrivacyProtection: React.FC = () => {
 
 
   return (
-    <>
-      <div>
+    <ReactLenis root>
+      <main className="bg-gray-950 overflow-x-hidden">
         <SEO 
           title="Data Privacy & Protection | Ebanex International"
           description="Master data compliance and privacy engineering. Learn GDPR, encryption strategies, and Privacy by Design principles."
@@ -195,7 +197,18 @@ const DataPrivacyProtection: React.FC = () => {
         />
 
         {/* Hero Section */}
-        <header className="bg-slate-950 text-white pt-12 pb-20 relative overflow-hidden">
+        <header className="bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] text-white pt-12 pb-20 relative overflow-hidden">
+          {/* Background Squares */}
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <Squares
+              speed={0.13}
+              squareSize={40}
+              direction="diagonal"
+              borderColor="rgba(255,255,255,0.08)"
+              hoverFillColor="rgba(255,255,255,0.05)"
+            />
+          </div>
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="flex flex-col lg:flex-row gap-12 items-center">
               <div className="flex-1">
@@ -211,7 +224,7 @@ const DataPrivacyProtection: React.FC = () => {
                     <span className="text-slate-500">/</span>
                     <span>Compliance & Legal</span>
                   </div>
-                  <span className="bg-[#00C4D4] text-[#0a1628] text-[10px] font-extrabold px-2 py-0.5 rounded uppercase tracking-tighter">
+                  <span className="bg-black text-[#00C4D4] text-[10px] font-extrabold px-2 py-0.5 rounded-none uppercase tracking-tighter">
                     Essential Regulatory
                   </span>
                 </motion.div>
@@ -222,7 +235,7 @@ const DataPrivacyProtection: React.FC = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="mb-6"
                 >
-                  <span className="bg-[#00C4D4] text-[#0a1628] text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-tight">
+                  <span className="bg-black text-[#00C4D4] text-[11px] font-extrabold px-3 py-1 rounded-none uppercase tracking-tight">
                     CDPSE Aligned
                   </span>
                 </motion.div>
@@ -231,27 +244,29 @@ const DataPrivacyProtection: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="flex items-center gap-2 text-slate-400 text-sm font-medium mb-4"
+                  className="flex items-center gap-2 text-slate-300 text-sm font-medium mb-4"
                 >
                   <span className="font-bold text-white">Ebanex International</span>
-                  <span className="w-1 h-1 bg-slate-500 rounded-full"></span>
+                  <span className="w-1 h-1 bg-slate-500 rounded-none"></span>
                   <span>Data Protection Strategy</span>
                 </motion.div>
 
-                <motion.h1
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-3xl md:text-4xl lg:text-5xl font-heading leading-[1.1] mb-8 max-w-3xl"
-                >
-                  Data Privacy & Protection
-                </motion.h1>
+                <div className="select-none inline-block py-3 px-6 border border-white/10 mb-8">
+                  <motion.h1
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight leading-[1.1] max-w-3xl"
+                  >
+                    Data Privacy & <span className="text-[#00C4D4]">Protection</span>
+                  </motion.h1>
+                </div>
 
                 <motion.p
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
-                  className="text-lg text-slate-300 mb-8 max-w-2xl"
+                  className="text-lg text-slate-200 mb-8 max-w-2xl"
                 >
                   Transform privacy from a legal obligation into an engineering discipline. Equip your team to build compliant systems and protect personal data across its entire lifecycle.
                 </motion.p>
@@ -263,9 +278,9 @@ const DataPrivacyProtection: React.FC = () => {
                   className="flex items-center gap-6 md:gap-8"
                 >
                   {/* Left Column - Duration Info */}
-                  <div className="flex flex-col gap-3 text-sm font-medium text-slate-300">
+                  <div className="flex flex-col gap-3 text-sm font-medium text-slate-200">
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-blue-400" />
+                      <Calendar className="w-5 h-5 text-[#00C4D4]" />
                       <span>5 Days (Instructor-Led)</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -275,7 +290,7 @@ const DataPrivacyProtection: React.FC = () => {
                   </div>
 
                   {/* Vertical Separator */}
-                  <div className="w-px bg-slate-700 h-12"></div>
+                  <div className="w-px bg-slate-600 h-12"></div>
 
                   {/* Right Column - Designer Info */}
                   <div className="text-sm font-medium text-white">
@@ -294,11 +309,11 @@ const DataPrivacyProtection: React.FC = () => {
                   transition={{ duration: 0.8, delay: 0.7 }}
                   className="flex flex-wrap gap-4 py-8"
                 >
-                  <button className="bg-[#00C4D4] text-[#0a1628] px-6 py-2 rounded-full font-bold hover:bg-[#00b0c0] transition-all flex items-center gap-4 group">
-                    Enroll in Program
+                  <button className="bg-black text-[#00C4D4] px-6 py-2 rounded-none font-bold hover:bg-slate-900 transition-all flex items-center gap-4 group">
+                    Enroll in Program{' '}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
-                  <button className="bg-transparent text-white border-2 border-white px-8 py-4 rounded-full font-bold hover:bg-white/10 transition-all flex items-center gap-4 group">
+                  <button className="bg-black text-[#00C4D4] border-[10px] border-[#00C4D4] px-8 py-4 rounded-none font-bold hover:bg-slate-900 transition-all flex items-center gap-4 group">
                     Request Corporate Training{' '}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
@@ -312,7 +327,7 @@ const DataPrivacyProtection: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="w-full lg:w-[500px] relative group cursor-pointer"
               >
-                <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-sm shadow-2xl">
+                <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-none shadow-2xl border-[10px] border-black">
                   <img
                     src="https://picsum.photos/seed/dataprivacy/800/800"
                     alt="Course Preview"
@@ -324,8 +339,8 @@ const DataPrivacyProtection: React.FC = () => {
 
                   {/* Play Button */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-[#00C4D4] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-white border-b-[10px] border-b-transparent ml-1"></div>
+                    <div className="w-16 h-16 bg-[#00C4D4] rounded-none flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                      <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-black border-b-[10px] border-b-transparent ml-1"></div>
                     </div>
                   </div>
 
@@ -335,6 +350,10 @@ const DataPrivacyProtection: React.FC = () => {
               </motion.div>
             </div>
           </div>
+          
+          {/* Decorative corner accents */}
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00BFFF]/10 blur-[150px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00BFFF]/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
         </header>
 
         {/* Certification Info Section */}
@@ -454,7 +473,7 @@ const DataPrivacyProtection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-[100px]"
+            className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-[10%]"
           >
             Data privacy is no longer just legal compliance. <br className="hidden md:block" />
             It is an engineering problem requiring technical <br className="hidden md:block" />
@@ -590,7 +609,7 @@ const DataPrivacyProtection: React.FC = () => {
         </div>
 
         {/* Program Overview */}
-        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[100px] py-0 sm:py-4">
+        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[10%] pt-24 pb-[15px]">
           <motion.div {...fadeInUp}>
             <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
               Program Overview
@@ -632,11 +651,23 @@ const DataPrivacyProtection: React.FC = () => {
               </motion.button>
             </div>
           </motion.div>
-          {/* Curriculum & Impact Section */}
+        </div>
+
+        {/* Curriculum & Impact Section */}
+        <section className="relative bg-black pt-[15px] pb-20 overflow-hidden">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <Squares
+              speed={0.13}
+              squareSize={40}
+              direction="diagonal"
+              borderColor="rgba(255,255,255,0.08)"
+              hoverFillColor="rgba(255,255,255,0.05)"
+            />
+          </div>
           <div
             ref={syllabusRef}
-            className="relative"
-            style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0f2744 50%, #0a1628 100%)' }}
+            className="relative mx-[10%] overflow-hidden"
+            style={{ backgroundColor: '#00bfff' }}
           >
             {/* Wave Background - Right */}
             <motion.div
@@ -687,7 +718,7 @@ const DataPrivacyProtection: React.FC = () => {
               </svg>
             </motion.div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20">
+            <div className="relative z-10 max-w-7xl mx-auto px-[10%] py-10 sm:py-16 lg:py-20">
               {/* What You'll Learn */}
               <motion.div
                 id="syllabus"
@@ -697,14 +728,14 @@ const DataPrivacyProtection: React.FC = () => {
                 viewport={{ once: true }}
                 className="mb-20"
               >
-                <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
+                <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12 text-black">
                   What You&apos;ll Learn
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-12">
                   <div>
-                    <h3 className="text-xl font-semibold text-slate-200 mb-6 flex items-center gap-3">
-                      <span className="w-2 h-8 bg-blue-500 rounded-full"></span>
+                    <h3 className="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-3">
+                      <span className="w-2 h-8 bg-blue-900 rounded-full"></span>
                       Technical Skills
                     </h3>
                     <ul className="space-y-4">
@@ -718,13 +749,13 @@ const DataPrivacyProtection: React.FC = () => {
                       ].map((item, index) => (
                         <motion.li
                           key={index}
-                          className="flex items-start gap-3 text-slate-300 font-light leading-relaxed"
+                          className="flex items-start gap-3 text-black font-medium leading-relaxed"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.4, delay: index * 0.1 }}
                           viewport={{ once: true }}
                         >
-                          <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 shrink-0 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-blue-900 mt-0.5 shrink-0 flex-shrink-0" />
                           {item}
                         </motion.li>
                       ))}
@@ -732,8 +763,8 @@ const DataPrivacyProtection: React.FC = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-slate-200 mb-6 flex items-center gap-3">
-                      <span className="w-2 h-8 bg-teal-500 rounded-full"></span>
+                    <h3 className="text-xl font-semibold text-slate-900 mb-6 flex items-center gap-3">
+                      <span className="w-2 h-8 bg-slate-900 rounded-full"></span>
                       Business Benefits
                     </h3>
                     <ul className="space-y-4">
@@ -747,13 +778,13 @@ const DataPrivacyProtection: React.FC = () => {
                       ].map((item, index) => (
                         <motion.li
                           key={index}
-                          className="flex items-start gap-3 text-slate-300 font-light leading-relaxed"
+                          className="flex items-start gap-3 text-black font-medium leading-relaxed"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.4, delay: index * 0.1 }}
                           viewport={{ once: true }}
                         >
-                          <CheckCircle className="w-5 h-5 text-teal-400 mt-0.5 shrink-0 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-slate-900 mt-0.5 shrink-0 flex-shrink-0" />
                           {item}
                         </motion.li>
                       ))}
@@ -764,8 +795,8 @@ const DataPrivacyProtection: React.FC = () => {
 
               {/* Measurable Impact & Right-side Sections */}
               <div className="grid lg:grid-cols-2 gap-16">
-                {/* Left Side - Sticky */}
-                <div className="lg:sticky lg:top-[120px] lg:h-fit">
+                {/* Left Side - Static/Sticky */}
+                <div className="lg:sticky lg:top-[150px] lg:h-fit">
                   <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-light font-heading mb-8 text-white">
                     Measurable Impact
                   </h2>
@@ -778,158 +809,305 @@ const DataPrivacyProtection: React.FC = () => {
                     ].map((stat, index) => (
                       <div
                         key={index}
-                        className="text-center p-4 border border-white/10 bg-slate-900/30"
+                        className="text-center p-4 border border-white/10"
+                        style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
                       >
-                        <div className="text-4xl font-light text-[#00C4D4] mb-1">
+                        <div className="text-4xl font-light text-[#00BFFF] mb-1">
                           <Counter target={stat.metric} suffix={stat.suffix} />
                         </div>
                         <div className="text-sm text-slate-300 font-light">{stat.label}</div>
                       </div>
                     ))}
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <button className="bg-[#00C4D4] text-black px-6 py-3 rounded-full font-medium hover:bg-[#00b0c0] transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
-                      Request Corporate Training
-                      <ArrowRight className="w-4 h-4" />
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <button className="bg-black text-[#00C4D4] px-4 py-3 rounded-none font-black uppercase tracking-tight hover:bg-slate-900 transition-all flex items-center justify-center gap-2 border-2 border-black group text-xs flex-1">
+                      <span className="text-center">Request Training</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
                     </button>
-                    <button className="bg-transparent text-white border border-white/30 px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center whitespace-nowrap">
+                    <button className="bg-transparent text-black border-2 border-black px-4 py-3 rounded-none font-black uppercase tracking-tight hover:bg-black/5 transition-all flex items-center justify-center text-xs flex-1">
                       Schedule & Pricing
                     </button>
                   </div>
                 </div>
 
                 {/* Right Side - Scrollable */}
-                <div className="space-y-12 pb-32">
-                  {/* Data Control Capabilities */}
-                  <div>
-                    <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
-                      Data Control Capabilities
-                    </h3>
-                    <p className="text-sm text-slate-400 mb-6">
-                      Core privacy engineering competencies you will develop through this program
-                    </p>
-                    <ul className="space-y-4">
-                      {[
-                        {
-                          title: 'Global Privacy Regulations',
-                          desc: 'Navigate GDPR, CCPA, HIPAA, and regional data protection laws to ensure full organizational compliance',
-                        },
-                        {
-                          title: 'Data Lifecycle Management',
-                          desc: 'Map the flow of PII and sensitive data from collection and storage to processing and secure deletion',
-                        },
-                        {
-                          title: 'Privacy by Design Architecture',
-                          desc: 'Embed privacy controls directly into software development lifecycles and business systems from the ground up',
-                        },
-                        {
-                          title: 'Encryption & Data Masking',
-                          desc: 'Implement technical safeguards including cryptography, tokenization, and anonymization techniques',
-                        },
-                      ].map((item, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
-                        >
-                          <span className="w-2 h-2 rounded-full bg-[#00C4D4] mt-2 flex-shrink-0"></span>
-                          <div>
-                            <span className="text-white font-medium text-sm block">
-                              {item.title}
-                            </span>
-                            <span className="text-slate-400 text-sm font-light">{item.desc}</span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                <div 
+                  className="lg:sticky lg:top-[150px] h-[650px] overflow-y-auto pr-4 custom-scrollbar relative"
+                  data-lenis-prevent
+                >
+                  <div className="space-y-12 pb-32 text-white font-medium">
+                    {/* Data Control Capabilities */}
+                    <div className="relative">
+                      <div className="sticky top-0 bg-[#00bfff] z-30 pt-4 pb-2">
+                        <h3 className="text-xl font-black text-black mb-0 pb-3 border-b-2 border-black/20 uppercase tracking-tighter">
+                          Data Control Capabilities
+                        </h3>
+                      </div>
+                      <div className="pt-6">
+                        <p className="text-sm text-slate-300 font-bold mb-6">
+                          Master technical privacy safeguards and lifecycle management strategies.
+                        </p>
+                        <ul className="space-y-4">
+                          {[
+                            {
+                              title: 'Data Lifecycle Management',
+                              desc: 'Map the flow of PII and sensitive data from collection and storage to processing and secure deletion',
+                            },
+                            {
+                              title: 'Privacy by Design Architecture',
+                              desc: 'Embed privacy controls directly into software development lifecycles and business systems from the ground up',
+                            },
+                            {
+                              title: 'Encryption & Data Masking',
+                              desc: 'Implement technical safeguards including cryptography, tokenization, and anonymization techniques',
+                            },
+                          ].map((item, index) => (
+                            <li
+                              key={index}
+                              className="flex items-start gap-4 p-5 border-2 border-black/10"
+                              style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                            >
+                              <span className="w-2 h-2 rounded-none bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                              <div>
+                                <span className="text-[#00BFFF] font-black uppercase tracking-tighter text-sm block mb-1">
+                                  {item.title}
+                                </span>
+                                <span className="text-slate-200 text-sm font-medium leading-snug">{item.desc}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
 
-                  {/* Privacy Engineering Syllabus */}
-                  <div>
-                    <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
-                      Privacy Engineering Syllabus
-                    </h3>
-                    <p className="text-sm text-slate-400 mb-6">
-                      A structured learning path covering governance, architecture, technical controls, and compliance
-                    </p>
-                    <ul className="space-y-4">
-                      {[
-                        {
-                          title: 'Privacy Governance & Regulations',
-                          desc: 'GDPR & Regional Laws • Privacy Frameworks • Data Classification • Roles & Responsibilities',
-                          duration: '5 hours',
-                        },
-                        {
-                          title: 'Privacy Architecture & Design',
-                          desc: 'Privacy by Design • Data Flow Mapping • System Architecture • Vendor Risk Management',
-                          duration: '5 hours',
-                        },
-                        {
-                          title: 'Data Lifecycle & Technical Controls',
-                          desc: 'Encryption Protocols • Data Masking • Access Controls • Secure Data Disposal',
-                          duration: '6 hours',
-                        },
-                        {
-                          title: 'Incident Response & Compliance',
-                          desc: 'Breach Notification Laws • Handling DSARs • Continuous Auditing • Privacy Impact Assessments',
-                          duration: '4 hours',
-                        },
-                      ].map((item, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
-                        >
-                          <span className="w-2 h-2 rounded-full bg-teal-400 mt-2 flex-shrink-0"></span>
-                          <div>
-                            <span className="text-white font-medium text-sm block">
-                              {item.title}
-                            </span>
-                            <span className="text-slate-400 text-sm font-light">{item.desc}</span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                    {/* Privacy Engineering Syllabus */}
+                    <div className="relative">
+                      <div className="sticky top-0 bg-[#00bfff] z-30 pt-4 pb-2">
+                        <h3 className="text-xl font-black text-black mb-0 pb-3 border-b-2 border-black/20 uppercase tracking-tighter">
+                          Tactical Syllabus
+                        </h3>
+                      </div>
+                      <div className="pt-6">
+                        <p className="text-sm text-slate-300 font-bold mb-6">
+                          A technical deep-dive into privacy automation, engineering, and compliance.
+                        </p>
+                        <ul className="space-y-4">
+                          {[
+                            {
+                              title: 'Privacy Governance & Regulations',
+                              desc: 'GDPR & Regional Laws • Privacy Frameworks • Data Classification • Roles & Responsibilities',
+                              duration: '5 hours',
+                            },
+                            {
+                              title: 'Privacy Architecture & Design',
+                              desc: 'Privacy by Design • Data Flow Mapping • System Architecture • Vendor Risk Management',
+                              duration: '5 hours',
+                            },
+                            {
+                              title: 'Data Lifecycle & Technical Controls',
+                              desc: 'Encryption Protocols • Data Masking • Access Controls • Secure Data Disposal',
+                              duration: '6 hours',
+                            },
+                            {
+                              title: 'Incident Response & Compliance',
+                              desc: 'Breach Notification Laws • Handling DSARs • Continuous Auditing • Privacy Impact Assessments',
+                              duration: '4 hours',
+                            },
+                          ].map((item, index) => (
+                            <li
+                              key={index}
+                              className="flex items-start gap-4 p-5 border-2 border-black/10"
+                              style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                            >
+                              <span className="w-2 h-2 rounded-none bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                              <div>
+                                <span className="text-[#00BFFF] font-black uppercase tracking-tighter text-sm block mb-1">
+                                  {item.title}
+                                </span>
+                                <span className="text-slate-200 text-sm font-medium leading-snug">{item.desc}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
 
-                  {/* How You'll Be Evaluated */}
-                  <div>
-                    <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
-                      How You&apos;ll Be Assessed
-                    </h3>
-                    <p className="text-sm text-slate-400 mb-6">
-                      Our comprehensive evaluation framework ensures you master every competency
-                      through four key phases
-                    </p>
-                    <ul className="space-y-4">
-                      {[
-                        {
-                          phase: 'Phase 1: Pre-Assessment',
-                          desc: 'Baseline privacy knowledge evaluation, regulatory landscape questionnaire, and skill gap analysis',
-                        },
-                        {
-                          phase: 'Phase 2: Privacy Design Labs',
-                          desc: 'Hands-on DPIA execution, data flow mapping exercises, and classification logic assessment',
-                        },
-                        {
-                          phase: 'Phase 3: Tactical Implementation Test',
-                          desc: 'Technical simulation of encryption deployment, DSAR automation, and data masking effectiveness',
-                        },
-                        {
-                          phase: 'Phase 4: Compliance ROI Evaluation',
-                          desc: 'Post-program audit readiness review, data risk reduction metrics, and privacy engineering maturity score',
-                        },
-                      ].map((phase, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
-                        >
-                          <span className="w-2 h-2 rounded-full bg-[#00C4D4] mt-2 flex-shrink-0"></span>
-                          <div>
-                            <span className="text-white font-light block mb-1">{phase.phase}</span>
-                            <span className="text-slate-400 text-sm font-light">{phase.desc}</span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
+                    {/* How You'll Be Evaluated */}
+                    <div className="relative">
+                      <div className="sticky top-0 bg-[#00bfff] z-30 pt-4 pb-2">
+                        <h3 className="text-xl font-black text-black mb-0 pb-3 border-b-2 border-black/20 uppercase tracking-tighter">
+                          How You'll Be Assessed
+                        </h3>
+                      </div>
+                      <div className="pt-6">
+                        <p className="text-sm text-slate-300 font-bold mb-6">
+                          Our comprehensive evaluation framework ensures you master every competency
+                          through four key phases
+                        </p>
+                        <ul className="space-y-4">
+                          {[
+                            {
+                              phase: 'Phase 1: Pre-Assessment',
+                              desc: 'Baseline privacy knowledge evaluation, regulatory landscape questionnaire, and skill gap analysis',
+                            },
+                            {
+                              phase: 'Phase 2: Privacy Design Labs',
+                              desc: 'Hands-on DPIA execution, data flow mapping exercises, and classification logic assessment',
+                            },
+                            {
+                              phase: 'Phase 3: Tactical Implementation Test',
+                              desc: 'Technical simulation of encryption deployment, DSAR automation, and data masking effectiveness',
+                            },
+                            {
+                              phase: 'Phase 4: Compliance ROI Evaluation',
+                              desc: 'Post-program audit readiness review, data risk reduction metrics, and privacy engineering maturity score',
+                            },
+                          ].map((phase, index) => (
+                            <li
+                              key={index}
+                              className="flex items-start gap-4 p-5 border-2 border-black/10"
+                              style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                            >
+                              <span className="w-2 h-2 rounded-none bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                              <div>
+                                <span className="text-[#00BFFF] font-black uppercase tracking-tighter block mb-1">{phase.phase}</span>
+                                <span className="text-slate-200 text-sm font-medium leading-snug">{phase.desc}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>                      <p className="text-sm text-slate-300 font-bold mb-6">
+                        Core privacy engineering competencies you will develop through this program
+                      </p>
+                      <ul className="space-y-4">
+                        {[
+                          {
+                            title: 'Global Privacy Regulations',
+                            desc: 'Navigate GDPR, CCPA, HIPAA, and regional data protection laws to ensure full organizational compliance',
+                          },
+                          {
+                            title: 'Data Lifecycle Management',
+                            desc: 'Map the flow of PII and sensitive data from collection and storage to processing and secure deletion',
+                          },
+                          {
+                            title: 'Privacy by Design Architecture',
+                            desc: 'Embed privacy controls directly into software development lifecycles and business systems from the ground up',
+                          },
+                          {
+                            title: 'Encryption & Data Masking',
+                            desc: 'Implement technical safeguards including cryptography, tokenization, and anonymization techniques',
+                          },
+                        ].map((item, index) => (
+                          <li
+                            key={index}
+                            className="flex items-start gap-4 p-4 border border-white/10"
+                            style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                          >
+                            <span className="w-2 h-2 rounded-full bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                            <div>
+                              <span className="text-white font-bold text-sm block">
+                                {item.title}
+                              </span>
+                              <span className="text-slate-300 text-sm font-medium">{item.desc}</span>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Privacy Engineering Syllabus */}
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-4 pb-3 border-b border-white/10">
+                        Privacy Engineering Syllabus
+                      </h3>
+                      <p className="text-sm text-slate-300 font-bold mb-6">
+                        A structured learning path covering governance, architecture, technical controls, and compliance
+                      </p>
+                      <ul className="space-y-4">
+                        {[
+                          {
+                            title: 'Privacy Governance & Regulations',
+                            desc: 'GDPR & Regional Laws • Privacy Frameworks • Data Classification • Roles & Responsibilities',
+                            duration: '5 hours',
+                          },
+                          {
+                            title: 'Privacy Architecture & Design',
+                            desc: 'Privacy by Design • Data Flow Mapping • System Architecture • Vendor Risk Management',
+                            duration: '5 hours',
+                          },
+                          {
+                            title: 'Data Lifecycle & Technical Controls',
+                            desc: 'Encryption Protocols • Data Masking • Access Controls • Secure Data Disposal',
+                            duration: '6 hours',
+                          },
+                          {
+                            title: 'Incident Response & Compliance',
+                            desc: 'Breach Notification Laws • Handling DSARs • Continuous Auditing • Privacy Impact Assessments',
+                            duration: '4 hours',
+                          },
+                        ].map((item, index) => (
+                          <li
+                            key={index}
+                            className="flex items-start gap-4 p-4 border border-white/10"
+                            style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                          >
+                            <span className="w-2 h-2 rounded-full bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                            <div>
+                              <span className="text-white font-bold text-sm block">
+                                {item.title}
+                              </span>
+                              <span className="text-slate-300 text-sm font-medium">{item.desc}</span>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* How You'll Be Evaluated */}
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-4 pb-3 border-b border-white/10">
+                        How You'll Be Assessed
+                      </h3>
+                      <p className="text-sm text-slate-300 font-bold mb-6">
+                        Our comprehensive evaluation framework ensures you master every competency
+                        through four key phases
+                      </p>
+                      <ul className="space-y-4">
+                        {[
+                          {
+                            phase: 'Phase 1: Pre-Assessment',
+                            desc: 'Baseline privacy knowledge evaluation, regulatory landscape questionnaire, and skill gap analysis',
+                          },
+                          {
+                            phase: 'Phase 2: Privacy Design Labs',
+                            desc: 'Hands-on DPIA execution, data flow mapping exercises, and classification logic assessment',
+                          },
+                          {
+                            phase: 'Phase 3: Tactical Implementation Test',
+                            desc: 'Technical simulation of encryption deployment, DSAR automation, and data masking effectiveness',
+                          },
+                          {
+                            phase: 'Phase 4: Compliance ROI Evaluation',
+                            desc: 'Post-program audit readiness review, data risk reduction metrics, and privacy engineering maturity score',
+                          },
+                        ].map((phase, index) => (
+                          <li
+                            key={index}
+                            className="flex items-start gap-4 p-4 border border-white/10"
+                            style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                          >
+                            <span className="w-2 h-2 rounded-full bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                            <div>
+                              <span className="text-white font-bold block mb-1">{phase.phase}</span>
+                              <span className="text-slate-300 text-sm font-medium">{phase.desc}</span>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -941,7 +1119,7 @@ const DataPrivacyProtection: React.FC = () => {
 
 
 
-        <div className="w-full py-16 px-[100px] bg-transparent">
+        <div className="w-full py-16 px-[10%] bg-transparent">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1036,7 +1214,7 @@ const DataPrivacyProtection: React.FC = () => {
 
         <motion.div
           id="faqs"
-          className="w-full py-16 px-[100px]"
+          className="w-full py-16 px-[10%]"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -1156,60 +1334,9 @@ const DataPrivacyProtection: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          id="register"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="relative min-h-[500px] flex items-center">
-            <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] via-[#0a1628]/90 to-[#0a2a43]/70" />
-            </div>
-
-            <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20 w-full">
-              <div className="max-w-2xl">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                    Engineer Compliance Directly Into Your Infrastructure
-                  </h2>
-                  <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-                    Turn mandatory privacy legislation into a competitive advantage. Partner with Ebanex International to cross-train your legal and technical teams in the deployment of advanced Privacy by Design architectures.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                    <motion.button
-                      className="inline-flex items-center gap-3 px-8 py-4 bg-[#00C4D4] hover:bg-[#00b0c0] text-[#0a1628] font-bold rounded-full transition-colors"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Request Corporate Training
-                      <ArrowRight className="w-5 h-5" />
-                    </motion.button>
-                    <motion.button
-                      className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white font-semibold rounded-full transition-colors"
-                      whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      View All Programs
-                    </motion.button>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-
-            <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#00C4D4]/10 to-transparent pointer-events-none" />
-            <div className="absolute bottom-0 right-20 w-40 h-40 bg-[#00C4D4]/20 rounded-full blur-3xl pointer-events-none" />
-          </div>
-        </motion.div>
-      </div>
-    </>
+        <CtaSection />
+      </main>
+    </ReactLenis>
   );
 };
 

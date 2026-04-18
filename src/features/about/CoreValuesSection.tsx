@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Target, Eye, ShieldCheck, Heart, Sparkles, Handshake } from 'lucide-react';
 import { Squares } from '../../components/animations';
 import { FitText } from '../../components/common';
@@ -39,7 +40,7 @@ const CoreValuesSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative z-30 pt-8 sm:pt-12 pb-16 sm:pb-24 w-full bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] overflow-hidden">
+    <section className="relative pt-8 sm:pt-12 pb-16 sm:pb-24 w-full bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] overflow-visible">
       {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Squares
@@ -52,29 +53,16 @@ const CoreValuesSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col h-full items-center">
-        {/* Title Area */}
-        <div className="mb-12 text-center shrink-0">
-          <div className="select-none inline-block bg-black py-4 px-8">
-            <FitText
-              minScale={0.35}
-              textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
+        {/* Section Header */}
+        <div className="mb-12 text-center shrink-0 relative z-50">
+          <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
             >
-              <span 
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}
-              >
-                CORE VALUES
-              </span>
-            </FitText>
-          </div>
-
-          <div className="mt-4">
-            <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] inline-block bg-black py-1.5 px-6">
-              What Drives Us
-            </span>
+              Core <span className="text-[#00BFFF]">Values</span>
+            </motion.h2>
           </div>
         </div>
 

@@ -12,7 +12,7 @@ import {
 
 const About: React.FC = () => {
   return (
-    <div className="pb-16 sm:pb-24">
+    <div className="">
       <SEO 
         title="About Us | Ebanex International"
         description="Learn about Ebanex International's mission, vision, and core values. We are dedicated to building institutional capacity and professional excellence."

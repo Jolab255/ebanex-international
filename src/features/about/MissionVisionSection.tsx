@@ -17,6 +17,19 @@ const MissionVisionSection: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
+        {/* Section Header */}
+        <div className="mb-12 text-center shrink-0 relative z-50">
+          <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
+            >
+              Mission & <span className="text-[#00BFFF]">Vision</span>
+            </motion.h2>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-8 sm:gap-12 w-full max-w-6xl">
           {/* Mission Box */}
           <motion.div 

@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Squares } from '../../components/animations';
+import { FitText } from '../../components/common';
 
 const StrategicFocusSection: React.FC = () => {
   const focusAreas = [
@@ -66,50 +68,51 @@ const StrategicFocusSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative bg-slate-950 min-h-[50vh] py-16 sm:py-20 lg:py-24 overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl" />
+    <section className="relative min-h-[80vh] flex flex-col justify-center py-16 sm:py-20 lg:py-24 w-full bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] overflow-visible">
+      {/* Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <Squares
+          speed={0.13}
+          squareSize={40}
+          direction="diagonal"
+          borderColor="rgba(255,255,255,0.08)"
+          hoverFillColor="rgba(255,255,255,0.05)"
+        />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16"
-        >
-          <span className="text-blue-500 text-sm font-semibold tracking-widest uppercase">
-            What We Focus On
-          </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-heading text-white mt-3">
-            Our Strategic Focus
-          </h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto mt-4 rounded-full" />
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {focusAreas.map((area, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 40 }}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
+        {/* Section Header */}
+        <div className="mb-12 text-center shrink-0 relative z-[100] translate-y-[2px] sm:-translate-y-[14px]">
+          <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 * (idx + 1) }}
+              className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
+            >
+              Strategic <span className="text-[#00BFFF]">Focus</span>
+            </motion.h2>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 w-full max-w-6xl">
+          {focusAreas.map((area, idx) => (
+            <div
+              key={idx}
               className="group relative"
             >
               <div
-                className={`absolute inset-0 bg-blue-500 rounded-2xl transform ${
+                className={`absolute inset-0 bg-[#00bfff] transform ${
                   idx % 2 === 0 ? 'rotate-1' : '-rotate-1'
                 } group-hover:rotate-0 transition-transform duration-300`}
               />
               <div 
-                className="relative rounded-2xl p-8 lg:p-10 shadow-lg border border-white/10 group-hover:border-blue-500/50 group-hover:shadow-xl transition-all duration-300"
+                className="relative p-8 lg:p-10 shadow-lg border-[10px] border-black group-hover:shadow-xl transition-all duration-300"
                 style={{
                   background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
                 }}
               >
                 <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <div className="w-14 h-14 bg-[#00bfff] flex items-center justify-center flex-shrink-0">
                     {area.icon}
                   </div>
                   <div>
@@ -118,7 +121,7 @@ const StrategicFocusSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

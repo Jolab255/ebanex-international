@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import { SEO } from '../components/layout';
+import { Squares } from '../components/animations';
+import { CtaSection } from '../features/home';
 import {
-  Users,
+  Shield,
   CheckCircle,
   Clock,
   ArrowRight,
@@ -206,8 +208,8 @@ const IncidentResponseTraining: React.FC = () => {
         />
 
         {/* Hero Section */}
-        <header className="bg-slate-950 text-white pt-12 pb-20 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <header className="bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] text-white pt-12 pb-20 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-[10%] relative z-10">
             <div className="flex flex-col lg:flex-row gap-12 items-center">
               <div className="flex-1">
                 {/* Breadcrumbs & Badges */}
@@ -242,7 +244,7 @@ const IncidentResponseTraining: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="flex items-center gap-2 text-slate-400 text-sm font-medium mb-4"
+                  className="flex items-center gap-2 text-slate-300 text-sm font-medium mb-4"
                 >
                   <span className="font-bold text-white">Ebanex International</span>
                   <span className="w-1 h-1 bg-slate-500 rounded-full"></span>
@@ -253,16 +255,16 @@ const IncidentResponseTraining: React.FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="text-3xl md:text-4xl lg:text-5xl font-heading leading-[1.1] mb-8 max-w-3xl"
+                  className="text-3xl md:text-4xl lg:text-5xl font-heading font-black text-white uppercase tracking-tight leading-[1.1] mb-8 max-w-3xl"
                 >
-                  Incident Response Training
+                  Incident Response <span className="text-[#00C4D4]">Training</span>
                 </motion.h1>
 
                 <motion.p
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
-                  className="text-lg text-slate-300 mb-8 max-w-2xl"
+                  className="text-lg text-slate-200 mb-8 max-w-2xl"
                 >
                   When a breach happens, every second counts. Master the framework to detect, contain, and eradicate threats while minimizing critical business downtime.
                 </motion.p>
@@ -274,9 +276,9 @@ const IncidentResponseTraining: React.FC = () => {
                   className="flex items-center gap-6 md:gap-8"
                 >
                   {/* Left Column - Duration Info */}
-                  <div className="flex flex-col gap-3 text-sm font-medium text-slate-300">
+                  <div className="flex flex-col gap-3 text-sm font-medium text-slate-200">
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-blue-400" />
+                      <Calendar className="w-5 h-5 text-[#00C4D4]" />
                       <span>4 Days (Live Scenarios)</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -286,7 +288,7 @@ const IncidentResponseTraining: React.FC = () => {
                   </div>
 
                   {/* Vertical Separator */}
-                  <div className="w-px bg-slate-700 h-12"></div>
+                  <div className="w-px bg-slate-600 h-12"></div>
 
                   {/* Right Column - Designer Info */}
                   <div className="text-sm font-medium text-white">
@@ -465,7 +467,7 @@ const IncidentResponseTraining: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-4 sm:px-6 lg:px-[100px]"
+            className="font-serif text-xl md:text-3xl font-extralight leading-relaxed text-slate-200 text-center mx-auto block w-full px-4 sm:px-6 lg:px-[10%]"
           >
             It’s not a matter of if you will be breached, <br className="hidden md:block" />
             but when. Turn panic into precision with structured, <br className="hidden md:block" />
@@ -601,7 +603,7 @@ const IncidentResponseTraining: React.FC = () => {
         </div>
 
         {/* Program Overview */}
-        <div id="overview" className="w-full px-4 sm:px-6 lg:px-[100px] py-10 sm:py-16">
+        <div id="overview" className="w-full px-[10%] pt-24 pb-[15px]">
           <motion.div {...fadeInUp}>
             <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
               Program Overview
@@ -643,12 +645,23 @@ const IncidentResponseTraining: React.FC = () => {
               </motion.button>
             </div>
           </motion.div>
+        </div>
 
-          {/* What You'll Learn & Measurable Impact - Combined Section */}
+        {/* What You'll Learn & Measurable Impact - Combined Section */}
+        <section className="relative bg-black pt-[15px] pb-20 overflow-hidden">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <Squares
+              speed={0.13}
+              squareSize={40}
+              direction="diagonal"
+              borderColor="rgba(255,255,255,0.08)"
+              hoverFillColor="rgba(255,255,255,0.05)"
+            />
+          </div>
           <div
             ref={syllabusRef}
-            className="relative"
-            style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0f2744 50%, #0a1628 100%)' }}
+            className="relative mx-[10%] overflow-hidden"
+            style={{ backgroundColor: '#00bfff' }}
           >
             {/* Wave Background */}
             <motion.div
@@ -750,7 +763,7 @@ const IncidentResponseTraining: React.FC = () => {
               </svg>
             </motion.div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-[100px] py-10 sm:py-16 lg:py-20">
+            <div className="relative z-10 max-w-7xl mx-auto px-[10%] py-10 sm:py-16 lg:py-20">
               <motion.div
                 id="syllabus"
                 initial={{ opacity: 0 }}
@@ -759,14 +772,14 @@ const IncidentResponseTraining: React.FC = () => {
                 viewport={{ once: true }}
                 className="mb-20"
               >
-                <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
+                <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12 text-black">
                   What You'll Learn
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-12">
                   <div>
-                    <h3 className="text-xl font-semibold text-slate-200 mb-6 flex items-center gap-3">
-                      <span className="w-2 h-8 bg-[#00C4D4] rounded-full"></span>
+                    <h3 className="text-xl font-semibold text-blue-900 mb-6 flex items-center gap-3">
+                      <span className="w-2 h-8 bg-blue-900 rounded-full"></span>
                       Technical Skills
                     </h3>
                     <ul className="space-y-4">
@@ -780,13 +793,13 @@ const IncidentResponseTraining: React.FC = () => {
                       ].map((item, index) => (
                         <motion.li
                           key={index}
-                          className="flex items-start gap-3 text-slate-300 font-light leading-relaxed"
+                          className="flex items-start gap-3 text-black font-medium leading-relaxed"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.4, delay: index * 0.1 }}
                           viewport={{ once: true }}
                         >
-                          <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 shrink-0 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-blue-900 mt-0.5 shrink-0 flex-shrink-0" />
                           {item}
                         </motion.li>
                       ))}
@@ -794,8 +807,8 @@ const IncidentResponseTraining: React.FC = () => {
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-slate-200 mb-6 flex items-center gap-3">
-                      <span className="w-2 h-8 bg-teal-500 rounded-full"></span>
+                    <h3 className="text-xl font-semibold text-slate-900 mb-6 flex items-center gap-3">
+                      <span className="w-2 h-8 bg-slate-900 rounded-full"></span>
                       Business Benefits
                     </h3>
                     <ul className="space-y-4">
@@ -809,13 +822,13 @@ const IncidentResponseTraining: React.FC = () => {
                       ].map((item, index) => (
                         <motion.li
                           key={index}
-                          className="flex items-start gap-3 text-slate-300 font-light leading-relaxed"
+                          className="flex items-start gap-3 text-black font-medium leading-relaxed"
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.4, delay: index * 0.1 }}
                           viewport={{ once: true }}
                         >
-                          <CheckCircle className="w-5 h-5 text-teal-400 mt-0.5 shrink-0 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 text-slate-900 mt-0.5 shrink-0 flex-shrink-0" />
                           {item}
                         </motion.li>
                       ))}
@@ -824,15 +837,11 @@ const IncidentResponseTraining: React.FC = () => {
                 </div>
               </motion.div>
 
-
-
-
-
               {/* Measurable Impact Section */}
               <div className="grid lg:grid-cols-2 gap-16">
                 {/* Left Side - Static/Sticky */}
-                <div className="lg:sticky lg:top-[120px] lg:h-fit">
-                  <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-light font-heading mb-8 text-white">
+                <div className="lg:sticky lg:top-[150px] lg:h-fit">
+                  <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-light font-heading mb-8 text-black">
                     Measurable Impact
                   </h2>
                   <div className="grid grid-cols-2 gap-4 mb-8">
@@ -844,151 +853,156 @@ const IncidentResponseTraining: React.FC = () => {
                     ].map((stat, index) => (
                       <div
                         key={index}
-                        className="text-center p-4 border border-white/10 bg-slate-900/30"
+                        className="text-center p-4 border border-white/10"
+                        style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
                       >
-                        <div className="text-4xl font-light text-[#00C4D4] mb-1">
+                        <div className="text-4xl font-light text-[#00BFFF] mb-1">
                           <Counter target={stat.metric} suffix={stat.suffix} />
                         </div>
-                        <div className="text-sm text-slate-300 font-light">{stat.label}</div>
+                        <div className="text-sm text-white font-bold">{stat.label}</div>
                       </div>
                     ))}
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <button className="bg-[#00C4D4] text-black px-6 py-3 rounded-full font-medium hover:bg-[#00b0c0] transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
-                      Request Corporate Training
-                      <ArrowRight className="w-4 h-4" />
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <button className="bg-black text-[#00C4D4] px-4 py-3 rounded-none font-black uppercase tracking-tight hover:bg-slate-900 transition-all flex items-center justify-center gap-2 border-2 border-black group text-xs flex-1">
+                      <span className="text-center">Request Training</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
                     </button>
-                    <button className="bg-transparent text-white border border-white/30 px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-colors flex items-center justify-center whitespace-nowrap">
+                    <button className="bg-transparent text-black border-2 border-black px-4 py-3 rounded-none font-black uppercase tracking-tight hover:bg-black/5 transition-all flex items-center justify-center text-xs flex-1">
                       Schedule & Pricing
                     </button>
                   </div>
                 </div>
 
-                {/* Right Side - Scrollable */}
-                <div className="space-y-12 pb-32">
-                  <div>
-                    <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
-                      Tactical Syllabus
-                    </h3>
-                    <p className="text-sm text-slate-400 mb-6">
-                      Master the six phases of the incident response lifecycle through intensive technical modules and practical live-fire exercises.
-                    </p>
-                    <ul className="space-y-4">
-                      {[
-                        {
-                          phase: 'Preparation & Team Formation',
-                          desc: 'IR Frameworks (NIST/SANS) • CSIRT Structures • Log Aggregation • Legal Requirements',
-                        },
-                        {
-                          phase: 'Identification & Triage',
-                          desc: 'Alert Validation • IoC Analysis • Phishing Investigations • Scoping the Breach',
-                        },
-                        {
-                          phase: 'Containment & Eradication',
-                          desc: 'Isolation Strategies • Malware Removal • Active Directory Recovery • Patch Deployment',
-                        },
-                        {
-                          phase: 'Recovery & Post-Incident',
-                          desc: 'Validating System Restoration • Lessons Learned (Hotwash) • Report Generation • Policy Updates',
-                        },
-                      ].map((phase, index) => (
-                        <li
-                          key={index}
-                          className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
-                        >
-                          <span className="w-2 h-2 rounded-full bg-[#00C4D4] mt-2 flex-shrink-0"></span>
-                          <div>
-                            <span className="text-white font-light block mb-1">{phase.phase}</span>
-                            <span className="text-slate-400 text-sm font-light">{phase.desc}</span>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-
-
+                {/* Right Side - Content */}
+                <div className="pr-4">
+                  <div className="space-y-12 pb-32 text-black font-medium">
                     <div>
-                      <h3 className="text-xl font-light text-white pt-10 mb-4 pb-3 border-b border-white/10">
-                        Response Capabilities
+                      <h3 className="text-xl font-bold text-black mb-4 pb-3 border-b border-black/10">
+                        Tactical Syllabus
                       </h3>
-                      <p className="text-sm text-slate-400 mb-6">
-                        Build tactical expertise in identifying malicious behavior, securing evidence, and restoring critical business functions.
+                      <p className="text-sm text-blue-900 font-bold mb-6">
+                        Master the six phases of the incident response lifecycle through intensive technical modules and practical live-fire exercises.
                       </p>
                       <ul className="space-y-4">
                         {[
                           {
-                            phase: 'Incident Triage & Containment',
-                            desc: 'Learn rapid response procedures to quickly isolate compromised internal systems and halt data exfiltration.',
+                            phase: 'Preparation & Team Formation',
+                            desc: 'IR Frameworks (NIST/SANS) • CSIRT Structures • Log Aggregation • Legal Requirements',
                           },
                           {
-                            phase: 'Digital Forensics Fundamentals',
-                            desc: 'Secure compromised systems without destroying volatile evidence. Master basic memory and disk forensics.',
+                            phase: 'Identification & Triage',
+                            desc: 'Alert Validation • IoC Analysis • Phishing Investigations • Scoping the Breach',
                           },
                           {
-                            phase: 'Malware Analysis & Eradication',
-                            desc: 'Identify malicious binaries, analyze their behavior, and permanently remove persistent threats from your network.',
+                            phase: 'Containment & Eradication',
+                            desc: 'Isolation Strategies • Malware Removal • Active Directory Recovery • Patch Deployment',
                           },
                           {
-                            phase: 'Crisis Management & Recovery',
-                            desc: 'Orchestrate a seamless business continuity strategy to recover operations securely and swiftly.',
+                            phase: 'Recovery & Post-Incident',
+                            desc: 'Validating System Restoration • Lessons Learned (Hotwash) • Report Generation • Policy Updates',
                           },
                         ].map((phase, index) => (
                           <li
                             key={index}
-                            className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
+                            className="flex items-start gap-4 p-4 border border-white/10"
+                            style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
                           >
-                            <span className="w-2 h-2 rounded-full bg-[#00C4D4] mt-2 flex-shrink-0"></span>
+                            <span className="w-2 h-2 rounded-full bg-[#00BFFF] mt-2 flex-shrink-0"></span>
                             <div>
-                              <span className="text-white font-light block mb-1">{phase.phase}</span>
-                              <span className="text-slate-400 text-sm font-light">{phase.desc}</span>
+                              <span className="text-white font-bold block mb-1">{phase.phase}</span>
+                              <span className="text-slate-300 text-sm font-medium">{phase.desc}</span>
                             </div>
                           </li>
                         ))}
                       </ul>
-                    </div>
 
+                      <div>
+                        <h3 className="text-xl font-bold text-black pt-10 mb-4 pb-3 border-b border-black/10">
+                          Response Capabilities
+                        </h3>
+                        <p className="text-sm text-blue-900 font-bold mb-6">
+                          Build tactical expertise in identifying malicious behavior, securing evidence, and restoring critical business functions.
+                        </p>
+                        <ul className="space-y-4">
+                          {[
+                            {
+                              phase: 'Incident Triage & Containment',
+                              desc: 'Learn rapid response procedures to quickly isolate compromised internal systems and halt data exfiltration.',
+                            },
+                            {
+                              phase: 'Digital Forensics Fundamentals',
+                              desc: 'Secure compromised systems without destroying volatile evidence. Master basic memory and disk forensics.',
+                            },
+                            {
+                              phase: 'Malware Analysis & Eradication',
+                              desc: 'Identify malicious binaries, analyze their behavior, and permanently remove persistent threats from your network.',
+                            },
+                            {
+                              phase: 'Crisis Management & Recovery',
+                              desc: 'Orchestrate a seamless business continuity strategy to recover operations securely and swiftly.',
+                            },
+                          ].map((phase, index) => (
+                            <li
+                              key={index}
+                              className="flex items-start gap-4 p-4 border border-white/10"
+                              style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                            >
+                              <span className="w-2 h-2 rounded-full bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                              <div>
+                                <span className="text-white font-bold block mb-1">{phase.phase}</span>
+                                <span className="text-slate-300 text-sm font-medium">{phase.desc}</span>
+                              </div>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-bold text-black mb-4 pb-3 border-b border-black/10">
+                      How You'll Be Assessed
+                    </h3>
+                    <p className="text-sm text-blue-900 font-bold mb-6">
+                      Our comprehensive evaluation framework ensures you master every competency
+                      through four key phases
+                    </p>
+                    <ul className="space-y-4">
+                      {[
+                        {
+                          phase: 'Phase 1: Pre-Assessment',
+                          desc: 'Baseline IR knowledge evaluation, security posture questionnaire, and skill gap analysis',
+                        },
+                        {
+                          phase: 'Phase 2: Technical Labs & Simulations',
+                          desc: 'Hands-on triage challenges, forensic analysis labs, and containment simulation scores',
+                        },
+                        {
+                          phase: 'Phase 3: Final Response Simulation',
+                          desc: 'Comprehensive multi-stage breach scenario with real-time pressure and executive reporting',
+                        },
+                        {
+                          phase: 'Phase 4: Post-Program ROI Evaluation',
+                          desc: '90-day progress tracking, incident reduction metrics, and response team readiness review',
+                        },
+                      ].map((phase, index) => (
+                        <li
+                          key={index}
+                          className="flex items-start gap-4 p-4 border border-white/10"
+                          style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                        >
+                          <span className="w-2 h-2 rounded-full bg-[#00BFFF] mt-2 flex-shrink-0"></span>
+                          <div>
+                            <span className="text-white font-bold block mb-1">{phase.phase}</span>
+                            <span className="text-slate-300 text-sm font-medium">{phase.desc}</span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
-                    How You'll Be Assessed
-                  </h3>
-                  <p className="text-sm text-slate-400 mb-6">
-                    Our comprehensive evaluation framework ensures you master every competency
-                    through four key phases
-                  </p>
-                  <ul className="space-y-4">
-                    {[
-                      {
-                        phase: 'Phase 1: Pre-Assessment',
-                        desc: 'Baseline IR knowledge evaluation, security posture questionnaire, and skill gap analysis',
-                      },
-                      {
-                        phase: 'Phase 2: Technical Labs & Simulations',
-                        desc: 'Hands-on triage challenges, forensic analysis labs, and containment simulation scores',
-                      },
-                      {
-                        phase: 'Phase 3: Final Response Simulation',
-                        desc: 'Comprehensive multi-stage breach scenario with real-time pressure and executive reporting',
-                      },
-                      {
-                        phase: 'Phase 4: Post-Program ROI Evaluation',
-                        desc: '90-day progress tracking, incident reduction metrics, and response team readiness review',
-                      },
-                    ].map((phase, index) => (
-                      <li
-                        key={index}
-                        className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
-                      >
-                        <span className="w-2 h-2 rounded-full bg-[#00C4D4] mt-2 flex-shrink-0"></span>
-                        <div>
-                          <span className="text-white font-light block mb-1">{phase.phase}</span>
-                          <span className="text-slate-400 text-sm font-light">{phase.desc}</span>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
             </div>
           </div>
+        </section>
 
           <motion.div
             className="absolute -left-20 top-20 w-[400px] h-[400px] pointer-events-none"
@@ -1019,14 +1033,11 @@ const IncidentResponseTraining: React.FC = () => {
                 strokeWidth="6"
               />
             </svg>
-          </motion.div>
+            </motion.div>
+            </div>
+            </section>
 
-        </div>
-      </div>
-
-
-      <div className="w-full py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-[100px] bg-transparent">
-        <motion.div
+            <div className="w-full py-12 sm:py-16 lg:py-20 px-[10%] bg-transparent">        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -1055,7 +1066,7 @@ const IncidentResponseTraining: React.FC = () => {
               className="w-full md:w-72 flex-shrink-0"
             >
               <div className="relative">
-                <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-800">
+                <div className="aspect-[3/4] overflow-hidden bg-slate-800">
                   <img
                     src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces"
                     alt="Instructor"
@@ -1120,7 +1131,7 @@ const IncidentResponseTraining: React.FC = () => {
 
       <motion.div
         id="faqs"
-        className="w-full py-16 px-[100px]"
+        className="w-full py-16 px-[10%]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -1160,7 +1171,7 @@ const IncidentResponseTraining: React.FC = () => {
               className="mb-4"
             >
               <motion.div
-                className={`relative overflow-hidden rounded-2xl transition-all duration-500 ${openFaq === index
+                className={`relative overflow-hidden transition-all duration-500 ${openFaq === index
                   ? 'bg-gradient-to-r from-[#0a2a43]/40 to-[#0f2744]/30 border-[#00C4D4]/30'
                   : 'bg-[#0a2a43]/50 border border-white/10 hover:border-white/20'
                   }`}
@@ -1240,58 +1251,7 @@ const IncidentResponseTraining: React.FC = () => {
         </div>
       </motion.div>
 
-      <motion.div
-        id="register"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <div className="relative min-h-[500px] flex items-center">
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] via-[#0a1628]/90 to-[#0a2a43]/70" />
-          </div>
-
-          <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20 w-full">
-            <div className="max-w-2xl">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                  Are You Ready For Your Worst Day?
-                </h2>
-                <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-                  Don't plan your incident response strategy while the network is actively failing. Partner with Ebanex International to drill your handlers through advanced, simulation-based tactical response scenarios.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <motion.button
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-[#00C4D4] hover:bg-[#00b0c0] text-[#0a1628] font-bold rounded-full transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Request Corporate Training
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.button>
-                  <motion.button
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white font-semibold rounded-full transition-colors"
-                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    View All Programs
-                  </motion.button>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
-          <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-[#00C4D4]/10 to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 right-20 w-40 h-40 bg-[#00C4D4]/20 rounded-full blur-3xl pointer-events-none" />
-        </div>
-      </motion.div>
+      <CtaSection />
     </>
   );
 };
