@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/layout';
 import { Squares } from '../components/animations';
+import { FitText } from '../components/common';
 import {
     Users,
     CheckCircle,
@@ -67,6 +68,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
     const [activeSection, setActiveSection] = useState('overview');
     const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
+    const [showAllFaqs, setShowAllFaqs] = useState(false);
     const [isInSyllabus, setIsInSyllabus] = useState(false);
     const syllabusRef = useRef<HTMLDivElement>(null);
 
@@ -218,61 +220,8 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                     canonical="https://ebanexint.co.tz/training/cybersecurity-awareness"
                 />
 
-                {/* Styled Hero Section matching About Page */}
-                <section className="relative w-full min-h-[40vh] bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] overflow-hidden flex flex-col justify-center items-center text-center">
-                    {/* Background Squares */}
-                    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                        <Squares
-                            speed={0.13}
-                            squareSize={40}
-                            direction="diagonal"
-                            borderColor="rgba(255,255,255,0.08)"
-                            hoverFillColor="rgba(255,255,255,0.05)"
-                        />
-                    </div>
-
-                    <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center">
-                        {/* Title Area */}
-                        <div className="mb-6 relative z-50">
-                            <div className="bg-black py-4 px-6 md:px-10 border border-white/10 shadow-2xl">
-                                <motion.h1
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.3 }}
-                                    className="text-3xl sm:text-5xl lg:text-6xl font-black font-heading text-white uppercase tracking-tight"
-                                >
-                                    Cybersecurity <span className="text-[#00C4D4]">Awareness</span>
-                                </motion.h1>
-                            </div>
-                        </div>
-
-                        {/* Breadcrumbs Area */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4 }}
-                            className="inline-flex flex-wrap justify-center items-center gap-3 bg-black py-2.5 px-6 border border-white/10 shadow-lg text-sm"
-                        >
-                            <Link to="/" className="flex items-center gap-2 hover:text-[#00C4D4] transition-colors font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-xs text-slate-300">
-                                <Home size={14} className="sm:w-4 sm:h-4 text-[#00C4D4]" />
-                                <span>Home</span>
-                            </Link>
-                            <ChevronRight size={14} className="text-[#00C4D4] sm:w-4 sm:h-4 opacity-50" />
-                            <Link to="#" className="flex items-center hover:text-[#00C4D4] transition-colors font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-xs text-slate-300">
-                                <span>Programs</span>
-                            </Link>
-                            <ChevronRight size={14} className="text-[#00C4D4] sm:w-4 sm:h-4 opacity-50" />
-                            <span className="text-white font-black uppercase tracking-[0.1em] sm:tracking-[0.2em] text-[10px] sm:text-xs text-center">Cybersecurity Awareness</span>
-                        </motion.div>
-                    </div>
-
-                    {/* Decorative corner accents */}
-                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00C4D4]/10 blur-[150px]  translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00C4D4]/10 blur-[150px]  -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                </section>
-
-                {/* Second Section: Program Details (Styled like AboutContent) */}
-                <section className="relative z-30 min-h-[80vh] flex flex-col justify-center pt-16 sm:pt-20 pb-8 sm:pb-10 w-full bg-[linear-gradient(135deg,#000000_50%,#00C4D4_50%)] overflow-hidden">
+                {/* First Section (formerly Second Section) */}
+                <section className="relative z-30 flex flex-col justify-start pt-12 sm:pt-16 pb-8 sm:pb-10 w-full bg-[linear-gradient(135deg,#000000_50%,#00C4D4_50%)] overflow-hidden">
                     <div className="absolute inset-0 z-0 pointer-events-none">
                         <Squares
                             speed={0.13}
@@ -283,9 +232,9 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                         />
                     </div>
 
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center h-full justify-center">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center h-full justify-start">
                         {/* Header - Positioned on top of everything */}
-                        <div className="mb-8 md:mb-12 text-center shrink-0 relative z-50">
+                        <div className="mb-4 md:mb-8 text-center shrink-0 relative z-50">
                             <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
                                 <motion.h2
                                     initial={{ opacity: 0, y: 10 }}
@@ -293,7 +242,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                     viewport={{ once: true }}
                                     className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
                                 >
-                                    Program <span className="text-[#00C4D4]">Details</span>
+                                    Cybersecurity <span className="text-[#00C4D4]">Awareness</span>
                                 </motion.h2>
                             </div>
                         </div>
@@ -353,23 +302,23 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black shadow-none relative overflow-hidden z-10 ml-auto"
+                                className="w-full max-w-2xl p-5 sm:p-6 border-[10px] border-black shadow-none relative overflow-hidden z-10 ml-auto"
                                 style={{
                                     background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
                                 }}
                             >
-                                <div className="relative z-10 space-y-6">
+                                <div className="relative z-10 space-y-3 sm:space-y-4">
                                     {/* Badges */}
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        className="flex flex-wrap items-center gap-3"
+                                        className="flex flex-wrap items-center gap-2"
                                     >
-                                        <span className="bg-[#00C4D4] text-black text-[10px] font-extrabold px-2 py-0.5  uppercase tracking-tighter shadow-sm">
+                                        <span className="bg-[#00C4D4] text-black text-[9px] sm:text-[10px] font-extrabold px-2 py-0.5  uppercase tracking-tighter shadow-sm">
                                             Featured Program
                                         </span>
-                                        <span className="bg-[#00C4D4]/20 text-[#00C4D4] border border-[#00C4D4]/30 text-[10px] font-extrabold px-2 py-0.5  uppercase tracking-tighter shadow-sm">
+                                        <span className="bg-[#00C4D4]/20 text-[#00C4D4] border border-[#00C4D4]/30 text-[9px] sm:text-[10px] font-extrabold px-2 py-0.5  uppercase tracking-tighter shadow-sm">
                                             New 2026 Edition
                                         </span>
                                     </motion.div>
@@ -378,9 +327,9 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        className="flex items-center gap-2 text-slate-300 text-sm font-medium pt-2"
+                                        className="flex items-center gap-2 text-slate-300 text-xs sm:text-sm font-medium pt-1"
                                     >
-                                        <span className="w-8 h-px bg-[#00C4D4]"></span>
+                                        <span className="w-6 sm:w-8 h-px bg-[#00C4D4]"></span>
                                         <span className="font-bold text-[#00C4D4]">Ebanex International Training</span>
                                     </motion.div>
 
@@ -388,7 +337,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        className="text-base sm:text-lg text-white/90 leading-relaxed font-normal text-justify"
+                                        className="text-sm sm:text-base text-white/90 leading-relaxed font-normal text-start"
                                     >
                                         Build a security-aware workforce equipped to recognize threats, protect sensitive
                                         data, and respond effectively to incidents.
@@ -398,30 +347,30 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        className="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-4 border-t border-white/10"
+                                        className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-3 border-t border-white/10"
                                     >
                                         {/* Left Column - Duration Info */}
-                                        <div className="flex flex-col gap-3 text-sm font-medium text-slate-300">
-                                            <div className="flex items-center gap-3">
-                                                <Calendar className="w-5 h-5 text-blue-400" />
+                                        <div className="flex flex-col gap-2 text-xs sm:text-sm font-medium text-slate-300">
+                                            <div className="flex items-center gap-2 sm:gap-3">
+                                                <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
                                                 <span>6 Days (Instructor-Led)</span>
                                             </div>
-                                            <div className="flex items-center gap-3">
-                                                <Clock className="w-5 h-5 text-green-400" />
+                                            <div className="flex items-center gap-2 sm:gap-3">
+                                                <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-green-400" />
                                                 <span>38 Hours (Self-Paced)</span>
                                             </div>
                                         </div>
 
                                         {/* Vertical / Horizontal Separator */}
-                                        <div className="hidden sm:block w-px bg-white/10 h-16"></div>
-                                        <div className="sm:hidden w-full h-px bg-white/10 my-2"></div>
+                                        <div className="hidden sm:block w-px bg-white/10 h-10"></div>
+                                        <div className="sm:hidden w-full h-px bg-white/10 my-1"></div>
 
                                         {/* Right Column - Designer Info */}
                                         <div className="text-sm font-medium text-white">
-                                            <p className="text-[10px] sm:text-[11px] text-[#00C4D4] uppercase font-bold tracking-widest mb-1">
+                                            <p className="text-[9px] sm:text-[10px] text-[#00C4D4] uppercase font-bold tracking-widest mb-0.5 sm:mb-1">
                                                 Designed and delivered by
                                             </p>
-                                            <p className="text-sm md:text-base font-semibold text-white">
+                                            <p className="text-xs sm:text-sm font-semibold text-white">
                                                 EBANEX International Faculty Team
                                             </p>
                                         </div>
@@ -431,15 +380,15 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                         initial={{ opacity: 0, y: 10 }}
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true }}
-                                        className="flex flex-wrap gap-4 pt-6"
+                                        className="flex flex-wrap gap-2 sm:gap-3 pt-3"
                                     >
-                                        <button className="bg-[#00C4D4] text-black px-6 py-2.5  font-bold hover:bg-[#00b0c0] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group text-sm shadow-lg">
+                                        <button className="bg-[#00C4D4] text-black px-4 sm:px-5 py-2 font-bold hover:bg-[#00b0c0] hover:scale-105 active:scale-95 transition-all flex items-center gap-2 group text-xs sm:text-sm shadow-lg">
                                             View Training Programs{' '}
-                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                                         </button>
-                                        <button className="bg-transparent text-white border-2 border-white/30 px-6 py-2.5  font-bold hover:bg-white/10 hover:scale-105 active:scale-95 transition-all flex items-center gap-3 group text-sm shadow-lg hover:border-white/60">
+                                        <button className="bg-transparent text-white border-2 border-white/30 px-4 sm:px-5 py-2 font-bold hover:bg-white/10 hover:scale-105 active:scale-95 transition-all flex items-center gap-2 group text-xs sm:text-sm shadow-lg hover:border-white/60">
                                             Request Corporate Training{' '}
-                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                                         </button>
                                     </motion.div>
                                 </div>
@@ -604,7 +553,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
 
 
                 {/* Client Success Story (Styled like CTA Section) */}
-                <section className="relative z-40 overflow-visible bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center min-h-[50vh] pt-8 sm:pt-12 pb-8 sm:pb-16 px-4 w-full">
+                <section className="mt-8 sm:mt-12 relative z-40 overflow-visible bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center min-h-[50vh] pt-8 sm:pt-12 pb-8 sm:pb-16 px-4 w-full">
                     {/* Background */}
                     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                         <Squares
@@ -757,10 +706,21 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                 </section>
 
                 {/* What You'll Learn & Measurable Impact - Combined Section */}
+                <div className="relative w-full px-4 sm:px-6 lg:px-[100px] pb-0 bg-black z-20">
+                    {/* Animated Grid Boxes Background */}
+                    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                        <Squares
+                            speed={0.13}
+                            squareSize={40}
+                            direction="diagonal"
+                            borderColor="rgba(255,255,255,0.08)"
+                            hoverFillColor="rgba(255,255,255,0.05)"
+                        />
+                    </div>
                     <div
                         ref={syllabusRef}
                         className="relative"
-                        style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0f2744 50%, #0a1628 100%)' }}
+                        style={{ backgroundColor: '#00C4D4' }}
                     >
                         {/* Wave Background */}
                         <motion.div
@@ -872,15 +832,15 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                 viewport={{ once: true }}
                                 className="mb-20"
                             >
-                                <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12">
+                                <h2 className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12 text-black">
                                     What You'll Learn
                                 </h2>
 
                                 <div className="grid md:grid-cols-2 gap-12">
                                     {/* Technical Skills */}
-                                    <div>
-                                        <h3 className="text-xl font-semibold text-slate-200 mb-6 flex items-center gap-3">
-                                            <span className="w-2 h-8 bg-blue-500 "></span>
+                                    <div className="p-8 shadow-2xl" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
+                                        <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3">
+                                            <span className="w-2 h-8 bg-[#00C4D4]"></span>
                                             Technical Skills
                                         </h3>
                                         <ul className="space-y-4">
@@ -894,13 +854,13 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                             ].map((item, index) => (
                                                 <motion.li
                                                     key={index}
-                                                    className="flex items-start gap-3 text-slate-300 font-light leading-relaxed"
+                                                    className="flex items-start gap-3 text-white/80 font-medium leading-relaxed"
                                                     initial={{ opacity: 0, x: -20 }}
                                                     whileInView={{ opacity: 1, x: 0 }}
                                                     transition={{ duration: 0.4, delay: index * 0.1 }}
                                                     viewport={{ once: true }}
                                                 >
-                                                    <CheckCircle className="w-5 h-5 text-green-400 mt-0.5 shrink-0 flex-shrink-0" />
+                                                    <CheckCircle className="w-5 h-5 text-[#00C4D4] mt-0.5 shrink-0 flex-shrink-0" />
                                                     {item}
                                                 </motion.li>
                                             ))}
@@ -908,9 +868,9 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                     </div>
 
                                     {/* Business Benefits */}
-                                    <div>
-                                        <h3 className="text-xl font-semibold text-slate-200 mb-6 flex items-center gap-3">
-                                            <span className="w-2 h-8 bg-teal-500 "></span>
+                                    <div className="p-8 shadow-2xl" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
+                                        <h3 className="text-xl font-black text-white mb-6 flex items-center gap-3">
+                                            <span className="w-2 h-8 bg-[#00C4D4]"></span>
                                             Business Benefits
                                         </h3>
                                         <ul className="space-y-4">
@@ -924,13 +884,13 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                             ].map((item, index) => (
                                                 <motion.li
                                                     key={index}
-                                                    className="flex items-start gap-3 text-slate-300 font-light leading-relaxed"
+                                                    className="flex items-start gap-3 text-white/80 font-medium leading-relaxed"
                                                     initial={{ opacity: 0, x: -20 }}
                                                     whileInView={{ opacity: 1, x: 0 }}
                                                     transition={{ duration: 0.4, delay: index * 0.1 }}
                                                     viewport={{ once: true }}
                                                 >
-                                                    <CheckCircle className="w-5 h-5 text-teal-400 mt-0.5 shrink-0 flex-shrink-0" />
+                                                    <CheckCircle className="w-5 h-5 text-[#00C4D4] mt-0.5 shrink-0 flex-shrink-0" />
                                                     {item}
                                                 </motion.li>
                                             ))}
@@ -943,7 +903,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                             <div className="grid lg:grid-cols-2 gap-16">
                                 {/* Left Side - Static/Sticky */}
                                 <div className="lg:sticky lg:top-[120px] lg:h-fit">
-                                    <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-light font-heading mb-8 text-white">
+                                    <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-black font-heading mb-8 text-black">
                                         Measurable Impact
                                     </h2>
                                     <div className="grid grid-cols-2 gap-4 mb-8">
@@ -955,21 +915,26 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                         ].map((stat, index) => (
                                             <div
                                                 key={index}
-                                                className="text-center p-4 border border-white/10 bg-slate-900/30"
+                                                className="text-center p-5 sm:p-6 flex flex-col justify-center items-center shadow-xl"
+                                                style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
                                             >
-                                                <div className="text-4xl font-light text-[#00C4D4] mb-1">
+                                                <div className="text-4xl sm:text-5xl font-black text-[#00C4D4] mb-2 drop-shadow-md">
                                                     <Counter target={stat.metric} suffix={stat.suffix} />
                                                 </div>
-                                                <div className="text-sm text-slate-300 font-light">{stat.label}</div>
+                                                <div className="text-[10px] sm:text-xs text-white/90 font-bold uppercase tracking-widest">{stat.label}</div>
                                             </div>
                                         ))}
                                     </div>
-                                    <div className="flex flex-col sm:flex-row gap-4">
-                                        <button className="bg-[#00C4D4] text-black px-6 py-3  font-medium hover:bg-[#00b0c0] transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+                                    <div className="flex flex-col xl:flex-row gap-3 mt-6">
+                                        <button 
+                                            className="w-full bg-transparent border-[3px] border-black text-black px-4 sm:px-5 py-3 font-black uppercase tracking-widest text-[10px] sm:text-[11px] hover:bg-black hover:text-[#00C4D4] transition-colors flex items-center justify-center gap-2"
+                                        >
                                             Request Corporate Training
-                                            <ArrowRight className="w-4 h-4" />
+                                            <ArrowRight className="w-4 h-4 flex-shrink-0" />
                                         </button>
-                                        <button className="bg-transparent text-white border border-white/30 px-6 py-3  font-medium hover:bg-white/10 transition-colors flex items-center justify-center whitespace-nowrap">
+                                        <button 
+                                            className="w-full bg-transparent border-[3px] border-black text-black px-4 sm:px-5 py-3 font-black uppercase tracking-widest text-[10px] sm:text-[11px] hover:bg-black hover:text-[#00C4D4] transition-colors flex items-center justify-center"
+                                        >
                                             Schedule & Pricing
                                         </button>
                                     </div>
@@ -978,10 +943,10 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                 {/* Right Side - Scrollable */}
                                 <div className="space-y-12 pb-32">
                                     <div>
-                                        <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
+                                        <h3 className="text-xl font-black text-black mb-4 pb-3 border-b-2 border-black/20">
                                             How You'll Be Evaluated
                                         </h3>
-                                        <p className="text-sm text-slate-400 mb-6">
+                                        <p className="text-sm text-black/80 font-medium mb-6">
                                             Our comprehensive assessment framework ensures you master every competency
                                             through four key phases
                                         </p>
@@ -1006,22 +971,22 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                             ].map((phase, index) => (
                                                 <li
                                                     key={index}
-                                                    className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
+                                                    className="p-5 sm:p-6 shadow-xl"
+                                                    style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
                                                 >
-                                                    <span className="w-2 h-2  bg-[#00C4D4] mt-2 flex-shrink-0"></span>
                                                     <div>
-                                                        <span className="text-white font-light block mb-1">{phase.phase}</span>
-                                                        <span className="text-slate-400 text-sm font-light">{phase.desc}</span>
+                                                        <span className="text-[#00C4D4] font-black block mb-1 tracking-wide">{phase.phase}</span>
+                                                        <span className="text-white/90 font-medium text-sm leading-relaxed">{phase.desc}</span>
                                                     </div>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-light text-white mb-4 pb-3 border-b border-white/10">
+                                        <h3 className="text-xl font-black text-black mb-4 pb-3 border-b-2 border-black/20">
                                             Tailored for Your Industry
                                         </h3>
-                                        <p className="text-sm text-slate-400 mb-6">
+                                        <p className="text-sm text-black/80 font-medium mb-6">
                                             Our curriculum is customized to address the unique security challenges and
                                             compliance requirements of your sector
                                         </p>
@@ -1054,14 +1019,14 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                             ].map((item, index) => (
                                                 <li
                                                     key={index}
-                                                    className="flex items-start gap-4 p-4 bg-slate-900/30 border border-white/5"
+                                                    className="p-5 sm:p-6 shadow-xl"
+                                                    style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
                                                 >
-                                                    <span className="w-2 h-2  bg-teal-400 mt-2 flex-shrink-0"></span>
                                                     <div>
-                                                        <span className="text-white font-medium text-sm block">
+                                                        <span className="text-[#00C4D4] font-black text-sm block mb-1 tracking-wide">
                                                             {item.title}
                                                         </span>
-                                                        <span className="text-slate-400 text-sm font-light">{item.desc}</span>
+                                                        <span className="text-white/90 font-medium text-sm leading-relaxed">{item.desc}</span>
                                                     </div>
                                                 </li>
                                             ))}
@@ -1103,130 +1068,138 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                         </svg>
                     </motion.div>
                 </div>
-
-                {/* Meet Your Instructor Section */}
-            <div className="w-full py-16 px-[100px] bg-slate-900">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="max-w-5xl mx-auto"
-                >
-                    <motion.h2
-                        className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-4 text-center"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        viewport={{ once: true }}
-                    >
-                        Meet Your Instructor
-                    </motion.h2>
-                    <p className="text-slate-400 text-center mb-12 max-w-2xl mx-auto">
-                        Learn from industry experts with years of hands-on experience in cybersecurity
-                    </p>
-
-                    <div className="flex flex-col md:flex-row gap-12 items-start">
-                        {/* Instructor Photo */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="w-full md:w-72 flex-shrink-0"
-                        >
-                            <div className="relative">
-                                <div className="aspect-[3/4] overflow-hidden  bg-slate-800">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces"
-                                        alt="Instructor"
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                                <div className="absolute -bottom-4 -right-4 bg-[#00C4D4] text-black px-4 py-2  text-sm font-bold">
-                                    CISSP, CISM
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        {/* Instructor Details */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true }}
-                            className="flex-1"
-                        >
-                            <h3 className="text-2xl font-bold text-white mb-2">Dr. James Morrison</h3>
-                            <p className="text-[#00C4D4] font-medium mb-4">
-                                Senior Cybersecurity Consultant & Lead Instructor
-                            </p>
-                            <p className="text-slate-300 font-light leading-relaxed mb-6">
-                                With over 15 years of experience in cybersecurity, Dr. Morrison has helped Fortune
-                                500 companies and government agencies strengthen their security posture. He holds
-                                multiple industry-recognized certifications and has trained thousands of
-                                professionals worldwide. His practical approach to cybersecurity education ensures
-                                participants gain real-world skills they can immediately apply in their
-                                organizations.
-                            </p>
-
-                            {/* Certifications */}
-                            <div className="mb-6">
-                                <h4 className="text-white font-semibold mb-3">Certifications</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {['CISSP', 'CISM', 'CEH', 'CISA', 'CRMA', 'ISO 27001 Lead Auditor'].map(
-                                        (cert, index) => (
-                                            <span
-                                                key={index}
-                                                className="px-3 py-1 bg-slate-800 border border-white/10  text-sm text-slate-300"
-                                            >
-                                                {cert}
-                                            </span>
-                                        ),
-                                    )}
-                                </div>
-                            </div>
-
-                            {/* Experience Stats */}
-                            <div className="grid grid-cols-3 gap-4">
-                                {[
-                                    { number: '15+', label: 'Years Experience' },
-                                    { number: '5000+', label: 'Professionals Trained' },
-                                    { number: '200+', label: 'Organizations Served' },
-                                ].map((stat, index) => (
-                                    <div key={index} className="text-center p-3 bg-slate-800/50 ">
-                                        <div className="text-xl font-bold text-[#00C4D4]">{stat.number}</div>
-                                        <div className="text-xs text-slate-400">{stat.label}</div>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    </div>
-                </motion.div>
             </div>
 
+            {/* Meet Your Instructor Section (Styled like Founder's Message layout) */}
+            <section className="relative flex flex-col justify-center py-16 sm:py-24 w-full bg-[linear-gradient(135deg,#000000_50%,#00C4D4_50%)] overflow-visible z-20">
+                {/* Background Squares */}
+                <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                    <Squares
+                        speed={0.13}
+                        squareSize={40}
+                        direction="diagonal"
+                        borderColor="rgba(255,255,255,0.08)"
+                        hoverFillColor="rgba(255,255,255,0.05)"
+                    />
+                </div>
+
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center h-full justify-center">
+                    {/* Content Container */}
+                    <div className="relative w-full max-w-5xl flex items-center justify-center lg:justify-end">
+                        {/* Background Image (Stacked Under, Left Side) */}
+                        <div className="absolute left-[-5%] lg:left-[-10%] top-[50%] -translate-y-1/2 w-[280px] sm:w-[400px] lg:w-[480px] aspect-[4/5] z-20 opacity-100">
+                            <img 
+                                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces"
+                                alt="Dr. James Morrison" 
+                                className="w-full h-full object-cover border-[10px] border-black"
+                            />
+                        </div>
+
+                        {/* Main Message Box */}
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="w-full max-w-2xl p-4 sm:p-6 border-[10px] border-black shadow-none relative overflow-hidden z-30 ml-auto bg-[#0a1628]"
+                            style={{
+                                background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+                            }}
+                        >
+                            <div className="relative z-10">
+                                {/* Title shifted inside without inflating the box */}
+                                <h2 className="text-sm sm:text-base lg:text-lg font-black font-heading text-white uppercase tracking-tight mb-2">
+                                    Meet Your <span className="text-[#00C4D4]">Instructor</span>
+                                </h2>
+
+                                <blockquote className="text-xs sm:text-sm lg:text-base font-normal text-white leading-relaxed mb-3 relative px-2 sm:px-3">
+                                    <span className="text-[#00C4D4] text-3xl sm:text-4xl font-serif absolute -top-2 -left-1 opacity-50">&ldquo;</span>
+                                    With over 15 years of experience in cybersecurity, I have helped Fortune 500 companies and government agencies strengthen their security posture and transform their organizational culture. My practical approach to cybersecurity education ensures participants gain real-world skills they can immediately apply. Having trained thousands of professionals worldwide, I believe that human intuition combined with cutting-edge knowledge is the ultimate shield against modern threats.
+                                    <span className="text-[#00C4D4] text-3xl sm:text-4xl font-serif absolute -bottom-4 -right-1 opacity-50">&rdquo;</span>
+                                </blockquote>
+
+                                <div className="space-y-4">
+                                    
+                                    {/* Embedded Stats Grid */}
+                                    <div className="grid grid-cols-3 gap-2 py-0">
+                                        {[
+                                            { number: '15+', label: 'Years Exp' },
+                                            { number: '5k+', label: 'Trained' },
+                                            { number: '200+', label: 'Companies' },
+                                        ].map((stat, index) => (
+                                            <div key={index} className="text-center p-1 sm:p-2 bg-black/20 border-2 border-black">
+                                                <div className="text-base sm:text-lg font-black text-[#00C4D4]">{stat.number}</div>
+                                                <div className="text-[8px] sm:text-[9px] uppercase tracking-widest text-white/70 mt-0 sm:mt-1 font-bold">{stat.label}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 pt-3 border-t border-white/10 w-full">
+                                        <div className="flex gap-3 shrink-0">
+                                            <a href="#" className="w-10 h-10 bg-black flex items-center justify-center hover:bg-[#00C4D4] transition-colors border-2 border-black hover:text-black text-white">
+                                                <Linkedin size={16} className="shrink-0" />
+                                            </a>
+                                            <a href="#" className="w-10 h-10 bg-black flex items-center justify-center hover:bg-[#00C4D4] transition-colors border-2 border-black hover:text-black text-white">
+                                                <Twitter size={16} className="shrink-0" />
+                                            </a>
+                                        </div>
+                                        <div className="sm:border-l border-white/10 sm:pl-4 shrink-0">
+                                            <h3 className="text-base sm:text-lg font-black text-white uppercase tracking-tighter leading-tight">Dr. James Morrison</h3>
+                                            <p className="text-[#00C4D4] text-[10px] sm:text-[11px] font-bold uppercase tracking-widest mt-1">Lead Instructor</p>
+                                        </div>
+                                        
+                                        <div className="mt-2 sm:mt-0 sm:ml-auto shrink-0 bg-[#00C4D4] text-black px-3 py-1.5 sm:px-4 sm:py-2 font-black text-[9px] sm:text-[10px] uppercase tracking-widest border-2 border-black shadow-sm self-start sm:self-center">
+                                            CISSP, CISM, CEH
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/* Decorative corner accent */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#00C4D4]/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* FAQ Section */}
             {/* FAQ Section */}
             <motion.div
                 id="faqs"
-                className="w-full py-16 px-[100px]"
+                className="relative w-full py-16 sm:py-24 px-4 sm:px-6 bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] border-y-8 border-black overflow-hidden isolate"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
             >
-                <motion.h2
-                    className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12 text-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                >
-                    Frequently Asked Questions
-                </motion.h2>
+                {/* Background Squares */}
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    <Squares
+                        speed={0.13}
+                        squareSize={40}
+                        direction="diagonal"
+                        borderColor="rgba(255,255,255,0.08)"
+                        hoverFillColor="rgba(255,255,255,0.05)"
+                    />
+                </div>
 
-                <div className="max-w-5xl mx-auto">
-                    {[
-                        {
+                {/* Header styled to match corporate aesthetic */}
+                <div className="mb-12 md:mb-16 text-center shrink-0 relative z-50">
+                    <div className="select-none inline-block bg-black py-3 px-6 sm:px-8 border border-white/10 shadow-none">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
+                        >
+                            Frequently Asked <span className="text-[#00C4D4]">Questions</span>
+                        </motion.h2>
+                    </div>
+                </div>
+
+                <motion.div layout className="relative z-10 max-w-4xl mx-auto space-y-4">
+                    <AnimatePresence initial={false}>
+                        {[
+                            {
                             question: 'Who should take the Cybersecurity Awareness Training?',
                             answer:
                                 'This program is designed for all employees across an organization, regardless of their technical background. From executives to frontline staff, anyone who uses computers, emails, or handles sensitive data will benefit from this training. It is particularly valuable for organizations looking to build a strong security culture.',
@@ -1257,63 +1230,64 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                             answer:
                                 'We provide comprehensive reporting that includes pre and post-training assessments, phishing simulation results, knowledge retention scores, and behavioral metrics. Our analytics dashboard helps organizations track security awareness progress over time and identify areas requiring additional training.',
                         },
-                    ].map((faq, index) => (
+                    ].slice(0, showAllFaqs ? 6 : 3).map((faq, index) => (
                         <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="mb-4"
+                            layout
+                            key={faq.question}
+                            initial={{ opacity: 0, height: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, height: 'auto', scale: 1 }}
+                            exit={{ opacity: 0, height: 0, scale: 0.95, overflow: 'hidden' }}
+                            transition={{ duration: 0.4, ease: "easeInOut" }}
+                            className="w-full"
                         >
                             <motion.div
-                                className={`relative overflow-hidden  transition-all duration-500 ${openFaq === index
-                                        ? 'bg-gradient-to-r from-blue-900/40 to-teal-900/30 border-blue-500/30'
-                                        : 'bg-slate-900/50 border border-white/10 hover:border-white/20'
+                                className={`relative overflow-hidden transition-all duration-300 border-[3px] ${openFaq === index
+                                        ? 'border-[#00C4D4] shadow-[6px_6px_0px_0px_rgba(0,196,212,0.3)]'
+                                        : 'border-black'
                                     }`}
+                                style={{
+                                    background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+                                }}
                             >
-                                {/* Background glow effect when open */}
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: openFaq === index ? 1 : 0 }}
-                                    className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-teal-500/5"
-                                />
-
                                 <button
                                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                                    className="relative w-full flex items-center justify-between p-6 text-left group"
+                                    className="relative w-full flex items-center justify-between p-4 sm:p-6 text-left group"
                                 >
                                     <div className="flex items-center gap-4">
+                                        {/* Blocky number counter */}
                                         <motion.span
-                                            className={`flex-shrink-0 w-8 h-8  flex items-center justify-center text-sm font-bold ${openFaq === index
-                                                    ? 'bg-blue-500 text-white'
-                                                    : 'bg-white/10 text-slate-400 group-hover:bg-white/20'
+                                            className={`flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 border-2 border-black flex items-center justify-center text-xs sm:text-sm font-black transition-colors ${openFaq === index
+                                                    ? 'bg-black text-[#00C4D4]'
+                                                    : 'bg-[#00C4D4] text-black group-hover:bg-white'
                                                 }`}
                                             animate={{ scale: openFaq === index ? 1 : 1 }}
                                         >
-                                            {index + 1}
+                                            {String(index + 1).padStart(2, '0')}
                                         </motion.span>
+
+                                        {/* Sharp capitalized typography */}
                                         <span
-                                            className={`font-medium text-lg transition-colors ${openFaq === index ? 'text-white' : 'text-slate-300 group-hover:text-white'
+                                            className={`font-black uppercase tracking-tight text-xs sm:text-sm lg:text-base transition-colors pr-4 ${openFaq === index ? 'text-white' : 'text-white/80 group-hover:text-[#00C4D4]'
                                                 }`}
                                         >
                                             {faq.question}
                                         </span>
                                     </div>
 
+                                    {/* Unyielding Chevron Block */}
                                     <motion.div
                                         animate={{ rotate: openFaq === index ? 180 : 0 }}
                                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                        className={`w-10 h-10  flex items-center justify-center ${openFaq === index
-                                                ? 'bg-blue-500 text-white'
-                                                : 'bg-white/10 text-slate-400 group-hover:bg-white/20 group-hover:text-white'
+                                        className={`shrink-0 w-8 h-8 sm:w-10 sm:h-10 border-2 border-black flex items-center justify-center transition-colors ${openFaq === index
+                                                ? 'bg-black text-[#00C4D4]'
+                                                : 'bg-transparent text-white/50 group-hover:bg-[#00C4D4] group-hover:text-black'
                                             }`}
                                     >
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path
                                                 strokeLinecap="round"
                                                 strokeLinejoin="round"
-                                                strokeWidth={2}
+                                                strokeWidth={3}
                                                 d="M19 9l-7 7-7-7"
                                             />
                                         </svg>
@@ -1326,9 +1300,9 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                         height: openFaq === index ? 'auto' : 0,
                                         opacity: openFaq === index ? 1 : 0,
                                     }}
-                                    transition={{ duration: 0.4, ease: 'easeInOut' }}
+                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
                                 >
-                                    <div className="relative px-6 pb-6 pl-[72px] pr-16">
+                                    <div className="relative px-4 sm:px-6 pb-4 sm:pb-6 pl-[60px] sm:pl-[80px] pr-4 sm:pr-12">
                                         <motion.p
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{
@@ -1336,7 +1310,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                                 y: openFaq === index ? 0 : 10,
                                             }}
                                             transition={{ duration: 0.3, delay: 0.1 }}
-                                            className="text-slate-400 font-light leading-relaxed"
+                                            className="text-white/90 font-medium leading-relaxed text-xs sm:text-sm"
                                         >
                                             {faq.answer}
                                         </motion.p>
@@ -1345,7 +1319,31 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                             </motion.div>
                         </motion.div>
                     ))}
-                </div>
+                    </AnimatePresence>
+                </motion.div>
+
+                {/* Show All FAQs Button */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mt-8 flex justify-center relative z-10"
+                >
+                    <button
+                        onClick={() => setShowAllFaqs(!showAllFaqs)}
+                        className="bg-transparent text-white border-2 border-[#00C4D4] px-6 py-2.5 font-black hover:bg-[#00C4D4] hover:text-black active:scale-95 transition-all flex items-center gap-2 group text-xs sm:text-sm shadow-none uppercase tracking-widest"
+                    >
+                        {showAllFaqs ? 'Show Less' : 'View All FAQs'}
+                        <svg 
+                            className={`w-4 h-4 transition-transform duration-300 ${showAllFaqs ? 'rotate-180' : ''}`} 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                </motion.div>
             </motion.div>
 
             {/* Call to Action */}
@@ -1356,59 +1354,67 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
             >
-                <div className="relative min-h-[500px] flex items-center">
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                        <img
-                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80"
-                            alt="Team training session"
-                            className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-900/70" />
+                <section className="h-[90vh] relative z-40 overflow-visible bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center py-8 sm:py-12 px-4">
+                    {/* Background */}
+                    <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                    <Squares
+                        speed={0.13}
+                        squareSize={40}
+                        direction="diagonal"
+                        borderColor="rgba(255,255,255,0.08)"
+                        hoverFillColor="rgba(255,255,255,0.05)"
+                    />
                     </div>
 
-                    {/* Content */}
-                    <div className="relative z-10 max-w-7xl mx-auto px-[100px] py-20 w-full">
-                        <div className="max-w-2xl">
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6 }}
-                                viewport={{ once: true }}
-                            >
-                                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-                                    Ready to Build a Security-Aware Workforce?
-                                </h2>
-                                <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-                                    Partner with Ebanex International to transform your employees into your first line
-                                    of defense against cyber threats. Our comprehensive training programs are tailored
-                                    to your organization's unique needs.
-                                </p>
-                                <div className="flex flex-wrap gap-4">
-                                    <motion.button
-                                        className="inline-flex items-center gap-3 px-8 py-4 bg-[#00C4D4] hover:bg-[#00b0c0] text-black font-bold  transition-colors"
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        Request Corporate Training
-                                        <ArrowRight className="w-5 h-5" />
-                                    </motion.button>
-                                    <motion.button
-                                        className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-white/30 hover:border-white text-white font-semibold  transition-colors"
-                                        whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        View All Programs
-                                    </motion.button>
-                                </div>
-                            </motion.div>
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
+
+                    {/* CTA Card Container */}
+                    <div className="relative w-full max-w-4xl flex items-center justify-center lg:justify-start">
+                        {/* Background Image (Stacked Under) */}
+                        <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-square z-0 opacity-100">
+                        <img 
+                            src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" 
+                            className="w-full h-full object-cover border-[10px] border-black"
+                            alt="Decoration"
+                        />
+                        </div>
+
+                        {/* CTA Card */}
+                        <div 
+                        className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-10 overflow-hidden"
+                        style={{
+                            background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+                        }}
+                        >
+                        <div className="relative z-10 text-center sm:text-left">
+                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight mb-4 uppercase tracking-tighter">
+                            Ready to <span className="text-[#00C4D4]">Train</span> Your <br className="hidden sm:block" /> 
+                            Workforce?
+                            </h2>
+                            
+                            <p className="text-white/80 text-xs sm:text-sm mb-8 leading-relaxed font-medium max-w-lg">
+                            Partner with Ebanex International to transform your employees into your first line
+                            of defense against cyber threats. Our comprehensive training programs are tailored
+                            to your organization's unique needs.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3">
+                            <button className="h-11 sm:h-12 px-6 bg-[#00C4D4] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2">
+                                Request Corporate Training <ArrowRight size={14} />
+                            </button>
+
+                            <button className="h-11 sm:h-12 px-6 border-2 border-white text-white rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95">
+                                View All Programs
+                            </button>
+                            </div>
+                        </div>
+                        
+                        {/* Decorative corner accent */}
+                        <div className="absolute top-0 right-0 w-24 h-24 bg-[#00C4D4]/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
                         </div>
                     </div>
-
-                    {/* Decorative elements */}
-                    <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-blue-500/10 to-transparent pointer-events-none" />
-                    <div className="absolute bottom-0 right-20 w-40 h-40 bg-blue-500/20  blur-3xl pointer-events-none" />
-                </div>
+                    </div>
+                </section>
             </motion.div>
         </>
     );
