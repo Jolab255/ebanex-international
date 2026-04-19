@@ -17,13 +17,7 @@ const Partnerships = lazy(() => import('./pages/Partnerships'));
 const Careers = lazy(() => import('./pages/Careers'));
 const News = lazy(() => import('./pages/News'));
 const Contact = lazy(() => import('./pages/Contact'));
-const CybersecurityAwarenessPrograms = lazy(() => import('./pages/CybersecurityAwarenessPrograms'));
-const EthicalHackingThreatIntelligence = lazy(
-  () => import('./pages/EthicalHackingThreatIntelligence'),
-);
-const DigitalRiskManagement = lazy(() => import('./pages/DigitalRiskManagement'));
-const IncidentResponseTraining = lazy(() => import('./pages/IncidentResponseTraining'));
-const DataPrivacyProtection = lazy(() => import('./pages/DataPrivacyProtection'));
+const TrainingProgramDetail = lazy(() => import('./pages/TrainingProgramDetail'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App: React.FC = () => {
@@ -60,6 +54,14 @@ const App: React.FC = () => {
                       element={
                         <Suspense fallback={<PageLoader />}>
                           <Training />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/training/:programId"
+                      element={
+                        <Suspense fallback={<PageLoader />}>
+                          <TrainingProgramDetail />
                         </Suspense>
                       }
                     />
