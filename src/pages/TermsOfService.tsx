@@ -9,6 +9,7 @@ const TermsOfService: React.FC = () => {
       <SEO 
         title="Terms of Service | Ebanex International"
         description="Terms and conditions for utilizing Ebanex International's training and advisory services."
+        canonical="https://ebanexint.co.tz/terms"
       />
       
       <div className="absolute inset-0 z-0 pointer-events-none">

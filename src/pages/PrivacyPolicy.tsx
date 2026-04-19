@@ -9,6 +9,7 @@ const PrivacyPolicy: React.FC = () => {
       <SEO 
         title="Privacy Policy | Ebanex International"
         description="Privacy policy and data protection protocols for Ebanex International."
+        canonical="https://ebanexint.co.tz/privacy"
       />
       
       <div className="absolute inset-0 z-0 pointer-events-none">

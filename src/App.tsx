@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { Navbar, TopBar, Footer, ScrollToTop } from './components/layout';
 import { ErrorBoundary, PageLoader, CookieConsent } from './components/common';
