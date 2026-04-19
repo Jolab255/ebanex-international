@@ -75,26 +75,25 @@ const CoreServicesSection: React.FC = () => {
       title: 'Capacity Building & Professional Development',
       desc: 'Strengthening workforce competencies and institutional performance through targeted training programs.',
       icon: <></>,
-      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200',
+      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200', // Focused institutional training setting
     },
     {
       title: 'Cybersecurity & Digital Skills',
       desc: 'Equipping professionals and institutions with practical knowledge and defensive strategies in digital environments.',
       icon: <></>,
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200',
+      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200', // Cyber operations/code desk
     },
     {
       title: 'Leadership & Organizational Development',
       desc: 'Developing leaders, teams, and effective workplace cultures that drive institutional growth.',
       icon: <></>,
-      image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200', // High-energy collaborative strategy session
     },
     {
       title: 'Institutional Advisory & Consulting',
       desc: 'Supporting organizations with strategy development, governance strengthening, and performance optimization.',
       icon: <></>,
-      image:
-        'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      image: 'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=1200', // Authoritative corporate boardroom
     },
   ];
 

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import { FitText } from '../../components/common';
 import aboutVideo from '../../assets/aboutv.mp4';
 
@@ -20,7 +20,7 @@ const WhoWeAreSection: React.FC = () => {
   }, [isInView]);
   
   return (
-    <section className="min-h-[90vh] flex flex-col justify-start pt-12 sm:pt-20 bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] relative z-20 overflow-hidden pb-16 sm:pb-20" ref={sectionRef}>
+    <section className="min-h-fit flex flex-col justify-start pt-12 sm:pt-20 bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] relative z-20 overflow-hidden pb-4 sm:pb-6" ref={sectionRef}>
       {/* Dynamic Background Overlay */}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,191,255,0.08),transparent_70%)]" />
       

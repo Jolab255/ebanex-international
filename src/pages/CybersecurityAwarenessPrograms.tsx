@@ -578,7 +578,7 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                     {/* Quote Mark */}
                                     <div className="text-[#00C4D4] font-serif text-6xl leading-none h-8 -ml-1 select-none">"</div>
 
-                                    <p className="text-white/90 text-base sm:text-lg mb-5 leading-relaxed font-medium italic mt-2 text-justify">
+                                    <p className="text-white/90 text-base sm:text-lg mb-5 leading-relaxed font-light italic mt-2 text-justify">
                                         The cybersecurity awareness training from Ebanex International transformed how our
                                         entire organization approaches security. What used to be ignored as 'IT stuff' is
                                         now part of our daily conversations. The phishing simulations alone reduced our
@@ -588,8 +588,8 @@ const CybersecurityAwarenessPrograms: React.FC = () => {
                                     <div className="flex items-center gap-4 border-t border-white/10 pt-4 w-full justify-center lg:justify-start">
                                         <div className="w-12 h-px bg-[#00C4D4]" />
                                         <div>
-                                            <h4 className="font-black text-sm sm:text-base text-white uppercase tracking-widest text-left">Sarah Mitchell</h4>
-                                            <p className="text-[#00C4D4] font-bold uppercase tracking-[0.2em] text-[10px] mt-1 text-left">
+                                            <h4 className="font-bold text-sm sm:text-base text-white uppercase tracking-widest text-left">Sarah Mitchell</h4>
+                                            <p className="text-[#00C4D4] font-medium uppercase tracking-[0.2em] text-[10px] mt-1 text-left">
                                                 Chief Operating Officer
                                             </p>
                                         </div>

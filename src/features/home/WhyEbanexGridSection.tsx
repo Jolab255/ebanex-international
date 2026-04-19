@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Globe as GlobeIcon, Shield, Zap, Target, Landmark, MapPin } from 'lucide-react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useScroll, useTransform, useSpring } from 'framer-motion';
 import { Squares } from '../../components/animations';
 import { FitText } from '../../components/common';
 import FeatureCard from './components/FeatureCard';
@@ -18,9 +18,6 @@ const WhyEbanexGridSection: React.FC = () => {
     damping: 30,
     restDelta: 0.001
   });
-
-  // Grid scrolls up while the section is pinned by CSS sticky
-  const gridY = useTransform(smoothProgress, [0, 1], [0, -300]);
 
   const features = [
     {
@@ -58,7 +55,7 @@ const WhyEbanexGridSection: React.FC = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative z-30 py-16 sm:py-24 w-full bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)]"
+      className="relative z-30 pt-4 sm:pt-6 pb-16 sm:pb-24 w-full bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)]"
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Squares

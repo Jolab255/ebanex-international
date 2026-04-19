@@ -29,7 +29,7 @@ const ClientsSection: React.FC = () => {
       description:
         'Partnering with national and local government bodies to build institutional capacity.',
       icon: Landmark,
-      image: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=800',
+      image: 'https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?q=80&w=1200', // Classical government/legal architecture
       accent: '#00BFFF',
     },
     {
@@ -37,7 +37,7 @@ const ClientsSection: React.FC = () => {
       category: 'Private Sector',
       description: 'Empowering private sector organizations with cutting-edge training.',
       icon: Building2,
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200', // Modern high-end business district
       accent: '#00BFFF',
     },
     {
@@ -45,7 +45,7 @@ const ClientsSection: React.FC = () => {
       category: 'Development',
       description: 'Supporting NGOs and development agencies in capacity building.',
       icon: HeartHandshake,
-      image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=800',
+      image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=1200', // Humanitarian/community coordination
       accent: '#00BFFF',
     },
     {
@@ -53,7 +53,7 @@ const ClientsSection: React.FC = () => {
       category: 'Manufacturing',
       description: 'Serving industrial, mining, and manufacturing companies.',
       icon: Factory,
-      image: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?q=80&w=800',
+      image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1200', // Heavy industrial facility
       accent: '#00BFFF',
     },
     {
@@ -61,7 +61,7 @@ const ClientsSection: React.FC = () => {
       category: 'Services',
       description: 'Delivering comprehensive solutions to financial institutions.',
       icon: Briefcase,
-      image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=800',
+      image: 'https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?q=80&w=1200', // Financial/Banking hub
       accent: '#00BFFF',
     },
     {
@@ -69,7 +69,7 @@ const ClientsSection: React.FC = () => {
       category: 'Individuals',
       description: 'Equipping individual professionals with certifications.',
       icon: User,
-      image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800',
+      image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200', // Specialized training environment
       accent: '#00BFFF',
     },
   ];

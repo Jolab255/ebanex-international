@@ -19,7 +19,7 @@ const CtaSection: React.FC = () => (
 
     <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
       {/* Header */}
-      <div className="text-center mb-6 sm:mb-8">
+      <div className="text-center mb-6 sm:mb-8 relative z-20">
         <div className="select-none mb-2 inline-block bg-black py-4 px-8">
           <FitText
             minScale={0.35}
@@ -46,10 +46,10 @@ const CtaSection: React.FC = () => (
       {/* CTA Card Container */}
       <div className="relative w-full max-w-4xl flex items-center justify-center lg:justify-start">
         {/* Background Image (Stacked Under) */}
-        <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-square z-0 opacity-100">
+        <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-square z-[-1] opacity-100">
           <img 
-            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1000&auto=format&fit=crop" 
-            className="w-full h-full object-cover rounded-full border-[10px] border-black"
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" // High-end architectural business visual
+            className="w-full h-full object-cover rounded-none border-[10px] border-black"
             alt="Decoration"
           />
         </div>

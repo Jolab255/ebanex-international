@@ -302,14 +302,14 @@ const IncidentResponseTraining: React.FC = () => {
                             <div className="w-full max-w-2xl p-5 sm:p-8 border-[10px] border-black relative z-10 overflow-hidden shadow-2xl mr-auto" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
                                 <div className="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left">
                                     <div className="text-[#00C4D4] font-serif text-6xl leading-none h-8 -ml-1 select-none">"</div>
-                                    <p className="text-white/90 text-base sm:text-lg mb-5 leading-relaxed font-medium italic mt-2 text-justify">
+                                    <p className="text-white/80 text-sm sm:text-base mb-5 leading-relaxed font-light italic mt-2 text-justify">
                                         We were hit by a sophisticated ransomware attack just three months after completing this training. Because of the tabletop exercises and playbooks we developed at Ebanex, our response team isolated the lateral movement in 15 minutes. We recovered without paying a dime.
                                     </p>
                                     <div className="flex items-center gap-4 border-t border-white/10 pt-4 w-full justify-center lg:justify-start">
                                         <div className="w-12 h-px bg-[#00C4D4]" />
                                         <div>
-                                            <h4 className="font-black text-sm sm:text-base text-white uppercase tracking-widest text-left">Martin Kinyua</h4>
-                                            <p className="text-[#00C4D4] font-bold uppercase tracking-[0.2em] text-[10px] mt-1 text-left">VP of Infrastructure, Regional Telecom Provider</p>
+                                            <h4 className="font-bold text-sm sm:text-base text-white uppercase tracking-widest text-left">Martin Kinyua</h4>
+                                            <p className="text-[#00C4D4] font-medium uppercase tracking-[0.2em] text-[10px] mt-1 text-left">VP of Infrastructure, Regional Telecom Provider</p>
                                         </div>
                                     </div>
                                 </div>

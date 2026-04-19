@@ -14,31 +14,31 @@ import {
 const TrainingApproachSection: React.FC = () => {
   const trainingItems = [
     {
-      img: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200',
+      img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200', // Focused professional workshop
       title: 'Practical Learning',
       desc: 'Results-driven learning focused on real-world application and immediate operational value.',
       sliderName: 'practical',
     },
     {
-      img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200',
+      img: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200', // Technical/Industrial Strategy
       title: 'Industry-Specific Design',
       desc: 'Customized training solutions tailored to meet the unique challenges of specific industries.',
       sliderName: 'industry',
     },
     {
-      img: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200',
+      img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200', // Elite Cyber Security Lab
       title: 'Hands-on Labs & Simulations',
       desc: 'Practical labs and simulations that translate theory into hands-on experience.',
       sliderName: 'labs',
     },
     {
-      img: 'https://images.unsplash.com/photo-1454165833772-d996d49513d7?q=80&w=1200',
+      img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200', // Professional remote collaboration
       title: 'Hybrid & Flexible Delivery',
       desc: 'Flexible training delivery combining online, in-person, and hybrid formats for maximum accessibility.',
       sliderName: 'hybrid',
     },
     {
-      img: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200',
+      img: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200', // Modern mentoring/transfer
       title: 'Train-the-Trainer',
       desc: 'Institutional knowledge transfer programs that empower your team to become internal training champions.',
       sliderName: 'trainer',
@@ -154,7 +154,7 @@ const TrainingApproachSection: React.FC = () => {
   };
 
   return (
-    <section className="min-h-[90vh] relative isolate overflow-hidden bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col justify-start pt-16 sm:pt-20 lg:pt-24 pb-12">
+    <section className="min-h-fit relative isolate overflow-hidden bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col justify-start pt-4 sm:pt-6 pb-12">
       {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Squares

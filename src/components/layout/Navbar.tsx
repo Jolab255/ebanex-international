@@ -217,9 +217,23 @@ const Navbar: React.FC = () => {
     setMobileCategoryExpanded(mobileCategoryExpanded === title ? null : title);
   };
 
-  const renderNavLink = (link: typeof NAVIGATION_LINKS[0]) => {
+  const renderNavLink = (link: typeof NAVIGATION_LINKS[0], index: number) => {
     const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
     const isActive = location.pathname === link.path;
+    const isEnabled = index < 2; // Only About Us and Training Programs are enabled
+
+    if (!isEnabled) {
+      return (
+        <div key={link.path} className="relative h-full flex items-center">
+          <span
+            className="text-[9px] xl:text-[10px] font-bold tracking-tight uppercase text-white/30 cursor-not-allowed whitespace-nowrap"
+            title="Coming Soon"
+          >
+            {link.label}
+          </span>
+        </div>
+      );
+    }
 
     return (
       <div key={link.path} className="relative h-full flex items-center">
@@ -293,11 +307,11 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="w-full z-[100] py-0 bg-black backdrop-blur-2xl border-b border-[#00BFFF]/10 sticky top-0" role="navigation" aria-label="Main Navigation">
-      <div className="w-full px-4 sm:px-6 flex items-center h-16 sm:h-20 lg:h-24 overflow-hidden">
+      <div className="w-full px-4 sm:px-6 flex items-center h-16 sm:h-20 lg:h-24">
         {/* Logo Shield */}
-        <div className="relative z-30 bg-black h-full flex items-center pr-6 sm:pr-8 shrink-0">
-          <Link to="/" className="flex items-center group transition-opacity duration-300" aria-label="Ebanex International Home">
-            <img src={logo} alt="" className="h-12 sm:h-16 lg:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105 brightness-110" />
+        <div className="relative z-30 bg-black h-full flex items-center pr-20 sm:pr-28 shrink-0 overflow-hidden">
+          <Link to="/" className="flex items-center h-full group transition-opacity duration-300" aria-label="Ebanex International Home">
+            <img src={logo} alt="" className="h-full py-1 w-auto object-contain transition-transform duration-300 group-hover:scale-105 brightness-110 scale-[2.5] origin-left" />
           </Link>
         </div>
 
@@ -310,7 +324,7 @@ const Navbar: React.FC = () => {
           >
             <div className="flex items-center gap-3 xl:gap-5 h-full shrink-0">
               <Link to="/" className={cn("text-[9px] xl:text-[10px] font-black tracking-[0.1em] uppercase transition-colors whitespace-nowrap", location.pathname === '/' ? 'text-[#00BFFF]' : 'text-white hover:text-[#00BFFF]')}>Home</Link>
-              {visibleLinks.map(renderNavLink)}
+              {visibleLinks.map((link, index) => renderNavLink(link, index))}
             </div>
 
             <AnimatePresence>
@@ -323,7 +337,7 @@ const Navbar: React.FC = () => {
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   className="flex items-center gap-3 xl:gap-5 overflow-hidden shrink-0 border-l border-[#00BFFF]/20 pl-4 ml-1"
                 >
-                  {hiddenLinks.map(renderNavLink)}
+                  {hiddenLinks.map((link, index) => renderNavLink(link, index + 6))}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -372,9 +386,19 @@ const Navbar: React.FC = () => {
 
             <div className="flex-1 overflow-y-auto py-8 px-6 space-y-4">
               <Link to="/" className={cn("block py-3 px-4 text-sm font-black uppercase tracking-widest", location.pathname === '/' ? 'bg-[#00BFFF] text-black' : 'text-white border-b border-white/5')}>Home</Link>
-              {NAVIGATION_LINKS.map((link) => {
+              {NAVIGATION_LINKS.map((link, index) => {
                 const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
                 const isExpanded = mobileExpanded === link.label;
+                const isEnabled = index < 3;
+
+                if (!isEnabled) {
+                  return (
+                    <div key={link.path} className="block py-3 px-4 text-sm font-black uppercase tracking-widest text-white/20 border-b border-white/5 cursor-not-allowed">
+                      {link.label}
+                    </div>
+                  );
+                }
+
                 return (
                   <div key={link.path} className="space-y-2">
                     {hasDropdown ? (

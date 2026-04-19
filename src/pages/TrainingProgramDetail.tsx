@@ -263,12 +263,12 @@ const TrainingProgramDetail: React.FC = () => {
                             </div>
                             <div className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-10 bg-[#0a1628]" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
                                 <div className="text-[#00C4D4] font-serif text-6xl leading-none h-8 -ml-1 select-none">"</div>
-                                <p className="text-white/90 text-base sm:text-lg mb-6 leading-relaxed font-medium italic mt-2 text-justify">{program.testimonial.text}</p>
+                                <p className="text-white/80 text-sm sm:text-base mb-6 leading-relaxed font-light italic mt-2 text-justify">{program.testimonial.text}</p>
                                 <div className="flex items-center gap-4 border-t border-white/10 pt-4">
                                     <div className="w-12 h-px bg-[#00C4D4]" />
                                     <div>
-                                        <h4 className="font-black text-sm text-white uppercase tracking-widest">{program.testimonial.author}</h4>
-                                        <p className="text-[#00C4D4] font-bold uppercase tracking-widest text-[10px] mt-1">{program.testimonial.role}</p>
+                                        <h4 className="font-bold text-sm text-white uppercase tracking-widest">{program.testimonial.author}</h4>
+                                        <p className="text-[#00C4D4] font-medium uppercase tracking-widest text-[10px] mt-1">{program.testimonial.role}</p>
                                     </div>
                                 </div>
                             </div>
