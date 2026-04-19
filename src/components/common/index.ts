@@ -20,3 +20,4 @@ export {
   SkeletonShimmer,
 } from './Skeleton';
 export { default as ThemeToggle } from './ThemeToggle';
+export { default as CookieConsent } from './CookieConsent';

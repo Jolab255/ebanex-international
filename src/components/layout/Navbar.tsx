@@ -3,178 +3,115 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight, MoreHorizontal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NAVIGATION_LINKS } from '../../constants';
-import logo from '../../assets/ebanex-logo.png';
 import { cn } from '../../lib/utils';
+import logo from '../../assets/ebanex-logo.png';
 import { Squares } from '../animations';
 
 const DROPDOWN_CONTENT = {
-  'Training Programs': {
-    overview: 'Industry-aligned training programs designed to develop technical competence, leadership capability, and institutional effectiveness.',
+  'About Us': {
+    overview: 'Ebanex International is a global leader in institutional strengthening and professional development, focusing on building high-performance organizations through evidence-based training and strategic advisory.',
     categories: [
       {
-        title: 'Cybersecurity & Information Security',
+        title: 'Who We Are',
         items: [
-          { label: 'Cybersecurity Awareness Programs', path: '/training/cybersecurity-awareness' },
-          { label: 'Ethical Hacking & Threat Intelligence', path: '/training/ethical-hacking' },
-          { label: 'Digital Risk Management', path: '/training/digital-risk' },
-          { label: 'Incident Response Training', path: '/training/incident-response' },
-          { label: 'Data Privacy & Protection', path: '/training/data-privacy' },
-        ],
+          { label: 'Company Overview', path: '/about' },
+          { label: 'Our Mission & Vision', path: '/about#mission' },
+          { label: 'Strategic Focus', path: '/about#focus' },
+          { label: 'Founders Message', path: '/about#founders' }
+        ]
       },
       {
-        title: 'IT & Digital Skills',
+        title: 'Institutional Pillars',
         items: [
-          { label: 'Networking & Infrastructure', path: '/training/networking' },
-          { label: 'Cloud Computing & Virtualization', path: '/training/cloud-computing' },
-          { label: 'AI & Emerging Technologies', path: '/training/ai-tech' },
-          { label: 'Digital Transformation Skills', path: '/training/digital-transformation' },
-          { label: 'Systems Administration', path: '/training/systems-admin' },
-        ],
+          { label: 'Core Values', path: '/about#values' },
+          { label: 'Global Network', path: '/about#network' },
+          { label: 'Strategic Partnerships', path: '/partnerships' }
+        ]
+      }
+    ]
+  },
+  'Training Programs': {
+    overview: 'Our curricula are industry-aligned, evidence-based, and designed to deliver immediate operational value for individuals and institutions.',
+    categories: [
+      {
+        title: 'Cybersecurity',
+        items: [
+          { label: 'Awareness Programs', path: '/training/cybersecurity-awareness' },
+          { label: 'Ethical Hacking', path: '/training/ethical-hacking' },
+          { label: 'Incident Response', path: '/training/incident-response' }
+        ]
       },
       {
-        title: 'Governance, Risk & Compliance',
+        title: 'Digital Risk',
         items: [
-          { label: 'IT Governance & Digital Governance', path: '/training/it-governance' },
-          { label: 'Enterprise Risk Management', path: '/training/risk-management' },
-          { label: 'Internal Audit & Assurance', path: '/training/internal-audit' },
-          { label: 'Regulatory Compliance & Standards', path: '/training/compliance' },
-        ],
+          { label: 'Risk Management', path: '/training/digital-risk' },
+          { label: 'Data Privacy', path: '/training/data-privacy' },
+          { label: 'Compliance', path: '/training/compliance' }
+        ]
       },
       {
-        title: 'Leadership & Professional Development',
+        title: 'IT & Digital',
         items: [
-          { label: 'Leadership & Management Skills', path: '/training/leadership' },
-          { label: 'Strategic Thinking & Decision Making', path: '/training/strategic-thinking' },
-          { label: 'Communication & Workplace Effectiveness', path: '/training/communication' },
-          { label: 'Team Development & Collaboration', path: '/training/team-development' },
-        ],
+          { label: 'Networking', path: '/training/networking' },
+          { label: 'Cloud Computing', path: '/training/cloud-computing' },
+          { label: 'AI Technologies', path: '/training/ai-tech' }
+        ]
       },
       {
-        title: 'Certification Preparation',
+        title: 'Governance',
         items: [
-          { label: 'CISA Certification', path: '/training/cisa' },
-          { label: 'CISM Certification', path: '/training/cism' },
-          { label: 'CISSP Certification', path: '/training/cissp' },
-          { label: 'CEH Certification', path: '/training/ceh' },
-          { label: 'CCNA/CCNP Certification', path: '/training/cisco' },
-          { label: 'CDPSE Certification', path: '/training/cdpse' },
-          { label: 'Certified Internal Auditor (CIA)', path: '/training/cia' },
-          { label: 'CRMA Certification', path: '/training/crma' },
-        ],
+          { label: 'IT Governance', path: '/training/it-governance' },
+          { label: 'Audit & Control', path: '/training/internal-audit' }
+        ]
       },
-    ],
+      {
+        title: 'Leadership',
+        items: [
+          { label: 'Strategic Mgmt', path: '/training/strategic-thinking' },
+          { label: 'Agile Leadership', path: '/training/leadership' }
+        ]
+      }
+    ]
   },
   'Corporate Solutions': {
-    overview: 'Customized capacity-building and advisory solutions designed for institutional strategies and workforce development goals.',
+    overview: 'Tailored institutional strengthening programs designed for enterprise-level resilience and operational excellence.',
     categories: [
       {
-        title: 'Institutional Training & Advisory',
+        title: 'Solutions',
         items: [
-          { label: 'Training Needs Assessments', path: '/corporate-solutions#services' },
-          { label: 'Workforce Upskilling Programs', path: '/corporate-solutions#services' },
-          { label: 'Digital Transformation Advisory', path: '/corporate-solutions#services' },
-          { label: 'Organizational Risk Training', path: '/corporate-solutions#services' },
-          { label: 'Leadership Development Programs', path: '/corporate-solutions#services' },
-          { label: 'Train-the-Trainer Programs', path: '/corporate-solutions#services' },
-        ],
+          { label: 'Enterprise Training', path: '/corporate-solutions' },
+          { label: 'Executive Mentorship', path: '/corporate-solutions#mentorship' },
+          { label: 'Institutional Growth', path: '/corporate-solutions#growth' }
+        ]
       },
       {
-        title: 'Industries Served',
+        title: 'Industries',
         items: [
-          { label: 'Government & Public Sector', path: '/corporate-solutions#industries' },
-          { label: 'Financial Institutions', path: '/corporate-solutions#industries' },
-          { label: 'Mining & Industrial Sector', path: '/corporate-solutions#industries' },
-          { label: 'Telecommunications', path: '/corporate-solutions#industries' },
-          { label: 'Energy & Infrastructure', path: '/corporate-solutions#industries' },
-          { label: 'Development & NGOs', path: '/corporate-solutions#industries' },
-        ],
-      },
-    ],
-  },
-  'Cyber Labs': {
-    overview: 'Simulated learning environments where professionals develop real-world technical skills through practical application and scenario-based learning.',
-    categories: [
-      {
-        title: 'Lab Capabilities',
-        items: [
-          { label: 'Cybersecurity Simulation Labs', path: '/cyberlabs/simulation' },
-          { label: 'Enterprise IT Infrastructure Labs', path: '/cyberlabs/infrastructure' },
-          { label: 'Risk & Audit Simulation Cases', path: '/cyberlabs/risk-audit' },
-          { label: 'Incident Response Exercises', path: '/cyberlabs/incident-response' },
-        ],
-      },
-    ],
-  },
-  'Consulting & Advisory': {
-    overview: 'Strategic consulting services supporting organizations in strengthening governance frameworks, operational systems, and institutional performance.',
-    categories: [
-      {
-        title: 'Advisory Areas',
-        items: [
-          { label: 'Digital Transformation Strategy', path: '/consulting/digital-strategy' },
-          { label: 'Governance & Risk Advisory', path: '/consulting/governance' },
-          { label: 'Capacity Building Strategy', path: '/consulting/capacity-building' },
-          { label: 'Organizational Development', path: '/consulting/org-development' },
-          { label: 'Technology Implementation', path: '/consulting/tech-implementation' },
-        ],
-      },
-    ],
-  },
-  'Research & Insights': {
-    overview: 'Knowledge and thought leadership in industry research, cybersecurity trends, and institutional capacity-building insights.',
-    categories: [
-      {
-        title: 'Knowledge Resources',
-        items: [
-          { label: 'Industry Research Publications', path: '/research/publications' },
-          { label: 'Cybersecurity Trend Analysis', path: '/research/cyber-trends' },
-          { label: 'Professional Articles & Insights', path: '/research/articles' },
-          { label: 'Training Whitepapers', path: '/research/whitepapers' },
-          { label: 'Capacity Building Research', path: '/research/capacity-research' },
-        ],
-      },
-    ],
-  },
-  Partnerships: {
-    overview: 'Strategic collaborations with international institutions, certification bodies, and technology providers for enhanced service delivery.',
-    categories: [
-      {
-        title: 'Strategic Partners',
-        items: [
-          { label: 'International Certification Bodies', path: '/partnerships/certifications' },
-          { label: 'Universities & Academic Institutions', path: '/partnerships/universities' },
-          { label: 'Technology Vendors & Providers', path: '/partnerships/technology' },
-          { label: 'Professional Training Institutions', path: '/partnerships/training' },
-          { label: 'Development Agencies', path: '/partnerships/development' },
-        ],
-      },
-    ],
-  },
-  Careers: {
-    overview: 'Join our team of professionals dedicated to capacity building, cybersecurity, and institutional development worldwide.',
-    categories: [
-      {
-        title: 'Career Opportunities',
-        items: [
-          { label: 'Professional Trainers & Instructors', path: '/careers/trainers' },
-          { label: 'Consulting Specialists', path: '/careers/consultants' },
-          { label: 'Internship & Graduate Programs', path: '/careers/internships' },
-        ],
-      },
-    ],
-  },
+          { label: 'Financial Services', path: '/corporate-solutions#finance' },
+          { label: 'Government', path: '/corporate-solutions#government' },
+          { label: 'Energy & Mining', path: '/corporate-solutions#energy' }
+        ]
+      }
+    ]
+  }
 };
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [mobileCategoryExpanded, setMobileCategoryExpanded] = useState<string | null>(null);
   const [showHiddenLinks, setShowHiddenLinks] = useState(false);
   const location = useLocation();
 
-  const visibleLinks = NAVIGATION_LINKS.slice(0, 6);
-  const hiddenLinks = NAVIGATION_LINKS.slice(6);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     setIsOpen(false);
@@ -182,30 +119,10 @@ const Navbar: React.FC = () => {
     setMobileExpanded(null);
     setMobileCategoryExpanded(null);
     setShowHiddenLinks(false);
-  }, [location]);
-
-  // Prevent background scroll when menu or dropdown is open
-  useEffect(() => {
-    if (isOpen || activeDropdown) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen, activeDropdown]);
-
-  useEffect(() => {
-    const handleClickOutside = () => setActiveDropdown(null);
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, []);
+  }, [location.pathname]);
 
   const handleDropdownClick = (label: string) => {
-    if (DROPDOWN_CONTENT[label as keyof typeof DROPDOWN_CONTENT]) {
-      setActiveDropdown(activeDropdown === label ? null : label);
-    }
+    setActiveDropdown(activeDropdown === label ? null : label);
   };
 
   const toggleMobileExpanded = (label: string) => {
@@ -216,6 +133,10 @@ const Navbar: React.FC = () => {
   const toggleMobileCategory = (title: string) => {
     setMobileCategoryExpanded(mobileCategoryExpanded === title ? null : title);
   };
+
+  // Split links: First 6 visible, others hidden under "More"
+  const visibleLinks = NAVIGATION_LINKS.slice(0, 6);
+  const hiddenLinks = NAVIGATION_LINKS.slice(6);
 
   const renderNavLink = (link: typeof NAVIGATION_LINKS[0], index: number) => {
     const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
@@ -389,7 +310,7 @@ const Navbar: React.FC = () => {
               {NAVIGATION_LINKS.map((link, index) => {
                 const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
                 const isExpanded = mobileExpanded === link.label;
-                const isEnabled = index < 3;
+                const isEnabled = index < 2;
 
                 if (!isEnabled) {
                   return (

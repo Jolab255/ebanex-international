@@ -221,12 +221,42 @@ const Contact: React.FC = () => {
                     </motion.div>
                   )}
                   
-                  {successMessage && (
-                    <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="p-6 bg-[#00C4D4] border-4 border-black text-black font-black uppercase tracking-tight text-center">
-                        <CheckCircle className="inline-block mb-2 w-8 h-8" />
-                        <p>{successMessage}</p>
-                    </motion.div>
-                  )}
+                  <AnimatePresence>
+                    {successMessage && (
+                      <motion.div 
+                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                        className="fixed inset-0 z-[2000] flex items-center justify-center px-4 pointer-events-none"
+                      >
+                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+                        <div className="relative bg-[#00C4D4] border-[10px] border-black p-8 sm:p-12 max-w-lg w-full text-center shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] pointer-events-auto">
+                          <button 
+                            onClick={() => setSuccessMessage(null)}
+                            className="absolute top-4 right-4 text-black/40 hover:text-black transition-colors"
+                          >
+                            <X size={24} />
+                          </button>
+                          
+                          <div className="bg-black w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                            <CheckCircle className="w-12 h-12 text-[#00C4D4]" />
+                          </div>
+                          
+                          <h3 className="text-black font-black text-2xl uppercase mb-4 tracking-tighter">Transmission Successful</h3>
+                          <p className="text-black font-bold uppercase tracking-widest text-xs leading-relaxed">
+                            {successMessage}
+                          </p>
+                          
+                          <button 
+                            onClick={() => setSuccessMessage(null)}
+                            className="mt-10 w-full py-4 bg-black text-[#00C4D4] font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-black transition-all"
+                          >
+                            Close Transmission
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-1.5 group">
