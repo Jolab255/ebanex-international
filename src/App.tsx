@@ -57,6 +57,7 @@ const App: React.FC = () => {
                         </Suspense>
                       }
                     />
+                    {/* Dynamic Template Route for all Training Programs */}
                     <Route
                       path="/training/:programId"
                       element={
@@ -126,46 +127,6 @@ const App: React.FC = () => {
                       element={
                         <Suspense fallback={<PageLoader />}>
                           <Contact />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/training/cybersecurity-awareness"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <CybersecurityAwarenessPrograms />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/training/ethical-hacking"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <EthicalHackingThreatIntelligence />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/training/digital-risk"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <DigitalRiskManagement />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/training/incident-response"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <IncidentResponseTraining />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/training/data-privacy"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <DataPrivacyProtection />
                         </Suspense>
                       }
                     />

@@ -58,7 +58,7 @@ const DROPDOWN_CONTENT = {
           { label: 'CEH Certification', path: '/training/ceh' },
           { label: 'CCNA/CCNP Certification', path: '/training/cisco' },
           { label: 'CDPSE Certification', path: '/training/cdpse' },
-          { label: 'CIA Certification', path: '/cia' },
+          { label: 'Certified Internal Auditor (CIA)', path: '/training/cia' },
           { label: 'CRMA Certification', path: '/training/crma' },
         ],
       },
