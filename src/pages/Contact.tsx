@@ -12,6 +12,7 @@ interface ContactFormState {
   email: string;
   service: string;
   message: string;
+  website: string; // Honeypot field
 }
 
 interface ContactFormErrors {
@@ -31,6 +32,7 @@ const Contact: React.FC = () => {
     email: '',
     service: preSelectedService || 'Corporate Training',
     message: '',
+    website: '', // Initialize honeypot
   });
 
   // Update form if search params change
@@ -84,6 +86,15 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSuccessMessage(null);
+
+    // Honeypot check: Bots will fill this, humans won't see it
+    if (form.website) {
+      console.log('Bot detected via honeypot');
+      // Silently fail or pretend it worked
+      setSuccessMessage('Your inquiry has been received. Our team will contact you shortly.');
+      setForm({ fullName: '', email: '', service: 'Corporate Training', message: '', website: '' });
+      return;
+    }
 
     if (!validate()) return;
 
@@ -215,6 +226,17 @@ const Contact: React.FC = () => {
                 </h3>
                 
                 <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+                  {/* Honeypot field - hidden from users */}
+                  <div className="hidden" aria-hidden="true">
+                    <input
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      value={form.website}
+                      onChange={handleChange}
+                      autoComplete="off"
+                    />
+                  </div>
                   {errors.form && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-4 bg-red-500/20 border-2 border-red-500 text-red-200 text-xs font-black uppercase tracking-widest">
                       {errors.form}
