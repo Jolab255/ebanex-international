@@ -8,67 +8,58 @@ import logo from '../../assets/ebanex-logo.png';
 import { Squares } from '../animations';
 
 const DROPDOWN_CONTENT = {
-  'About Us': {
-    overview: 'Ebanex International is a global leader in institutional strengthening and professional development, focusing on building high-performance organizations through evidence-based training and strategic advisory.',
-    categories: [
-      {
-        title: 'Who We Are',
-        items: [
-          { label: 'Company Overview', path: '/about' },
-          { label: 'Our Mission & Vision', path: '/about#mission' },
-          { label: 'Strategic Focus', path: '/about#focus' },
-          { label: 'Founders Message', path: '/about#founders' }
-        ]
-      },
-      {
-        title: 'Institutional Pillars',
-        items: [
-          { label: 'Core Values', path: '/about#values' },
-          { label: 'Global Network', path: '/about#network' },
-          { label: 'Strategic Partnerships', path: '/partnerships' }
-        ]
-      }
-    ]
-  },
   'Training Programs': {
     overview: 'Our curricula are industry-aligned, evidence-based, and designed to deliver immediate operational value for individuals and institutions.',
     categories: [
       {
         title: 'Cybersecurity',
         items: [
-          { label: 'Awareness Programs', path: '/training/cybersecurity-awareness' },
-          { label: 'Ethical Hacking', path: '/training/ethical-hacking' },
-          { label: 'Incident Response', path: '/training/incident-response' }
+          { label: 'Cybersecurity Awareness Programs', path: '/training/cybersecurity-awareness' },
+          { label: 'Ethical Hacking & Threat Intelligence', path: '/training/ethical-hacking' },
+          { label: 'Incident Response Training', path: '/training/incident-response' },
+          { label: 'Digital Risk Management', path: '/training/digital-risk' },
+          { label: 'Data Privacy & Protection', path: '/training/data-privacy' }
         ]
       },
       {
-        title: 'Digital Risk',
+        title: 'Information Technology & Digital Skills',
         items: [
-          { label: 'Risk Management', path: '/training/digital-risk' },
-          { label: 'Data Privacy', path: '/training/data-privacy' },
-          { label: 'Compliance', path: '/training/compliance' }
+          { label: 'Networking & Infrastructure', path: '/training/networking' },
+          { label: 'Cloud Computing & Virtualization', path: '/training/cloud-computing' },
+          { label: 'AI & Emerging Technologies', path: '/training/ai-tech' },
+          { label: 'Digital Transformation Skills', path: '/training/digital-transformation' },
+          { label: 'Systems Administration', path: '/training/systems-admin' }
         ]
       },
       {
-        title: 'IT & Digital',
+        title: 'Governance, Risk & Compliance',
         items: [
-          { label: 'Networking', path: '/training/networking' },
-          { label: 'Cloud Computing', path: '/training/cloud-computing' },
-          { label: 'AI Technologies', path: '/training/ai-tech' }
+          { label: 'IT Governance & Digital Governance', path: '/training/it-governance' },
+          { label: 'Enterprise Risk Management', path: '/training/risk-management' },
+          { label: 'Internal Audit & Assurance', path: '/training/internal-audit' },
+          { label: 'Regulatory Compliance & Standards', path: '/training/compliance' }
         ]
       },
       {
-        title: 'Governance',
+        title: 'Leadership & Professional Development',
         items: [
-          { label: 'IT Governance', path: '/training/it-governance' },
-          { label: 'Audit & Control', path: '/training/internal-audit' }
+          { label: 'Leadership & Management Skills', path: '/training/leadership' },
+          { label: 'Strategic Thinking & Decision Making', path: '/training/strategic-thinking' },
+          { label: 'Communication & Workplace Effectiveness', path: '/training/communication' },
+          { label: 'Team Development & Collaboration', path: '/training/team-development' }
         ]
       },
       {
-        title: 'Leadership',
+        title: 'Certification Preparation',
         items: [
-          { label: 'Strategic Mgmt', path: '/training/strategic-thinking' },
-          { label: 'Agile Leadership', path: '/training/leadership' }
+          { label: 'CISA Preparation', path: '/training/cisa' },
+          { label: 'CISM Preparation', path: '/training/cism' },
+          { label: 'CISSP Preparation', path: '/training/cissp' },
+          { label: 'CEH Preparation', path: '/training/ceh' },
+          { label: 'CDPSE Preparation', path: '/training/cdpse' },
+          { label: 'CIA Preparation', path: '/training/cia' },
+          { label: 'CRMA Preparation', path: '/training/crma' },
+          { label: 'Cisco CCNA/CCNP Preparation', path: '/training/cisco' }
         ]
       }
     ]
@@ -141,7 +132,8 @@ const Navbar: React.FC = () => {
   const renderNavLink = (link: typeof NAVIGATION_LINKS[0], index: number) => {
     const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
     const isActive = location.pathname === link.path;
-    const isEnabled = index < 2; // Only About Us and Training Programs are enabled
+    // Functional links based on your previous rule: About Us (idx 0), Training (idx 1), Corp Solutions (idx 2)
+    const isEnabled = index < 2; // Restore to your functional state: About Us and Training are enabled. 
 
     if (!isEnabled) {
       return (
@@ -232,7 +224,7 @@ const Navbar: React.FC = () => {
         {/* Logo Shield */}
         <div className="relative z-30 bg-black h-full flex items-center pr-20 sm:pr-28 shrink-0 overflow-hidden">
           <Link to="/" className="flex items-center h-full group transition-opacity duration-300" aria-label="Ebanex International Home">
-            <img src={logo} alt="" className="h-full py-1 w-auto object-contain transition-transform duration-300 group-hover:scale-105 brightness-110 scale-[2.5] origin-left" />
+            <img src={logo} alt="" className="h-full py-1 w-auto object-contain transition-transform duration-300 brightness-110 scale-[2.5] origin-left" />
           </Link>
         </div>
 

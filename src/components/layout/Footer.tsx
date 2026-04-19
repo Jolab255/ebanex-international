@@ -68,7 +68,7 @@ const Footer: React.FC = () => (
                 <div className="w-8 h-8 rounded-none border border-[#00BFFF]/20 flex items-center justify-center bg-[#00BFFF]/5 group-hover:border-[#00BFFF]/50 transition-colors">
                   <Mail size={14} className="text-[#00BFFF]" />
                 </div>
-                <span>info@ebanex.com</span>
+                <span>info@ebanexint.co.tz</span>
               </div>
             </div>
           </div>
@@ -81,38 +81,8 @@ const Footer: React.FC = () => (
             <ul className="space-y-3">
               {[
                 { label: 'Training Programs', to: '/training' },
-                { label: 'Corporate Solutions', to: '/corporate-solutions' },
-                { label: 'Advisory', to: '/consulting' },
-                { label: 'Cyber Labs', to: '/cyber-lab' },
-              ].map((item) => (
-                <li key={item.label}>
-                  <Link
-                    to={item.to}
-                    className="text-white/50 text-sm hover:text-[#00BFFF] transition-all duration-300 flex items-center gap-1 group font-bold tracking-tight"
-                  >
-                    {item.label}
-                    <ArrowUpRight
-                      size={12}
-                      className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00BFFF]"
-                    />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company Column */}
-          <div className="lg:col-span-2">
-            <h4 className="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-8 py-1.5 px-4 bg-white/5 inline-block border-l-2 border-[#00BFFF]">
-              Company
-            </h4>
-            <ul className="space-y-3">
-              {[
                 { label: 'About Us', to: '/about' },
-                { label: 'Partnerships', to: '/partnerships' },
-                { label: 'Research', to: '/research' },
-                { label: 'News & Events', to: '/news' },
-                { label: 'Careers', to: '/careers' },
+                { label: 'Contact Us', to: '/contact' },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
@@ -131,11 +101,11 @@ const Footer: React.FC = () => (
           </div>
 
           {/* Connect Column */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-4 lg:col-start-9">
             <h4 className="text-white font-black text-[10px] uppercase tracking-[0.3em] mb-8 py-1.5 px-4 bg-white/5 inline-block border-l-2 border-[#00BFFF]">
               Connect
             </h4>
-            <div className="flex gap-4">
+            <div className="flex gap-4 mb-8">
               {[
                 { icon: Linkedin, href: '#', label: 'LinkedIn' },
                 { icon: Twitter, href: '#', label: 'Twitter' },
@@ -150,6 +120,14 @@ const Footer: React.FC = () => (
                   <item.icon size={18} />
                 </a>
               ))}
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 text-white/60 text-sm group">
+                <div className="w-8 h-8 rounded-none border border-[#00BFFF]/20 flex items-center justify-center bg-[#00BFFF]/5 group-hover:border-[#00BFFF]/50 transition-colors">
+                  <Mail size={14} className="text-[#00BFFF]" />
+                </div>
+                <span>info@ebanexint.co.tz</span>
+              </div>
             </div>
           </div>
         </div>
@@ -176,10 +154,10 @@ const Footer: React.FC = () => (
             </p>
           </div>
           <div className="flex items-center gap-8">
-            <Link to="#" className="hover:text-[#00BFFF] transition-colors">
+            <Link to="/privacy" className="hover:text-[#00BFFF] transition-colors">
               Privacy Policy
             </Link>
-            <Link to="#" className="hover:text-[#00BFFF] transition-colors">
+            <Link to="/terms" className="hover:text-[#00BFFF] transition-colors">
               Terms of Service
             </Link>
           </div>

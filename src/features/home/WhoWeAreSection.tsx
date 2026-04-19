@@ -62,7 +62,7 @@ const WhoWeAreSection: React.FC = () => {
                   loop 
                   muted 
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   className="w-full h-full object-cover"
                 />
               </div>

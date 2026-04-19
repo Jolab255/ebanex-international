@@ -13,11 +13,8 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css,md}\""
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.5.0",
     "@types/three": "^0.182.0",
     "clsx": "^2.1.1",
-    "cobe": "^0.6.5",
     "dotted-map": "^2.2.3",
     "framer-motion": "^12.34.0",
     "heroicons": "^2.2.0",

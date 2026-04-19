@@ -115,6 +115,7 @@ const HeroSection: React.FC = () => {
                 ref={videoRef}
                 src={aboutVideo}
                 controls
+                preload="none"
                 onEnded={() => setIsPlaying(false)}
                 className="w-full h-full object-cover relative z-10"
               />

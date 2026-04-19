@@ -10,6 +10,8 @@ const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Training = lazy(() => import('./pages/Training'));
 const Contact = lazy(() => import('./pages/Contact'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const TrainingProgramDetail = lazy(() => import('./pages/TrainingProgramDetail'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
@@ -64,6 +66,22 @@ const App: React.FC = () => {
                       element={
                         <Suspense fallback={<PageLoader />}>
                           <Contact />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/privacy"
+                      element={
+                        <Suspense fallback={<PageLoader />}>
+                          <PrivacyPolicy />
+                        </Suspense>
+                      }
+                    />
+                    <Route
+                      path="/terms"
+                      element={
+                        <Suspense fallback={<PageLoader />}>
+                          <TermsOfService />
                         </Suspense>
                       }
                     />
