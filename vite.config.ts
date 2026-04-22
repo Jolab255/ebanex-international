@@ -7,10 +7,12 @@ import react from '@vitejs/plugin-react';
 // If you need to work with private API keys (e.g. GEMINI_API_KEY),
 // they must live in a backend / serverless function, not in this Vite config.
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: command === 'serve' ? '/' : '/dev/',
   server: {
     port: 3000,
     host: '0.0.0.0',
+    allowedHosts: true,
   },
   plugins: [react()],
   resolve: {
@@ -18,4 +20,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-});
+}));

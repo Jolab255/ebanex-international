@@ -114,6 +114,7 @@ const Footer: React.FC = () => (
                 <a
                   key={item.label}
                   href={item.href}
+                  onClick={(e) => item.href === '#' && e.preventDefault()}
                   className="w-10 h-10 rounded-none border border-white/10 flex items-center justify-center text-white/50 hover:text-[#00BFFF] hover:border-[#00BFFF]/50 hover:bg-[#00BFFF]/5 transition-all duration-300 shadow-xl"
                   aria-label={item.label}
                 >

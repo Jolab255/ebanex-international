@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Eye, ShieldCheck, Heart, Sparkles, Handshake } from 'lucide-react';
+import { Sparkles, Handshake, Zap } from 'lucide-react';
 import { Squares } from '../../components/animations';
 import { FitText } from '../../components/common';
 import FeatureCard from '../home/components/FeatureCard';
@@ -13,29 +13,14 @@ const CoreValuesSection: React.FC = () => {
       icon: <Sparkles />,
     },
     { 
-      title: 'Integrity', 
-      desc: 'Transparency, honesty, and ethical conduct form the bedrock of our relationships and services.',
-      icon: <ShieldCheck />,
-    },
-    { 
       title: 'Innovation', 
       desc: 'Embracing forward-thinking approaches to solve complex challenges in the digital age.',
-      icon: <Heart />,
-    },
-    { 
-      title: 'Impact', 
-      desc: 'Focusing on measurable results that deliver long-term institutional value and professional growth.',
-      icon: <Target />,
+      icon: <Zap />,
     },
     { 
       title: 'Professionalism', 
       desc: 'A commitment to excellence, respect, and responsibility in every interaction.',
       icon: <Handshake />,
-    },
-    { 
-      title: 'Collaboration', 
-      desc: 'Building strong global partnerships to foster knowledge transfer and mutual growth.',
-      icon: <Eye />,
     },
   ];
 

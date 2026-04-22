@@ -5,6 +5,8 @@ import { Navbar, TopBar, Footer, ScrollToTop } from './components/layout';
 import { ErrorBoundary, PageLoader, CookieConsent } from './components/common';
 import { NavigationLoader } from './components/common/NavigationLoader';
 import { ThemeProvider } from './context/ThemeContext';
+import { ReactLenis } from 'lenis/react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -16,10 +18,12 @@ const TrainingProgramDetail = lazy(() => import('./pages/TrainingProgramDetail')
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App: React.FC = () => {
+  const basename = import.meta.env.DEV ? '/' : '/dev';
+
   return (
     <HelmetProvider>
       <ThemeProvider>
-        <Router>
+        <Router basename={basename}>
           <ScrollToTop />
           <div className="min-h-screen flex flex-col selection:bg-[#00BFFF] selection:text-black bg-black text-white">
             <TopBar />

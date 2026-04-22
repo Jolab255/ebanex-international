@@ -229,13 +229,13 @@ const ClientsSection: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 mt-8 relative z-10"
+        className="w-full px-8 sm:px-12 pr-16 sm:pr-32 mt-8 relative z-10"
       >
-        <div className="flex flex-wrap justify-center gap-8 sm:gap-16">
+        <div className="flex flex-wrap justify-end gap-8 sm:gap-16">
           {[
-            { value: 50, suffix: '+', label: 'Global Clients' },
-            { value: 15, suffix: '+', label: 'Industries' },
-            { value: 30, suffix: '+', label: 'Countries' },
+            { value: 20, suffix: '+', label: 'Certifications Offered' },
+            { value: 15, suffix: '+', label: 'Years of Experience' },
+            { value: 10, suffix: '+', label: 'Strategic Partners & Growing' },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}

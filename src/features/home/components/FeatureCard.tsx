@@ -23,8 +23,8 @@ const FeatureCard: React.FC<{
           background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
         }}
       >
-        <div className="text-[#00BFFF] mb-4 sm:mb-6 mt-4">
-          {React.cloneElement(feature.icon as React.ReactElement, { size: 28 })}
+        <div className="text-[#00BFFF] mb-4 sm:mb-6 mt-4 min-h-[30px]">
+          {feature.icon && React.isValidElement(feature.icon) && React.cloneElement(feature.icon as React.ReactElement, { size: 28 })}
         </div>
 
         <h3 className="text-lg sm:text-xl font-black font-heading mb-2 sm:mb-3 tracking-tight uppercase text-white">

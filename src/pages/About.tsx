@@ -21,7 +21,10 @@ const About: React.FC = () => {
       />
       <HeroSection />
       <AboutContent />
-      <GallerySection />
+      {/* Gallery & Moments — hidden, preserved for future use */}
+      <div className="hidden">
+        <GallerySection />
+      </div>
       <MissionVisionSection />
       <CoreValuesSection />
       <FoundersMessageSection />

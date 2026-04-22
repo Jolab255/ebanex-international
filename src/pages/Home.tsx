@@ -10,7 +10,6 @@ import {
   TrainingApproachSection,
   ClientsSection,
   TestimonialsSection,
-  PartnersSection,
   CtaSection,
 } from '../features/home';
 
@@ -25,13 +24,21 @@ const Home: React.FC = () => {
       />
       <main className="bg-gray-950">
         <HeroSection />
-        <WhoWeAreSection />
+        {/* Who We Are — hidden, preserved for future use */}
+        <div className="hidden">
+          <WhoWeAreSection />
+        </div>
         <WhyEbanexGridSection />
         <CoreServicesSection />
-        <TrainingApproachSection />
+        {/* Training Approach — hidden, preserved for future use */}
+        <div className="hidden">
+          <TrainingApproachSection />
+        </div>
         <ClientsSection />
-        <TestimonialsSection />
-        <PartnersSection />
+        {/* Testimonials — hidden, preserved for future use */}
+        <div className="hidden">
+          <TestimonialsSection />
+        </div>
         <CtaSection />
       </main>
     </ReactLenis>

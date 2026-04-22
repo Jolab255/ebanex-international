@@ -89,7 +89,7 @@ const StrategicFocusSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
             >
-              Strategic <span className="text-[#00BFFF]">Focus</span>
+              Our <span className="text-[#00BFFF]">Expertise</span>
             </motion.h2>
           </div>
         </div>

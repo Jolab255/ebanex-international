@@ -142,6 +142,7 @@ const TopBar: React.FC = () => {
                   <a
                     key={social.id}
                     href={social.href}
+                    onClick={(e) => social.href === '#' && e.preventDefault()}
                     className="flex items-center justify-center w-10 h-10 bg-white/5 hover:bg-[#00BFFF] rounded-none text-white hover:text-black transition-all duration-200 flex-shrink-0 border border-white/10"
                     title={social.label}
                   >

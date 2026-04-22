@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { Globe as GlobeIcon, Shield, Zap, Target, Landmark, MapPin } from 'lucide-react';
-import { useScroll, useTransform, useSpring } from 'framer-motion';
+import { Globe as GlobeIcon, Shield, Zap } from 'lucide-react';
+import { useScroll, useSpring } from 'framer-motion';
 import { Squares } from '../../components/animations';
 import { FitText } from '../../components/common';
 import FeatureCard from './components/FeatureCard';
@@ -31,24 +31,9 @@ const WhyEbanexGridSection: React.FC = () => {
       icon: <Shield />,
     },
     {
-      title: 'Hands-on Learning',
+      title: 'Practical Learning',
       desc: 'Practical and hands-on learning methodology that translates theory into immediate operational value.',
       icon: <Zap />,
-    },
-    {
-      title: 'Custom Solutions',
-      desc: 'Sector-customized training solutions designed to meet the unique challenges of specific industries.',
-      icon: <Target />,
-    },
-    {
-      title: 'Capacity Building',
-      desc: 'Institutional capacity-building capability to strengthen organizational foundations and processes.',
-      icon: <Landmark />,
-    },
-    {
-      title: 'Global-Local Outlook',
-      desc: 'Global outlook with strong local implementation capacity for seamless international integration.',
-      icon: <MapPin />,
     },
   ];
 

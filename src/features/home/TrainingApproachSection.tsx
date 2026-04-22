@@ -180,15 +180,11 @@ const TrainingApproachSection: React.FC = () => {
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              TRAINING APPROACH
+              TRAINING PROGRAMS &amp; APPROACH
             </span>
           </FitText>
         </div>
-        <div className="mt-4">
-          <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] inline-block bg-black py-1.5 px-6">
-            How We Deliver Excellence
-          </span>
-        </div>
+      
       </div>
 
       {/* Carousel Container */}
