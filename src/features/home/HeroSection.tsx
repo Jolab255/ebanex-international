@@ -1,11 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, X } from 'lucide-react';
 import aboutVideo from '../../assets/aboutv.mp4';
 
 const HeroSection: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const navigate = useNavigate();
 
   const handleStartVideo = () => {
     setIsPlaying(true);
@@ -217,13 +219,16 @@ const HeroSection: React.FC = () => {
             transition={{ delay: 1, duration: 0.8 }}
             className="flex flex-wrap gap-3"
           >
-            <button className="h-12 px-6 bg-[#00BFFF] text-black rounded-none font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-all transform hover:-translate-y-1 shadow-[0_0_20px_rgba(0,191,255,0.4)] active:scale-95">
+            <button 
+              onClick={() => navigate('/training')}
+              className="h-12 px-6 bg-[#00BFFF] text-black rounded-none font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-all transform hover:-translate-y-1 shadow-[0_0_20px_rgba(0,191,255,0.4)] active:scale-95"
+            >
               View Training Programs
             </button>
-            <button className="h-12 px-6 border border-[#00BFFF]/30 text-white rounded-none font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-[#00BFFF]/10 hover:border-[#00BFFF] transition-all transform hover:-translate-y-1 active:scale-95">
-              Partner With Us
-            </button>
-            <button className="h-12 px-6 border border-[#00BFFF]/30 text-white rounded-none font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-[#00BFFF]/10 hover:border-[#00BFFF] transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 group">
+            <button 
+              onClick={() => navigate('/contact')}
+              className="h-12 px-6 border border-[#00BFFF]/30 text-white rounded-none font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-[#00BFFF]/10 hover:border-[#00BFFF] transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 group"
+            >
               Contact Us
               <ArrowRight
                 className="text-[#00BFFF] group-hover:translate-x-1 transition-transform"

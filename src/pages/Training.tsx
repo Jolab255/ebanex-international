@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-    Shield, Code, GraduationCap, Briefcase, 
+    Code, GraduationCap, Briefcase, 
     ArrowRight, ChevronLeft, ChevronRight, Home, X, 
     ExternalLink, CheckCircle2, Award
 } from 'lucide-react';
@@ -295,41 +295,43 @@ const Training: React.FC = () => {
 
     const categories = [
       {
-        title: 'Cybersecurity',
-        icon: <Shield className="w-8 h-8" />,
+        title: 'Professional Certification Programs',
+        icon: <Award className="w-8 h-8" />,
         items: [
-          { label: 'Cybersecurity Awareness Programs', slug: 'cybersecurity-awareness' },
+          { label: 'CISA Preparation', slug: 'cisa' },
+          { label: 'CISM Preparation', slug: 'cism' },
+          { label: 'CISSP Preparation', slug: 'cissp' },
+          { label: 'CEH Preparation', slug: 'ceh' },
+          { label: 'CDPSE Preparation', slug: 'cdpse' },
+          { label: 'CIA Preparation', slug: 'cia' },
+          { label: 'CRMA Preparation', slug: 'crma' },
+          { label: 'Cisco CCNA/CCNP Preparation', slug: 'cisco' }
+        ]
+      },
+      {
+        title: 'Practical & Hands-On Workshops & Masterclasses',
+        icon: <Code className="w-8 h-8" />,
+        items: [
           { label: 'Ethical Hacking & Threat Intelligence', slug: 'ethical-hacking' },
           { label: 'Incident Response Training', slug: 'incident-response' },
+          { label: 'Networking & Infrastructure', slug: 'networking' },
+          { label: 'Cloud Computing & Virtualization', slug: 'cloud-computing' },
+          { label: 'AI & Emerging Technologies', slug: 'ai-tech' },
+          { label: 'Systems Administration', slug: 'systems-admin' },
           { label: 'Digital Risk Management', slug: 'digital-risk' },
           { label: 'Data Privacy & Protection', slug: 'data-privacy' }
         ]
       },
       {
-        title: 'IT & Digital Skills',
-        icon: <Code className="w-8 h-8" />,
-        items: [
-          { label: 'Networking & Infrastructure', slug: 'networking' },
-          { label: 'Cloud Computing & Virtualization', slug: 'cloud-computing' },
-          { label: 'AI & Emerging Technologies', slug: 'ai-tech' },
-          { label: 'Digital Transformation Skills', slug: 'digital-transformation' },
-          { label: 'Systems Administration', slug: 'systems-admin' }
-        ]
-      },
-      {
-        title: 'Governance & Compliance',
+        title: 'Executive & Awareness Programs',
         icon: <GraduationCap className="w-8 h-8" />,
         items: [
+          { label: 'Cybersecurity Awareness Programs', slug: 'cybersecurity-awareness' },
           { label: 'IT Governance & Digital Governance', slug: 'it-governance' },
           { label: 'Enterprise Risk Management', slug: 'risk-management' },
           { label: 'Internal Audit & Assurance', slug: 'internal-audit' },
-          { label: 'Regulatory Compliance & Standards', slug: 'compliance' }
-        ]
-      },
-      {
-        title: 'Leadership & Development',
-        icon: <Briefcase className="w-8 h-8" />,
-        items: [
+          { label: 'Regulatory Compliance & Standards', slug: 'compliance' },
+          { label: 'Digital Transformation Skills', slug: 'digital-transformation' },
           { label: 'Leadership & Management Skills', slug: 'leadership' },
           { label: 'Strategic Thinking & Decision Making', slug: 'strategic-thinking' },
           { label: 'Communication & Workplace Effectiveness', slug: 'communication' },
@@ -337,14 +339,12 @@ const Training: React.FC = () => {
         ]
       },
       {
-        title: 'Certification Prep',
-        icon: <Award className="w-8 h-8" />,
+        title: 'Ebanex Digital Trust Conference',
+        icon: <Briefcase className="w-8 h-8" />,
         items: [
-          { label: 'CISA Preparation', slug: 'cisa' },
-          { label: 'CISM Preparation', slug: 'cism' },
-          { label: 'CISSP Preparation', slug: 'cissp' },
-          { label: 'CEH Preparation', slug: 'ceh' },
-          { label: 'Cisco CCNA/CCNP Preparation', slug: 'cisco' }
+          { label: 'Annual Conference Overview', slug: 'conference' },
+          { label: 'Sponsorship Opportunities', slug: 'sponsorship' },
+          { label: 'Past Events & Highlights', slug: 'past-events' }
         ]
       }
     ];

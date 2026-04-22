@@ -27,8 +27,8 @@ const Home: React.FC = () => {
         <div className="hidden">
           <WhoWeAreSection />
         </div>
-        <WhyEbanexGridSection />
         <CoreServicesSection />
+        <WhyEbanexGridSection />
         {/* Training Approach — hidden, preserved for future use */}
         <div className="hidden">
           <TrainingApproachSection />

@@ -2338,5 +2338,235 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
                 answer: 'Our bootcamp includes intensive, case-based simulations of risk assurance engagements. You will practice designing assurance programs for complex organizational risks, creating high-impact board reports, and defending your risk mitigation priorities in mock executive committee sessions.' 
             }
         ]
+    },
+    'conference': {
+        title: 'Ebanex Digital Trust Conference',
+        slug: 'conference',
+        badge: 'Annual Event',
+        description: 'Join global leaders, technology experts, and policy makers at our flagship annual conference focused on building trust in the digital age.',
+        longDescription: 'The Ebanex Digital Trust Conference is the premier annual gathering for stakeholders in the cybersecurity, data privacy, and digital governance ecosystem. This multi-day event features high-level keynote addresses, technical deep-dives, and strategic panel discussions designed to address the most pressing challenges of our time.\n\nParticipants will gain insights into emerging threats, regulatory shifts, and the technological innovations driving digital resilience. The conference also serves as a critical networking hub, connecting government officials, corporate executives, and technical practitioners across the continent.\n\nBuilding digital trust is a collective journey. Our annual conference provides the forum for sharing knowledge, fostering collaboration, and defining the future of Africa\'s digital landscape. Join us as we explore the intersection of technology, policy, and human trust.',
+        duration: '3 Days (Annual)',
+        hours: '24 Hours (Sessions)',
+        audience: 'C-Suite, GRC Professionals, IT Leaders, Policy Makers',
+        image: 'https://images.unsplash.com/photo-1540575861501-7ad05823c23d?q=80&w=1200',
+        testimonial: {
+            text: 'The Ebanex Digital Trust Conference has consistently been the most high-impact event on my professional calendar. The caliber of speakers and the depth of the strategic discussions are unparalleled in the region. Last year, the insights we gained on regional data protection trends directly informed our organization\'s expansion strategy. It is more than just a conference; it is a catalyst for institutional growth and regional collaboration in the digital space.',
+            author: 'Elena Rostova',
+            role: 'CISO, Global Tech Solutions',
+            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000'
+        },
+        instructor: {
+            name: 'Conference Faculty',
+            role: 'Expert Panel',
+            bio: 'A curated selection of global thought leaders, regional regulators, and technical experts who lead our keynote and workshop sessions.',
+            certs: ['PhD', 'CISSP', 'CISM', 'LLB'],
+            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces',
+            stats: [
+                { number: '50+', label: 'Speakers' },
+                { number: '20+', label: 'Countries' },
+                { number: '1k+', label: 'Delegates' },
+            ]
+        },
+        skills: {
+            technical: [
+                'Understanding emerging threat landscapes',
+                'Interpreting global regulatory shifts',
+                'Evaluating AI and trust frameworks',
+                'Strategic digital resilience planning',
+                'Cyber diplomacy and collaboration',
+                'Advanced data protection architectures'
+            ],
+            business: [
+                'Networking with regional peers and regulators',
+                'Strategic decision making in digital ecosystems',
+                'Building organizational trust cultures',
+                'Navigating cross-border compliance',
+                'Innovation and technology roadmap design',
+                'Executive leadership in times of crisis'
+            ]
+        },
+        evaluation: [
+            { phase: 'Phase 1: Keynote Insights', desc: 'Understanding the strategic vision and trends' },
+            { phase: 'Phase 2: Technical Tracks', desc: 'Deep-dives into specific domain challenges' },
+            { phase: 'Phase 3: Networking Labs', desc: 'Collaborative problem-solving with peers' },
+            { phase: 'Phase 4: Post-Event Roadmap', desc: 'Applying conference learnings to institutional goals' }
+        ],
+        industries: [
+            { title: 'Public Sector', desc: 'National digital strategy and governance' },
+            { title: 'Finance', desc: 'Securing regional financial ecosystems' },
+            { title: 'Telecom', desc: 'Infrastructure resilience and trust' },
+            { title: 'Technology', desc: 'Innovation and responsible AI' }
+        ],
+        stats: [
+            { metric: 50, suffix: '+', label: 'Expert Speakers' },
+            { metric: 1000, suffix: '+', label: 'Annual Delegates' },
+            { metric: 25, suffix: '+', label: 'Technical Sessions' },
+            { metric: 100, suffix: '%', label: 'Strategic Focus' }
+        ],
+        faqs: [
+            { 
+                question: 'When is it held?', 
+                answer: 'Our flagship conference is held annually, typically in the third quarter of the year. We announce the specific dates and the host city (which rotates among major African digital hubs) at least six months in advance to allow our global delegates sufficient time for planning and registration.' 
+            },
+            { 
+                question: 'Virtual options?', 
+                answer: 'Yes, we offer a high-fidelity hybrid experience. While the physical event provides unparalleled networking opportunities, our virtual platform allows global participants to engage with all keynote addresses and technical tracks in real-time, complete with interactive Q&A and virtual breakout rooms.' 
+            },
+            { 
+                question: 'Group registration?', 
+                answer: 'We highly encourage institutional participation. We offer significant group discounts for organizations sending five or more delegates, and we can provide dedicated "Strategic Debrief" sessions for large delegations to help them synthesize the conference learnings for their specific institutional context.' 
+            }
+        ]
+    },
+    'sponsorship': {
+        title: 'Conference Sponsorship',
+        slug: 'sponsorship',
+        badge: 'Strategic Partner',
+        description: 'Position your brand at the center of the digital trust conversation. Our sponsorship packages offer unique visibility and engagement opportunities.',
+        longDescription: 'Sponsoring the Ebanex Digital Trust Conference provides your organization with a unique platform to demonstrate leadership and commitment to a secure digital future. Our partners gain high-visibility access to a curated audience of decision-makers, regulators, and technical practitioners.\n\nFrom Title Sponsorship to specific Technical Track partnerships, we offer a range of packages designed to align with your organization\'s strategic goals. Our sponsorship team works closely with you to ensure maximum ROI through brand integration, speaking opportunities, and exclusive networking events.\n\nPartnering with Ebanex is more than just marketing; it is a statement of institutional excellence and a commitment to building a resilient digital ecosystem for Africa.',
+        duration: 'Full Cycle',
+        hours: 'Custom Engagement',
+        audience: 'Technology Vendors, Financial Institutions, Service Providers',
+        image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1200',
+        testimonial: {
+            text: 'Partnering with Ebanex as a Platinum Sponsor has been one of our most effective strategic moves this year. The level of access to key regional regulators and the ability to showcase our solutions to a highly focused audience of C-suite leaders resulted in a significant increase in our high-value pipeline. Ebanex doesn\'t just provide a logo spot; they provide a true strategic partnership that integrates our brand into the very fabric of the digital trust conversation.',
+            author: 'David Miller',
+            role: 'VP Sales, CyberSecure Africa',
+            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=533&fit=crop&crop=faces'
+        },
+        instructor: {
+            name: 'Partnership Team',
+            role: 'Strategic Support',
+            bio: 'Our dedicated partnership managers who ensure every sponsor receives maximum value and seamless integration into the conference ecosystem.',
+            certs: ['MBA', 'CRM', 'PMP'],
+            image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=533&fit=crop&crop=faces',
+            stats: [
+                { number: '10+', label: 'Years Exp' },
+                { number: '100+', label: 'Partners' },
+                { number: '95%', label: 'Renewal Rate' },
+            ]
+        },
+        skills: {
+            technical: [
+                'Brand integration in technical environments',
+                'Strategic audience engagement',
+                'Thought leadership positioning',
+                'Exhibition space optimization',
+                'Digital branding and visibility',
+                'Partnership ROI measurement'
+            ],
+            business: [
+                'High-level networking and lead generation',
+                'Stakeholder relationship management',
+                'Corporate social responsibility (CSR) visibility',
+                'Industry leadership demonstration',
+                'Market entry and expansion support',
+                'Strategic alliance building'
+            ]
+        },
+        evaluation: [
+            { phase: 'Phase 1: Package Selection', desc: 'Aligning sponsorship with business goals' },
+            { phase: 'Phase 2: Integration Planning', desc: 'Designing brand and thought leadership presence' },
+            { phase: 'Phase 3: Conference Execution', desc: 'Active engagement and visibility during the event' },
+            { phase: 'Phase 4: Post-Event Review', desc: 'Measuring ROI and planning future collaboration' }
+        ],
+        industries: [
+            { title: 'Cybersecurity Vendors', desc: 'Showcasing offensive and defensive solutions' },
+            { title: 'Financial Services', desc: 'Demonstrating commitment to digital security' },
+            { title: 'Consulting Firms', desc: 'Positioning as strategic trust advisors' },
+            { title: 'Tech Infrastructure', desc: 'Powering the digital resilience journey' }
+        ],
+        stats: [
+            { metric: 85, suffix: '%', label: 'C-Suite Audience' },
+            { metric: 200, suffix: '+', label: 'Potential Leads' },
+            { metric: 100, suffix: '%', label: 'Brand Visibility' },
+            { metric: 5, suffix: 'x', label: 'Engagement ROI' }
+        ],
+        faqs: [
+            { 
+                question: 'Custom packages?', 
+                answer: 'Absolutely. We understand that every organization has unique goals. While we offer standardized Platinum, Gold, and Silver tiers, our team is highly experienced in creating bespoke sponsorship opportunities that focus on specific themes, technical tracks, or networking experiences that align perfectly with your strategic needs.' 
+            },
+            { 
+                question: 'Speaking slots?', 
+                answer: 'Higher-tier sponsorship packages include opportunities for your organization\'s thought leaders to participate in plenary panel discussions or lead specialized technical workshops. Our academic committee reviews all proposed content to ensure it meets our high standards of institutional value and strategic insight.' 
+            }
+        ]
+    },
+    'past-events': {
+        title: 'Past Conference Highlights',
+        slug: 'past-events',
+        badge: 'Impact Gallery',
+        description: 'Explore the legacy of Ebanex Digital Trust Conferences. Review past keynotes, session summaries, and the evolution of the digital trust conversation.',
+        longDescription: 'The "Past Events & Highlights" archive is a testament to Ebanex\'s long-term commitment to building digital resilience. Here, you can access white papers, session recordings, and gallery highlights from our previous conferences across the continent.\n\nReviewing our past events allows stakeholders to trace the evolution of cybersecurity threats and regulatory responses. It provides a valuable historical context for current challenges and showcases the collective impact of the Ebanex community over the years.\n\nThe journey of digital trust is documented through these events. We invite you to explore the milestones we have reached and the insights shared by some of the most influential voices in the digital ecosystem.',
+        duration: 'On-Demand',
+        hours: 'Archive Access',
+        audience: 'Researchers, Students, Prospective Delegates',
+        image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200',
+        testimonial: {
+            text: 'The Ebanex conference archives have become an essential research resource for our policy team. Being able to review the keynote addresses from five years ago and compare them to today\'s discussions provides a fascinating look at how quickly our threat landscape and regulatory environment have evolved. The quality of the documentation—from the white papers to the session recordings—is exceptional and reflects Ebanex\'s commitment to long-term knowledge sharing.',
+            author: 'Fatuma Hassan',
+            role: 'Policy Lead, Regional Governance Institute',
+            image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000'
+        },
+        instructor: {
+            name: 'Archive Faculty',
+            role: 'Curated Experts',
+            bio: 'The collective intelligence of past conference speakers and contributors whose insights remain available for institutional learning.',
+            certs: ['Diverse'],
+            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop&crop=faces',
+            stats: [
+                { number: '5+', label: 'Years of Data' },
+                { number: '100+', label: 'Recorded Sessions' },
+                { number: '50+', label: 'White Papers' },
+            ]
+        },
+        skills: {
+            technical: [
+                'Analyzing historical threat trends',
+                'Reviewing legacy security frameworks',
+                'Tracing regulatory evolution',
+                'Evaluating past technology roadmaps',
+                'Learning from case studies',
+                'Understanding policy development'
+            ],
+            business: [
+                'Historical ROI analysis of digital initiatives',
+                'Strategic trend identification',
+                'Case-based problem solving',
+                'Benchmarking institutional progress',
+                'Learning from industry leaders',
+                'Contextualizing current strategies'
+            ]
+        },
+        evaluation: [
+            { phase: 'Phase 1: Content Review', desc: 'Exploring specific past sessions and papers' },
+            { phase: 'Phase 2: Trend Analysis', desc: 'Identifying patterns in historical data' },
+            { phase: 'Phase 3: Contextual Application', desc: 'Applying past lessons to current challenges' },
+            { phase: 'Phase 4: Future Forecasting', desc: 'Using historical context for better planning' }
+        ],
+        industries: [
+            { title: 'Academic Research', desc: 'Data for digital policy and security studies' },
+            { title: 'Corporate Strategy', desc: 'Learning from the digital journeys of others' },
+            { title: 'Regulatory Bodies', desc: 'Benchmarking the evolution of compliance' },
+            { title: 'IT Practitioners', desc: 'Learning from technical failures and successes' }
+        ],
+        stats: [
+            { metric: 100, suffix: '+', label: 'Sessions Archived' },
+            { metric: 5, suffix: '+', label: 'Years of Impact' },
+            { metric: 50, suffix: '+', label: 'Industry Whitepapers' },
+            { metric: 10, suffix: 'k+', label: 'Annual Views' }
+        ],
+        faqs: [
+            { 
+                question: 'Is access free?', 
+                answer: 'A significant portion of our conference highlights, including executive summaries and select session recordings, is available for free to the public as part of our commitment to regional upskilling. However, full access to high-fidelity recordings, detailed white papers, and technical workshop materials is reserved for Ebanex members and past conference delegates.' 
+            },
+            { 
+                question: 'Can I cite this data?', 
+                answer: 'Yes, we encourage the use of Ebanex conference materials for academic and professional research. We provide standardized citation formats for all our white papers and keynote addresses to ensure that the intellectual contributions of our faculty and speakers are properly recognized.' 
+            }
+        ]
     }
 };
+

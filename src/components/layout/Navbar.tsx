@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight, MoreHorizontal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -93,15 +93,25 @@ const Navbar: React.FC = () => {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [mobileCategoryExpanded, setMobileCategoryExpanded] = useState<string | null>(null);
   const [showHiddenLinks, setShowHiddenLinks] = useState(false);
+  const [navBottom, setNavBottom] = useState(0);
+  const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
   const lenis = useLenis();
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateNavBottom = () => {
+      if (navRef.current) {
+        setNavBottom(navRef.current.getBoundingClientRect().bottom);
+      }
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    updateNavBottom();
+    window.addEventListener('scroll', updateNavBottom);
+    window.addEventListener('resize', updateNavBottom);
+    return () => {
+      window.removeEventListener('scroll', updateNavBottom);
+      window.removeEventListener('resize', updateNavBottom);
+    };
   }, []);
 
   useEffect(() => {
@@ -132,6 +142,9 @@ const Navbar: React.FC = () => {
   }, [isOpen, activeDropdown, lenis]);
 
   const handleDropdownClick = (label: string) => {
+    if (navRef.current) {
+      setNavBottom(navRef.current.getBoundingClientRect().bottom);
+    }
     setActiveDropdown(activeDropdown === label ? null : label);
   };
 
@@ -144,15 +157,13 @@ const Navbar: React.FC = () => {
     setMobileCategoryExpanded(mobileCategoryExpanded === title ? null : title);
   };
 
-  // Split links: First 6 visible, others hidden under "More"
   const visibleLinks = NAVIGATION_LINKS.slice(0, 6);
   const hiddenLinks = NAVIGATION_LINKS.slice(6);
 
   const renderNavLink = (link: typeof NAVIGATION_LINKS[0], index: number) => {
     const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
     const isActive = location.pathname === link.path;
-    // Functional links based on your previous rule: About Us (idx 0), Training (idx 1), Corp Solutions (idx 2)     
-    const isEnabled = index < 2; // Restore to your functional state: About Us and Training are enabled.
+    const isEnabled = index < 2;
 
     if (!isEnabled) {
       return (
@@ -191,79 +202,6 @@ const Navbar: React.FC = () => {
             {link.label}
           </Link>
         )}
-
-        {hasDropdown && activeDropdown === link.label && (
-          <AnimatePresence>
-            <motion.div
-              layoutId={`dropdown-${link.label}`}
-              initial={{ opacity: 0, y: -20, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.98 }}
-              transition={{
-                type: "spring",
-                stiffness: 300,
-                damping: 25,
-                mass: 0.8
-              }}
-              className="fixed top-[64px] sm:top-[80px] lg:top-[96px] left-[10px] right-[10px] w-[calc(100vw-20px)] max-h-[calc(100vh-140px)] z-[110] flex flex-col bg-black border border-[#00BFFF]/40 rounded-none shadow-[25px_25px_0px_0px_rgba(0,191,255,0.1)] overflow-hidden backdrop-blur-xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="p-4 lg:p-6 bg-black/80 backdrop-blur-md shrink-0 border-b border-[#00BFFF]/20 z-20">       
-                <div className="max-w-7xl mx-auto w-full">
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 }}
-                  >
-                    <h4 className="text-[9px] font-black text-[#00BFFF] uppercase tracking-[0.3em] mb-1">Overview</h4>
-                    <p className="text-xs text-slate-400 font-medium leading-relaxed max-w-4xl">
-                      {DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT].overview}
-                    </p>
-                  </motion.div>
-                </div>
-              </div>
-              <div 
-                className="flex-1 overflow-y-auto relative py-6 lg:py-10 px-4 lg:px-8 bg-black custom-scrollbar overscroll-contain min-h-0"
-                data-lenis-prevent
-              >
-                <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                  <Squares speed={0.05} squareSize={30} direction="diagonal" borderColor="rgba(0,191,255,0.08)" hoverFillColor="rgba(0,191,255,0.05)" />
-                </div>
-                <div className="relative z-10 max-w-7xl mx-auto">
-                  <div className={cn("grid gap-4 lg:gap-6", link.label === 'Training Programs' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 md:grid-cols-2')}>
-                    {DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT].categories.map((category, idx) => (
-                      <motion.div
-                        key={idx}
-                        className="group relative h-full"
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 + (idx * 0.05) }}
-                      >
-                        <div className={`absolute inset-0 bg-[#00bfff]/20 transform ${idx % 2 === 0 ? 'rotate-1' : '-rotate-1'} group-hover:rotate-0 transition-transform duration-500`} />
-                        <div className="relative p-4 lg:p-5 border-[1px] border-[#00BFFF]/30 shadow-2xl transition-all duration-300 h-full flex flex-col group-hover:border-[#00BFFF] group-hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, #051020 0%, #0a1a2f 100%)' }}>
-                          <h3 className="text-[10px] font-black text-[#00BFFF] uppercase tracking-[0.15em] flex items-center gap-2 mb-4">
-                            <span className="w-1.5 h-1.5 bg-[#00BFFF] animate-pulse" />
-                            {category.title}
-                          </h3>
-                          <ul className="space-y-2">
-                            {category.items.map((item, itemIndex) => (
-                              <li key={itemIndex}>
-                                <Link to={item.path} className="text-[13px] text-white/80 font-normal hover:text-[#00BFFF] hover:translate-x-1 transition-all block py-0.5 relative group/link">
-                                  {item.label}
-                                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#00BFFF]/50 group-hover/link:w-full transition-all duration-300" />
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        )}
       </div>
     );
   };
@@ -277,7 +215,7 @@ const Navbar: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[90] bg-[#020a1a]/85 backdrop-blur-[3px] pointer-events-auto cursor-pointer" 
+            className="fixed inset-0 z-[160] bg-[#020a1a]/85 backdrop-blur-[3px] pointer-events-auto cursor-pointer" 
             onClick={(e) => {
               e.stopPropagation();
               setActiveDropdown(null);
@@ -285,34 +223,28 @@ const Navbar: React.FC = () => {
           />
         )}
       </AnimatePresence>
+
       <nav
-        className="w-full z-[120] py-0 bg-black backdrop-blur-2xl border-b border-[#00BFFF]/10 sticky top-0"        
+        ref={navRef}
+        className="w-full z-[200] py-0 bg-black backdrop-blur-2xl border-b border-[#00BFFF]/10 fixed top-0 left-0"        
         role="navigation"
         aria-label="Main Navigation"
         onClick={() => setActiveDropdown(null)}
       >
         <div
-          className="w-full px-4 sm:px-6 flex items-center h-16 sm:h-20 lg:h-24 relative z-[130]"
-          onClick={(e) => {
-            // Allow clicks to bubble up to the nav for empty space,
-            // but stop propagation on interactive children.
-          }}
+          className="w-full px-4 sm:px-6 flex items-center h-16 sm:h-20 lg:h-24 relative z-[160]"
+          onClick={(e) => e.stopPropagation()}
         >
           {/* Logo Shield */}
-          <div
-            className="relative z-30 bg-black h-full flex items-center pr-20 sm:pr-28 shrink-0 overflow-hidden"       
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className="relative z-30 bg-black h-full flex items-center pr-20 sm:pr-28 shrink-0 overflow-hidden">
             <Link to="/" className="flex items-center h-full group transition-opacity duration-300" aria-label="Ebanex International Home">
               <img src={logo} alt="" className="h-full py-1 w-auto object-contain transition-transform duration-300 brightness-110 scale-[2.5] origin-left" />
             </Link>
           </div>
 
           {/* Desktop Nav Area */}
-          <div 
-            className="hidden lg:flex flex-1 items-center justify-center h-full relative overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >            <motion.div
+          <div className="hidden lg:flex flex-1 items-center justify-center h-full relative overflow-hidden">
+            <motion.div 
               className="flex items-center gap-4 xl:gap-8 h-full pr-4"
               animate={{ x: showHiddenLinks ? -150 : 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -352,7 +284,7 @@ const Navbar: React.FC = () => {
           {/* Contact Button Shield */}
           <div className="relative z-30 bg-black h-full flex items-center pl-6 sm:pl-8 shrink-0">
             <Link to="/contact" className="px-6 py-3 bg-[#00BFFF] hover:bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-none transition-all shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] active:scale-95">        
-              Contact
+              Contact Us
             </Link>
           </div>
 
@@ -434,12 +366,77 @@ const Navbar: React.FC = () => {
               </div>
 
               <div className="p-8 bg-black border-t border-white/5">
-                <Link to="/contact" className="block w-full py-4 bg-[#00BFFF] text-black text-center font-black uppercase tracking-widest shadow-[5px_5px_0px_0px_rgba(255,255,255,0.1)]">Contact Expert</Link>
+                <Link to="/contact" className="block w-full py-4 bg-[#00BFFF] text-black text-center font-black uppercase tracking-widest shadow-[5px_5px_0px_0px_rgba(255,255,255,0.1)]">Contact Us</Link>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
+
+      {/* Global Dropdown - OUTSIDE nav to escape backdrop-filter containing block */}
+      <AnimatePresence>
+        {activeDropdown && DROPDOWN_CONTENT[activeDropdown as keyof typeof DROPDOWN_CONTENT] && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -5 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed left-1/2 -translate-x-1/2 w-[96%] max-w-7xl z-[170] flex flex-col bg-black border border-[#00BFFF]/40 shadow-2xl overflow-hidden backdrop-blur-xl"
+            style={{ top: navBottom, maxHeight: `calc(100vh - ${navBottom + 20}px)` }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-4 lg:p-6 bg-black/80 backdrop-blur-md shrink-0 border-b border-[#00BFFF]/20 z-20">
+              <div className="max-w-7xl mx-auto w-full">
+                <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
+                  <h4 className="text-[9px] font-black text-[#00BFFF] uppercase tracking-[0.3em] mb-1">Overview</h4>
+                  <p className="text-xs text-slate-400 font-medium leading-relaxed max-w-4xl">
+                    {DROPDOWN_CONTENT[activeDropdown as keyof typeof DROPDOWN_CONTENT].overview}
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+            <div
+              className="flex-1 overflow-y-auto relative py-6 lg:py-10 px-4 lg:px-8 bg-black custom-scrollbar overscroll-contain min-h-0"
+              data-lenis-prevent
+            >
+              <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <Squares speed={0.05} squareSize={30} direction="diagonal" borderColor="rgba(0,191,255,0.08)" hoverFillColor="rgba(0,191,255,0.05)" />
+              </div>
+              <div className="relative z-10 max-w-7xl mx-auto">
+                <div className={cn("grid gap-4 lg:gap-6", activeDropdown === 'Training Programs' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 md:grid-cols-2')}>
+                  {DROPDOWN_CONTENT[activeDropdown as keyof typeof DROPDOWN_CONTENT].categories.map((category, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="group relative h-full"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 + (idx * 0.05) }}
+                    >
+                      <div className={`absolute inset-0 bg-[#00bfff]/20 transform ${idx % 2 === 0 ? 'rotate-1' : '-rotate-1'} group-hover:rotate-0 transition-transform duration-500`} />
+                      <div className="relative p-4 lg:p-5 border-[1px] border-[#00BFFF]/30 shadow-2xl transition-all duration-300 h-full flex flex-col group-hover:border-[#00BFFF] group-hover:-translate-y-1" style={{ background: 'linear-gradient(135deg, #051020 0%, #0a1a2f 100%)' }}>
+                        <h3 className="text-[10px] font-black text-[#00BFFF] uppercase tracking-[0.15em] flex items-center gap-2 mb-4">
+                          <span className="w-1.5 h-1.5 bg-[#00BFFF] animate-pulse" />
+                          {category.title}
+                        </h3>
+                        <ul className="space-y-2">
+                          {category.items.map((item, itemIndex) => (
+                            <li key={itemIndex}>
+                              <Link to={item.path} className="text-[13px] text-white/80 font-normal hover:text-[#00BFFF] hover:translate-x-1 transition-all block py-0.5 relative group/link">
+                                {item.label}
+                                <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#00BFFF]/50 group-hover/link:w-full transition-all duration-300" />
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };
