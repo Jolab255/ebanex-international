@@ -8,6 +8,7 @@ import {
   CoreValuesSection,
   FoundersMessageSection,
   StrategicFocusSection,
+  AboutCtaSection,
 } from '../features/about';
 
 const About: React.FC = () => {
@@ -29,6 +30,7 @@ const About: React.FC = () => {
       <CoreValuesSection />
       <FoundersMessageSection />
       <StrategicFocusSection />
+      <AboutCtaSection />
     </div>
   );
 };

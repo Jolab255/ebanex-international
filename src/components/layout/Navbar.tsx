@@ -157,19 +157,25 @@ const Navbar: React.FC = () => {
     setMobileCategoryExpanded(mobileCategoryExpanded === title ? null : title);
   };
 
-  const visibleLinks = NAVIGATION_LINKS.slice(0, 6);
-  const hiddenLinks = NAVIGATION_LINKS.slice(6);
+  const visibleLinks = NAVIGATION_LINKS.slice(0, 5);
+  const hiddenLinks = NAVIGATION_LINKS.slice(5);
 
   const renderNavLink = (link: typeof NAVIGATION_LINKS[0], index: number) => {
     const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
     const isActive = location.pathname === link.path;
-    const isEnabled = index < 2;
+    
+    // Inactive tabs based on your request
+    const isInactive = 
+      link.label === 'IT Audit & Advisory Services' || 
+      link.label === 'Corporate Solutions' ||
+      link.label === 'Ebanex Digital Trust Conference' ||
+      index >= 5; 
 
-    if (!isEnabled) {
+    if (isInactive) {
       return (
         <div key={link.path} className="relative h-full flex items-center">
           <span
-            className="text-[9px] xl:text-[10px] font-bold tracking-tight uppercase text-white/30 cursor-not-allowed whitespace-nowrap"
+            className="text-[10px] xl:text-[11px] font-bold tracking-tight uppercase text-white/30 cursor-not-allowed whitespace-nowrap"
             title="Coming Soon"
           >
             {link.label}
@@ -184,7 +190,7 @@ const Navbar: React.FC = () => {
           <button
             onClick={(e) => { e.stopPropagation(); handleDropdownClick(link.label); }}
             className={cn(
-              "text-[9px] xl:text-[10px] font-bold tracking-tight uppercase transition-colors whitespace-nowrap flex items-center gap-1 focus:outline-none",
+              "text-[10px] xl:text-[11px] font-bold tracking-tight uppercase transition-colors whitespace-nowrap flex items-center gap-1 focus:outline-none",
               isActive || activeDropdown === link.label ? 'text-[#00BFFF]' : 'text-white hover:text-[#00BFFF]'      
             )}
           >
@@ -195,7 +201,7 @@ const Navbar: React.FC = () => {
           <Link
             to={link.path}
             className={cn(
-              "text-[9px] xl:text-[10px] font-bold tracking-tight uppercase transition-colors whitespace-nowrap focus:outline-none",
+              "text-[10px] xl:text-[11px] font-bold tracking-tight uppercase transition-colors whitespace-nowrap focus:outline-none",
               isActive ? 'text-[#00BFFF]' : 'text-white hover:text-[#00BFFF]'
             )}
           >
@@ -236,21 +242,17 @@ const Navbar: React.FC = () => {
           onClick={(e) => e.stopPropagation()}
         >
           {/* Logo Shield */}
-          <div className="relative z-30 bg-black h-full flex items-center pr-20 sm:pr-28 shrink-0 overflow-hidden">
+          <div className="relative z-50 bg-black h-full flex items-center pr-20 sm:pr-28 shrink-0 overflow-hidden">
             <Link to="/" className="flex items-center h-full group transition-opacity duration-300" aria-label="Ebanex International Home">
               <img src={logo} alt="" className="h-full py-1 w-auto object-contain transition-transform duration-300 brightness-110 scale-[2.5] origin-left" />
             </Link>
           </div>
 
           {/* Desktop Nav Area */}
-          <div className="hidden lg:flex flex-1 items-center justify-center h-full relative overflow-hidden">
-            <motion.div 
-              className="flex items-center gap-4 xl:gap-8 h-full pr-4"
-              animate={{ x: showHiddenLinks ? -150 : 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
+          <div className="hidden lg:flex flex-1 items-center justify-end h-full relative overflow-hidden pr-2">
+            <div className="flex items-center gap-4 xl:gap-8 h-full">
               <div className="flex items-center gap-3 xl:gap-5 h-full shrink-0">
-                <Link to="/" className={cn("text-[9px] xl:text-[10px] font-black tracking-[0.1em] uppercase transition-colors whitespace-nowrap", location.pathname === '/' ? 'text-[#00BFFF]' : 'text-white hover:text-[#00BFFF]')}>Home</Link>
+                <Link to="/" className={cn("text-[10px] xl:text-[11px] font-black tracking-[0.1em] uppercase transition-colors whitespace-nowrap", location.pathname === '/' ? 'text-[#00BFFF]' : 'text-white hover:text-[#00BFFF]')}>Home</Link>
                 {visibleLinks.map((link, index) => renderNavLink(link, index))}
               </div>
 
@@ -261,31 +263,41 @@ const Navbar: React.FC = () => {
                     initial={{ width: 0, opacity: 0, x: 20 }}
                     animate={{ width: 'auto', opacity: 1, x: 0 }}
                     exit={{ width: 0, opacity: 0, x: 20 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="flex items-center gap-3 xl:gap-5 overflow-hidden shrink-0 border-l border-[#00BFFF]/20 pl-4 ml-1"
                   >
-                    {hiddenLinks.map((link, index) => renderNavLink(link, index + 6))}
+                    {hiddenLinks.map((link, index) => (
+                      <div key={link.path} className="shrink-0">
+                        {renderNavLink(link, index + 5)}
+                      </div>
+                    ))}
                   </motion.div>
                 )}
               </AnimatePresence>
-
-              <button
-                onClick={(e) => { e.stopPropagation(); setShowHiddenLinks(!showHiddenLinks); }}
-                className={cn("p-2 hover:text-[#00BFFF] transition-colors focus:outline-none shrink-0", showHiddenLinks ? 'text-[#00BFFF]' : 'text-white')}
-                aria-label="Toggle more links"
-              >
-                <motion.div animate={{ rotate: showHiddenLinks ? 90 : 0 }} transition={{ duration: 0.3 }}>
-                  <MoreHorizontal size={20} />
-                </motion.div>
-              </button>
-            </motion.div>
+            </div>
           </div>
 
-          {/* Contact Button Shield */}
-          <div className="relative z-30 bg-black h-full flex items-center pl-6 sm:pl-8 shrink-0">
-            <Link to="/contact" className="px-6 py-3 bg-[#00BFFF] hover:bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-none transition-all shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] active:scale-95">        
-              Contact Us
-            </Link>
+          {/* Right Actions - Anchored to the right edge */}
+          <div className="hidden lg:flex items-center h-full shrink-0 relative z-40 bg-black">
+            {/* Toggle Button */}
+            <div className="px-2 flex items-center h-full">
+              <button
+                onClick={(e) => { e.stopPropagation(); setShowHiddenLinks(!showHiddenLinks); }}
+                className={cn("p-2 hover:text-[#00BFFF] transition-colors focus:outline-none relative z-50", showHiddenLinks ? 'text-[#00BFFF]' : 'text-white')}
+                aria-label={showHiddenLinks ? "Hide more links" : "Show more links"}
+              >
+                <motion.div animate={{ rotate: showHiddenLinks ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                  {showHiddenLinks ? <ChevronRight size={20} className="rotate-180" /> : <MoreHorizontal size={20} />}
+                </motion.div>
+              </button>
+            </div>
+
+            {/* Contact Button */}
+            <div className="pl-4 sm:pl-6 flex items-center h-full bg-black">
+              <Link to="/contact" className="px-6 py-3 bg-[#00BFFF] hover:bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-none transition-all shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] active:scale-95 whitespace-nowrap">        
+                Contact Us
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Toggle */}
@@ -388,8 +400,8 @@ const Navbar: React.FC = () => {
             <div className="p-4 lg:p-6 bg-black/80 backdrop-blur-md shrink-0 border-b border-[#00BFFF]/20 z-20">
               <div className="max-w-7xl mx-auto w-full">
                 <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
-                  <h4 className="text-[9px] font-black text-[#00BFFF] uppercase tracking-[0.3em] mb-1">Overview</h4>
-                  <p className="text-xs text-slate-400 font-medium leading-relaxed max-w-4xl">
+                  <h4 className="text-[10px] font-black text-[#00BFFF] uppercase tracking-[0.3em] mb-1">Overview</h4>
+                  <p className="text-[13px] text-slate-400 font-medium leading-relaxed max-w-4xl">
                     {DROPDOWN_CONTENT[activeDropdown as keyof typeof DROPDOWN_CONTENT].overview}
                   </p>
                 </motion.div>

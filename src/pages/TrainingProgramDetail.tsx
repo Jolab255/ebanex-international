@@ -131,29 +131,19 @@ const TrainingProgramDetail: React.FC = () => {
                         </div>
 
                         <div className="relative w-full max-w-5xl flex items-center justify-center lg:justify-end">
-                            <div className="hidden lg:block absolute left-[-5%] lg:left-[-10%] top-[40%] -translate-y-1/2 w-[350px] sm:w-[450px] lg:w-[500px] aspect-square z-0 opacity-100 cursor-pointer group">
+                            <div className="hidden lg:block absolute left-[-5%] lg:left-[-10%] top-[40%] -translate-y-1/2 w-[350px] sm:w-[450px] lg:w-[500px] aspect-square z-0 opacity-100 cursor-default group">
                                 <div className="relative w-full h-full border-[10px] border-black shadow-[15px_15px_0px_0px_rgba(0,196,212,0.2)] overflow-hidden">
                                     <img src={program.image} alt={program.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="w-16 h-16 bg-[#00C4D4] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                                            <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[18px] border-l-black border-b-[10px] border-b-transparent ml-1"></div>
-                                        </div>
-                                    </div>
-                                    <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#FF0000]"></div>
+                                    <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#00C4D4]"></div>
                                 </div>
                             </div>
 
-                            <div className="lg:hidden w-full max-w-[320px] sm:max-w-[380px] aspect-square mx-auto mb-[-60px] relative z-40 group cursor-pointer">
+                            <div className="lg:hidden w-full max-w-[320px] sm:max-w-[380px] aspect-square mx-auto mb-[-60px] relative z-40 group cursor-default">
                                 <div className="relative w-full h-full border-[8px] border-black shadow-2xl overflow-hidden ">
                                     <img src={program.image} alt={program.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="w-12 h-12 bg-[#00C4D4] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                                            <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-black border-b-[8px] border-b-transparent ml-1"></div>
-                                        </div>
-                                    </div>
-                                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[#FF0000]"></div>
+                                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[#00C4D4]"></div>
                                 </div>
                             </div>
 
@@ -238,52 +228,14 @@ const TrainingProgramDetail: React.FC = () => {
                     </div>
                 </section>
 
-                {/* Sticky Jump Nav */}
-                <div className="sticky top-0 z-50 py-4 sm:py-6 border-b-[4px] border-black shadow-2xl bg-[#00C4D4]">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-                        <div className="text-[11px] font-black uppercase tracking-widest text-black">Jump to:</div>
-                        <div className="flex items-center gap-2 sm:gap-6">
-                            <button onClick={() => scrollToSection('overview')} className={cn("text-[10px] font-bold uppercase tracking-widest px-4 py-2 border-2", !isInSyllabus ? 'bg-black text-[#00C4D4] border-black' : 'border-transparent text-black')}>Overview</button>
-                            <button onClick={() => scrollToSection('syllabus')} className={cn("text-[10px] font-bold uppercase tracking-widest px-4 py-2 border-2", isInSyllabus ? 'bg-black text-[#00C4D4] border-black' : 'border-transparent text-black')}>Syllabus</button>
-                            <button onClick={() => scrollToSection('faqs')} className="hidden sm:block text-[10px] font-bold uppercase tracking-widest px-4 py-2 border-2 border-transparent text-black">FAQs</button>
-                            <button onClick={() => scrollToSection('register')} className="bg-black text-[#00C4D4] text-[10px] font-bold uppercase tracking-widest px-5 py-2 border-2 border-black hover:bg-white hover:text-black hover:border-white transition-all">Register</button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Testimonial Section */}
-                <section className="relative z-40 bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center py-16 px-4 w-full overflow-hidden">
-                    <div className="absolute inset-0 z-0 pointer-events-none">
-                        <Squares speed={0.13} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.08)" hoverFillColor="rgba(255,255,255,0.05)" />
-                    </div>
-                    <div className="max-w-7xl mx-auto w-full relative z-10">
-                        <div className="relative w-full max-w-5xl flex items-center justify-center lg:justify-start">
-                            <div className="hidden lg:block absolute right-[-10%] top-1/2 -translate-y-1/2 w-[450px] aspect-square z-0">
-                                <img src={program.image} className="w-full h-full object-cover border-[10px] border-black" alt="" />
-                            </div>
-                            <div className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-10 bg-[#0a1628]" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
-                                <div className="text-[#00C4D4] font-serif text-6xl leading-none h-8 -ml-1 select-none">"</div>
-                                <p className="text-white/80 text-sm sm:text-base mb-6 leading-relaxed font-light italic mt-2 text-justify">{program.testimonial.text}</p>
-                                <div className="flex items-center gap-4 border-t border-white/10 pt-4">
-                                    <div className="w-12 h-px bg-[#00C4D4]" />
-                                    <div>
-                                        <h4 className="font-bold text-sm text-white uppercase tracking-widest">{program.testimonial.author}</h4>
-                                        <p className="text-[#00C4D4] font-medium uppercase tracking-widest text-[10px] mt-1">{program.testimonial.role}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 {/* Overview Section */}
-                <section id="overview" className="relative z-20 bg-black py-16 sm:py-24 overflow-hidden">
+                <section id="overview" className="relative z-20 bg-black py-12 sm:py-16 overflow-hidden">
                     <div className="absolute inset-0 z-0 pointer-events-none">
                         <Squares speed={0.13} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.08)" hoverFillColor="rgba(255,255,255,0.05)" />
                     </div>
                     <div className="w-full px-4 sm:px-6 lg:px-[100px] relative z-10">
                         <motion.div {...fadeInUp}>
-                            <h2 className="text-3xl sm:text-4xl font-black text-white uppercase mb-12 border-b-4 border-[#00C4D4] inline-block">Program Overview</h2>
+                            <h2 className="text-xl sm:text-2xl font-bold text-white uppercase mb-6">Program Overview</h2>
                             <div className="w-full">
                                 <p className="text-slate-300 text-lg font-light leading-relaxed text-justify">
                                     {firstParagraph}
@@ -375,55 +327,6 @@ const TrainingProgramDetail: React.FC = () => {
                                     </div>
                                 </div>
                             </motion.div>
-
-                            <div className="grid lg:grid-cols-2 gap-16">
-                                <div className="lg:sticky lg:top-[120px] lg:h-fit">
-                                    <h2 className="text-3xl sm:text-4xl font-black text-black uppercase mb-8 text-start">Measurable Impact</h2>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        {program.stats.map((stat, i) => (
-                                            <div key={i} className="p-6 text-center shadow-xl bg-[#0a1628]" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
-                                                <div className="text-4xl sm:text-5xl font-black text-[#00C4D4] mb-2"><Counter target={stat.metric} suffix={stat.suffix} /></div>
-                                                <div className="text-[10px] sm:text-xs text-white/90 font-bold uppercase tracking-widest">{stat.label}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <div className="flex flex-col xl:flex-row gap-3 mt-8">
-                                        <button className="w-full bg-transparent border-[3px] border-black text-black px-5 py-3 font-black uppercase tracking-widest text-[10px] hover:bg-black hover:text-[#00C4D4] transition-colors flex items-center justify-center gap-2">
-                                            Request Corporate Training <ArrowRight size={14} />
-                                        </button>
-                                        <button className="w-full bg-transparent border-[3px] border-black text-black px-5 py-3 font-black uppercase tracking-widest text-[10px] hover:bg-black hover:text-[#00C4D4] transition-colors flex items-center justify-center">
-                                            Schedule & Pricing
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-16 pb-32">
-                                    <div>
-                                        <h3 className="text-xl font-black text-black mb-4 pb-3 border-b-2 border-black/20 uppercase text-start">How You'll Be Evaluated</h3>
-                                        <p className="text-sm text-black/80 font-medium mb-8 text-start">Our comprehensive assessment framework ensures you master every competency through four key phases.</p>
-                                        <div className="space-y-4">
-                                            {program.evaluation.map((phase, i) => (
-                                                <div key={i} className="p-6 shadow-xl bg-[#0a1628]" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
-                                                    <span className="text-[#00C4D4] font-black block mb-2 uppercase tracking-wide text-start">{phase.phase}</span>
-                                                    <span className="text-white/90 font-medium text-sm leading-relaxed block text-start">{phase.desc}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h3 className="text-xl font-black text-black mb-4 pb-3 border-b-2 border-black/20 uppercase text-start">Tailored for Your Industry</h3>
-                                        <p className="text-sm text-black/80 font-medium mb-8 text-start">Our curriculum is customized to address the unique security challenges and compliance requirements of your sector.</p>
-                                        <div className="space-y-4">
-                                            {program.industries.map((item, i) => (
-                                                <div key={i} className="p-6 shadow-xl bg-[#0a1628]" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
-                                                    <span className="text-[#00C4D4] font-black text-sm block mb-2 uppercase tracking-wide text-start">{item.title}</span>
-                                                    <span className="text-white/90 font-medium text-sm leading-relaxed block text-start">{item.desc}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

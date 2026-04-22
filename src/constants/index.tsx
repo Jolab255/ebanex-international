@@ -5,8 +5,9 @@ import { Shield, Users, GraduationCap, Building2 } from 'lucide-react';
 export const NAVIGATION_LINKS = [
   { label: 'About Us', path: '/about' },
   { label: 'Training Programs', path: '/training' },
+  { label: 'IT Audit & Advisory Services', path: '/it-audit-advisory' },
   { label: 'Corporate Solutions', path: '/corporate-solutions' },
-  { label: 'Consulting & Advisory', path: '/consulting' },
+  { label: 'Ebanex Digital Trust Conference', path: '/conference' },
   { label: 'Cyber Labs', path: '/cyber-lab' },
   { label: 'Research & Insights', path: '/research' },
   { label: 'Partnerships', path: '/partnerships' },

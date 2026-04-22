@@ -4,30 +4,36 @@ import { Link } from 'react-router-dom';
 import { Squares } from '../../components/animations';
 import type { Service } from '../../types/content';
 
+// Import local images
+import capacityImg from '../../assets/Capacity Building & Professional Development.jpg';
+import cyberImg from '../../assets/Cybersecurity & Digital Skills.jpg';
+import leadershipImg from '../../assets/Leadership & Organizational Development.jpg';
+import advisoryImg from '../../assets/Institutional Advisory & Consulting.jpg';
+
 const CORE_SERVICES: Service[] = [
   {
     title: 'Capacity Building & Professional Development',
     desc: 'Strengthening workforce competencies and institutional performance through targeted training programs designed for long-term excellence.',
     icon: <></>,
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200',
+    image: capacityImg,
   },
   {
     title: 'Cybersecurity & Digital Skills',
     desc: 'Equipping professionals and institutions with practical knowledge and defensive strategies in high-stakes digital environments.',
     icon: <></>,
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200',
+    image: cyberImg,
   },
   {
     title: 'Leadership & Organizational Development',
     desc: 'Developing leaders, teams, and effective workplace cultures that drive institutional growth and sustainable success.',
     icon: <></>,
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200',
+    image: leadershipImg,
   },
   {
     title: 'Institutional Advisory & Consulting',
     desc: 'Supporting organizations with strategy development, governance strengthening, and performance optimization across sectors.',
     icon: <></>,
-    image: 'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?q=80&w=1200',
+    image: advisoryImg,
   },
 ];
 

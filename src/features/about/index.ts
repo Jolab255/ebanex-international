@@ -5,3 +5,4 @@ export { default as MissionVisionSection } from './MissionVisionSection';
 export { default as CoreValuesSection } from './CoreValuesSection';
 export { default as FoundersMessageSection } from './FoundersMessageSection';
 export { default as StrategicFocusSection } from './StrategicFocusSection';
+export { default as AboutCtaSection } from './AboutCtaSection';

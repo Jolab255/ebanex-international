@@ -15,6 +15,11 @@ import { Squares } from '../../components/animations';
 import { FitText } from '../../components/common';
 import { Counter } from '../../components/training/Counter';
 
+// Import local images
+import ngoImg from '../../assets/ngo\'s and agencies.jpg';
+import industrialImg from '../../assets/industrial sectors.jpg';
+import financialImg from '../../assets/financial services.jpg';
+
 const ClientsSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
@@ -45,7 +50,7 @@ const ClientsSection: React.FC = () => {
       category: 'Development',
       description: 'Supporting NGOs and development agencies in capacity building.',
       icon: HeartHandshake,
-      image: 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=1200', // Humanitarian/community coordination
+      image: ngoImg,
       accent: '#00BFFF',
     },
     {
@@ -53,7 +58,7 @@ const ClientsSection: React.FC = () => {
       category: 'Manufacturing',
       description: 'Serving industrial, mining, and manufacturing companies.',
       icon: Factory,
-      image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1200', // Heavy industrial facility
+      image: industrialImg,
       accent: '#00BFFF',
     },
     {
@@ -61,7 +66,7 @@ const ClientsSection: React.FC = () => {
       category: 'Services',
       description: 'Delivering comprehensive solutions to financial institutions.',
       icon: Briefcase,
-      image: 'https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?q=80&w=1200', // Financial/Banking hub
+      image: financialImg,
       accent: '#00BFFF',
     },
     {
