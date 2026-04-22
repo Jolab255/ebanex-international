@@ -10,48 +10,10 @@ import { Squares } from '../animations';
 
 const DROPDOWN_CONTENT = {
   'Training Programs': {
-    overview: 'Our curricula are industry-aligned, evidence-based, and designed to deliver immediate operational value for individuals and institutions.',
+    overview: 'Ebanex International delivers industry-aligned training programs designed to develop technical competence, leadership capability, and institutional effectiveness across sectors.',
     categories: [
       {
-        title: 'Cybersecurity',
-        items: [
-          { label: 'Cybersecurity Awareness Programs', path: '/training/cybersecurity-awareness' },
-          { label: 'Ethical Hacking & Threat Intelligence', path: '/training/ethical-hacking' },
-          { label: 'Incident Response Training', path: '/training/incident-response' },
-          { label: 'Digital Risk Management', path: '/training/digital-risk' },
-          { label: 'Data Privacy & Protection', path: '/training/data-privacy' }
-        ]
-      },
-      {
-        title: 'Information Technology & Digital Skills',
-        items: [
-          { label: 'Networking & Infrastructure', path: '/training/networking' },
-          { label: 'Cloud Computing & Virtualization', path: '/training/cloud-computing' },
-          { label: 'AI & Emerging Technologies', path: '/training/ai-tech' },
-          { label: 'Digital Transformation Skills', path: '/training/digital-transformation' },
-          { label: 'Systems Administration', path: '/training/systems-admin' }
-        ]
-      },
-      {
-        title: 'Governance, Risk & Compliance',
-        items: [
-          { label: 'IT Governance & Digital Governance', path: '/training/it-governance' },
-          { label: 'Enterprise Risk Management', path: '/training/risk-management' },
-          { label: 'Internal Audit & Assurance', path: '/training/internal-audit' },
-          { label: 'Regulatory Compliance & Standards', path: '/training/compliance' }
-        ]
-      },
-      {
-        title: 'Leadership & Professional Development',
-        items: [
-          { label: 'Leadership & Management Skills', path: '/training/leadership' },
-          { label: 'Strategic Thinking & Decision Making', path: '/training/strategic-thinking' },
-          { label: 'Communication & Workplace Effectiveness', path: '/training/communication' },
-          { label: 'Team Development & Collaboration', path: '/training/team-development' }
-        ]
-      },
-      {
-        title: 'Certification Preparation',
+        title: 'Professional Certification Programs',
         items: [
           { label: 'CISA Preparation', path: '/training/cisa' },
           { label: 'CISM Preparation', path: '/training/cism' },
@@ -61,6 +23,42 @@ const DROPDOWN_CONTENT = {
           { label: 'CIA Preparation', path: '/training/cia' },
           { label: 'CRMA Preparation', path: '/training/crma' },
           { label: 'Cisco CCNA/CCNP Preparation', path: '/training/cisco' }
+        ]
+      },
+      {
+        title: 'Practical & Hands-On Workshops & Masterclasses',
+        items: [
+          { label: 'Ethical Hacking & Threat Intelligence', path: '/training/ethical-hacking' },
+          { label: 'Incident Response Training', path: '/training/incident-response' },
+          { label: 'Networking & Infrastructure', path: '/training/networking' },
+          { label: 'Cloud Computing & Virtualization', path: '/training/cloud-computing' },
+          { label: 'AI & Emerging Technologies', path: '/training/ai-tech' },
+          { label: 'Systems Administration', path: '/training/systems-admin' },
+          { label: 'Digital Risk Management', path: '/training/digital-risk' },
+          { label: 'Data Privacy & Protection', path: '/training/data-privacy' }
+        ]
+      },
+      {
+        title: 'Executive & Awareness Programs',
+        items: [
+          { label: 'Cybersecurity Awareness Programs', path: '/training/cybersecurity-awareness' },
+          { label: 'IT Governance & Digital Governance', path: '/training/it-governance' },
+          { label: 'Enterprise Risk Management', path: '/training/risk-management' },
+          { label: 'Internal Audit & Assurance', path: '/training/internal-audit' },
+          { label: 'Regulatory Compliance & Standards', path: '/training/compliance' },
+          { label: 'Digital Transformation Skills', path: '/training/digital-transformation' },
+          { label: 'Leadership & Management Skills', path: '/training/leadership' },
+          { label: 'Strategic Thinking & Decision Making', path: '/training/strategic-thinking' },
+          { label: 'Communication & Workplace Effectiveness', path: '/training/communication' },
+          { label: 'Team Development & Collaboration', path: '/training/team-development' }
+        ]
+      },
+      {
+        title: 'Ebanex Digital Trust Conference',
+        items: [
+          { label: 'Annual Conference Overview', path: '/news-events#conference' },
+          { label: 'Sponsorship Opportunities', path: '/news-events#sponsorship' },
+          { label: 'Past Events & Highlights', path: '/news-events#past-events' }
         ]
       }
     ]
@@ -207,10 +205,10 @@ const Navbar: React.FC = () => {
                 damping: 25,
                 mass: 0.8
               }}
-              className="fixed top-[64px] sm:top-[80px] lg:top-[96px] left-[10px] right-[10px] w-[calc(100vw-20px)] max-h-[calc(100vh-120px)] z-[110] flex flex-col bg-black border border-[#00BFFF]/40 rounded-none shadow-[25px_25px_0px_0px_rgba(0,191,255,0.1)] overflow-hidden backdrop-blur-xl"
+              className="fixed top-[64px] sm:top-[80px] lg:top-[96px] left-[10px] right-[10px] w-[calc(100vw-20px)] max-h-[calc(100vh-140px)] z-[110] flex flex-col bg-black border border-[#00BFFF]/40 rounded-none shadow-[25px_25px_0px_0px_rgba(0,191,255,0.1)] overflow-hidden backdrop-blur-xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="p-4 lg:p-6 bg-black/80 backdrop-blur-md shrink-0 border-b border-[#00BFFF]/20">       
+              <div className="p-4 lg:p-6 bg-black/80 backdrop-blur-md shrink-0 border-b border-[#00BFFF]/20 z-20">       
                 <div className="max-w-7xl mx-auto w-full">
                   <motion.div
                     initial={{ opacity: 0, x: -10 }}
@@ -224,12 +222,15 @@ const Navbar: React.FC = () => {
                   </motion.div>
                 </div>
               </div>
-              <div className="flex-1 overflow-y-auto relative py-6 lg:py-10 px-4 lg:px-8 bg-black">
+              <div 
+                className="flex-1 overflow-y-auto relative py-6 lg:py-10 px-4 lg:px-8 bg-black custom-scrollbar overscroll-contain min-h-0"
+                data-lenis-prevent
+              >
                 <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
                   <Squares speed={0.05} squareSize={30} direction="diagonal" borderColor="rgba(0,191,255,0.08)" hoverFillColor="rgba(0,191,255,0.05)" />
                 </div>
                 <div className="relative z-10 max-w-7xl mx-auto">
-                  <div className={cn("grid gap-4 lg:gap-6", link.label === 'Training Programs' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5' : 'grid-cols-1 md:grid-cols-2')}>
+                  <div className={cn("grid gap-4 lg:gap-6", link.label === 'Training Programs' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 md:grid-cols-2')}>
                     {DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT].categories.map((category, idx) => (
                       <motion.div
                         key={idx}
@@ -308,11 +309,10 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Nav Area */}
-          <div
-            className="hidden lg:flex flex-1 items-center justify-end h-full relative overflow-hidden"
+          <div 
+            className="hidden lg:flex flex-1 items-center justify-center h-full relative overflow-hidden"
             onClick={(e) => e.stopPropagation()}
-          >
-            <motion.div
+          >            <motion.div
               className="flex items-center gap-4 xl:gap-8 h-full pr-4"
               animate={{ x: showHiddenLinks ? -150 : 0 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
