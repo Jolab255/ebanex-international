@@ -23,88 +23,90 @@ const App: React.FC = () => {
   return (
     <HelmetProvider>
       <ThemeProvider>
-        <Router basename={basename}>
-          <ScrollToTop />
-          <div className="min-h-screen flex flex-col selection:bg-[#00BFFF] selection:text-black bg-black text-white">
-            <TopBar />
-            <Navbar />
-            <main className="flex-grow overflow-x-clip">
-              <ErrorBoundary>
-                <NavigationLoader minDuration={300}>
-                  <Routes>
-                    <Route
-                      path="/"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <Home />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/about"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <About />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/training"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <Training />
-                        </Suspense>
-                      }
-                    />
-                    {/* Dynamic Template Route for all Training Programs */}
-                    <Route
-                      path="/training/:programId"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <TrainingProgramDetail />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/contact"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <Contact />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/privacy"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <PrivacyPolicy />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="/terms"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <TermsOfService />
-                        </Suspense>
-                      }
-                    />
-                    <Route
-                      path="*"
-                      element={
-                        <Suspense fallback={<PageLoader />}>
-                          <NotFound />
-                        </Suspense>
-                      }
-                    />
-                  </Routes>
-                </NavigationLoader>
-              </ErrorBoundary>
-            </main>
-            <Footer />
-            <CookieConsent />
-          </div>
-        </Router>
+        <ReactLenis root>
+          <Router basename={basename}>
+            <ScrollToTop />
+            <div className="min-h-screen flex flex-col selection:bg-[#00BFFF] selection:text-black bg-black text-white">
+              <TopBar />
+              <Navbar />
+              <main className="flex-grow overflow-x-clip">
+                <ErrorBoundary>
+                  <NavigationLoader minDuration={300}>
+                    <Routes>
+                      <Route
+                        path="/"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <Home />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="/about"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <About />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="/training"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <Training />
+                          </Suspense>
+                        }
+                      />
+                      {/* Dynamic Template Route for all Training Programs */}
+                      <Route
+                        path="/training/:programId"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <TrainingProgramDetail />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="/contact"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <Contact />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="/privacy"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <PrivacyPolicy />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="/terms"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <TermsOfService />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="*"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <NotFound />
+                          </Suspense>
+                        }
+                      />
+                    </Routes>
+                  </NavigationLoader>
+                </ErrorBoundary>
+              </main>
+              <Footer />
+              <CookieConsent />
+            </div>
+          </Router>
+        </ReactLenis>
       </ThemeProvider>
     </HelmetProvider>
   );

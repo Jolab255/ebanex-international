@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactLenis } from 'lenis/react';
 import { PageLoader } from '../components/common';
 import { SEO } from '../components/layout';
 import {
@@ -15,7 +14,7 @@ import {
 
 const Home: React.FC = () => {
   return (
-    <ReactLenis root>
+    <>
       <SEO 
         title="Home | Ebanex International"
         description="Ebanex International is a global professional development institution building the capacity of people and organizations through elite training and strategic advisory."
@@ -41,7 +40,7 @@ const Home: React.FC = () => {
         </div>
         <CtaSection />
       </main>
-    </ReactLenis>
+    </>
   );
 };
 
