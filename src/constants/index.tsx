@@ -6,12 +6,9 @@ export const NAVIGATION_LINKS = [
   { label: 'About Us', path: '/about' },
   { label: 'Training Programs', path: '/training' },
   { label: 'IT Audit & Advisory Services', path: '/it-audit-advisory' },
-  { label: 'Corporate Solutions', path: '/corporate-solutions' },
   { label: 'Ebanex Digital Trust Conference', path: '/conference' },
-  { label: 'Cyber Labs', path: '/cyber-lab' },
-  { label: 'Research & Insights', path: '/research' },
+  { label: 'Corporate Solutions', path: '/corporate-solutions' },
   { label: 'Partnerships', path: '/partnerships' },
-  { label: 'Careers', path: '/careers' },
   { label: 'News & Events', path: '/news' },
 ];
 

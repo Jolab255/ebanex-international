@@ -1,6 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Squares } from '../../components/animations';
+import { Link } from 'react-router-dom';
+import { Squares, ScrollReveal } from '../../components/animations';
 import { ArrowRight, Phone } from 'lucide-react';
 
 const WhatsAppIcon = ({ size = 20 }: { size?: number }) => (
@@ -32,13 +32,11 @@ const AboutCtaSection: React.FC = () => (
       {/* Section Header */}
       <div className="mb-8 text-center shrink-0 relative z-50">
         <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
-          >
-            TAKE THE <span className="text-[#00BFFF]">NEXT STEP</span>
-          </motion.h2>
+          <ScrollReveal yOffset={10}>
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight">
+              TAKE THE <span className="text-[#00BFFF]">NEXT STEP</span>
+            </h2>
+          </ScrollReveal>
         </div>
       </div>
 
@@ -72,13 +70,19 @@ const AboutCtaSection: React.FC = () => (
             </p>
 
             <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 mb-10">
-              <button className="h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2">
+              <Link 
+                to="/training"
+                className="h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2"
+              >
                 Explore Programs <ArrowRight size={14} />
-              </button>
+              </Link>
 
-              <button className="h-11 sm:h-12 px-6 border-2 border-white text-white rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95">
+              <Link 
+                to="/contact"
+                className="h-11 sm:h-12 px-6 border-2 border-white text-white rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center"
+              >
                 Contact Expert
-              </button>
+              </Link>
             </div>
 
             {/* Support Links */}
@@ -105,7 +109,7 @@ const AboutCtaSection: React.FC = () => (
                   </div>
                   <div className="text-left">
                     <div className="text-[9px] uppercase tracking-[0.2em] text-white/40">Direct Support</div>
-                    <div className="text-xs font-black">+255 745 326 627</div>
+                    <div className="text-xs font-black">+255 703 027 412</div>
                   </div>
                 </div>
               </div>

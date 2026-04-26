@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { Squares } from '../../components/animations';
+import { Squares, ScrollReveal } from '../../components/animations';
 import { FitText } from '../../components/common';
 
 interface Testimonial {
@@ -59,7 +58,7 @@ const TestimonialsSection: React.FC = () => {
     {
       id: 6,
       description:
-        "If you're serious about cybersecurity, Ebanex is a must-have. It dramatically speeds up team development while keeping standards high.",
+        "If you&apos;re serious about cybersecurity, Ebanex is a must-have. It dramatically speeds up team development while keeping standards high.",
       image: 'https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=200',
       name: 'Emily Karter',
       company: 'Stripe',
@@ -147,27 +146,32 @@ const TestimonialsSection: React.FC = () => {
 
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-[20px] relative z-10 text-center shrink-0">
-        <div className="select-none mb-3 inline-block bg-black py-4 px-8">
-          <FitText
-            minScale={0.35}
-            textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
-          >
-            <span 
-              style={{
-                backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
+        <ScrollReveal yOffset={10} delay={0.1}>
+          <div className="select-none mb-3 inline-block bg-black py-4 px-8">
+            <FitText
+              minScale={0.35}
+              textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
             >
-              TESTIMONIALS
+              <span 
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                TESTIMONIALS
+              </span>
+            </FitText>
+          </div>
+        </ScrollReveal>
+        
+        <ScrollReveal yOffset={20} delay={0.2}>
+          <div className="mt-4">
+            <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] inline-block bg-black py-1.5 px-6">
+              Client Success Stories
             </span>
-          </FitText>
-        </div>
-        <div className="mt-4">
-          <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] inline-block bg-black py-1.5 px-6">
-            Client Success Stories
-          </span>
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
 
       {/* Testimonials Grid */}
@@ -209,7 +213,7 @@ const TestimonialsSection: React.FC = () => {
 
                       {/* Description */}
                       <p className="text-base text-white/90 mb-8 leading-relaxed font-medium italic">
-                        "{testimonial.description}"
+                        &quot;{testimonial.description}&quot;
                       </p>
                     </div>
 

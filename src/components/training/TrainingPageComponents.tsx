@@ -1,14 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { Helmet } from 'react-helmet-async';
-import { CheckCircle, ArrowRight, Calendar, Clock } from 'lucide-react';
-import {
-  FaCertificate,
-  FaClock,
-  FaChalkboardTeacher,
-  FaLevelUpAlt,
-  FaLaptopCode,
-} from 'react-icons/fa';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import Counter from './Counter';
 
 interface TrainingPageHeroProps {
@@ -233,7 +225,7 @@ export const MeetInstructor: React.FC<InstructorProps> = ({
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         className="max-w-5xl mx-auto"
       >
         <motion.h2
@@ -241,7 +233,7 @@ export const MeetInstructor: React.FC<InstructorProps> = ({
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         >
           Meet Your Instructor
         </motion.h2>
@@ -254,7 +246,7 @@ export const MeetInstructor: React.FC<InstructorProps> = ({
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="w-full md:w-72 flex-shrink-0"
           >
             <div className="relative">
@@ -271,7 +263,7 @@ export const MeetInstructor: React.FC<InstructorProps> = ({
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="flex-1"
           >
             <h3 className="text-2xl font-bold text-white mb-2">{name}</h3>
@@ -322,14 +314,14 @@ export const FAQSection: React.FC<{ faqs: FAQItem[] }> = ({ faqs }) => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
     >
       <motion.h2
         className="text-[clamp(1.25rem,4vw,2.5rem)] font-light font-heading mb-12 text-center"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
       >
         Frequently Asked Questions
       </motion.h2>
@@ -341,7 +333,7 @@ export const FAQSection: React.FC<{ faqs: FAQItem[] }> = ({ faqs }) => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="mb-4"
           >
             <motion.div
@@ -437,7 +429,7 @@ export const CTASection: React.FC = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
     >
       <div className="relative min-h-[500px] flex items-center">
         <div className="absolute inset-0">
@@ -455,7 +447,7 @@ export const CTASection: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
             >
               <span className="inline-block px-4 py-1 bg-blue-500/20 text-blue-400 text-sm font-semibold rounded-full mb-6">
                 Partner With Us

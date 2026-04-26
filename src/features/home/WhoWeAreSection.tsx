@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { FitText } from '../../components/common';
+import { ScrollReveal } from '../../components/animations';
 import aboutVideo from '../../assets/aboutv.mp4';
 
 const WhoWeAreSection: React.FC = () => {
@@ -27,28 +28,32 @@ const WhoWeAreSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex-grow flex flex-col">
         {/* Title Area - Animated and Centered */}
         <div className="mb-12 text-center">
-          <div className="select-none inline-block bg-black py-4 px-8">
-            <FitText
-              minScale={0.35}
-              textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
-            >
-              <span 
-                style={{
-                  backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}
+          <ScrollReveal yOffset={10} delay={0.1}>
+            <div className="select-none inline-block bg-black py-4 px-8">
+              <FitText
+                minScale={0.35}
+                textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
               >
-                EBANEX INTERNATIONAL
-              </span>
-            </FitText>
-          </div>
+                <span 
+                  style={{
+                    backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  EBANEX INTERNATIONAL
+                </span>
+              </FitText>
+            </div>
+          </ScrollReveal>
           
-          <div className="mt-4">
-            <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] block">
-              Who We Are
-            </span>
-          </div>
+          <ScrollReveal yOffset={20} delay={0.2}>
+            <div className="mt-4">
+              <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] block">
+                Who We Are
+              </span>
+            </div>
+          </ScrollReveal>
         </div>
 
         <div className="flex flex-col md:flex-row items-center md:items-stretch flex-grow gap-12">

@@ -52,44 +52,18 @@ const DROPDOWN_CONTENT = {
           { label: 'Communication & Workplace Effectiveness', path: '/training/communication' },
           { label: 'Team Development & Collaboration', path: '/training/team-development' }
         ]
-      },
-      {
-        title: 'Ebanex Digital Trust Conference',
-        items: [
-          { label: 'Annual Conference Overview', path: '/news-events#conference' },
-          { label: 'Sponsorship Opportunities', path: '/news-events#sponsorship' },
-          { label: 'Past Events & Highlights', path: '/news-events#past-events' }
-        ]
       }
     ]
   },
   'Corporate Solutions': {
     overview: 'Tailored institutional strengthening programs designed for enterprise-level resilience and operational excellence.',
-    categories: [
-      {
-        title: 'Solutions',
-        items: [
-          { label: 'Enterprise Training', path: '/corporate-solutions' },
-          { label: 'Executive Mentorship', path: '/corporate-solutions#mentorship' },
-          { label: 'Institutional Growth', path: '/corporate-solutions#growth' }
-        ]
-      },
-      {
-        title: 'Industries',
-        items: [
-          { label: 'Financial Services', path: '/corporate-solutions#finance' },
-          { label: 'Government', path: '/corporate-solutions#government' },
-          { label: 'Energy & Mining', path: '/corporate-solutions#energy' }
-        ]
-      }
-    ]
+    categories: []
   }
 };
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [mobileCategoryExpanded, setMobileCategoryExpanded] = useState<string | null>(null);
   const [showHiddenLinks, setShowHiddenLinks] = useState(false);
@@ -103,7 +77,6 @@ const Navbar: React.FC = () => {
       if (navRef.current) {
         setNavBottom(navRef.current.getBoundingClientRect().bottom);
       }
-      setScrolled(window.scrollY > 20);
     };
     updateNavBottom();
     window.addEventListener('scroll', updateNavBottom);
@@ -165,11 +138,7 @@ const Navbar: React.FC = () => {
     const isActive = location.pathname === link.path;
     
     // Inactive tabs based on your request
-    const isInactive = 
-      link.label === 'IT Audit & Advisory Services' || 
-      link.label === 'Corporate Solutions' ||
-      link.label === 'Ebanex Digital Trust Conference' ||
-      index >= 5; 
+    const isInactive = index >= 4; 
 
     if (isInactive) {
       return (
@@ -242,15 +211,15 @@ const Navbar: React.FC = () => {
           onClick={(e) => e.stopPropagation()}
         >
           {/* Logo Shield */}
-          <div className="relative z-50 bg-black h-full flex items-center pr-20 sm:pr-28 shrink-0 overflow-hidden">
+          <div className="relative z-50 bg-black h-full flex items-center pr-28 sm:pr-32 shrink-0 overflow-hidden">
             <Link to="/" className="flex items-center h-full group transition-opacity duration-300" aria-label="Ebanex International Home">
-              <img src={logo} alt="" className="h-full py-1 w-auto object-contain transition-transform duration-300 brightness-110 scale-[2.5] origin-left" />
+              <img src={logo} alt="" className="h-full w-auto object-contain transition-transform duration-300 brightness-110 scale-[2.5] origin-left" />
             </Link>
           </div>
 
           {/* Desktop Nav Area */}
           <div className="hidden lg:flex flex-1 items-center justify-end h-full relative overflow-hidden pr-2">
-            <div className="flex items-center gap-4 xl:gap-8 h-full">
+            <div className="flex items-center gap-4 xl:gap-8 h-full ml-12">
               <div className="flex items-center gap-3 xl:gap-5 h-full shrink-0">
                 <Link to="/" className={cn("text-[10px] xl:text-[11px] font-black tracking-[0.1em] uppercase transition-colors whitespace-nowrap", location.pathname === '/' ? 'text-[#00BFFF]' : 'text-white hover:text-[#00BFFF]')}>Home</Link>
                 {visibleLinks.map((link, index) => renderNavLink(link, index))}
@@ -443,6 +412,37 @@ const Navbar: React.FC = () => {
                       </div>
                     </motion.div>
                   ))}
+
+                  {/* Visual CTA Card for Training Programs */}
+                  {activeDropdown === 'Training Programs' && (
+                    <motion.div
+                      className="group relative h-full"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <div className="absolute inset-0 bg-[#00bfff]/20 transform rotate-1 group-hover:rotate-0 transition-transform duration-500" />
+                      <div className="relative p-0 border-[1px] border-[#00BFFF]/30 shadow-2xl transition-all duration-300 h-full flex flex-col group-hover:border-[#00BFFF] group-hover:-translate-y-1 overflow-hidden" style={{ background: 'linear-gradient(135deg, #051020 0%, #0a1a2f 100%)' }}>
+                        <div className="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800" alt="Training" className="w-full h-full object-cover" />
+                        </div>
+                        <div className="relative z-10 p-6 flex flex-col h-full bg-gradient-to-t from-black via-black/40 to-transparent">
+                            <div className="mt-auto">
+                                <h3 className="text-[12px] font-black text-[#00BFFF] uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
+                                    <span className="w-2 h-2 bg-[#00BFFF] animate-pulse" />
+                                    Explore More
+                                </h3>
+                                <p className="text-[10px] text-white/70 font-bold uppercase tracking-widest leading-relaxed mb-6">
+                                    View our full curriculum of elite certifications and masterclasses.
+                                </p>
+                                <Link to="/training" className="inline-flex items-center gap-2 px-6 py-3 bg-[#00BFFF] text-black text-[9px] font-black uppercase tracking-[0.2em] hover:bg-white transition-all w-full justify-center">
+                                    Full Catalog <ChevronRight size={12} />
+                                </Link>
+                            </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
               </div>
             </div>

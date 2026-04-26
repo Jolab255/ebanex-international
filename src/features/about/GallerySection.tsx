@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { Squares } from '../../components/animations';
+import { Squares, ScrollReveal } from '../../components/animations';
 
 const GallerySection: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -32,13 +32,11 @@ const GallerySection: React.FC = () => {
         {/* Section Header */}
         <div className="mb-8 text-center shrink-0 relative z-50">
           <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
-            >
-              Gallery & <span className="text-[#00BFFF]">Moments</span>
-            </motion.h2>
+            <ScrollReveal yOffset={10}>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight">
+                Gallery & <span className="text-[#00BFFF]">Moments</span>
+              </h2>
+            </ScrollReveal>
           </div>
         </div>
 

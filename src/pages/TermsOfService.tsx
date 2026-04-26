@@ -27,28 +27,46 @@ const TermsOfService: React.FC = () => {
           
           <div className="space-y-8 text-white/80 font-medium leading-relaxed uppercase tracking-widest text-[11px]">
             <section>
-              <h2 className="text-[#00BFFF] font-black text-lg mb-4">1. Engagement</h2>
-              <p>By accessing Ebanex International services, you agree to comply with our institutional protocols and professional standards. Our training and advisory solutions are delivered under strict confidentiality and excellence guidelines.</p>
+              <h2 className="text-[#00BFFF] font-black text-lg mb-4">1. Use of Services</h2>
+              <p>By accessing or using Ebanex International services, you acknowledge that you have read and agreed to these Terms and will comply with applicable professional standards. Our services include training programs, advisory engagements, and related offerings.</p>
             </section>
 
             <section>
               <h2 className="text-[#00BFFF] font-black text-lg mb-4">2. Intellectual Property</h2>
-              <p>All curricula, training materials, and advisory frameworks are the exclusive intellectual property of Ebanex International. Unauthorized duplication or distribution is prohibited by institutional protocol and international law.</p>
+              <p>All training materials, curricula, and advisory content provided by Ebanex International remain our intellectual property. These materials may not be copied, reproduced, or distributed without prior written consent.</p>
             </section>
 
             <section>
               <h2 className="text-[#00BFFF] font-black text-lg mb-4">3. Service Delivery</h2>
-              <p>Ebanex International reserves the right to modify training delivery formats (classroom, virtual, hybrid) to ensure optimal results and compliance with global safety or operational standards.</p>
+              <p>Ebanex International may deliver services through physical, virtual, or hybrid formats. We reserve the right to adjust delivery methods where necessary to maintain service quality, safety, or operational efficiency.</p>
             </section>
 
             <section>
-              <h2 className="text-[#00BFFF] font-black text-lg mb-4">4. Liability</h2>
-              <p>While we provide elite cybersecurity and digital transformation training, the application of these skills within an organization remains the responsibility of the client entity. Ebanex is not liable for outcomes following institutional implementation.</p>
+              <h2 className="text-[#00BFFF] font-black text-lg mb-4">4. User Responsibilities</h2>
+              <p>Participants are responsible for ensuring that the use and application of knowledge gained from our services comply with their organization’s policies and applicable laws.</p>
             </section>
 
             <section>
-              <h2 className="text-[#00BFFF] font-black text-lg mb-4">5. Governing Law</h2>
-              <p>These terms are governed by the laws of the United Republic of Tanzania, with institutional oversight from our Global HQ in Dar es Salaam.</p>
+              <h2 className="text-[#00BFFF] font-black text-lg mb-4">5. Limitation of Liability</h2>
+              <p>Ebanex International provides training and advisory services in good faith and to the best of our professional ability. However, we are not responsible for how such knowledge is applied, and we do not accept liability for outcomes arising from its use.</p>
+            </section>
+
+            <section>
+              <h2 className="text-[#00BFFF] font-black text-lg mb-4">6. Changes to Services</h2>
+              <p>Ebanex International reserves the right to update or modify our services and offerings where necessary. Any significant changes will be communicated where applicable.</p>
+            </section>
+
+            <section>
+              <h2 className="text-[#00BFFF] font-black text-lg mb-4">7. Governing Law</h2>
+              <p>These Terms are governed by the laws of the United Republic of Tanzania. For international engagements, separate contractual agreements may apply where appropriate.</p>
+            </section>
+
+            <section>
+              <h2 className="text-[#00BFFF] font-black text-lg mb-4">8. Contact Information</h2>
+              <p>For any questions regarding these Terms, please contact:</p>
+              <p className="mt-2">Ebanex International</p>
+              <p>19 Mori Street, Sinza, Dar es Salaam</p>
+              <p>Email: info@ebanexint.co.tz</p>
             </section>
 
             <div className="pt-8 border-t border-white/10 mt-12">

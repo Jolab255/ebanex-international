@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, ArrowRight, MessageSquare, Globe, ShieldCheck, CheckCircle, ChevronDown, X } from 'lucide-react';
+import { Mail, Phone, Send, ArrowRight, MessageSquare, Globe, ShieldCheck, CheckCircle, ChevronDown, X } from 'lucide-react';
 import { SEO } from '../components/layout';
-import { Squares } from '../components/animations';
+import { Squares, ScrollReveal } from '../components/animations';
 import { sendContactInquiry } from '../lib/api';
 import { cn } from '../lib/utils';
 
@@ -48,8 +48,8 @@ const Contact: React.FC = () => {
 
   const formRef = useRef(null);
   const infoRef = useRef(null);
-  const isFormInView = useInView(formRef, { once: true, margin: "-100px" });
-  const isInfoInView = useInView(infoRef, { once: true, margin: "-100px" });
+  const isFormInView = useInView(formRef, { once: false, margin: "-100px" });
+  const isInfoInView = useInView(infoRef, { once: false, margin: "-100px" });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -143,13 +143,11 @@ const Contact: React.FC = () => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-center">
             <div className="inline-block bg-black py-3 px-8 border-4 border-black mb-4 shadow-[10px_10px_0px_0px_rgba(0,196,212,0.1)]">
-                <motion.h1 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-3xl sm:text-5xl font-black font-heading text-white uppercase tracking-tighter"
-                >
-                    Contact <span className="text-[#00C4D4]">Expert</span>
-                </motion.h1>
+                <ScrollReveal yOffset={10}>
+                    <h1 className="text-3xl sm:text-5xl font-black font-heading text-white uppercase tracking-tighter">
+                        Contact <span className="text-[#00C4D4]">Expert</span>
+                    </h1>
+                </ScrollReveal>
             </div>
             <motion.div 
                 initial={{ opacity: 0 }}
@@ -171,21 +169,19 @@ const Contact: React.FC = () => {
         <div className="max-w-7xl mx-auto relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-20">
           {/* Left Column: Info */}
           <div ref={infoRef} className="lg:col-span-5 space-y-10">
-            <motion.div 
-                initial={{ opacity: 0, x: -50 }}
-                animate={isInfoInView ? { opacity: 1, x: 0 } : {}}
-                className="space-y-4"
-            >
-              <h2 className="text-2xl font-black uppercase border-b-4 border-[#00C4D4] inline-block mb-2">Inquiry Channels</h2>
-              <p className="text-slate-400 text-base font-medium leading-relaxed">
-                Connect with our specialized departments in Dar es Salaam directly or use the secure form for institutional requests.
-              </p>
-            </motion.div>
+            <ScrollReveal yOffset={10}>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-black uppercase border-b-4 border-[#00C4D4] inline-block mb-2">Inquiry Channels</h2>
+                <p className="text-slate-400 text-base font-medium leading-relaxed">
+                  Connect with our specialized departments in Dar es Salaam directly or use the secure form for institutional requests.
+                </p>
+              </div>
+            </ScrollReveal>
 
             <div className="space-y-5">
                 {[
                     { icon: <Globe />, title: 'Global HQ', content: 'Dar es Salaam, Tanzania', label: 'Institutional Office' },
-                    { icon: <Mail />, title: 'Institutional Email', content: 'hello@ebanexint.co.tz', label: '24/7 Monitoring' },
+                    { icon: <Mail />, title: 'Institutional Email', content: 'info@ebanexint.co.tz', label: '24/7 Monitoring' },
                     { icon: <Phone />, title: 'Direct Line', content: '+255 745 326 627', label: 'Global Support' },
                     { icon: <ShieldCheck />, title: 'Inquiries', content: 'info@ebanexint.co.tz', label: 'General Affairs' }
                 ].map((item, i) => (
@@ -373,7 +369,9 @@ const Contact: React.FC = () => {
             <Squares speed={0.13} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.08)" hoverFillColor="rgba(255,255,255,0.05)" />
         </div>
         <div className="max-w-4xl w-full p-10 border-[10px] border-black relative z-10 text-center bg-[#0a1628]" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
-            <h2 className="text-3xl font-black text-white uppercase mb-5 leading-tight tracking-tighter">Ready for <span className="text-[#00C4D4]">Institutional</span> Growth?</h2>
+            <ScrollReveal yOffset={10}>
+                <h2 className="text-3xl font-black text-white uppercase mb-5 leading-tight tracking-tighter">Ready for <span className="text-[#00C4D4]">Institutional</span> Growth?</h2>
+            </ScrollReveal>
             <p className="text-white/80 mb-8 max-w-lg mx-auto font-medium uppercase tracking-widest text-[11px] leading-relaxed">Our experts are prepared to tailor a solution for your unique operational requirements.</p>
             <Link to="/training" className="inline-flex items-center gap-3 bg-[#00C4D4] border-4 border-black text-black px-8 py-3.5 font-black uppercase text-[10px] tracking-[0.2em] hover:bg-white transition-all">
                 Explore Programs <ArrowRight size={14} />

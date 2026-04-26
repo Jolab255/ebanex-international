@@ -1,7 +1,5 @@
 import { 
-    Shield, Lock, Database, FileKey, GlobeLock, 
-    Search, Server, AlertOctagon, Activity,
-    Briefcase, Globe, Target
+    Shield
 } from 'lucide-react';
 
 export interface TrainingProgram {

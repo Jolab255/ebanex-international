@@ -8,8 +8,6 @@ interface SquaresProps {
     squareSize?: number;
     hoverFillColor?: string;
     className?: string;
-    activeGradient?: boolean;
-    gradientColor?: string;
 }
 
 const Squares: FC<SquaresProps> = ({
@@ -19,8 +17,6 @@ const Squares: FC<SquaresProps> = ({
     squareSize = 40,
     hoverFillColor = '#222',
     className = '',
-    activeGradient = true,
-    gradientColor = 'rgba(0, 0, 0, 1)'
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const requestRef = useRef<number>(null);
@@ -34,6 +30,21 @@ const Squares: FC<SquaresProps> = ({
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
+
+        let isVisible = true;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                isVisible = entry.isIntersecting;
+                if (isVisible) {
+                    requestRef.current = requestAnimationFrame(updateAnimation);
+                } else if (requestRef.current) {
+                    cancelAnimationFrame(requestRef.current);
+                }
+            },
+            { threshold: 0.01 }
+        );
+
+        observer.observe(canvas);
 
         const resizeCanvas = () => {
             canvas.width = canvas.offsetWidth;
@@ -73,6 +84,8 @@ const Squares: FC<SquaresProps> = ({
         };
 
         const updateAnimation = () => {
+            if (!isVisible) return;
+
             const effectiveSpeed = Math.max(speed, 0.1);
             switch (direction) {
                 case 'right':
@@ -126,15 +139,14 @@ const Squares: FC<SquaresProps> = ({
         canvas.addEventListener('mousemove', handleMouseMove);
         canvas.addEventListener('mouseleave', handleMouseLeave);
 
-        requestRef.current = requestAnimationFrame(updateAnimation);
-
         return () => {
+            observer.disconnect();
             window.removeEventListener('resize', resizeCanvas);
             if (requestRef.current) cancelAnimationFrame(requestRef.current);
             canvas.removeEventListener('mousemove', handleMouseMove);
             canvas.removeEventListener('mouseleave', handleMouseLeave);
         };
-    }, [direction, speed, borderColor, hoverFillColor, squareSize, activeGradient]);
+    }, [direction, speed, borderColor, hoverFillColor, squareSize]);
 
     return <canvas ref={canvasRef} className={`squares-canvas ${className}`}></canvas>;
 };

@@ -6,7 +6,6 @@ import { ErrorBoundary, PageLoader, CookieConsent } from './components/common';
 import { NavigationLoader } from './components/common/NavigationLoader';
 import { ThemeProvider } from './context/ThemeContext';
 import { ReactLenis } from 'lenis/react';
-import { AnimatePresence, motion } from 'framer-motion';
 
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -15,6 +14,8 @@ const Contact = lazy(() => import('./pages/Contact'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const TrainingProgramDetail = lazy(() => import('./pages/TrainingProgramDetail'));
+const ITAuditAdvisory = lazy(() => import('./pages/ITAuditAdvisory'));
+const DigitalTrustConference = lazy(() => import('./pages/DigitalTrustConference'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App: React.FC = () => {
@@ -23,7 +24,7 @@ const App: React.FC = () => {
   return (
     <HelmetProvider>
       <ThemeProvider>
-        <ReactLenis root>
+        <ReactLenis root options={{ lerp: 0.12, duration: 1.2, smoothWheel: true }}>
           <Router basename={basename}>
             <ScrollToTop />
             <div className="min-h-screen flex flex-col selection:bg-[#00BFFF] selection:text-black bg-black text-white">
@@ -54,6 +55,22 @@ const App: React.FC = () => {
                         element={
                           <Suspense fallback={<PageLoader />}>
                             <Training />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="/it-audit-advisory"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <ITAuditAdvisory />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="/conference"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <DigitalTrustConference />
                           </Suspense>
                         }
                       />

@@ -1,8 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Squares } from '../../components/animations';
 import { FitText } from '../../components/common';
-import { ArrowRight, Phone, MessageCircle } from 'lucide-react';
+import { ArrowRight, Phone } from 'lucide-react';
 
 const WhatsAppIcon = ({ size = 20 }: { size?: number }) => (
   <svg 
@@ -81,17 +81,23 @@ const CtaSection: React.FC = () => (
             
             <p className="text-white/80 text-xs sm:text-sm mb-8 leading-relaxed font-medium max-w-lg">
               Empower your workforce with industry-leading cybersecurity competencies and strategic advisory 
-              tailored to your organization's unique digital landscape.
+              tailored to your organization&apos;s unique digital landscape.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 mb-10">
-              <button className="h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2">
+              <Link 
+                to="/training"
+                className="h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2"
+              >
                 Explore Programs <ArrowRight size={14} />
-              </button>
+              </Link>
 
-              <button className="h-11 sm:h-12 px-6 border-2 border-white text-white rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95">
+              <Link 
+                to="/contact"
+                className="h-11 sm:h-12 px-6 border-2 border-white text-white rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center"
+              >
                 Contact Expert
-              </button>
+              </Link>
             </div>
 
             {/* Support Links */}
@@ -118,7 +124,7 @@ const CtaSection: React.FC = () => (
                   </div>
                   <div className="text-left">
                     <div className="text-[9px] uppercase tracking-[0.2em] text-white/40">Direct Support</div>
-                    <div className="text-xs font-black">+255 745 326 627</div>
+                    <div className="text-xs font-black">+255 703 027 412</div>
                   </div>
                 </div>
               </div>

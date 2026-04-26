@@ -1,43 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { cn } from '../lib/utils';
 import { SEO } from '../components/layout';
 import { Squares } from '../components/animations';
 import { TRAINING_PROGRAMS, TrainingProgram } from '../constants/trainingData';
 import {
-    Users, CheckCircle, Clock, ArrowRight, Calendar, Shield,
-    Linkedin, Twitter, ChevronRight, ChevronDown, Home, AlertTriangle, Target, Award
+    CheckCircle, Clock, ArrowRight, Calendar,
+    ChevronDown
 } from 'lucide-react';
 import {
     FaCertificate, FaClock, FaChalkboardTeacher, FaLevelUpAlt, FaLaptopCode
 } from 'react-icons/fa';
-
-const Counter: React.FC<{ target: number; suffix?: string; duration?: number }> = ({
-    target, suffix = '', duration = 2
-}) => {
-    const [count, setCount] = useState(0);
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, margin: '-100px' });
-
-    useEffect(() => {
-        if (!isInView) return;
-        let start = 0;
-        const increment = target / (duration * 60);
-        const timer = setInterval(() => {
-            start += increment;
-            if (start >= target) {
-                setCount(target);
-                clearInterval(timer);
-            } else {
-                setCount(Math.floor(start * 10) / 10);
-            }
-        }, 1000 / 60);
-        return () => clearInterval(timer);
-    }, [isInView, target, duration]);
-
-    return <span ref={ref}>{count}{suffix}</span>;
-};
 
 const TrainingProgramDetail: React.FC = () => {
     const { programId } = useParams<{ programId: string }>();
@@ -46,20 +20,7 @@ const TrainingProgramDetail: React.FC = () => {
     const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
     const [showAllFaqs, setShowAllFaqs] = useState(false);
-    const [isInSyllabus, setIsInSyllabus] = useState(false);
     const syllabusRef = useRef<HTMLDivElement>(null);
-
-    const { scrollYProgress: syllabusScrollY } = useScroll({
-        target: syllabusRef,
-        offset: ['start end', 'end start'],
-    });
-
-    useEffect(() => {
-        const unsubscribe = syllabusScrollY.on('change', (latest) => {
-            setIsInSyllabus(latest > 0 && latest < 1);
-        });
-        return unsubscribe;
-    }, [syllabusScrollY]);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
@@ -90,16 +51,6 @@ const TrainingProgramDetail: React.FC = () => {
     if (!program) {
         return <Navigate to="/training" replace />;
     }
-
-    const scrollToSection = (id: string) => {
-        const element = document.getElementById(id);
-        if (element) {
-            const offset = 120;
-            const elementPosition = element.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - offset;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
-    };
 
     // Handle overview paragraph splitting
     const overviewParagraphs = program.longDescription?.split('\n\n') || [program.description];
@@ -200,6 +151,7 @@ const TrainingProgramDetail: React.FC = () => {
                         </div>
                     </div>
                 </section>
+
 
                 {/* Info Cards Section */}
                 <section className="w-full bg-black pt-8 sm:pt-12 pb-[30px] relative z-20 overflow-hidden">
@@ -344,7 +296,7 @@ const TrainingProgramDetail: React.FC = () => {
                             <div className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-30 ml-auto bg-[#0a1628]" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
                                 <h2 className="text-xl font-black text-white uppercase mb-4 text-start">Meet Your <span className="text-[#00C4D4]">Instructor</span></h2>
                                 <blockquote className="text-sm sm:text-base font-normal text-white leading-relaxed mb-6 italic text-start">
-                                    "{program.instructor.bio}"
+                                    &quot;{program.instructor.bio}&quot;
                                 </blockquote>
                                 <div className="grid grid-cols-3 gap-2 mb-6">
                                     {program.instructor.stats.map((s, i) => (
@@ -463,3 +415,4 @@ const TrainingProgramDetail: React.FC = () => {
 };
 
 export default TrainingProgramDetail;
+

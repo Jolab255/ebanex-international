@@ -1,7 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Squares } from '../../components/animations';
-import { FitText } from '../../components/common';
+import { Squares, ScrollReveal } from '../../components/animations';
 
 const AboutContent: React.FC = () => {
   return (
@@ -20,13 +18,11 @@ const AboutContent: React.FC = () => {
         {/* Header - Positioned on top of everything */}
         <div className="mb-8 text-center shrink-0 relative z-50">
           <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
-            <motion.h1
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
-            >
-              About <span className="text-[#00BFFF]">Ebanex International</span>
-            </motion.h1>
+            <ScrollReveal yOffset={10}>
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight">
+                About <span className="text-[#00BFFF]">Ebanex International</span>
+              </h1>
+            </ScrollReveal>
           </div>
         </div>
 
@@ -42,10 +38,7 @@ const AboutContent: React.FC = () => {
           </div>
 
           {/* Main Content Box */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black shadow-none relative overflow-hidden z-10 ml-auto"
             style={{
               background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
@@ -66,7 +59,7 @@ const AboutContent: React.FC = () => {
             
             {/* Decorative corner accent */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-[#00BFFF]/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

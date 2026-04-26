@@ -340,7 +340,7 @@ Opportunities include:
      Industry updates and institutional activities
 11. CONTACT PAGE
 Contact Information
-"Office Location (HQ) – 19 Mori Street, Sinza, Dar es Salaam, Tanzania Phone Contacts - +255745326627 / +255755963001"
+"Office Location (HQ) – 19 Mori Street, Sinza, Dar es Salaam, Tanzania Phone Contacts - +255 745 326 627 / +255 703 027 412"
 Email Addresses - Social Media Platforms -
 Inquiry Form
      Full Name

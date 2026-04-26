@@ -1,7 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Squares } from '../../components/animations';
+import { Squares, ScrollReveal } from '../../components/animations';
 import { FitText } from '../../components/common';
 import {
   useProgressSlider,
@@ -168,22 +167,24 @@ const TrainingApproachSection: React.FC = () => {
 
       {/* Section Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-[20px] relative z-10 text-center shrink-0">
-        <div className="select-none mb-3 inline-block bg-black py-4 px-8">
-          <FitText
-            minScale={0.35}
-            textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
-          >
-            <span 
-              style={{
-                backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
+        <ScrollReveal yOffset={10} delay={0.1}>
+          <div className="select-none mb-3 inline-block bg-black py-4 px-8">
+            <FitText
+              minScale={0.35}
+              textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
             >
-              TRAINING PROGRAMS &amp; APPROACH
-            </span>
-          </FitText>
-        </div>
+              <span 
+                style={{
+                  backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                TRAINING PROGRAMS &amp; APPROACH
+              </span>
+            </FitText>
+          </div>
+        </ScrollReveal>
       
       </div>
 

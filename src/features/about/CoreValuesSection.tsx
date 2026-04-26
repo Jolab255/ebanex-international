@@ -1,8 +1,6 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Sparkles, Handshake, Zap } from 'lucide-react';
-import { Squares } from '../../components/animations';
-import { FitText } from '../../components/common';
+import { Squares, ScrollReveal } from '../../components/animations';
 import FeatureCard from '../home/components/FeatureCard';
 
 const CoreValuesSection: React.FC = () => {
@@ -41,13 +39,11 @@ const CoreValuesSection: React.FC = () => {
         {/* Section Header */}
         <div className="mb-12 text-center shrink-0 relative z-50">
           <div className="select-none inline-block bg-black py-3 px-6 border border-white/10">
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight"
-            >
-              Core <span className="text-[#00BFFF]">Values</span>
-            </motion.h2>
+            <ScrollReveal yOffset={10}>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-black font-heading text-white uppercase tracking-tight">
+                Core <span className="text-[#00BFFF]">Values</span>
+              </h2>
+            </ScrollReveal>
           </div>
         </div>
 

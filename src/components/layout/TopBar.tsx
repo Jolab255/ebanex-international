@@ -21,8 +21,8 @@ const TopBar: React.FC = () => {
       id: 'email',
       icon: Mail,
       label: 'Email',
-      value: 'hello@ebanex.com',
-      href: 'mailto:hello@ebanex.com',
+      value: 'info@ebanexint.co.tz',
+      href: 'mailto:info@ebanexint.co.tz',
     },
   ];
 
@@ -31,7 +31,7 @@ const TopBar: React.FC = () => {
       id: 'linkedin',
       icon: Linkedin,
       label: 'LinkedIn',
-      href: '#',
+      href: 'https://www.linkedin.com/company/ebanex-international/',
     },
     {
       id: 'twitter',
@@ -103,10 +103,10 @@ const TopBar: React.FC = () => {
               <div className="min-w-0 flex-1">
                 <div className="text-[10px] text-white/40 uppercase tracking-widest">Email</div>
                 <a
-                  href="mailto:hello@ebanex.com"
+                  href="mailto:info@ebanexint.co.tz"
                   className="text-white font-bold hover:text-[#00BFFF] transition-colors block truncate"
                 >
-                  hello@ebanex.com
+                  info@ebanexint.co.tz
                 </a>
               </div>
               <button

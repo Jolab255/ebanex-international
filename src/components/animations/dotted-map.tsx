@@ -25,7 +25,6 @@ interface DottedMapProps {
 export function DottedMap({
     width = 150,
     height = 75,
-    mapSamples = 5500,
     markers = [],
     dotColor,
     markerColor = "#3b82f6",

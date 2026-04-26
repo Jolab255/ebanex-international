@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/layout';
-import { Squares } from '../components/animations';
+import { Squares, ScrollReveal } from '../components/animations';
 import { TRAINING_PROGRAMS } from '../constants/trainingData';
 import { TrainingApproachSection } from '../features/home';
 
@@ -113,7 +113,7 @@ const ProgramModal: React.FC<{
                                             <span className="text-xs font-semibold text-[#00BFFF]">{program.hours}</span>
                                         </div>
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[10px] font-medium text-white/40 uppercase tracking-widest">Who It's For</span>
+                                            <span className="text-[10px] font-medium text-white/40 uppercase tracking-widest">Who It&apos;s For</span>
                                             <span className="text-xs font-semibold text-[#00BFFF] text-right max-w-[150px]">{program.audience}</span>
                                         </div>
                                     </div>
@@ -395,17 +395,19 @@ const Training: React.FC = () => {
                         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 space-y-8">
                             {/* Category Title Section */}
                             <div className="mb-10 text-center relative z-50">
-                                <div className="select-none inline-block bg-black py-3 px-6 sm:px-8 border-4 border-black">
-                                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black font-heading text-white uppercase tracking-tighter">
-                                        {cat.title.split(' ').length > 1 ? (
-                                            <>
-                                                {cat.title.substring(0, cat.title.lastIndexOf(' '))} <span className="text-[#00BFFF]">{cat.title.substring(cat.title.lastIndexOf(' ') + 1)}</span>
-                                            </>
-                                        ) : (
-                                            <span className="text-[#00BFFF]">{cat.title}</span>
-                                        )}
-                                    </h2>
-                                </div>
+                                <ScrollReveal yOffset={10}>
+                                    <div className="select-none inline-block bg-black py-3 px-6 sm:px-8 border-4 border-black">
+                                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black font-heading text-white uppercase tracking-tighter">
+                                            {cat.title.split(' ').length > 1 ? (
+                                                <>
+                                                    {cat.title.substring(0, cat.title.lastIndexOf(' '))} <span className="text-[#00BFFF]">{cat.title.substring(cat.title.lastIndexOf(' ') + 1)}</span>
+                                                </>
+                                            ) : (
+                                                <span className="text-[#00BFFF]">{cat.title}</span>
+                                            )}
+                                        </h2>
+                                    </div>
+                                </ScrollReveal>
                             </div>
 
                             {/* Program Carousel */}
@@ -430,11 +432,13 @@ const Training: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
                     {/* Header */}
                     <div className="mb-6 sm:mb-8 text-center relative z-50">
-                        <div className="select-none inline-block bg-black py-3 px-6 sm:px-8 border-4 border-black">
-                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black font-heading text-white uppercase tracking-tighter">
-                                Start Your Training <span className="text-[#00BFFF]">Today</span>
-                            </h2>
-                        </div>
+                        <ScrollReveal yOffset={10}>
+                            <div className="select-none inline-block bg-black py-3 px-6 sm:px-8 border-4 border-black">
+                                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black font-heading text-white uppercase tracking-tighter">
+                                    Start Your Training <span className="text-[#00BFFF]">Today</span>
+                                </h2>
+                            </div>
+                        </ScrollReveal>
                     </div>
 
                     {/* CTA Card */}
@@ -455,7 +459,7 @@ const Training: React.FC = () => {
                                     Ready to <span className="text-[#00BFFF]">Upskill</span> Your<br className="hidden sm:block" /> Team or Organization?
                                 </h2>
                                 <p className="text-white/80 text-xs sm:text-sm mb-8 leading-relaxed font-normal max-w-lg">
-                                    Whether you're looking to enroll individually, run a corporate training program, or design a custom curriculum — our team is ready to work with you.
+                                    Whether you&apos;re looking to enroll individually, run a corporate training program, or design a custom curriculum — our team is ready to work with you.
                                 </p>
                                 <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 mb-10">
                                     <Link to="/contact" className="h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2">
@@ -484,7 +488,7 @@ const Training: React.FC = () => {
                                             </div>
                                             <div className="text-left">
                                                 <div className="text-[9px] uppercase tracking-[0.2em] text-white/40">Direct Line</div>
-                                                <div className="text-xs font-black">+255 755 963 001</div>
+                                                <div className="text-xs font-black">+255 703 027 412</div>
                                             </div>
                                         </div>
                                     </div>

@@ -8,7 +8,7 @@ interface CounterProps {
   once?: boolean;
 }
 
-export const Counter: React.FC<CounterProps> = ({ target, suffix = '', duration = 2, once = true }) => {
+export const Counter: React.FC<CounterProps> = ({ target, suffix = '', duration = 2, once = false }) => {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once, margin: '-20px' });

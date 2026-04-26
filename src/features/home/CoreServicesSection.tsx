@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Squares } from '../../components/animations';
+import { Squares, ScrollReveal } from '../../components/animations';
 import type { Service } from '../../types/content';
 
 // Import local images
-import capacityImg from '../../assets/Capacity Building & Professional Development.jpg';
-import cyberImg from '../../assets/Cybersecurity & Digital Skills.jpg';
-import leadershipImg from '../../assets/Leadership & Organizational Development.jpg';
-import advisoryImg from '../../assets/Institutional Advisory & Consulting.jpg';
+import capacityImg from '../../assets/capacity-building.jpg';
+import cyberImg from '../../assets/cybersecurity-skills.jpg';
+import leadershipImg from '../../assets/leadership-development.jpg';
+import advisoryImg from '../../assets/institutional-advisory.jpg';
 
 const CORE_SERVICES: Service[] = [
   {
@@ -41,25 +41,22 @@ interface ServiceCardProps {
   service: Service;
   index: number;
   totalCards: number;
-  sectionRef: React.RefObject<HTMLElement>;
+  progress: MotionValue<number>;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, sectionRef }) => {
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  });
-
+const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, progress }) => {
   const sliceSize = 1 / totalCards;
-  const start = index * sliceSize;
   const end = (index + 1) * sliceSize;
 
   // Scale down the card slightly as the next one comes in
-  const scale = useTransform(scrollYProgress, [end, end + sliceSize], [1, 0.95]);
+  // For the last card, we keep it at 1 to avoid jitter at the end of scroll
+  const isLast = index === totalCards - 1;
+  const scale = useTransform(
+    progress, 
+    isLast ? [0, 1] : [end, end + sliceSize], 
+    isLast ? [1, 1] : [1, 0.95]
+  );
   
-  // Keep cards fully opaque (fixing your transparency complaint)
-  const opacity = 1;
-
   // Sticky offset from top
   const topOffset = 100 + index * 32;
 
@@ -67,15 +64,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, s
     <motion.div
       style={{ 
         scale, 
-        opacity, 
         zIndex: index + 1, 
         top: topOffset 
       }}
-      className="sticky mx-auto w-full max-w-5xl mb-[10vh]"
+      className="sticky mx-auto w-full max-w-5xl mb-[10vh] transform-gpu will-change-transform backface-hidden"
     >
       <div 
-        className="group relative overflow-hidden border border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
-        style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+        className="group relative overflow-hidden border border-white/10 shadow-[0_-15px_35px_rgba(0,0,0,0.7)] transform-gpu"
+        style={{ 
+          background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
+          transform: 'translateZ(0)'
+        }}
       >
         <div className="grid md:grid-cols-2">
           {/* Image Side */}
@@ -83,6 +82,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, s
             <img
               src={service.image}
               alt={service.title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-all duration-700"
             />
           </div>
@@ -121,15 +122,19 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, s
 
 const CoreServicesSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
 
   return (
     <section 
       ref={sectionRef} 
       className="relative z-30 bg-black"
-      style={{ height: `${CORE_SERVICES.length * 80 + 40}vh` }}
+      style={{ height: `${CORE_SERVICES.length * 80 + 50}vh` }}
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Background decoration - Optimized to be sticky so canvas size is viewport-bound */}
+      <div className="sticky top-0 h-screen w-full z-0 overflow-hidden pointer-events-none">
         <Squares
           speed={0.13}
           squareSize={40}
@@ -139,35 +144,33 @@ const CoreServicesSection: React.FC = () => {
         />
       </div>
 
-      {/* Header */}
-      <div className="relative z-10 pt-16 pb-16 text-center">
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-[#00BFFF] font-black uppercase tracking-[0.5em] text-xs mb-4 block">
-              What We Deliver
-            </span>
-            <h2 className="text-5xl md:text-7xl font-heading font-black text-white uppercase tracking-tighter">
-              Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00BFFF] to-white">Services</span>
-            </h2>
-          </motion.div>
+      <div className="relative z-10 -mt-[100vh]">
+        {/* Header */}
+        <div className="pt-16 pb-16 text-center">
+          <div className="max-w-7xl mx-auto px-4">
+            <ScrollReveal yOffset={20}>
+              <span className="text-[#00BFFF] font-black uppercase tracking-[0.5em] text-xs mb-4 block">
+                What We Deliver
+              </span>
+              <h2 className="text-5xl md:text-7xl font-heading font-black text-white uppercase tracking-tighter">
+                Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00BFFF] to-white">Services</span>
+              </h2>
+            </ScrollReveal>
+          </div>
         </div>
-      </div>
 
-      {/* Stacking Cards Container */}
-      <div className="relative z-10 px-4 pb-[40vh]">
-        {CORE_SERVICES.map((service, i) => (
-          <ServiceCard
-            key={i}
-            service={service}
-            index={i}
-            totalCards={CORE_SERVICES.length}
-            sectionRef={sectionRef as React.RefObject<HTMLElement>}
-          />
-        ))}
+        {/* Stacking Cards Container */}
+        <div className="px-4 pb-[30vh]">
+          {CORE_SERVICES.map((service, i) => (
+            <ServiceCard
+              key={i}
+              service={service}
+              index={i}
+              totalCards={CORE_SERVICES.length}
+              progress={scrollYProgress}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

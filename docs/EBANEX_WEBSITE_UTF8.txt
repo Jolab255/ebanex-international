@@ -187,7 +187,7 @@ Opportunities include:
      Industry updates and institutional activities
 11. CONTACT PAGE
 Contact Information
-"Office Location (HQ) – 19 Mori Street, Sinza, Dar es Salaam, Tanzania Phone Contacts - +255745326627 / +255755963001"
+"Office Location (HQ) – 19 Mori Street, Sinza, Dar es Salaam, Tanzania Phone Contacts - +255 745 326 627 / +255 703 027 412"
 Email Addresses - Social Media Platforms -
 Inquiry Form
      Full Name
@@ -246,3 +246,297 @@ Recommended for long-term credibility:
      Global reach and training coverage map
      Trainer credential and certification showcase
      Accreditation and institutional growth timeline
+EBANEX PRIVACY POLICY
+
+1. Data Collection
+Ebanex International collects personal and institutional information necessary to
+deliver training programs, advisory services, and respond to inquiries. This includes
+information provided through contact forms, registration forms, and direct
+communication.
+2. Use of Information
+We use your information solely for the following purposes:
+ Delivering training programs and advisory services
+ Responding to your inquiries and requests
+ Communicating directly with you in relation to your participation, inquiries, or
+service delivery
+ Improving our services and user experience
+We do not sell, rent, or trade your personal data to third parties.
+3. Data Sharing
+We may engage trusted third-party service providers (such as hosting, email, or
+analytics providers) to support our operations. These providers are only given access
+to the information necessary to perform their functions and are required to maintain
+appropriate data protection standards.
+We do not share personal data with third parties for marketing or unrelated purposes.
+4. Data Security
+We implement appropriate technical and organizational measures to protect your
+data against unauthorized access, disclosure, alteration, or loss. This includes the
+use of secure systems and, where applicable, encrypted communications.
+5. Data Retention
+We retain personal data only for as long as necessary to fulfill the purposes for which
+it was collected or to meet legal and operational requirements. Data that is no longer
+required is securely deleted or anonymized.
+6. Your Rights
+If you have any questions about your data or would like to update or remove your
+information, you may contact us using the details below, and we will reasonably
+assist, subject to applicable legal and operational requirements.
+7. Cookies
+Our website may use cookies to enhance user experience and analyze website
+usage. You can manage or disable cookies through your browser settings.
+8. Cookies
+Our website may use cookies to enhance user experience and analyze website
+usage. You can manage or disable cookies through your browser settings.
+9. Contact Information
+For any privacy-related inquiries, please contact:
+Ebanex International
+19 Mori Street, Sinza, Dar es Salaam
+Email: info@ebanexint.co.tz
+Last Updated: April 2026
+
+EBANEX INTERNATIONAL TERMS OF SERVICE
+
+1. Use of Services
+By accessing or using Ebanex International services, you acknowledge that you have
+read and agreed to these Terms and will comply with applicable professional
+standards. Our services include training programs, advisory engagements, and
+related offerings.
+2. Intellectual Property
+All training materials, curricula, and advisory content provided by Ebanex
+International remain our intellectual property. These materials may not be copied,
+reproduced, or distributed without prior written consent.
+3. Service Delivery
+Ebanex International may deliver services through physical, virtual, or hybrid formats.
+We reserve the right to adjust delivery methods where necessary to maintain service
+quality, safety, or operational efficiency.
+4. User Responsibilities
+Participants are responsible for ensuring that the use and application of knowledge
+gained from our services comply with their organization’s policies and applicable
+laws.
+5. Limitation of Liability
+Ebanex International provides training and advisory services in good faith and to the
+best of our professional ability. However, we are not responsible for how such
+knowledge is applied, and we do not accept liability for outcomes arising from its use.
+6. Changes to Services
+Ebanex International reserves the right to update or modify our services and offerings
+where necessary. Any significant changes will be communicated where applicable.
+7. Governing Law
+These Terms are governed by the laws of the United Republic of Tanzania. For
+international engagements, separate contractual agreements may apply where
+appropriate.
+8. Contact Information
+For any questions regarding these Terms, please contact:
+Ebanex International
+19 Mori Street, Sinza, Dar es Salaam
+Email: info@ebanexint.co.tz
+Last Updated: April 2026
+
+IT AUDIT & ADVISORY SERVICES – WEBSITE CONTENT
+1. Top of Page
+Title:
+IT Audit & Advisory Services
+Tagline:
+Strengthening Digital Trust Through Independent Assurance and Strategic Insight
+Short Description:
+Ebanex International provides independent IT audit and advisory services designed to enhance governance, strengthen controls, and support secure digital transformation across organizations.
+2. Overview Section
+Heading:
+Overview
+Content:
+In today’s rapidly evolving digital landscape, organizations require more than compliance—they require assurance, visibility, and resilience.
+Ebanex International delivers risk-focused IT audit and advisory services that help organizations identify control gaps, assess emerging risks, and strengthen their technology environment.
+Our approach combines deep technical expertise, audit discipline, and real-world experience to provide practical, actionable insights that drive measurable improvement.
+3. Our Core Services (Feel free to structure and position this section appropriately i.e dropdown/boxes etc ; we will review and provide further input)
+Heading:
+Our Services
+IT Audit & Assurance
+IT General Controls (ITGC) Reviews 
+Application Controls Audits 
+Infrastructure & Network Security Reviews 
+Data Governance and Data Integrity Assessments 
+Backup, Disaster Recovery & Resilience Audits
+Cybersecurity Audits & Assessments
+Vulnerability & Security Posture Assessments 
+Security Configuration Reviews (Firewalls, Servers, Endpoints) 
+Identity & Access Management (IAM) Reviews 
+Security Monitoring & SIEM Effectiveness Reviews 
+Third-Party & API Security Assessments
+
+IT Risk Advisory
+IT Risk Assessments and Risk Register Development 
+Control Design and Improvement 
+Cyber Risk Framework Implementation 
+Regulatory & Compliance Readiness (e.g., ISO, NIST, CIS) 
+Technology Risk Governance Advisory
+System & Project Assurance
+System Implementation Reviews (Pre/Post Implementation) 
+SDLC and Change Management Audits 
+Data Migration & System Integration Reviews 
+Project Risk & Governance Assessments
+
+4. Our Approach
+Heading:
+Our Approach
+Content:
+Our engagements are guided by a structured, a structured, risk-based approach grounded in real-world audit and technical practice:
+Understand the Environment – Business, systems, and risk landscape 
+Assess Risks & Controls – Identify vulnerabilities and control gaps 
+Test Effectiveness – Evaluate design and operating effectiveness 
+Provide Actionable Insights – Practical, prioritized recommendations 
+Support Improvement – Enable sustainable control enhancement 
+We focus on clarity, practicality, and impact—not just reporting.
+-N:B: If possible, it would be great to present this section (Our approach section) in a more visual format (e.g., cards/boxes or a step-based layout) rather than plain text, to enhance clarity and engagement. A sample is attached for reference—feel free to use your own design approach if you have other design ideas to incorporate.
+
+
+5. Why Ebanex
+Heading:
+Why Ebanex?
+Real-World Expertise
+Led by seasoned professionals with over 15 years of practical, hands-on experience across diverse IT domains, including banking, telecommunications, Big Four audit firms, government, and private sector institutions.
+Technical & Audit Depth
+A strong blend of cybersecurity, IT audit, and risk management expertise, grounded in real-world delivery.
+Practical Recommendations
+We go beyond identifying issues—our focus is on clear, implementable solutions that deliver practical and sustainable improvements.
+Aligned with Global Standards
+Our approach is guided by ISACA’s globally recognized frameworks for IT audit and governance, alongside other leading standards and best practices, including NIST, CIS Controls, ISO standards, and other recognized industry practices.
+6. Target Clients
+Heading:
+Who We Serve
+Financial Institutions 
+Government & Regulatory Bodies 
+Corporates & Enterprises 
+NGOs & Development Organizations 
+Technology-driven Organizations
+
+7. Call to Action
+Heading:
+Engage With Us
+Text:
+Partner with Ebanex International to strengthen your organization’s control environment, enhance cybersecurity resilience, and build sustainable digital trust.
+Buttons:
+- Request a Consultation
+- Speak to an Expert
+
+Ebanex Digital Trust Conference – WEBSITE CONTENT
+1. Top of Page 
+Title:
+Ebanex Digital Trust Conference
+Tagline:
+Shaping the Future of Cybersecurity, AI, and Digital Trust
+Short Description:
+The Ebanex Digital Trust Conference is a premier industry conference and engagement platform, bringing together professionals, industry leaders, and institutions from across the region and the African continent to explore emerging trends, risks, and innovations in cybersecurity, IT audit, artificial intelligence, and digital trust.
+2. Overview Section
+Heading:
+Overview
+Content:
+As organizations continue to adopt digital technologies, the need for trust, resilience, and effective risk management has become increasingly critical.
+The Ebanex Digital Trust Conference provides a platform for meaningful dialogue, knowledge sharing, and practical insights across critical areas of cybersecurity, IT governance, artificial intelligence, and digital risk.
+The conference is designed to bridge the gap between strategy, regulation, and real-world implementation, equipping participants with knowledge that can be applied within their organizations.
+3. Conference Focus Areas
+Heading:
+Conference Focus Areas
+Cybersecurity Strategy & Emerging Threats 
+IT Audit, Governance & Risk Management 
+Artificial Intelligence & AI Risk Management 
+Digital Transformation & Resilience 
+Data Privacy & Protection 
+Regulatory Trends & Compliance
+Emerging Technology Trends, Risks and Opportunities
+4. What to Expect
+Heading:
+What to Expect
+Insightful sessions led by experienced professionals and industry practitioners 
+Practical discussions based on real-world challenges and case scenarios 
+Panel discussions on emerging risks and regulatory developments 
+Networking opportunities with professionals across industries 
+Exposure to current tools, techniques, and frameworks
+5. Who Should Attend
+Heading:
+Who Should Attend
+Board Members, CEOs, and Executive Leaders across public and private institutions 
+Senior Management and Decision-Makers in technology, risk, and operations 
+IT Professionals and Technology Teams 
+IT Auditors (Internal & External) 
+Cybersecurity Professionals 
+Risk & Compliance Officers 
+IT & Digital Transformation Leaders 
+Government & Regulatory Officials 
+Anyone seeking to build practical knowledge in cybersecurity, artificial intelligence, and digital trust
+6. Why Attend
+Heading:
+Why Attend
+Stay updated on evolving cybersecurity and digital risk trends 
+Gain practical insights that can be applied within your organization 
+Learn from experienced professionals across multiple industries 
+Build professional networks and exchange ideas 
+Strengthen your understanding of digital trust and governance
+7. Call to Action
+Heading:
+Be Part of the Conversation
+Text:
+Join Ebanex International and industry professionals as we explore the future of cybersecurity, IT audit, and digital trust.
+Buttons:
+Register Interest 
+Partner With Us 
+Request More Information
+Ebanex Digital Trust Conference – WEBSITE CONTENT
+1. Top of Page 
+Title:
+Ebanex Digital Trust Conference
+Tagline:
+Shaping the Future of Cybersecurity, AI, and Digital Trust
+Short Description:
+The Ebanex Digital Trust Conference is a premier industry conference and engagement platform, bringing together professionals, industry leaders, and institutions from across the region and the African continent to explore emerging trends, risks, and innovations in cybersecurity, IT audit, artificial intelligence, and digital trust.
+2. Overview Section
+Heading:
+Overview
+Content:
+As organizations continue to adopt digital technologies, the need for trust, resilience, and effective risk management has become increasingly critical.
+The Ebanex Digital Trust Conference provides a platform for meaningful dialogue, knowledge sharing, and practical insights across critical areas of cybersecurity, IT governance, artificial intelligence, and digital risk.
+The conference is designed to bridge the gap between strategy, regulation, and real-world implementation, equipping participants with knowledge that can be applied within their organizations.
+3. Conference Focus Areas
+Heading:
+Conference Focus Areas
+Cybersecurity Strategy & Emerging Threats 
+IT Audit, Governance & Risk Management 
+Artificial Intelligence & AI Risk Management 
+Digital Transformation & Resilience 
+Data Privacy & Protection 
+Regulatory Trends & Compliance
+Emerging Technology Trends, Risks and Opportunities
+4. What to Expect
+Heading:
+What to Expect
+Insightful sessions led by experienced professionals and industry practitioners 
+Practical discussions based on real-world challenges and case scenarios 
+Panel discussions on emerging risks and regulatory developments 
+Networking opportunities with professionals across industries 
+Exposure to current tools, techniques, and frameworks
+5. Who Should Attend
+Heading:
+Who Should Attend
+Board Members, CEOs, and Executive Leaders across public and private institutions 
+Senior Management and Decision-Makers in technology, risk, and operations 
+IT Professionals and Technology Teams 
+IT Auditors (Internal & External) 
+Cybersecurity Professionals 
+Risk & Compliance Officers 
+IT & Digital Transformation Leaders 
+Government & Regulatory Officials 
+Anyone seeking to build practical knowledge in cybersecurity, artificial intelligence, and digital trust
+6. Why Attend
+Heading:
+Why Attend
+Stay updated on evolving cybersecurity and digital risk trends 
+Gain practical insights that can be applied within your organization 
+Learn from experienced professionals across multiple industries 
+Build professional networks and exchange ideas 
+Strengthen your understanding of digital trust and governance
+7. Call to Action
+Heading:
+Be Part of the Conversation
+Text:
+Join Ebanex International and industry professionals as we explore the future of cybersecurity, IT audit, and digital trust.
+Buttons:
+Register Interest 
+Partner With Us 
+Request More Information
+s
