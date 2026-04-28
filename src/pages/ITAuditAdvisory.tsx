@@ -1,9 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Shield, CheckCircle, ArrowRight, Activity, Search, Database, Lock, Terminal, Building, Globe } from 'lucide-react';
+import { Shield, CheckCircle, ArrowRight, Activity, Search, Database, Lock, Building, Globe } from 'lucide-react';
 import { SEO } from '../components/layout';
 import { Squares, ScrollReveal } from '../components/animations';
 import { Link } from 'react-router-dom';
+import { ClientsSection, CtaSection } from '../features/home';
 
 // Import assets
 import advisoryImg from '../assets/institutional-advisory.jpg';
@@ -89,27 +90,27 @@ const ITAuditAdvisory: React.FC = () => {
     {
       step: '01',
       title: 'Understand the Environment',
-      desc: 'Business, systems, and risk landscape analysis to establish context.'
+      desc: 'Business, systems, and risk landscape'
     },
     {
       step: '02',
       title: 'Assess Risks & Controls',
-      desc: 'Identify vulnerabilities and control gaps within your specific topology.'
+      desc: 'Identify vulnerabilities and control gaps'
     },
     {
       step: '03',
       title: 'Test Effectiveness',
-      desc: 'Evaluate design and operating effectiveness through rigorous testing.'
+      desc: 'Evaluate design and operating effectiveness'
     },
     {
       step: '04',
       title: 'Provide Actionable Insights',
-      desc: 'Practical, prioritized recommendations that drive measurable value.'
+      desc: 'Practical, prioritized recommendations'
     },
     {
       step: '05',
       title: 'Support Improvement',
-      desc: 'Enable sustainable control enhancement and long-term resilience.'
+      desc: 'Enable sustainable control enhancement'
     }
   ];
 
@@ -156,7 +157,7 @@ const ITAuditAdvisory: React.FC = () => {
               <div className="w-full lg:w-[70%] relative z-40">
                 {/* Subtitle - Still indented relative to title/card */}
                 <div className="inline-flex items-center px-3 py-2 bg-[#00BFFF] text-black mb-6 mt-12 lg:mt-8 ml-8 sm:ml-16 lg:ml-20">
-                  <span className="text-[10px] font-black uppercase tracking-[0.1em]">Independent Assurance & Strategic Digital Trust Insight</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.1em]">Strengthening Digital Trust Through Independent Assurance and Strategic Insight</span>
                 </div>
 
                 {/* Main Content Card - ml-4 on mobile, 0 on lg */}
@@ -185,7 +186,7 @@ const ITAuditAdvisory: React.FC = () => {
               </div>
 
               {/* Background Image (Stacked UNDER with low z-index) */}
-              <div className="absolute right-0 lg:right-[-5%] top-1/2 -translate-y-1/2 w-[250px] sm:w-[350px] lg:w-[450px] aspect-square z-10 hidden md:block opacity-90 lg:opacity-100">
+              <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[450px] lg:w-[550px] aspect-square z-10 hidden md:block opacity-90 lg:opacity-100">
                 <div className="relative w-full h-full">
                   <div className="absolute inset-0 bg-[#00BFFF]/5 z-20 pointer-events-none" />
                   <img 
@@ -211,10 +212,14 @@ const ITAuditAdvisory: React.FC = () => {
         <div className="w-full px-4 sm:px-6 lg:px-[100px] relative z-10">
           <motion.div {...fadeInUp}>
             <div className="w-full">
-              <div className="w-full bg-[#00BFFF] p-8 sm:p-12 border-[8px] border-black shadow-2xl relative">
-                <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter mb-8 leading-tight text-black">
-                  Service <span className="text-white">Overview</span>
-                </h2>
+              <div className="w-full bg-[#00BFFF] p-6 sm:p-10 border-[8px] border-black shadow-2xl relative">
+                <div className="mb-8">
+                  <div className="inline-block bg-black py-4 px-8 border border-white/10 shadow-2xl">
+                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9]">
+                      Overview
+                    </h2>
+                  </div>
+                </div>
                 <p className="text-black text-lg font-light leading-relaxed text-justify">
                   {firstParagraph}
                 </p>
@@ -307,9 +312,11 @@ const ITAuditAdvisory: React.FC = () => {
 
               <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-[60px] pt-16 pb-16">
                   <div className="text-center mb-10">
-                      <ScrollReveal>
-                          <h3 className="text-2xl sm:text-3xl font-black text-black uppercase tracking-tighter">Our <span className="text-white">Specialized</span> Services</h3>
-                      </ScrollReveal>
+                    <div className="inline-block bg-black py-4 px-8 border border-white/10 shadow-2xl">
+                      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9]">
+                        Our <span className="text-[#00BFFF]">Services</span>
+                      </h2>
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
@@ -317,7 +324,7 @@ const ITAuditAdvisory: React.FC = () => {
                           <div key={idx} className="flex h-full group">
                               <div className="shadow-xl bg-[#0a1628] h-full w-full flex flex-col overflow-hidden border border-white/5 group-hover:border-[#00BFFF]/30 transition-all duration-500" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
                                   {/* Compact Image Section - No Overlays/Icons */}
-                                  <div className="relative h-32 overflow-hidden border-b-4 border-black">
+                                  <div className="relative h-28 overflow-hidden border-b-4 border-black">
                                       <img 
                                           src={service.image} 
                                           alt={service.title}
@@ -326,13 +333,13 @@ const ITAuditAdvisory: React.FC = () => {
                                   </div>
 
                                   {/* Compact Content Section */}
-                                  <div className="p-5 flex flex-col flex-1">
+                                  <div className="p-4 flex flex-col flex-1">
                                       <h4 className="text-sm font-black text-white mb-4 flex items-center gap-2 uppercase tracking-tight group-hover:text-[#00BFFF] transition-colors leading-tight min-h-[40px]">
                                           <span className="w-1 h-5 bg-[#00BFFF] shrink-0"></span> {service.title}
                                       </h4>
                                       <ul className="space-y-3 flex-grow">
                                           {service.items.map((item, i) => (
-                                              <li key={i} className="flex items-start gap-2 text-white/70 font-medium text-[10px] sm:text-[11px] leading-snug text-start">
+                                              <li key={i} className="flex items-start gap-2 text-white/70 font-normal text-xs sm:text-sm leading-snug text-start">
                                                   <CheckCircle className="w-3 h-3 text-[#00BFFF] shrink-0 mt-0.5" />
                                                   {item}
                                               </li>
@@ -355,50 +362,49 @@ const ITAuditAdvisory: React.FC = () => {
           <Squares speed={0.13} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.08)" hoverFillColor="rgba(255,255,255,0.05)" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="text-center mb-12">
-            <ScrollReveal>
-              <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tighter mb-4">Our <span className="text-[#00BFFF]">Risk-Based</span> Approach</h3>
-              <p className="text-sm font-medium text-white/70 max-w-2xl mx-auto">
-                Our engagements are guided by a structured, risk-based approach grounded in real-world audit and technical practice:
-              </p>
-            </ScrollReveal>
+          <div className="mb-12 text-center">
+            <div className="inline-block bg-black py-4 px-8 border border-white/10 shadow-2xl">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9]">
+                Our <span className="text-[#00BFFF]">Approach</span>
+              </h2>
+            </div>
           </div>
 
           <div className="grid lg:grid-cols-5 gap-3 mb-8">
             {approach.map((step, idx) => (
-              <ScrollReveal key={idx} delay={idx * 0.1}>
-                <div className="relative p-6 border border-[#00BFFF] h-full bg-white/5 backdrop-blur-[2px]">
-                  <div className="text-3xl font-black text-[#00BFFF] mb-4 tracking-tighter">
-                    {step.step}
-                  </div>
-                  <h4 className="text-base font-black uppercase mb-3 tracking-tight leading-tight text-white">{step.title}</h4>
-                  <p className="text-sm text-white/70 font-medium leading-relaxed">{step.desc}</p>
+              <div key={idx} className="relative p-6 border border-[#00BFFF] h-full bg-white/5 backdrop-blur-[2px]">
+                <div className="text-3xl font-black text-[#00BFFF] mb-4 tracking-tighter">
+                  {step.step}
                 </div>
-              </ScrollReveal>
+                <h4 className="text-base font-black uppercase mb-3 tracking-tight leading-tight text-white">{step.title}</h4>
+                <p className="text-sm text-white/70 font-normal leading-relaxed">{step.desc}</p>
+              </div>
             ))}
           </div>
 
-          <ScrollReveal>
-            <div className="text-center">
-              <p className="text-sm font-black uppercase tracking-widest text-[#00BFFF]">
-                We focus on clarity, practicality, and impact—not just reporting.
-              </p>
-            </div>
-          </ScrollReveal>
+          <div className="text-center">
+            <p className="text-sm font-black uppercase tracking-widest text-[#00BFFF]">
+              We focus on clarity, practicality, and impact—not just reporting.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Why Ebanex */}
-      <section className="py-16 relative overflow-hidden">
+      <section className="py-16 relative overflow-hidden bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)]">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Squares speed={0.13} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.08)" hoverFillColor="rgba(255,255,255,0.05)" />
+        </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="max-w-3xl mb-12">
-            <ScrollReveal>
-              <h2 className="text-[9px] font-black text-[#00BFFF] uppercase tracking-[0.4em] mb-3">Why Ebanex?</h2>
-              <h3 className="text-2xl sm:text-4xl font-black uppercase tracking-tighter">The <span className="text-[#00BFFF]">Difference</span> in Delivery</h3>
-            </ScrollReveal>
+          <div className="mb-12 text-center">
+            <div className="inline-block bg-black py-4 px-8 border border-white/10 shadow-2xl">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9]">
+                Why <span className="text-[#00BFFF]">Ebanex?</span>
+              </h2>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-10">
             {[
               {
                 title: 'Real-World Expertise',
@@ -417,61 +423,36 @@ const ITAuditAdvisory: React.FC = () => {
                 desc: 'Our approach is guided by ISACA’s globally recognized frameworks for IT audit and governance, alongside other leading standards and best practices, including NIST, CIS Controls, ISO standards, and other recognized industry practices.'
               }
             ].map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.1}>
-                <div className="flex gap-4">
+              <div key={i} className="group relative h-full">
+                <div className={`absolute inset-0 bg-[#00bfff] transform ${i % 2 === 0 ? 'rotate-1' : '-rotate-1'} group-hover:rotate-0 transition-transform duration-300`} />
+                <div 
+                  className="relative p-8 border-[10px] border-black flex gap-4 transition-all duration-300 h-full"
+                  style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                >
                   <div className="flex-shrink-0 w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-[#00BFFF] font-black text-lg">
                     0{i+1}
                   </div>
                   <div>
-                    <h4 className="text-base font-black uppercase mb-2 tracking-tight">{item.title}</h4>
-                    <p className="text-xs text-white/60 font-medium leading-relaxed">{item.desc}</p>
+                    <h4 className="text-base sm:text-lg font-black uppercase mb-2 tracking-tight text-white">{item.title}</h4>
+                    <p className="text-sm sm:text-base text-white/60 font-normal leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
-              </ScrollReveal>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Target Clients */}
-      <section className="py-12 bg-[#0a0a0a] border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-          <ScrollReveal>
-            <h2 className="text-[9px] font-black text-[#00BFFF] uppercase tracking-[0.4em] mb-8">Who We Serve</h2>
-            <div className="flex flex-wrap justify-center gap-6 sm:gap-12">
-              {['Financial Institutions', 'Government & Regulatory Bodies', 'Corporates & Enterprises', 'NGOs & Development Organizations', 'Technology-driven Organizations'].map((client, i) => (
-                <div key={i} className="text-[11px] font-black uppercase tracking-widest text-white/40 hover:text-[#00BFFF] transition-colors cursor-default">
-                  {client}
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      {/* Who We Serve */}
+      <ClientsSection showStats={false} />
 
       {/* Final CTA */}
-      <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-          <Squares speed={0.13} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.08)" hoverFillColor="rgba(255,255,255,0.05)" />
-        </div>
-        
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-          <ScrollReveal>
-            <h2 className="text-2xl sm:text-4xl font-black uppercase tracking-tighter mb-6 leading-tight">
-              Ready to Strengthen Your <br /> <span className="text-[#00BFFF]">Control Environment?</span>
-            </h2>
-            <p className="text-base text-white/60 font-medium max-w-2xl mx-auto mb-8">
-              Partner with Ebanex International to enhance cybersecurity resilience, 
-              ensure regulatory compliance, and build sustainable digital trust.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link to="/contact" className="h-12 px-8 bg-[#00BFFF] text-black font-black text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-all">
-                Request a Consultation
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <CtaSection 
+        mainHeader="ENGAGE WITH US"
+        headerSubtitle=""
+        title={<>Ready to <span className="text-[#00BFFF]">Strengthen</span> Your <br className="hidden sm:block" /> Control Environment?</>}
+        description="Partner with Ebanex International to strengthen your organization’s control environment, enhance cybersecurity resilience, and build sustainable digital trust."
+      />
     </div>
   );
 };

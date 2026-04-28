@@ -19,7 +19,11 @@ import ngoImg from '../../assets/ngo-agencies.jpg';
 import industrialImg from '../../assets/industrial-sectors.jpg';
 import financialImg from '../../assets/financial-services.jpg';
 
-const ClientsSection: React.FC = () => {
+interface ClientsSectionProps {
+  showStats?: boolean;
+}
+
+const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -85,7 +89,7 @@ const ClientsSection: React.FC = () => {
 
     const interval = setInterval(() => {
       handleNext();
-    }, 11000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [isPaused, isInView, activeSlide]);
@@ -139,13 +143,6 @@ const ClientsSection: React.FC = () => {
                   WHO WE SERVE
                 </span>
               </FitText>
-            </div>
-          </ScrollReveal>
-          <ScrollReveal yOffset={20} delay={0.2}>
-            <div className="mt-4">
-              <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] inline-block bg-black py-1.5 px-6">
-                Trusted by Industry Leaders
-              </span>
             </div>
           </ScrollReveal>
         </div>
@@ -211,27 +208,29 @@ const ClientsSection: React.FC = () => {
         </div>
 
         {/* Bottom Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          className="w-full px-8 sm:px-12 pr-16 sm:pr-32 mt-8"
-        >
-          <div className="flex flex-wrap justify-end gap-8 sm:gap-16">
-            {[
-              { value: 20, suffix: '+', label: 'Certifications Offered' },
-              { value: 15, suffix: '+', label: 'Years of Experience' },
-              { value: 10, suffix: '+', label: 'Strategic Partners' },
-            ].map((stat, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-2xl sm:text-4xl font-black text-slate-950 mb-1 font-heading">
-                  <Counter target={stat.value} suffix={stat.suffix} duration={1.5} once={false} />
+        {showStats && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            className="w-full px-8 sm:px-12 pr-16 sm:pr-32 mt-8"
+          >
+            <div className="flex flex-wrap justify-end gap-8 sm:gap-16">
+              {[
+                { value: 20, suffix: '+', label: 'Certifications Offered' },
+                { value: 15, suffix: '+', label: 'Years of Experience' },
+                { value: 10, suffix: '+', label: 'Strategic Partners' },
+              ].map((stat, idx) => (
+                <div key={idx} className="text-center">
+                  <div className="text-2xl sm:text-4xl font-black text-slate-950 mb-1 font-heading">
+                    <Counter target={stat.value} suffix={stat.suffix} duration={1.5} once={false} />
+                  </div>
+                  <div className="text-slate-900/80 text-[10px] sm:text-xs uppercase tracking-wider font-bold">{stat.label}</div>
                 </div>
-                <div className="text-slate-900/80 text-[10px] sm:text-xs uppercase tracking-wider font-bold">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

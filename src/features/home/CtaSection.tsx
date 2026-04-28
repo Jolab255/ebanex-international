@@ -16,8 +16,32 @@ const WhatsAppIcon = ({ size = 20 }: { size?: number }) => (
   </svg>
 );
 
-const CtaSection: React.FC = () => (
-  <section className="h-auto min-h-[90vh] relative z-40 overflow-visible bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col items-center justify-center py-16 sm:py-24 px-4">
+interface CtaSectionProps {
+  mainHeader?: string;
+  headerSubtitle?: string;
+  title?: React.ReactNode;
+  description?: string;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+  tertiaryButtonText?: string;
+  tertiaryButtonLink?: string;
+}
+
+const CtaSection: React.FC<CtaSectionProps> = ({ 
+  mainHeader = "TAKE THE NEXT STEP",
+  headerSubtitle = "Elite Advisory & Training",
+  title, 
+  description,
+  primaryButtonText = "Explore Programs",
+  primaryButtonLink = "/training",
+  secondaryButtonText = "Contact Expert",
+  secondaryButtonLink = "/contact",
+  tertiaryButtonText,
+  tertiaryButtonLink,
+}) => (
+  <section className="relative z-40 overflow-visible bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col items-center justify-center pt-4 pb-12 sm:pt-6 sm:pb-16 px-4">
     {/* Background */}
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
       <Squares
@@ -44,15 +68,17 @@ const CtaSection: React.FC = () => (
                 WebkitTextFillColor: 'transparent',
               }}
             >
-              TAKE THE NEXT STEP
+              {mainHeader}
             </span>
           </FitText>
         </div>
-        <div className="mt-2">
-          <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.6rem,1vw,0.75rem)] inline-block bg-black py-1.5 px-6">
-            Elite Advisory & Training
-          </span>
-        </div>
+        {headerSubtitle && (
+          <div className="mt-2">
+            <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.6rem,1vw,0.75rem)] inline-block bg-black py-1.5 px-6">
+              {headerSubtitle}
+            </span>
+          </div>
+        )}
       </div>
 
       {/* CTA Card Container */}
@@ -68,36 +94,48 @@ const CtaSection: React.FC = () => (
 
         {/* CTA Card */}
         <div 
-          className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-10 overflow-hidden"
+          className="w-full max-w-2xl p-4 sm:p-8 border-[10px] border-black relative z-10 overflow-hidden"
           style={{
             background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
           }}
         >
           <div className="relative z-10 text-center sm:text-left">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight mb-4 uppercase tracking-tighter">
-              Ready to <span className="text-[#00BFFF]">Secure</span> Your <br className="hidden sm:block" /> 
-              Institutional Future?
+              {title || (
+                <>
+                  Ready to <span className="text-[#00BFFF]">Secure</span> Your <br className="hidden sm:block" /> 
+                  Institutional Future?
+                </>
+              )}
             </h2>
             
             <p className="text-white/80 text-xs sm:text-sm mb-8 leading-relaxed font-medium max-w-lg">
-              Empower your workforce with industry-leading cybersecurity competencies and strategic advisory 
-              tailored to your organization&apos;s unique digital landscape.
+              {description || "Empower your workforce with industry-leading cybersecurity competencies and strategic advisory tailored to your organization's unique digital landscape."}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 mb-10">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center sm:items-start justify-center sm:justify-start gap-3 mb-10">
               <Link 
-                to="/training"
-                className="h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2"
+                to={primaryButtonLink}
+                className="w-full sm:w-auto h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
               >
-                Explore Programs <ArrowRight size={14} />
+                {primaryButtonText} <ArrowRight size={14} />
               </Link>
 
               <Link 
-                to="/contact"
-                className="h-11 sm:h-12 px-6 border-2 border-white text-white rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center"
+                to={secondaryButtonLink}
+                className="w-full sm:w-auto h-11 sm:h-12 px-6 border-2 border-white text-white rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center text-center"
               >
-                Contact Expert
+                {secondaryButtonText}
               </Link>
+
+              {tertiaryButtonText && tertiaryButtonLink && (
+                <Link 
+                  to={tertiaryButtonLink}
+                  className="w-full sm:w-auto h-11 sm:h-12 px-6 border-2 border-white/40 text-white/80 rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:border-white hover:text-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center text-center"
+                >
+                  {tertiaryButtonText}
+                </Link>
+              )}
             </div>
 
             {/* Support Links */}
