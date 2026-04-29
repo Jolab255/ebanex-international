@@ -13,6 +13,31 @@ import ciaImg from '../assets/cia.png';
 import crmaImg from '../assets/crma.png';
 import cyberSkillsImg from '../assets/cybersecurity-skills.jpg';
 import leadershipImg from '../assets/leadership-development.jpg';
+import aiTechImg from '../assets/AI and emerging technology.png';
+import ethicalHackingImg from '../assets/ethical hacking.jpg';
+import incidentResponseImg from '../assets/incident detection.png';
+import networkingImg from '../assets/network and infrastructure.png';
+import cloudComputingImg from '../assets/cloud computing.png';
+import sysAdminImg from '../assets/system administration.png';
+import institutionalAdvisoryImg from '../assets/institutional-advisory.jpg';
+import capacityBuildingImg from '../assets/capacity-building.jpg';
+import financialServicesImg from '../assets/financial-services.jpg';
+import communicationImg from '../assets/communication and workplace effectiveness.webp';
+import digitalTransformImg from '../assets/digital transformation skills.webp';
+import itGovImg from '../assets/it governance and digital governance.webp';
+import leadershipMgmtImg from '../assets/leadership and management skills.webp';
+import complianceImg from '../assets/regulatory compliance and standards.webp';
+import riskMgmtImg from '../assets/risk management.webp';
+import strategicThinkingImg from '../assets/strategic thinking and decision making.webp';
+import teamDevImg from '../assets/team development and collaboration.webp';
+
+import barakaImg from '../assets/baraka.jpg';
+import enockImg from '../assets/Enock.jpg';
+import digitalTrustConfImg from '../assets/digital trust conference.jpg';
+import confSponsorshipImg from '../assets/conference sponsorship and past conference highliths.png';
+import industrialSectorsImg from '../assets/industrial-sectors.jpg';
+import ngoAgenciesImg from '../assets/ngo-agencies.jpg';
+import businessTasksImg from '../assets/business-person-using-laptop-multitasking-finish-daily-startup-tasks.webp';
 
 export interface TrainingProgram {
     title: string;
@@ -159,7 +184,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '8 Days (Instructor-Led)',
         hours: '45 Hours (Hands-on Labs)',
         audience: 'Security Analysts, Pen Testers, System Admins',
-        image: 'https://picsum.photos/seed/ethicalhacking/800/800',
+        image: ethicalHackingImg,
         testimonial: {
             text: 'The ethical hacking bootcamp was a game-changer for our internal Red Team. The high-fidelity labs forced our analysts to move beyond automated tools and develop the critical thinking skills required to bypass advanced endpoint protection and pivot through complex, segmented networks. After the training, our team discovered three critical internal vulnerabilities that had gone unnoticed for over a year. The blend of offensive tactics and threat intelligence modeling provided us with a truly holistic view of our security posture.',
             author: 'David Osei',
@@ -246,7 +271,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Instructor-Led)',
         hours: '32 Hours (Blended Learning)',
         audience: 'Risk Managers, CISOs, IT Auditors, Executives',
-        image: 'https://picsum.photos/seed/riskmanagement/800/800',
+        image: riskMgmtImg,
         testimonial: {
             text: 'Ebanex has completely redefined how we present cybersecurity to our Board of Directors. Before this training, our risk reporting was purely qualitative and often misunderstood by the business leaders. By implementing the quantitative FAIR frameworks we learned, we are now able to present risk in financial terms that allow our executives to make strategic capital allocation decisions. We have moved from a "check-the-box" compliance culture to a truly risk-informed strategy that has already optimized our security spend by 25% while improving our overall resilience.',
             author: 'Elena Rostova',
@@ -333,7 +358,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '4 Days (Live Scenarios)',
         hours: '28 Hours (Practical Training)',
         audience: 'Security Operations (SOC) Teams, Blue Teams',
-        image: 'https://picsum.photos/seed/incidentresponse/800/800',
+        image: incidentResponseImg,
         testimonial: {
             text: 'We underwent the Ebanex Incident Response training just months before we were targeted by a major ransomware group. The difference in our response was extraordinary. Instead of the panic and chaos we had experienced in the past, our SOC team followed the precise containment playbooks we developed during the course. We were able to isolate the lateral movement in under 20 minutes, preventing the encryption of our primary subscriber database. The forensic skills our team acquired allowed us to provide the regulators with a complete, evidence-backed report within 48 hours of the incident. Ebanex literally saved our business from a catastrophic outage.',
             author: 'Martin Kinyua',
@@ -420,7 +445,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Instructor-Led)',
         hours: '30 Hours (Hybrid Learning)',
         audience: 'DPOs, IT Architects, Developers, Legal Teams',
-        image: 'https://picsum.photos/seed/dataprivacy/800/800',
+        image: cdpseImg,
         testimonial: {
             text: 'The "Privacy by Design" modules provided by Ebanex have fundamentally changed how our engineering teams build products. Previously, privacy was something our legal department tried to fix after a system was already built, which was costly and often incomplete. Now, our architects and developers have the specific technical frameworks to build privacy into the very fabric of our cloud services. We\'ve not only met our GDPR and regional compliance goals, but we\'ve also seen a significant increase in trust from our enterprise clients who value our data handling transparency.',
             author: 'Chinedu Okafor',
@@ -509,7 +534,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '10 Days (Bootcamp)',
         hours: '60 Hours (Theory + Lab)',
         audience: 'Network Engineers, System Architects, IT Admins',
-        image: 'https://picsum.photos/seed/networking/800/800',
+        image: networkingImg,
         testimonial: {
             text: 'The Ebanex networking lab environment is simply world-class. Being able to simulate our entire corporate topology and test our failover and BGP routing protocols in a safe, high-fidelity environment was invaluable. Our engineers gained more practical knowledge in 10 days than they had in years of standard support roles. We\'ve since implemented the SD-WAN and automation scripts developed during the bootcamp, which has already reduced our manual configuration errors by nearly 60% and improved our overall network responsiveness.',
             author: 'Samuel Okafor',
@@ -596,7 +621,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '6 Days (Intensive)',
         hours: '40 Hours (Project Based)',
         audience: 'System Admins, Architects, DevOps Engineers',
-        image: 'https://picsum.photos/seed/cloud/800/800',
+        image: cloudComputingImg,
         testimonial: {
             text: 'The Ebanex Cloud program was the catalyst for our organization\'s successful digital transformation. We had struggled for years with a fragmented, on-premise infrastructure that limited our ability to scale. The "Well-Architected" frameworks we learned allowed us to migrate our core customer-facing applications to a multi-cloud environment in just three months, reducing our time-to-market for new features by over 50%. The focus on Infrastructure as Code (IaC) has completely modernized our deployment pipeline, and we are now operating with a level of agility and security that was previously impossible.',
             author: 'Aisha Keita',
@@ -683,7 +708,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Workshops)',
         hours: '35 Hours (Applied Practice)',
         audience: 'Innovation Leads, Data Analysts, IT Managers',
-        image: 'https://picsum.photos/seed/aitech/800/800',
+        image: aiTechImg,
         testimonial: {
             text: 'The Ebanex AI workshop has been a transformative experience for our innovation department. Instead of just talking about Artificial Intelligence, we were actually building functional GenAI prototypes and RPA workflows that solved real bottlenecks in our customer support and data entry departments. The instructors did a brilliant job of demystifying the technology and focusing on the strategic ROI and ethical governance that our leadership cares about. We left with not just knowledge, but a concrete 12-month AI roadmap that is already driving measurable efficiency gains in our operations.',
             author: 'Kelechi Iheanacho',
@@ -770,7 +795,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '4 Days (Blended)',
         hours: '25 Hours (Strategic)',
         audience: 'Business Leaders, Change Agents, Project Managers',
-        image: 'https://picsum.photos/seed/digitaltrans/800/800',
+        image: digitalTransformImg,
         testimonial: {
             text: 'The Ebanex Digital Transformation program provided the strategic blueprint our agency needed to move from fragmented, legacy systems to a modern, mobile-first service delivery model. The instructors didn\'t just teach us about technology; they taught us how to lead people through the profound cultural changes that digital maturity requires. We now have a unified "Change Agent" network across our departments that uses agile sprints to solve operational challenges. Our citizen engagement has improved by over 100% since we began implementing the customer journey frameworks learned in this program.',
             author: 'Fatuma Hassan',
@@ -857,7 +882,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '8 Days (Bootcamp)',
         hours: '45 Hours (Hands-on)',
         audience: 'System Admins, IT Support, Infrastructure Engineers',
-        image: 'https://picsum.photos/seed/sysadmin/800/800',
+        image: sysAdminImg,
         testimonial: {
             text: 'The Ebanex Systems Administration bootcamp has elevated our IT operations to an entirely new level. Before this training, our administrators were manually performing routine maintenance, which led to inconsistent uptimes and security vulnerabilities. After mastering the automation and PowerShell/Bash scripting modules, our team has reduced their manual workload by nearly 50%, allowing them to focus on proactive hardening and infrastructure optimization. The disaster recovery simulations were particularly impactful—we are now confident that our restoration times are well within our SLAs. This is the most practical, job-ready IT training available.',
             author: 'Joseph Mensah',
@@ -946,7 +971,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Instructor-Led)',
         hours: '30 Hours (Strategic)',
         audience: 'IT Directors, Board Members, GRC Managers',
-        image: 'https://picsum.photos/seed/governance/800/800',
+        image: itGovImg,
         testimonial: {
             text: 'Ebanex has provided our Board of Directors with the specific decision-making framework we needed to move beyond seeing IT as a cost center and start viewing it as a primary strategic enabler. By implementing the COBIT and ISO 38500 principles learned in this course, we have established a high-performance governance committee that has already improved our project success rate by 35% and ensured that our massive digital transformation budget is directly tied to measurable business outcomes. This is the most practical governance training I have ever attended.',
             author: 'John Kamau',
@@ -1033,7 +1058,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Workshops)',
         hours: '32 Hours (Blended)',
         audience: 'Risk Officers, Internal Auditors, Senior Managers',
-        image: 'https://picsum.photos/seed/erm/800/800',
+        image: riskMgmtImg,
         testimonial: {
             text: 'Transitioning from a "checklist" compliance mindset to a truly proactive Enterprise Risk Management culture has been the most significant strategic shift our organization has made this decade. The Ebanex ERM program gave our leadership team the specific quantitative tools to identify obscure risks in our supply chain and translate them into financial impacts that the board could understand and act upon. We have since integrated risk assessment into every major project planning session, resulting in a documented 60% reduction in major operational incidents and a much higher level of confidence in our overall institutional resilience.',
             author: 'Marcus Dubois',
@@ -1120,7 +1145,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Intensive)',
         hours: '30 Hours (Practical)',
         audience: 'Internal Auditors, Finance Managers, Compliance Officers',
-        image: 'https://picsum.photos/seed/audit/800/800',
+        image: institutionalAdvisoryImg,
         testimonial: {
             text: 'The Ebanex Internal Audit training has been a true strategic turning point for our assurance department. We used to spend our time on manual checklist-based audits that provided very little real insight to the Board. After learning the risk-based methodologies and the advanced data analytics techniques taught in this program, our audit function has become a valued partner in the organizational decision-making process. We are now able to provide deep, evidence-backed assurance on our most complex operations, and the quality of our reporting has improved our overall recommendation implementation rate by over 40%. This is the gold standard for audit professional development.',
             author: 'Chinedu Okafor',
@@ -1207,7 +1232,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '4 Days (Workshops)',
         hours: '24 Hours (Strategic)',
         audience: 'Compliance Officers, Legal Counsel, Directors',
-        image: 'https://picsum.photos/seed/compliance/800/800',
+        image: complianceImg,
         testimonial: {
             text: 'Navigating the intricate maze of regional and international regulations has always been a major obstacle to our cross-border expansion. The Ebanex Compliance program has been an absolute game-changer for our legal and risk teams. We left the workshop with a clear, ISO-aligned framework for monitoring regulatory changes and managing our AML/KYC obligations across multiple jurisdictions. The focus on building an "ethics-first" culture has not only ensured we avoid regulatory fines but has also significantly improved our brand reputation with our international partners. Ebanex makes the complex world of compliance manageable and strategic.',
             author: 'Elena Rostova',
@@ -1296,7 +1321,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '4 Days (Workshops)',
         hours: '24 Hours (Interactive)',
         audience: 'Managers, Team Leads, High-Potentials',
-        image: leadershipImg,
+        image: leadershipMgmtImg,
         testimonial: {
             text: 'The Ebanex Leadership Labs have been the most profound developmental experience of my career. Instead of standard "management theory," we were pushed into high-stakes simulations that challenged our personal leadership styles and forced us to confront our cognitive biases. I learned how to build a culture of psychological safety where my team feels empowered to innovate and take risks, which has already led to a measurable 40% increase in our unit\'s overall productivity. This program hasn\'t just made me a better manager; it has equipped me with the emotional intelligence and strategic vision to lead through the profound complexities of our current digital landscape.',
             author: 'Fatuma Abdi',
@@ -1383,7 +1408,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '3 Days (Executive Retreat)',
         hours: '20 Hours (High-Level)',
         audience: 'C-Suite, Directors, Senior Strategists',
-        image: 'https://picsum.photos/seed/strategy/800/800',
+        image: strategicThinkingImg,
         testimonial: {
             text: 'The Ebanex Strategic Thinking retreat was a profound catalyst for our five-year planning cycle. As a leadership team, we were stuck in tactical, year-over-year thinking that ignored the massive disruptive shifts happening in our global market. The scenario planning and wargaming exercises forced us to confront uncomfortable "what-if" futures and fundamentally rethink our value proposition. We left with not just a new strategic plan, but a completely new way of making high-stakes decisions based on quantitative models rather than just intuition. This program has given us the strategic clarity and institutional confidence to make aggressive market moves that were previously seen as too risky.',
             author: 'Marcus Dubois',
@@ -1470,7 +1495,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '3 Days (Interative)',
         hours: '18 Hours (Workshops)',
         audience: 'All Professionals, Client-facing Teams, Managers',
-        image: 'https://picsum.photos/seed/comm/800/800',
+        image: communicationImg,
         testimonial: {
             text: 'The Ebanex Communication workshop has completely transformed how our technical consultants engage with our high-value clients. Previously, our experts struggled to translate complex technical jargon into clear, value-driven business language, which often slowed down our sales and delivery cycles. After mastering the presentation and persuasion techniques taught by Michael, we\'ve seen a remarkable increase in our client satisfaction scores and a 30% uplift in our project proposal acceptance rate. This course bridged the critical gap between our technical expertise and our ability to communicate it with impact and empathy.',
             author: 'Aisha Keita',
@@ -1557,7 +1582,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '3 Days (Team Intensive)',
         hours: '20 Hours (Experiential)',
         audience: 'Departmental Teams, Project Teams, Unit Leads',
-        image: 'https://picsum.photos/seed/team/800/800',
+        image: teamDevImg,
         testimonial: {
             text: 'The Ebanex Team Development program has completely dismantled the departmental silos that were choking our operational efficiency. Before this intensive, our different teams were working in isolation, often with conflicting goals and a lack of mutual trust. Through the Belbin mapping and the complex collaboration drills, we developed a shared "Team Charter" and a unified language for solving problems. We saw an immediate 40% reduction in our project delivery times and a profound improvement in the quality of our cross-functional work. Our team is now more cohesive, more accountable, and significantly more empowered than ever before.',
             author: 'Elena Rostova',
