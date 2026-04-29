@@ -42,31 +42,35 @@ const DigitalTrustConference: React.FC = () => {
     'Digital Transformation & Resilience',
     'Data Privacy & Protection',
     'Regulatory Trends & Compliance',
-    'Emerging Technology Trends and Risks'
+    'Emerging Technology Trends, Risks and Opportunities'
   ];
 
   const whatToExpect = [
-    'Insightful sessions led by experienced professionals',
-    'Practical discussions on real-world challenges',
-    'Panel discussions on emerging regulatory developments',
-    'Networking opportunities with industry peers',
-    'Exposure to current tools and frameworks'
+    'Insightful sessions led by experienced professionals and industry practitioners',
+    'Practical discussions based on real-world challenges and case scenarios',
+    'Panel discussions on emerging risks and regulatory developments',
+    'Networking opportunities with professionals across industries',
+    'Exposure to current tools, techniques, and frameworks'
   ];
 
   const whoShouldAttend = [
-    'Board Members, CEOs, and Executive Leaders',
-    'Senior Management in technology and risk',
-    'IT Professionals and Auditors',
-    'Cybersecurity and Compliance Officers',
-    'Anyone building knowledge in digital trust'
+    'Board Members, CEOs, and Executive Leaders across public and private institutions',
+    'Senior Management and Decision-Makers in technology, risk, and operations',
+    'IT Professionals and Technology Teams',
+    'IT Auditors (Internal & External)',
+    'Cybersecurity Professionals',
+    'Risk & Compliance Officers',
+    'IT & Digital Transformation Leaders',
+    'Government & Regulatory Officials',
+    'Anyone seeking to build practical knowledge in cybersecurity, artificial intelligence, and digital trust'
   ];
 
   const whyAttend = [
-    'Stay updated on cybersecurity and digital trends',
-    'Gain practical insights for your organization',
-    'Learn from cross-industry experts',
-    'Build professional networks',
-    'Strengthen digital trust and governance'
+    'Stay updated on evolving cybersecurity and digital risk trends',
+    'Gain practical insights that can be applied within your organization',
+    'Learn from experienced professionals across multiple industries',
+    'Build professional networks and exchange ideas',
+    'Strengthen your understanding of digital trust and governance'
   ];
 
   const sections = [

@@ -128,21 +128,10 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
         {/* Section Header */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 mb-[20px] text-center shrink-0">
           <ScrollReveal yOffset={10} delay={0.1}>
-            <div className="select-none mb-3 inline-block bg-black py-4 px-8">
-              <FitText
-                minScale={0.35}
-                textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
-              >
-                <span 
-                  style={{
-                    backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  }}
-                >
-                  WHO WE SERVE
-                </span>
-              </FitText>
+            <div className="inline-block bg-black py-4 px-8 border border-white/10 shadow-2xl">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9]">
+                WHO WE <span className="text-[#00BFFF]">SERVE</span>
+              </h2>
             </div>
           </ScrollReveal>
         </div>

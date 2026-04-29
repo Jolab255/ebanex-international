@@ -2,6 +2,18 @@ import {
     Shield
 } from 'lucide-react';
 
+// Import local assets
+import cisaImg from '../assets/cisa.png';
+import cismImg from '../assets/cism.png';
+import cisspImg from '../assets/cissp.png';
+import cehImg from '../assets/ceh.png';
+import ccnaImg from '../assets/ccna.png';
+import cdpseImg from '../assets/cdpse.png';
+import ciaImg from '../assets/cia.png';
+import crmaImg from '../assets/crma.png';
+import cyberSkillsImg from '../assets/cybersecurity-skills.jpg';
+import leadershipImg from '../assets/leadership-development.jpg';
+
 export interface TrainingProgram {
     title: string;
     slug: string;
@@ -60,7 +72,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '2 Days (Workshops)',
         hours: '12 Hours (Interactive)',
         audience: 'General Staff, Management, Executives',
-        image: 'https://picsum.photos/seed/cyberaware/800/800',
+        image: cyberSkillsImg,
         testimonial: {
             text: 'The transition from a reactive to a proactive security culture was palpable within weeks of the Ebanex training. Our employees didn\'t just learn about phishing; they developed a deep-seated understanding of their role as the organization\'s primary line of defense. We saw a documented 70% reduction in successful simulated phishing attempts and, more importantly, a 300% increase in the proactive reporting of suspicious activities to our internal security team. This program is an essential investment for any institution serious about its digital resilience.',
             author: 'Sarah Jenkins',
@@ -413,7 +425,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             text: 'The "Privacy by Design" modules provided by Ebanex have fundamentally changed how our engineering teams build products. Previously, privacy was something our legal department tried to fix after a system was already built, which was costly and often incomplete. Now, our architects and developers have the specific technical frameworks to build privacy into the very fabric of our cloud services. We\'ve not only met our GDPR and regional compliance goals, but we\'ve also seen a significant increase in trust from our enterprise clients who value our data handling transparency.',
             author: 'Chinedu Okafor',
             role: 'Chief Data Officer, Pan-African Retail Network',
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000'
+            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
             name: 'Jonathan Hayes',
@@ -1253,7 +1265,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         faqs: [
             { 
                 question: 'Which regions?', 
-                answer: 'We focus on a comprehensive view that includes major African regional laws (like NDPR and POPIA) as well as the global "gold standards" such as the GDPR and FATF recommendations. This ensures your organization is prepared for the specific legal requirements of the continent while remaining fully compatible with international trade and banking norms.' 
+                answer: 'We focus on a comprehensive view that includes major African regional laws (like NDPR and POPIA) as well as the global "gold standards" such as the GDPR and FATF recommendations. This ensures your organization is prepared for the specific legal requirements of the continent while remaining fully compliant with both international and local standards.' 
             },
             { 
                 question: 'Legal background?', 
@@ -1284,7 +1296,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '4 Days (Workshops)',
         hours: '24 Hours (Interactive)',
         audience: 'Managers, Team Leads, High-Potentials',
-        image: 'https://picsum.photos/seed/leadership/800/800',
+        image: leadershipImg,
         testimonial: {
             text: 'The Ebanex Leadership Labs have been the most profound developmental experience of my career. Instead of standard "management theory," we were pushed into high-stakes simulations that challenged our personal leadership styles and forced us to confront our cognitive biases. I learned how to build a culture of psychological safety where my team feels empowered to innovate and take risks, which has already led to a measurable 40% increase in our unit\'s overall productivity. This program hasn\'t just made me a better manager; it has equipped me with the emotional intelligence and strategic vision to lead through the profound complexities of our current digital landscape.',
             author: 'Fatuma Abdi',
@@ -1634,12 +1646,12 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Bootcamp)',
         hours: '40 Hours (Intensive)',
         audience: 'IT Auditors, GRC Professionals, Consultants',
-        image: 'https://picsum.photos/seed/cisa/800/800',
+        image: cisaImg,
         testimonial: {
             text: 'I had attempted the CISA exam twice before enrolling in the Ebanex bootcamp, and both times I was overwhelmed by the sheer breadth of the domains. The Ebanex instructors provided the specific "exam-mindset" and structural clarity I was missing. Their focus on the ISACA job practice and the intensive, timed mock examinations gave me the confidence to handle the most complex scenario-based questions. I passed with a score well above the requirement on my first try after the course. The Ebanex question database is, without a doubt, the most accurate representation of the real exam I have seen.',
             author: 'Grace Mutua',
             role: 'IT Auditor, Central Bank',
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces'
+            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000'
         },
         instructor: {
             name: 'Dr. James Morrison',
@@ -1721,12 +1733,12 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Bootcamp)',
         hours: '40 Hours (Strategic)',
         audience: 'Security Managers, IT Consultants, GRC Leads',
-        image: 'https://picsum.photos/seed/cism/800/800',
+        image: cismImg,
         testimonial: {
             text: 'Transitioning from a purely technical security role to a strategic management position was a significant challenge for me. The Ebanex CISM bootcamp was the perfect bridge. Dr. Morrison and the faculty provided the precise management-level mindset required by ISACA, focusing on strategic alignment and risk-based governance rather than just technical implementation. The intensive review of Information Security Governance and Incident Management allowed me to pass my CISM on the first attempt and, more importantly, gave me the tools to design a multi-year security program for my organization that actually delivers business value.',
             author: 'Aisha Keita',
             role: 'Security Manager, Regional Telecom',
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces'
+            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000'
         },
         instructor: {
             name: 'Dr. James Morrison',
@@ -1808,7 +1820,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '6 Days (Bootcamp)',
         hours: '48 Hours (High Intensity)',
         audience: 'Security Managers, Architects, Consultants',
-        image: 'https://picsum.photos/seed/cissp/800/800',
+        image: cisspImg,
         testimonial: {
             text: 'Ebanex\'s CISSP preparation is without a doubt the most rigorous and rewarding professional development experience I have ever had. The sheer breadth of the eight domains is daunting, but the instructors at Ebanex provided the structural clarity and the deep conceptual understanding required to master the Common Body of Knowledge. The simulated CAT exams were incredibly accurate, helping me build the mental endurance needed for the three-hour real test. I walked into the examination room with complete confidence and passed on my first attempt. This certification has already opened doors to global leadership opportunities that were previously out of reach.',
             author: 'Samuel Okafor',
@@ -1897,7 +1909,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Bootcamp)',
         hours: '40 Hours (Practical)',
         audience: 'Pen Testers, Security Analysts, Network Admins',
-        image: 'https://picsum.photos/seed/ceh/800/800',
+        image: cehImg,
         testimonial: {
             text: 'Mastering the offensive side of cybersecurity through the Ebanex CEH bootcamp has fundamentally improved how I approach my role as a security analyst. The "hacking mindset" I developed allows me to identify obscure misconfigurations and potential attack paths that I would have completely missed in the past. The hands-on labs with over 3000 tools were extraordinary—I am now much more comfortable using professional exploitation frameworks and conducting thorough vulnerability assessments. Passing the CEH on my first try was a huge career milestone, and I feel significantly better equipped to defend my organization against modern advanced threats.',
             author: 'David Osei',
@@ -1997,7 +2009,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '10 Days (Bootcamp)',
         hours: '60 Hours (Practical)',
         audience: 'Network Engineers, System Architects, Support Technicians',
-        image: 'https://picsum.photos/seed/cisco/800/800',
+        image: ccnaImg,
         testimonial: {
             text: 'The Ebanex Cisco bootcamp has been a defining moment for my engineering career. Previously, I had relied on basic simulations and theoretical knowledge, but the exclusive access to physical Cisco Catalyst and Nexus racks provided a level of confidence that I simply couldn\'t get elsewhere. The intensive troubleshooting labs were particularly valuable—having to solve 10 complex network failures under time pressure perfectly prepared me for the professional level (CCNP) examination. I passed with a score well above the requirement, and I am now leading major infrastructure optimization projects that I wouldn\'t have felt qualified for before this training.',
             author: 'Samuel Okafor',
@@ -2086,7 +2098,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '5 Days (Bootcamp)',
         hours: '40 Hours (Intensive)',
         audience: 'IT Architects, Privacy Engineers, Developers, DPOs',
-        image: 'https://picsum.photos/seed/cdpse/800/800',
+        image: cdpseImg,
         testimonial: {
             text: 'The Ebanex CDPSE bootcamp was the perfect bridge for my technical engineering background. Before this training, I understood how to build complex systems, but I didn\'t have the framework to ensure those systems met the increasingly stringent global privacy laws. The instructors at Ebanex did a brilliant job of translating legal requirements into specific engineering patterns and data lifecycle controls. I passed the CDPSE exam on my first attempt and have since led the implementation of our organization\'s first automated privacy discovery and classification system. This certification is essential for any modern architect.',
             author: 'Jonathan Hayes',
@@ -2172,7 +2184,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '6 Days (Bootcamp)',
         hours: '40 Hours (Intensive)',
         audience: 'Internal Auditors, Risk Managers, Compliance Officers',
-        image: 'https://picsum.photos/seed/ciaaudit/800/800',
+        image: ciaImg,
         testimonial: {
             text: 'I had been putting off my CIA certification for years because of the three-part exam structure, but the Ebanex bootcamp provided exactly the discipline and the structural roadmap I needed. The intensive drills for Part 2 and Part 3 were particularly high-impact, focusing on the specific "audit mindset" required by the IIA. I passed all three parts in under six months, and the quality of the Ebanex question database was a near-perfect reflection of the actual test difficulty. My certification has already resulted in a senior promotion and a 30% increase in my professional standing within the internal audit community.',
             author: 'Chinedu Okafor',
@@ -2261,7 +2273,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         duration: '4 Days (Bootcamp)',
         hours: '30 Hours (Intensive)',
         audience: 'Senior Internal Auditors, Risk Managers, Board Advisors',
-        image: 'https://picsum.photos/seed/crma/800/800',
+        image: crmaImg,
         testimonial: {
             text: 'Achieving the CRMA has been the single most important step in my transition from a general internal auditor to a true strategic risk advisor. The Ebanex program gave me the management-level frameworks to move beyond simple compliance testing and start providing the Board with deep, strategic assurance on our core business processes and risk governance. The focus on executive communication and strategic alignment was particularly high-impact—I am now able to present risk assurance findings that directly inform our organization\'s capital allocation and long-term planning. Ebanex is the premier training provider for high-level audit specialties.',
             author: 'Marcus Dubois',
@@ -2567,4 +2579,3 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
         ]
     }
 };
-

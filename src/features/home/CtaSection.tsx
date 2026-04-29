@@ -56,21 +56,10 @@ const CtaSection: React.FC<CtaSectionProps> = ({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
       {/* Header */}
       <div className="text-center mb-6 sm:mb-8 relative z-20">
-        <div className="select-none mb-2 inline-block bg-black py-4 px-8">
-          <FitText
-            minScale={0.35}
-            textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
-          >
-            <span 
-              style={{
-                backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              {mainHeader}
-            </span>
-          </FitText>
+        <div className="inline-block bg-black py-4 px-8 border border-white/10 shadow-2xl">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9]">
+            {mainHeader}
+          </h2>
         </div>
         {headerSubtitle && (
           <div className="mt-2">
@@ -100,7 +89,7 @@ const CtaSection: React.FC<CtaSectionProps> = ({
           }}
         >
           <div className="relative z-10 text-center sm:text-left">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight mb-4 uppercase tracking-tighter">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9] mb-4">
               {title || (
                 <>
                   Ready to <span className="text-[#00BFFF]">Secure</span> Your <br className="hidden sm:block" /> 

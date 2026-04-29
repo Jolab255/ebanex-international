@@ -11,6 +11,10 @@ import { Squares, ScrollReveal } from '../components/animations';
 import { TRAINING_PROGRAMS } from '../constants/trainingData';
 import { TrainingApproachSection } from '../features/home';
 
+// Import local assets for fallback and CTA
+import capacityBuildingImg from '../assets/capacity-building.jpg';
+import institutionalAdvisoryImg from '../assets/institutional-advisory.jpg';
+
 // Modal Component for Full Overview
 const ProgramModal: React.FC<{ 
     isOpen: boolean; 
@@ -96,7 +100,7 @@ const ProgramModal: React.FC<{
                                 <div className="lg:col-span-5 space-y-6">
                                     <div className="relative group overflow-hidden border-[6px] border-black">
                                         <img 
-                                            src={program.image || `https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800`} 
+                                            src={program.image || capacityBuildingImg} 
                                             alt={program.title}
                                             className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
@@ -152,7 +156,7 @@ const ProgramCard: React.FC<{ item: any; progData: any; openOverview: (slug: str
         {/* Card Header with Image */}
         <div className="relative h-32 sm:h-40 overflow-hidden border-b-2 border-black">
             <img 
-                src={progData?.image || `https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800`} 
+                src={progData?.image || capacityBuildingImg} 
                 alt={item.label}
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110"
             />

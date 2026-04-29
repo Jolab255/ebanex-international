@@ -13,6 +13,9 @@ import {
     FaCertificate, FaClock, FaChalkboardTeacher, FaLevelUpAlt, FaLaptopCode
 } from 'react-icons/fa';
 
+// Import local assets for CTA
+import institutionalAdvisoryImg from '../assets/institutional-advisory.jpg';
+
 const TrainingProgramDetail: React.FC = () => {
     const { programId } = useParams<{ programId: string }>();
     const program: TrainingProgram | undefined = TRAINING_PROGRAMS[programId || ''];
@@ -393,7 +396,7 @@ const TrainingProgramDetail: React.FC = () => {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
                         <div className="relative w-full max-w-4xl flex items-center justify-center lg:justify-start">
                             <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-square z-0 opacity-100">
-                                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80" className="w-full h-full object-cover border-[10px] border-black" alt="" />
+                                <img src={institutionalAdvisoryImg} className="w-full h-full object-cover border-[10px] border-black" alt="" />
                             </div>
                             <div className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-10 overflow-hidden bg-[#0a1628]" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
                                 <div className="relative z-10 text-center sm:text-left">
