@@ -61,59 +61,45 @@ export interface TrainingProgram {
         bio: string;
         certs: string[];
         image: string;
-        stats: { number: string; label: string; }[];
+        stats: { number: string; label: string }[];
     };
     skills: {
         technical: string[];
         business: string[];
     };
-    evaluation: {
-        phase: string;
-        desc: string;
-    }[];
-    industries: {
-        title: string;
-        desc: string;
-    }[];
-    stats: {
-        metric: number;
-        suffix: string;
-        label: string;
-    }[];
-    faqs: {
-        question: string;
-        answer: string;
-    }[];
+    evaluation: { phase: string; desc: string }[];
+    industries: { title: string; desc: string }[];
+    stats: { metric: number; suffix: string; label: string }[];
+    faqs: { question: string; answer: string }[];
 }
 
 export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
-    // CYBERSECURITY & INFORMATION SECURITY
-    'cybersecurity-awareness': {
-        title: 'Cybersecurity Awareness Programs',
-        slug: 'cybersecurity-awareness',
+    'security-culture': {
+        title: 'Security Culture & Behavioral Change',
+        slug: 'security-culture',
         badge: 'Foundational Program',
-        description: 'Empower your workforce to be the first line of defense. Our comprehensive awareness training transforms human risk into institutional security strength.',
-        longDescription: 'Our Cybersecurity Awareness Program is designed to transform your employees from potential security vulnerabilities into your organization\'s first line of defense. In today\'s increasingly connected world, cyber threats are evolving faster than ever—phishing attacks, ransomware, social engineering, and insider threats target organizations of all sizes. This comprehensive training equips your workforce with the knowledge and skills to identify, prevent, and respond to these threats effectively, protecting your organization\'s critical assets and reputation.\n\nBeyond just theoretical knowledge, our program focuses on behavioral change. We utilize real-world simulations, interactive workshops, and high-fidelity testing environments to ensure that security awareness becomes a core part of your institutional culture. By the end of this program, your staff will not only understand the risks but will proactively act as a human firewall for your organization.\n\nInstitutional effectiveness depends on the security of its people. Ebanex International provides the framework and the tools to ensure that your workforce is prepared for the challenges of the digital age, reducing the likelihood of successful breaches and minimizing the impact of potential security incidents.',
-        duration: '2 Days (Workshops)',
+        description: 'Transform your workforce into your strongest security asset. Learn the psychological and behavioral drivers of security habits and how to build a resilient organizational culture.',
+        longDescription: 'Security is not just a technical challenge; it is a human one. Our Security Culture & Behavioral Change program is designed to address the psychological drivers behind security-related behaviors. We go beyond simple awareness training to focus on measurable behavioral shifts that reduce organizational risk.\n\nParticipants will learn how to design and implement a security culture roadmap that aligns with business objectives. We explore the latest research in behavioral science and how it can be applied to create lasting security habits. From gamification to nudge theory, we provide the tools needed to move from a culture of compliance to a culture of resilience.\n\nBuilding a strong culture requires a strategic approach. This program covers human risk assessment, internal communication strategies, and metrics for measuring cultural change. By the end of this course, you will be equipped to lead your organization through a profound cultural transformation, turning every employee into a proactive defender of your digital assets.',
+        duration: '2 Days (Workshop)',
         hours: '12 Hours (Interactive)',
-        audience: 'General Staff, Management, Executives',
+        audience: 'All Staff, HR Managers, Dept Heads',
         image: cyberSkillsImg,
         testimonial: {
-            text: 'The transition from a reactive to a proactive security culture was palpable within weeks of the Ebanex training. Our employees didn\'t just learn about phishing; they developed a deep-seated understanding of their role as the organization\'s primary line of defense. We saw a documented 70% reduction in successful simulated phishing attempts and, more importantly, a 300% increase in the proactive reporting of suspicious activities to our internal security team. This program is an essential investment for any institution serious about its digital resilience.',
+            text: 'The Ebanex Security Culture program completely reframed how we approach employee training. We stopped focusing on just "what" employees need to know and started focusing on "why" they behave the way they do. The results were immediate—a 70% reduction in successful phishing simulations and a significant increase in proactive incident reporting from non-technical staff. This is not just training; it is institutional transformation.',
             author: 'Sarah Jenkins',
             role: 'CISO, Global Tech Solutions',
             image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000'
         },
         instructor: {
-            name: 'David Miller',
-            role: 'Security Culture Expert',
-            bio: 'David specializes in behavioral security and organizational culture change with over 15 years of experience. He has helped Fortune 500 companies and government agencies strengthen their security posture and transform their organizational culture.',
-            certs: ['CISM', 'CISSP'],
-            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '15+', label: 'Years Exp' },
+                { number: '12+', label: 'Years Exp' },
                 { number: '5k+', label: 'Trained' },
-                { number: '200+', label: 'Companies' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -192,15 +178,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000'
         },
         instructor: {
-            name: 'Sarah Chen',
-            role: 'Lead Red Team Operator',
-            bio: 'Sarah brings over a decade of offensive security experience from both the financial sector and defense contractor environments. She has discovered multiple zero-day vulnerabilities in enterprise software.',
-            certs: ['OSCP', 'OSCE', 'CISSP'],
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
                 { number: '12+', label: 'Years Exp' },
-                { number: '3k+', label: 'Trained' },
-                { number: '50+', label: 'Engagements' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -279,15 +265,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000'
         },
         instructor: {
-            name: 'Marcus Dubois',
-            role: 'Senior Risk Strategist',
-            bio: 'Marcus is a former CRO for a major European bank, specialized in governing enormous third-party vendor portfolios and presenting risk posture to corporate boards.',
-            certs: ['CRISC', 'CISM', 'CGEIT'],
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '20+', label: 'Years Exp' },
-                { number: '1k+', label: 'Executives' },
-                { number: '15+', label: 'Board Seats' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -366,15 +352,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1000'
         },
         instructor: {
-            name: 'Elena Rostova',
-            role: 'DFIR Director',
-            bio: 'Elena is a veteran responder who has managed technical triage during some of the largest ransomware attacks of the last decade.',
-            certs: ['GCIH', 'GCFA', 'CHFI'],
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '15+', label: 'Years Exp' },
-                { number: '500+', label: 'Incidents' },
-                { number: '50k+', label: 'Nodes Managed' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -453,15 +439,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Jonathan Hayes',
-            role: 'Privacy Architect',
-            bio: 'Jonathan specializes in bridging the gap between corporate legal counsel and IT engineering.',
-            certs: ['CDPSE', 'CIPP/E', 'CISSP'],
-            image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '10+', label: 'Years Exp' },
-                { number: '200+', label: 'DPOs Trained' },
-                { number: '50+', label: 'Audits' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -542,15 +528,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000'
         },
         instructor: {
-            name: 'Robert Mensah',
-            role: 'Network Architect',
-            bio: 'Robert is a CCIE-certified professional with 20 years of experience designing carrier-grade networks.',
-            certs: ['CCIE', 'CCNP Enterprise', 'JNCIP'],
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '20+', label: 'Years Exp' },
-                { number: '2k+', label: 'Engineers' },
-                { number: '100+', label: 'Projects' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -629,15 +615,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Kofi Mensah',
-            role: 'Senior Cloud Architect',
-            bio: 'Kofi is a multi-cloud certified expert with extensive experience in large-scale enterprise migrations.',
-            certs: ['AWS Solutions Architect', 'Azure Solutions Architect', 'VCP'],
-            image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '10+', label: 'Years Exp' },
-                { number: '100+', label: 'Migrations' },
-                { number: '2k+', label: 'Students' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -716,15 +702,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000'
         },
         instructor: {
-            name: 'Dr. Kwame Addo',
-            role: 'AI Strategy Lead',
-            bio: 'Dr. Addo has implemented large-scale AI solutions for global telecommunications and financial institutions.',
-            certs: ['PhD in AI', 'Google Cloud ML Engineer', 'TensorFlow Developer'],
-            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
                 { number: '12+', label: 'Years Exp' },
-                { number: '50+', label: 'AI Projects' },
-                { number: '1k+', label: 'Pros Trained' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -803,15 +789,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000'
         },
         instructor: {
-            name: 'Robert Mensah',
-            role: 'Transformation Lead',
-            bio: 'Robert has led digital turnarounds for multiple multi-million dollar enterprises.',
-            certs: ['MBA', 'PMP', 'Lean Six Sigma Black Belt'],
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '15+', label: 'Years Exp' },
-                { number: '20+', label: 'Major Projects' },
-                { number: '5k+', label: 'Upskilled' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -890,15 +876,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000'
         },
         instructor: {
-            name: 'Kofi Mensah',
-            role: 'Lead Systems Architect',
-            bio: 'Kofi is a multi-platform expert with 15 years of experience in enterprise data center management.',
-            certs: ['RHCE', 'MCSE', 'VCP'],
-            image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '15+', label: 'Years Exp' },
-                { number: '500+', label: 'Servers Managed' },
-                { number: '2k+', label: 'Pros Trained' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -979,15 +965,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Dr. Elizabeth Wangari',
-            role: 'Governance Consultant',
-            bio: 'Dr. Wangari is a leading expert in enterprise IT governance with over 20 years of experience advising boards.',
-            certs: ['CGEIT', 'CRISC', 'CISSP'],
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '20+', label: 'Years Exp' },
-                { number: '50+', label: 'Board Advisory' },
-                { number: '1k+', label: 'Leaders' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1066,15 +1052,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Marcus Dubois',
-            role: 'ERM Specialist',
-            bio: 'Marcus is a veteran CRO who has designed ERM frameworks for some of the world\'s largest logistics companies.',
-            certs: ['CRISC', 'CISM', 'IRM Fellow'],
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '20+', label: 'Years Exp' },
-                { number: '100+', label: 'Assessments' },
-                { number: '15+', label: 'Board Seats' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1153,15 +1139,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Dr. James Morrison',
-            role: 'Assurance Lead',
-            bio: 'Dr. Morrison is a CIA-certified expert with extensive experience in banking and government audit.',
-            certs: ['CIA', 'CISA', 'CRMA', 'CPA'],
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '18+', label: 'Years Exp' },
-                { number: '200+', label: 'Audits Led' },
-                { number: '1k+', label: 'Auditors' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1240,15 +1226,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000'
         },
         instructor: {
-            name: 'Dr. Elizabeth Wangari',
-            role: 'Regulatory Expert',
-            bio: 'Dr. Wangari is a former regulator with deep expertise in African and International compliance standards.',
-            certs: ['CAMS', 'CRCM', 'LLM'],
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '20+', label: 'Years Exp' },
-                { number: '50+', label: 'Compliance Audits' },
-                { number: '2k+', label: 'Officers Trained' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1329,15 +1315,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000'
         },
         instructor: {
-            name: 'Michael Omondi',
-            role: 'Leadership Coach',
-            bio: 'Michael is a certified executive coach who has worked with leaders across the public and private sectors for 15 years.',
-            certs: ['ICF PCC', 'MBA', 'PMP'],
-            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '15+', label: 'Years Exp' },
-                { number: '200+', label: 'Coaching Hours' },
-                { number: '3k+', label: 'Leaders' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1416,15 +1402,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Robert Mensah',
-            role: 'Strategy Consultant',
-            bio: 'Robert has advised dozens of boards on strategic turnarounds and market entry strategies across Africa.',
-            certs: ['MBA', 'PhD Strategy', 'CMC'],
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '20+', label: 'Years Exp' },
-                { number: '100+', label: 'Boards Advised' },
-                { number: '15+', label: 'Books Authored' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1503,15 +1489,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Michael Omondi',
-            role: 'Behavioral Expert',
-            bio: 'Michael is a communication specialist with a background in psychology and 15 years of corporate training experience.',
-            certs: ['CMC', 'EQ-i 2.0 Certified', 'NLP Practitioner'],
-            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '15+', label: 'Years Exp' },
-                { number: '5k+', label: 'Professionals' },
-                { number: '100+', label: 'Workshops' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1590,15 +1576,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000'
         },
         instructor: {
-            name: 'Michael Omondi',
-            role: 'Team Facilitator',
-            bio: 'Michael has facilitated team-building and performance workshops for some of Africa\'s largest enterprises.',
-            certs: ['Belbin Team Roles', 'Team Coaching International', 'MBA'],
-            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '15+', label: 'Years Exp' },
-                { number: '300+', label: 'Teams Led' },
-                { number: '10k+', label: 'Members' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1679,15 +1665,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000'
         },
         instructor: {
-            name: 'Dr. James Morrison',
-            role: 'CISA/CISM Lead',
-            bio: 'Dr. Morrison has helped over 1,000 professionals achieve their ISACA certifications.',
-            certs: ['CISA', 'CISM', 'CGEIT', 'CRISC'],
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '15+', label: 'Years Exp' },
-                { number: '95%', label: 'Pass Rate' },
-                { number: '1k+', label: 'Certified' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1766,15 +1752,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000'
         },
         instructor: {
-            name: 'Dr. James Morrison',
-            role: 'Lead Instructor',
-            bio: 'Expert instructor for CISM with focus on management and strategic alignment.',
-            certs: ['CISM', 'CISSP', 'CGEIT'],
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '15+', label: 'Years Exp' },
-                { number: '92%', label: 'Pass Rate' },
-                { number: '800+', label: 'Certified' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1853,15 +1839,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000'
         },
         instructor: {
-            name: 'Dr. James Morrison',
-            role: 'Lead Instructor',
-            bio: 'Dr. Morrison is a world-renowned security expert with multiple gold-standard certifications.',
-            certs: ['CISSP', 'ISSAP', 'CCSP', 'CISM'],
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '20+', label: 'Years Exp' },
-                { number: '90%', label: 'Pass Rate' },
-                { number: '2k+', label: 'Certified' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -1942,15 +1928,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000'
         },
         instructor: {
-            name: 'Sarah Chen',
-            role: 'Lead Hacker',
-            bio: 'Sarah is an expert in offensive security and a certified EC-Council instructor.',
-            certs: ['CEH', 'ECSA', 'LPT', 'OSCP'],
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '10+', label: 'Years Exp' },
-                { number: '100%', label: 'Lab Success' },
-                { number: '1k+', label: 'Certified' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -2042,15 +2028,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1000'
         },
         instructor: {
-            name: 'Robert Mensah',
-            role: 'Network Architect',
-            bio: 'Robert is a CCIE-certified professional with decades of experience in global infrastructure.',
-            certs: ['CCIE', 'CCNP Enterprise', 'CCNA'],
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '20+', label: 'Years Exp' },
-                { number: '98%', label: 'Pass Rate' },
-                { number: '2k+', label: 'Certified' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -2131,15 +2117,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Jonathan Hayes',
-            role: 'Lead Privacy Engineer',
-            bio: 'Recognized expert in privacy engineering and CDPSE lead instructor.',
-            certs: ['CDPSE', 'CIPP/E', 'CISSP'],
-            image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '10+', label: 'Years Exp' },
-                { number: '95%', label: 'Pass Rate' },
-                { number: '500+', label: 'Certified' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -2217,15 +2203,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Dr. James Morrison',
-            role: 'Assurance lead',
-            bio: 'Expert in internal audit and CIA exam preparation with a 90%+ student pass rate.',
-            certs: ['CIA', 'CISA', 'CRMA'],
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '18+', label: 'Years Exp' },
-                { number: '90%', label: 'Pass Rate' },
-                { number: '1k+', label: 'Certified' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -2306,15 +2292,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Dr. Elizabeth Wangari',
-            role: 'GRC Lead',
-            bio: 'GRC expert with decades of experience in risk management and assurance.',
-            certs: ['CRMA', 'CGEIT', 'CRISC'],
-            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '20+', label: 'Years Exp' },
-                { number: '92%', label: 'Pass Rate' },
-                { number: '400+', label: 'Certified' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -2391,15 +2377,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000'
         },
         instructor: {
-            name: 'Conference Faculty',
-            role: 'Expert Panel',
-            bio: 'A curated selection of global thought leaders, regional regulators, and technical experts who lead our keynote and workshop sessions.',
-            certs: ['PhD', 'CISSP', 'CISM', 'LLB'],
-            image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '50+', label: 'Speakers' },
-                { number: '20+', label: 'Countries' },
-                { number: '1k+', label: 'Delegates' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -2470,15 +2456,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=533&fit=crop&crop=faces'
         },
         instructor: {
-            name: 'Partnership Team',
-            role: 'Strategic Support',
-            bio: 'Our dedicated partnership managers who ensure every sponsor receives maximum value and seamless integration into the conference ecosystem.',
-            certs: ['MBA', 'CRM', 'PMP'],
-            image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '10+', label: 'Years Exp' },
-                { number: '100+', label: 'Partners' },
-                { number: '95%', label: 'Renewal Rate' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {
@@ -2545,15 +2531,15 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
             image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000'
         },
         instructor: {
-            name: 'Archive Faculty',
-            role: 'Curated Experts',
-            bio: 'The collective intelligence of past conference speakers and contributors whose insights remain available for institutional learning.',
-            certs: ['Diverse'],
-            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=533&fit=crop&crop=faces',
+            name: 'Baraka Opiyo',
+            role: 'Managing Director & Lead Expert',
+            bio: 'Baraka is a seasoned cybersecurity professional and language specialist with over 12 years of experience. He specializes in cybersecurity, IT audit, digital risk advisory, and institutional governance.',
+            certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+            image: barakaImg,
             stats: [
-                { number: '5+', label: 'Years of Data' },
-                { number: '100+', label: 'Recorded Sessions' },
-                { number: '50+', label: 'White Papers' },
+                { number: '12+', label: 'Years Exp' },
+                { number: '5k+', label: 'Trained' },
+                { number: '200+', label: 'Engagements' },
             ]
         },
         skills: {

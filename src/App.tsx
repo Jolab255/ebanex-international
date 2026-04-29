@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { Navbar, TopBar, Footer, ScrollToTop } from './components/layout';
+import { Navbar, TopBar, Footer } from './components/layout';
 import { ErrorBoundary, PageLoader, CookieConsent } from './components/common';
 import { NavigationLoader } from './components/common/NavigationLoader';
 import { ThemeProvider } from './context/ThemeContext';
@@ -26,7 +26,6 @@ const App: React.FC = () => {
       <ThemeProvider>
         <ReactLenis root options={{ lerp: 0.12, duration: 1.2, smoothWheel: true }}>
           <Router basename={basename}>
-            <ScrollToTop />
             <div className="min-h-screen flex flex-col selection:bg-[#00BFFF] selection:text-black bg-black text-white">
               <TopBar />
               <Navbar />

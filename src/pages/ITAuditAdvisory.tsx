@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Shield, CheckCircle, ArrowRight, Activity, Search, Database, Lock, Building, Globe } from 'lucide-react';
+import { Shield, CheckCircle, ArrowRight, Activity, Search, Database, Lock, Building, Globe, X, MessageSquare, Phone, Mail } from 'lucide-react';
+import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { SEO } from '../components/layout';
 import { Squares, ScrollReveal } from '../components/animations';
 import { Link } from 'react-router-dom';
@@ -15,6 +16,7 @@ import projectImg from '../assets/capacity-building.jpg';
 
 const ITAuditAdvisory: React.FC = () => {
   const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
+  const [isExpertContactVisible, setIsExpertContactVisible] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -162,7 +164,7 @@ const ITAuditAdvisory: React.FC = () => {
 
                 {/* Main Content Card - ml-4 on mobile, 0 on lg */}
                 <div
-                  className="p-6 sm:p-10 border-[8px] border-black shadow-2xl relative overflow-hidden ml-4 lg:ml-0"
+                  className="p-6 sm:p-10 border-[8px] border-black shadow-2xl relative overflow-visible ml-4 lg:ml-0"
                   style={{
                     background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
                   }}
@@ -175,9 +177,72 @@ const ITAuditAdvisory: React.FC = () => {
                       <Link to="/contact" className="h-12 px-6 bg-[#00BFFF] text-black font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2 group">
                         Request a Consultation <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                       </Link>
-                      <Link to="/training" className="h-12 px-6 border-2 border-white/20 text-white font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center gap-2">
-                        Speak to an Expert
-                      </Link>
+                      
+                      <div className="relative">
+                        <button 
+                          onClick={() => setIsExpertContactVisible(!isExpertContactVisible)}
+                          className={`h-12 px-6 border-2 font-black text-[10px] uppercase tracking-widest transition-all flex items-center gap-2 z-50 relative ${
+                            isExpertContactVisible 
+                              ? 'bg-white text-black border-white' 
+                              : 'border-white/20 text-white hover:bg-white hover:text-black'
+                          }`}
+                        >
+                          {isExpertContactVisible ? (
+                            <>Close Options <X size={14} /></>
+                          ) : (
+                            <>Speak to an Expert</>
+                          )}
+                        </button>
+
+                        <AnimatePresence>
+                          {isExpertContactVisible && (
+                            <div className="absolute bottom-full left-0 mb-4 flex flex-col gap-2 z-[100] min-w-[200px]">
+                              {[
+                                { 
+                                  label: 'WhatsApp Expert', 
+                                  icon: <FaWhatsapp size={14} />, 
+                                  href: 'https://wa.me/255745326627',
+                                  color: '#25D366'
+                                },
+                                { 
+                                  label: 'Call Specialist', 
+                                  icon: <FaPhoneAlt size={14} />, 
+                                  href: 'tel:+255745326627',
+                                  color: '#00BFFF'
+                                },
+                                { 
+                                  label: 'Email Advisory', 
+                                  icon: <FaEnvelope size={14} />, 
+                                  href: 'mailto:info@ebanexint.co.tz',
+                                  color: '#FFFFFF'
+                                }
+                              ].map((option, i) => (
+                                <motion.a
+                                  key={option.label}
+                                  href={option.href}
+                                  target={option.href.startsWith('http') ? '_blank' : undefined}
+                                  rel={option.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                  initial={{ opacity: 0, y: 20 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  exit={{ opacity: 0, y: 10, transition: { delay: (2 - i) * 0.05 } }}
+                                  transition={{ delay: i * 0.1, duration: 0.3 }}
+                                  className="group flex items-center gap-3 bg-black border border-white/10 p-3 hover:border-[#00BFFF] transition-all shadow-2xl"
+                                >
+                                  <div 
+                                    className="w-8 h-8 flex items-center justify-center border border-white/10 group-hover:border-[#00BFFF]/50 transition-colors"
+                                    style={{ color: option.color }}
+                                  >
+                                    {option.icon}
+                                  </div>
+                                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-white group-hover:text-[#00BFFF] transition-colors">
+                                    {option.label}
+                                  </span>
+                                </motion.a>
+                              ))}
+                            </div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     </div>
                   </div>
                   {/* Decorative corner accent */}
