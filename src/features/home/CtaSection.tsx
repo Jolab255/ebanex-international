@@ -23,6 +23,7 @@ interface CtaSectionProps {
   description?: string;
   primaryButtonText?: string;
   primaryButtonLink?: string;
+  primaryButtonOnClick?: () => void;
   secondaryButtonText?: string;
   secondaryButtonLink?: string;
   tertiaryButtonText?: string;
@@ -36,6 +37,7 @@ const CtaSection: React.FC<CtaSectionProps> = ({
   description,
   primaryButtonText = "Explore Programs",
   primaryButtonLink = "/training",
+  primaryButtonOnClick,
   secondaryButtonText = "Contact Expert",
   secondaryButtonLink = "/contact",
   tertiaryButtonText,
@@ -103,12 +105,21 @@ const CtaSection: React.FC<CtaSectionProps> = ({
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap items-center sm:items-start justify-center sm:justify-start gap-3 mb-10">
-              <Link 
-                to={primaryButtonLink}
-                className="w-full sm:w-auto h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
-              >
-                {primaryButtonText} <ArrowRight size={14} />
-              </Link>
+              {primaryButtonOnClick ? (
+                <button 
+                  onClick={primaryButtonOnClick}
+                  className="w-full sm:w-auto h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
+                >
+                  {primaryButtonText} <ArrowRight size={14} />
+                </button>
+              ) : (
+                <Link 
+                  to={primaryButtonLink}
+                  className="w-full sm:w-auto h-11 sm:h-12 px-6 bg-[#00BFFF] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2"
+                >
+                  {primaryButtonText} <ArrowRight size={14} />
+                </Link>
+              )}
 
               <Link 
                 to={secondaryButtonLink}

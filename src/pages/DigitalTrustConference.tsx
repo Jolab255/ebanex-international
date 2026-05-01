@@ -1,10 +1,12 @@
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Calendar, Users, Award, ArrowRight, Zap, Star, CheckCircle, Globe, Lock, Building, Search, Activity } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
+import { Calendar, Users, Award, ArrowRight, Zap, Star, CheckCircle, Globe, Lock, Building, Search, Activity, X, Send, ChevronDown, MessageSquare } from 'lucide-react';
 import { SEO } from '../components/layout';
 import { Squares, ScrollReveal } from '../components/animations';
 import { Link } from 'react-router-dom';
 import { ClientsSection, CtaSection } from '../features/home';
+import { sendConferenceRegistration } from '../lib/api';
+import { cn } from '../lib/utils';
 
 // Import assets
 import cybersecurityImg from '../assets/leadership-development.jpg';
@@ -12,9 +14,58 @@ import advisoryImg from '../assets/institutional-advisory.jpg';
 import auditImg from '../assets/industrial-sectors.jpg';
 import cyberImg from '../assets/cybersecurity-skills.jpg';
 
+interface RegistrationFormState {
+  fullName: string;
+  email: string;
+  phone: string;
+  institution: string;
+  role: string;
+  website: string; // Honeypot
+}
+
+interface RegistrationFormErrors {
+  fullName?: string;
+  email?: string;
+  phone?: string;
+  institution?: string;
+  form?: string;
+}
+
 const DigitalTrustConference: React.FC = () => {
   const [isOverviewExpanded, setIsOverviewExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [errors, setErrors] = useState<RegistrationFormErrors>({});
   const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (errors.form) {
+      const timer = setTimeout(() => {
+        setErrors(prev => ({ ...prev, form: undefined }));
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [errors.form]);
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage(null);
+        setIsModalOpen(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
+
+  const [formData, setFormData] = useState<RegistrationFormState>({
+    fullName: '',
+    email: '',
+    phone: '',
+    institution: '',
+    role: 'Delegate',
+    website: ''
+  });
 
   const { scrollYProgress } = useScroll({
     target: gridRef,
@@ -95,6 +146,68 @@ const DigitalTrustConference: React.FC = () => {
   const firstParagraph = overviewParagraphs[0];
   const remainingParagraphs = overviewParagraphs.slice(1);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    setErrors(prev => ({ ...prev, [name]: undefined, form: undefined }));
+  };
+
+  const validate = (): boolean => {
+    const nextErrors: RegistrationFormErrors = {};
+
+    if (!formData.fullName.trim()) nextErrors.fullName = 'Full name is required.';
+    if (!formData.email.trim()) {
+      nextErrors.email = 'Email is required.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      nextErrors.email = 'Enter a valid email.';
+    }
+    if (!formData.phone.trim()) nextErrors.phone = 'Phone number is required.';
+    if (!formData.institution.trim()) nextErrors.institution = 'Institution is required.';
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Honeypot
+    if (formData.website) {
+      setSuccessMessage('Thank you for registering! We will contact you shortly.');
+      setFormData({ fullName: '', email: '', phone: '', institution: '', role: 'Delegate', website: '' });
+      return;
+    }
+
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+    setErrors(prev => ({ ...prev, form: undefined }));
+
+    const result = await sendConferenceRegistration({
+      fullName: formData.fullName.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      institution: formData.institution.trim(),
+      role: formData.role
+    });
+
+    setIsSubmitting(false);
+
+    if (result.ok) {
+      setSuccessMessage('Thank you for registering! We have received your details and will contact you shortly with further information.');
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        institution: '',
+        role: 'Delegate',
+        website: ''
+      });
+    } else {
+      setErrors(prev => ({ ...prev, form: result.error || 'Unable to process registration. Please try again.' }));
+    }
+  };
+
   return (
     <div className="bg-black min-h-screen text-white">
       <SEO 
@@ -138,9 +251,12 @@ const DigitalTrustConference: React.FC = () => {
                       The Ebanex Digital Trust Conference is a premier industry conference and engagement platform, bringing together professionals, industry leaders, and institutions from across the region and the African continent to explore emerging trends, risks, and innovations in cybersecurity, IT audit, artificial intelligence, and digital trust.
                     </p>
                     <div className="flex flex-wrap gap-3">
-                      <Link to="/contact" className="h-12 px-6 bg-[#00BFFF] text-black font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2 group">
-                        Register Interest <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                      </Link>
+                      <button 
+                        onClick={() => setIsModalOpen(true)}
+                        className="h-12 px-6 bg-[#00BFFF] text-black font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2 group"
+                      >
+                        Register Now <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      </button>
                       <Link to="/contact?service=Conference Sponsorship" className="h-12 px-6 border-2 border-white/20 text-white font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center gap-2">
                         Partner With Us
                       </Link>
@@ -328,13 +444,205 @@ const DigitalTrustConference: React.FC = () => {
         headerSubtitle=""
         title={<>Shaping the <span className="text-[#00BFFF]">Future</span> of Digital Trust</>}
         description="Join Ebanex International and industry professionals as we explore the future of cybersecurity, IT audit, and digital trust."
-        primaryButtonText="Register Interest"
-        primaryButtonLink="/contact"
+        primaryButtonText="Register Now"
+        primaryButtonOnClick={() => setIsModalOpen(true)}
         secondaryButtonText="Partner With Us"
         secondaryButtonLink="/contact?service=Conference Sponsorship"
         tertiaryButtonText="Request More Information"
         tertiaryButtonLink="/contact"
       />
+
+      {/* Registration Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="relative w-full max-w-2xl bg-[#0a1628] border-[10px] border-black shadow-[20px_20px_0px_0px_rgba(0,191,255,0.2)] p-8 sm:p-10 overflow-y-auto max-h-[90vh]"
+              style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+            >
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-4 right-4 text-white/40 hover:text-[#00BFFF] transition-colors z-50"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="mb-8 relative z-10">
+                <h3 className="text-2xl font-black text-white uppercase tracking-tighter flex items-center gap-4">
+                  <MessageSquare className="text-[#00BFFF]" /> Secure Registration
+                </h3>
+                <p className="text-white/60 text-xs font-bold uppercase tracking-widest mt-2">
+                  Ebanex Digital Trust Conference 2026
+                </p>
+              </div>
+
+              {errors.form && (
+                <div className="mb-6 p-4 bg-red-500/20 border-2 border-red-500 text-red-200 text-xs font-black uppercase tracking-widest relative z-10">
+                  {errors.form}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6 relative z-10" noValidate>
+                {/* Honeypot field - hidden from users */}
+                <div className="hidden" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    value={formData.website}
+                    onChange={handleInputChange}
+                    autoComplete="off"
+                  />
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-1.5 group">
+                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Full Name</label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      className={cn(
+                        "w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20",
+                        errors.fullName && "border-red-500"
+                      )}
+                      placeholder="YOUR FULL NAME"
+                    />
+                    {errors.fullName && <p className="text-[10px] text-red-500 font-black uppercase mt-1">{errors.fullName}</p>}
+                  </div>
+                  <div className="space-y-1.5 group">
+                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Email Address</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className={cn(
+                        "w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20",
+                        errors.email && "border-red-500"
+                      )}
+                      placeholder="EMAIL@INSTITUTION.COM"
+                    />
+                    {errors.email && <p className="text-[10px] text-red-500 font-black uppercase mt-1">{errors.email}</p>}
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-1.5 group">
+                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Phone Number</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className={cn(
+                        "w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20",
+                        errors.phone && "border-red-500"
+                      )}
+                      placeholder="+255 --- --- ---"
+                    />
+                    {errors.phone && <p className="text-[10px] text-red-500 font-black uppercase mt-1">{errors.phone}</p>}
+                  </div>
+                  <div className="space-y-1.5 group">
+                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Institution</label>
+                    <input
+                      type="text"
+                      name="institution"
+                      value={formData.institution}
+                      onChange={handleInputChange}
+                      className={cn(
+                        "w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20",
+                        errors.institution && "border-red-500"
+                      )}
+                      placeholder="ORGANIZATION NAME"
+                    />
+                    {errors.institution && <p className="text-[10px] text-red-500 font-black uppercase mt-1">{errors.institution}</p>}
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Proposed Role</label>
+                  <div className="relative">
+                    <select
+                      name="role"
+                      value={formData.role}
+                      onChange={handleInputChange}
+                      className="w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                    >
+                      <option value="Delegate">Delegate / Attendee</option>
+                      <option value="Speaker">Speaker / Presenter</option>
+                      <option value="Sponsor">Sponsor / Partner</option>
+                      <option value="Exhibitor">Exhibitor</option>
+                      <option value="Media">Media / Press</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00BFFF]">
+                      <ChevronDown size={18} />
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-[#00BFFF] border-4 border-black text-black font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
+                >
+                  {isSubmitting ? 'Transmitting...' : 'Send Registration'} <Send size={18} />
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Success Notification */}
+      <AnimatePresence>
+        {successMessage && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="fixed inset-0 z-[2000] flex items-center justify-center px-4 pointer-events-none"
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <div className="relative bg-[#00BFFF] border-[10px] border-black p-8 sm:p-12 max-w-lg w-full text-center shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] pointer-events-auto">
+              <button 
+                onClick={() => setSuccessMessage(null)}
+                className="absolute top-4 right-4 text-black/40 hover:text-black transition-colors"
+              >
+                <X size={24} />
+              </button>
+              
+              <div className="bg-black w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                <CheckCircle className="w-12 h-12 text-[#00BFFF]" />
+              </div>
+              
+              <h3 className="text-black font-black text-2xl uppercase mb-4 tracking-tighter">Transmission Successful</h3>
+              <p className="text-black font-bold uppercase tracking-widest text-xs leading-relaxed">
+                {successMessage}
+              </p>
+              
+              <button 
+                onClick={() => {
+                  setSuccessMessage(null);
+                  setIsModalOpen(false);
+                }}
+                className="mt-10 w-full py-4 bg-black text-[#00BFFF] font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-black transition-all"
+              >
+                Close Transmission
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

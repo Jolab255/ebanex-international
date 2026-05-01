@@ -9,54 +9,84 @@ export interface ContactInquiryPayload {
   message: string;
 }
 
+export interface ConferenceRegistrationPayload {
+  fullName: string;
+  email: string;
+  phone: string;
+  institution: string;
+  role: string;
+}
+
 export interface ApiResponse<T = any> {
   ok: boolean;
   data?: T;
   error?: string;
 }
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+// In production, we assume the API is relative to the current origin
+const API_BASE = '/api';
 
 /**
- * Sends a contact inquiry to the backend.
- * Currently simulates a network call if VITE_API_URL is not provided.
+ * Sends a contact inquiry to the PHP backend.
  */
 export async function sendContactInquiry(payload: ContactInquiryPayload): Promise<ApiResponse> {
   try {
     console.log('[sendContactInquiry] Payload:', payload);
 
-    if (API_BASE_URL) {
-      const response = await fetch(`${API_BASE_URL}/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+    const response = await fetch(`${API_BASE}/contact.php`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || 'Failed to send inquiry');
-      }
+    const data = await response.json().catch(() => ({}));
 
-      const data = await response.json();
-      return { ok: true, data };
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to send inquiry via local API');
     }
 
-    // Fallback: Simulate a delay for prototyping when no API URL is set
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-
-    // For prototyping: randomly fail 5% of the time to test error states
-    if (Math.random() < 0.05) {
-      throw new Error('Server is temporarily unavailable. Please try again later.');
-    }
-
-    return { ok: true };
+    return { ok: true, data };
   } catch (err: any) {
     console.error('[sendContactInquiry] Error:', err);
     return { 
       ok: false, 
       error: err.message || 'Something went wrong while sending your inquiry. Please try again.' 
+    };
+  }
+}
+
+/**
+ * Sends a conference registration to the PHP backend.
+ * Recipient: yonahmatete@gmail.com
+ */
+export async function sendConferenceRegistration(payload: ConferenceRegistrationPayload): Promise<ApiResponse> {
+  try {
+    console.log('[sendConferenceRegistration] Payload:', payload);
+
+    const response = await fetch(`${API_BASE}/register.php`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(data.error || 'The registration service is currently unavailable. Please contact info@ebanexint.co.tz directly.');
+    }
+
+    return { ok: true, data };
+  } catch (err: any) {
+    console.error('[sendConferenceRegistration] Error:', err);
+    return { 
+      ok: false, 
+      error: err.message || 'Something went wrong while sending your registration. Please try again.' 
     };
   }
 }

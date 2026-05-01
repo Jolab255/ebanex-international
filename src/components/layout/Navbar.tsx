@@ -66,7 +66,6 @@ const Navbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [mobileCategoryExpanded, setMobileCategoryExpanded] = useState<string | null>(null);
-  const [showHiddenLinks, setShowHiddenLinks] = useState(false);
   const [navBottom, setNavBottom] = useState(0);
   const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
@@ -92,7 +91,6 @@ const Navbar: React.FC = () => {
     setActiveDropdown(null);
     setMobileExpanded(null);
     setMobileCategoryExpanded(null);
-    setShowHiddenLinks(false);
   }, [location.pathname]);
 
   // Handle Scroll Lock when menus are open
@@ -140,18 +138,7 @@ const Navbar: React.FC = () => {
     // Inactive tabs based on your request
     const isInactive = index >= 4; 
 
-    if (isInactive) {
-      return (
-        <div key={link.path} className="relative h-full flex items-center">
-          <span
-            className="text-[10px] xl:text-[11px] font-bold tracking-tight uppercase text-white/30 cursor-not-allowed whitespace-nowrap"
-            title="Coming Soon"
-          >
-            {link.label}
-          </span>
-        </div>
-      );
-    }
+    if (isInactive) return null;
 
     return (
       <div key={link.path} className="relative h-full flex items-center">
@@ -218,49 +205,17 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Nav Area */}
-          <div className="hidden lg:flex flex-1 items-center justify-end h-full relative overflow-hidden pr-2">
-            <div className="flex items-center gap-4 xl:gap-8 h-full ml-12">
+          <div className="hidden lg:flex flex-1 items-center justify-center h-full relative overflow-hidden pr-2">
+            <div className="flex items-center gap-4 xl:gap-8 h-full">
               <div className="flex items-center gap-3 xl:gap-5 h-full shrink-0">
                 <Link to="/" className={cn("text-[10px] xl:text-[11px] font-black tracking-[0.1em] uppercase transition-colors whitespace-nowrap", location.pathname === '/' ? 'text-[#00BFFF]' : 'text-white hover:text-[#00BFFF]')}>Home</Link>
                 {visibleLinks.map((link, index) => renderNavLink(link, index))}
               </div>
-
-              <AnimatePresence>
-                {showHiddenLinks && (
-                  <motion.div
-                    key="hidden-links"
-                    initial={{ width: 0, opacity: 0, x: 20 }}
-                    animate={{ width: 'auto', opacity: 1, x: 0 }}
-                    exit={{ width: 0, opacity: 0, x: 20 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex items-center gap-3 xl:gap-5 overflow-hidden shrink-0 border-l border-[#00BFFF]/20 pl-4 ml-1"
-                  >
-                    {hiddenLinks.map((link, index) => (
-                      <div key={link.path} className="shrink-0">
-                        {renderNavLink(link, index + 5)}
-                      </div>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           </div>
 
           {/* Right Actions - Anchored to the right edge */}
           <div className="hidden lg:flex items-center h-full shrink-0 relative z-40 bg-black">
-            {/* Toggle Button */}
-            <div className="px-2 flex items-center h-full">
-              <button
-                onClick={(e) => { e.stopPropagation(); setShowHiddenLinks(!showHiddenLinks); }}
-                className={cn("p-2 hover:text-[#00BFFF] transition-colors focus:outline-none relative z-50", showHiddenLinks ? 'text-[#00BFFF]' : 'text-white')}
-                aria-label={showHiddenLinks ? "Hide more links" : "Show more links"}
-              >
-                <motion.div animate={{ rotate: showHiddenLinks ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                  {showHiddenLinks ? <ChevronRight size={20} className="rotate-180" /> : <MoreHorizontal size={20} />}
-                </motion.div>
-              </button>
-            </div>
-
             {/* Contact Button */}
             <div className="pl-4 sm:pl-6 flex items-center h-full bg-black">
               <Link to="/contact" className="px-6 py-3 bg-[#00BFFF] hover:bg-white text-black text-[10px] font-black uppercase tracking-[0.2em] rounded-none transition-all shadow-[5px_5px_0px_0px_rgba(0,0,0,1)] active:scale-95 whitespace-nowrap">        
@@ -299,13 +254,7 @@ const Navbar: React.FC = () => {
                   const isExpanded = mobileExpanded === link.label;
                   const isEnabled = index < 2;
 
-                  if (!isEnabled) {
-                    return (
-                      <div key={link.path} className="block py-3 px-4 text-sm font-black uppercase tracking-widest text-white/20 border-b border-white/5 cursor-not-allowed">
-                        {link.label}
-                      </div>
-                    );
-                  }
+                  if (!isEnabled) return null;
 
                   return (
                     <div key={link.path} className="space-y-2">
