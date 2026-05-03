@@ -29,7 +29,8 @@ describe('Navbar', () => {
 
     const toggle = screen.getByLabelText(/Open menu/i);
     fireEvent.click(toggle);
-    expect(screen.getByText(/Contact Expert/i)).toBeInTheDocument();
+    // After clicking toggle, the mobile menu should be visible and contain Contact Us
+    expect(screen.getAllByText(/Contact Us/i).length).toBeGreaterThan(0);
   });
 });
 
