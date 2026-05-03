@@ -197,23 +197,7 @@ const HeroSection: React.FC = () => {
 
           {/* Video Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 pointer-events-none" />
-
-          {/* Floating Info Tag */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="absolute bottom-6 right-6 bg-[#00BFFF] text-black py-2 px-4 rounded-none shadow-2xl z-30"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-1.5 h-1.5 bg-black animate-pulse" />
-              <span className="text-[9px] uppercase tracking-[0.3em] font-black">
-                OUR VISION IN ACTION
-              </span>
-            </div>
-          </motion.div>
-        </div>
-
+          </div>
         {/* Background Decorative Element */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(0,191,255,0.03)_0%,transparent_70%)] pointer-events-none" />
       </div>
