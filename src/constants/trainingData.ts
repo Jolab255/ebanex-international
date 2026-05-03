@@ -1,7 +1,3 @@
-import { 
-    Shield
-} from 'lucide-react';
-
 // Import local assets
 import cisaImg from '../assets/cisa.png';
 import cismImg from '../assets/cism.png';
@@ -12,7 +8,6 @@ import cdpseImg from '../assets/cdpse.png';
 import ciaImg from '../assets/cia.png';
 import crmaImg from '../assets/crma.png';
 import cyberSkillsImg from '../assets/cybersecurity-skills.jpg';
-import leadershipImg from '../assets/leadership-development.jpg';
 import aiTechImg from '../assets/AI and emerging technology.png';
 import ethicalHackingImg from '../assets/ethical hacking.jpg';
 import incidentResponseImg from '../assets/incident detection.png';
@@ -20,8 +15,6 @@ import networkingImg from '../assets/network and infrastructure.png';
 import cloudComputingImg from '../assets/cloud computing.png';
 import sysAdminImg from '../assets/system administration.png';
 import institutionalAdvisoryImg from '../assets/institutional-advisory.jpg';
-import capacityBuildingImg from '../assets/capacity-building.jpg';
-import financialServicesImg from '../assets/financial-services.jpg';
 import communicationImg from '../assets/communication and workplace effectiveness.webp';
 import digitalTransformImg from '../assets/digital transformation skills.webp';
 import itGovImg from '../assets/it governance and digital governance.webp';
@@ -32,12 +25,6 @@ import strategicThinkingImg from '../assets/strategic thinking and decision maki
 import teamDevImg from '../assets/team development and collaboration.webp';
 
 import barakaImg from '../assets/baraka.png';
-import enockImg from '../assets/Enock.jpg';
-import digitalTrustConfImg from '../assets/digital trust conference.jpg';
-import confSponsorshipImg from '../assets/conference sponsorship and past conference highliths.png';
-import industrialSectorsImg from '../assets/industrial-sectors.jpg';
-import ngoAgenciesImg from '../assets/ngo-agencies.jpg';
-import businessTasksImg from '../assets/business-person-using-laptop-multitasking-finish-daily-startup-tasks.webp';
 
 export interface TrainingProgram {
     title: string;

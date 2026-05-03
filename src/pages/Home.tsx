@@ -1,5 +1,4 @@
 import React from 'react';
-import { PageLoader } from '../components/common';
 import { SEO } from '../components/layout';
 import {
   HeroSection,

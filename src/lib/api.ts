@@ -17,7 +17,7 @@ export interface ConferenceRegistrationPayload {
   role: string;
 }
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   ok: boolean;
   data?: T;
   error?: string;
@@ -49,11 +49,12 @@ export async function sendContactInquiry(payload: ContactInquiryPayload): Promis
     }
 
     return { ok: true, data };
-  } catch (err: any) {
-    console.error('[sendContactInquiry] Error:', err);
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err : new Error(String(err));
+    console.error('[sendContactInquiry] Error:', error);
     return { 
       ok: false, 
-      error: err.message || 'Something went wrong while sending your inquiry. Please try again.' 
+      error: error.message || 'Something went wrong while sending your inquiry. Please try again.' 
     };
   }
 }
@@ -82,11 +83,12 @@ export async function sendConferenceRegistration(payload: ConferenceRegistration
     }
 
     return { ok: true, data };
-  } catch (err: any) {
-    console.error('[sendConferenceRegistration] Error:', err);
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err : new Error(String(err));
+    console.error('[sendConferenceRegistration] Error:', error);
     return { 
       ok: false, 
-      error: err.message || 'Something went wrong while sending your registration. Please try again.' 
+      error: error.message || 'Something went wrong while sending your registration. Please try again.' 
     };
   }
 }

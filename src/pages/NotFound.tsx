@@ -86,8 +86,8 @@ const NotFound: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg text-slate-400 mb-8 leading-relaxed"
           >
-            The page you're looking for doesn't exist or has been moved. It might have been removed,
-            renamed, or you're using an outdated link.
+            The page you&apos;re looking for doesn&apos;t exist or has been moved. It might have been removed,
+            renamed, or you&apos;re using an outdated link.
           </motion.p>
 
           {/* Quick Links */}

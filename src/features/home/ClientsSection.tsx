@@ -11,7 +11,6 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { Squares, ScrollReveal } from '../../components/animations';
-import { FitText } from '../../components/common';
 import { Counter } from '../../components/training/Counter';
 
 // Import local images
@@ -225,7 +224,16 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
   );
 };
 
-const ClientCard: React.FC<{ client: any }> = ({ client }) => {
+interface Client {
+  name: string;
+  category: string;
+  description: string;
+  icon: React.ElementType;
+  image: string;
+  accent: string;
+}
+
+const ClientCard: React.FC<{ client: Client }> = ({ client }) => {
   const Icon = client.icon;
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: false, margin: '-50px' });

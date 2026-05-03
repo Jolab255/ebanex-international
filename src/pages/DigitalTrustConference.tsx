@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
-import { Calendar, Users, Award, ArrowRight, Zap, Star, CheckCircle, Globe, Lock, Building, Search, Activity, X, Send, ChevronDown, MessageSquare } from 'lucide-react';
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
+import { Users, ArrowRight, Zap, Star, CheckCircle, Activity, X, Send, ChevronDown, MessageSquare } from 'lucide-react';
 import { SEO } from '../components/layout';
-import { Squares, ScrollReveal } from '../components/animations';
+import { Squares } from '../components/animations';
 import { Link } from 'react-router-dom';
-import { ClientsSection, CtaSection } from '../features/home';
+import { CtaSection } from '../features/home';
 import { sendConferenceRegistration } from '../lib/api';
 import { cn } from '../lib/utils';
 

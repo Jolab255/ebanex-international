@@ -24,7 +24,6 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
     return { hasError: true, errorMessage: '', errorStack: '', detailsOpen: false };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidCatch(error: unknown, info: React.ErrorInfo) {
     // Capture error details for enhanced debugging in the UI
     const message = error instanceof Error ? error.message : String(error);
@@ -33,6 +32,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
       errorMessage: message,
       errorStack: stack,
     });
+    console.error('ErrorBoundary caught an error:', error, info);
   }
 
   handleReset = () => {

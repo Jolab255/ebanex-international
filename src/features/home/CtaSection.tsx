@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Squares } from '../../components/animations';
-import { FitText } from '../../components/common';
 import { ArrowRight, Phone } from 'lucide-react';
 
 const WhatsAppIcon = ({ size = 20 }: { size?: number }) => (

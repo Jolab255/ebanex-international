@@ -66,7 +66,7 @@ const AboutCtaSection: React.FC = () => (
             
             <p className="text-white/80 text-xs sm:text-sm mb-8 leading-relaxed font-medium max-w-lg">
               Empower your workforce with industry-leading cybersecurity competencies and strategic advisory 
-              tailored to your organization's unique digital landscape.
+              tailored to your organization&apos;s unique digital landscape.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 mb-10">

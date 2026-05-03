@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Shield, CheckCircle, ArrowRight, Activity, Search, Database, Lock, Building, Globe, X, MessageSquare, Phone, Mail } from 'lucide-react';
+import { Shield, CheckCircle, ArrowRight, Activity, Search, Database, Lock, Building, Globe, X } from 'lucide-react';
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 import { SEO } from '../components/layout';
-import { Squares, ScrollReveal } from '../components/animations';
+import { Squares } from '../components/animations';
 import { Link } from 'react-router-dom';
 import { ClientsSection, CtaSection } from '../features/home';
 

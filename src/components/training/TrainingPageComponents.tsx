@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import Counter from './Counter';
@@ -458,7 +458,7 @@ export const CTASection: React.FC = () => {
               <p className="text-lg text-slate-300 mb-8 leading-relaxed">
                 Partner with Ebanex International to transform your employees into your first line
                 of defense against cyber threats. Our comprehensive training programs are tailored
-                to your organization's unique needs.
+                to your organization&apos;s unique needs.
               </p>
               <div className="flex flex-col sm:flex-row flex-wrap gap-4">
                 <motion.button

@@ -13,7 +13,6 @@ interface Marker {
 interface DottedMapProps {
     width?: number;
     height?: number;
-    mapSamples?: number;
     markers?: Marker[];
     dotColor?: string;
     markerColor?: string;

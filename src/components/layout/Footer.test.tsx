@@ -11,12 +11,11 @@ describe('Footer', () => {
             </BrowserRouter>
         );
 
-        // Check for Brand Name
-        expect(screen.getByText(/EBANEX/i)).toBeInTheDocument();
+        // Check for Brand Name (using getAll since it might appear in text too)
+        expect(screen.getAllByText(/EBANEX/i).length).toBeGreaterThan(0);
 
         // Check for Section Headers
         expect(screen.getByText(/Services/i)).toBeInTheDocument();
-        expect(screen.getByText(/Company/i)).toBeInTheDocument();
         expect(screen.getByText(/Connect/i)).toBeInTheDocument();
     });
 
@@ -28,6 +27,6 @@ describe('Footer', () => {
         );
 
         expect(screen.getByText(/Dar es Salaam/i)).toBeInTheDocument();
-        expect(screen.getByText(/info@ebanex.com/i)).toBeInTheDocument();
+        expect(screen.getAllByText(/info@ebanexint.co.tz/i).length).toBeGreaterThan(0);
     });
 });

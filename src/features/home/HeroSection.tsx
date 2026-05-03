@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Lightbulb } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import aboutVideo from '../../assets/aboutv.mp4';
 
 const TIPS = [

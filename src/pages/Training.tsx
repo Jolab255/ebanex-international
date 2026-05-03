@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
     Code, GraduationCap, Briefcase, 
@@ -8,18 +8,22 @@ import {
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/layout';
 import { Squares, ScrollReveal } from '../components/animations';
-import { TRAINING_PROGRAMS } from '../constants/trainingData';
+import { TRAINING_PROGRAMS, TrainingProgram } from '../constants/trainingData';
 import { TrainingApproachSection } from '../features/home';
 
 // Import local assets for fallback and CTA
 import capacityBuildingImg from '../assets/capacity-building.jpg';
-import institutionalAdvisoryImg from '../assets/institutional-advisory.jpg';
+
+interface CategoryItem {
+    label: string;
+    slug: string;
+}
 
 // Modal Component for Full Overview
 const ProgramModal: React.FC<{ 
     isOpen: boolean; 
     onClose: () => void; 
-    program: any 
+    program: TrainingProgram | null 
 }> = ({ isOpen, onClose, program }) => {
     if (!program) return null;
 
@@ -148,7 +152,11 @@ const ProgramModal: React.FC<{
     );
 };
 
-const ProgramCard: React.FC<{ item: any; progData: any; openOverview: (slug: string) => void }> = ({ item, progData, openOverview }) => (
+const ProgramCard: React.FC<{ 
+    item: CategoryItem; 
+    progData: TrainingProgram | undefined; 
+    openOverview: (slug: string) => void 
+}> = ({ item, progData, openOverview }) => (
     <div 
         className="group relative bg-[#0a1628] border-2 border-white/5 hover:border-[#00BFFF]/50 transition-all overflow-hidden h-full flex flex-col w-full"
         style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
@@ -205,7 +213,7 @@ const ProgramCard: React.FC<{ item: any; progData: any; openOverview: (slug: str
     </div>
 );
 
-const ProgramCarousel: React.FC<{ items: any[]; openOverview: (slug: string) => void }> = ({ items, openOverview }) => {
+const ProgramCarousel: React.FC<{ items: CategoryItem[]; openOverview: (slug: string) => void }> = ({ items, openOverview }) => {
     const [startIndex, setStartIndex] = useState(0);
     const [visibleCount, setVisibleCount] = useState(4);
 
@@ -286,7 +294,7 @@ const ProgramCarousel: React.FC<{ items: any[]; openOverview: (slug: string) => 
 };
 
 const Training: React.FC = () => {
-    const [selectedProgram, setSelectedProgram] = useState<any>(null);
+    const [selectedProgram, setSelectedProgram] = useState<TrainingProgram | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openOverview = (slug: string) => {
@@ -310,7 +318,7 @@ const Training: React.FC = () => {
           { label: 'CIA Preparation', slug: 'cia' },
           { label: 'CRMA Preparation', slug: 'crma' },
           { label: 'Cisco CCNA/CCNP Preparation', slug: 'cisco' }
-        ]
+        ] as CategoryItem[]
       },
       {
         title: 'Practical & Hands-On Workshops & Masterclasses',
@@ -324,7 +332,7 @@ const Training: React.FC = () => {
           { label: 'Systems Administration', slug: 'systems-admin' },
           { label: 'Digital Risk Management', slug: 'digital-risk' },
           { label: 'Data Privacy & Protection', slug: 'data-privacy' }
-        ]
+        ] as CategoryItem[]
       },
       {
         title: 'Executive & Awareness Programs',
@@ -340,7 +348,7 @@ const Training: React.FC = () => {
           { label: 'Strategic Thinking & Decision Making', slug: 'strategic-thinking' },
           { label: 'Communication & Workplace Effectiveness', slug: 'communication' },
           { label: 'Team Development & Collaboration', slug: 'team-development' }
-        ]
+        ] as CategoryItem[]
       },
       {
         title: 'Ebanex Digital Trust Conference',
@@ -349,7 +357,7 @@ const Training: React.FC = () => {
           { label: 'Annual Conference Overview', slug: 'conference' },
           { label: 'Sponsorship Opportunities', slug: 'sponsorship' },
           { label: 'Past Events & Highlights', slug: 'past-events' }
-        ]
+        ] as CategoryItem[]
       }
     ];
 

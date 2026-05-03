@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, ChevronRight, MoreHorizontal } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLenis } from 'lenis/react';
 import { NAVIGATION_LINKS } from '../../constants';
@@ -129,7 +129,6 @@ const Navbar: React.FC = () => {
   };
 
   const visibleLinks = NAVIGATION_LINKS.slice(0, 5);
-  const hiddenLinks = NAVIGATION_LINKS.slice(5);
 
   const renderNavLink = (link: typeof NAVIGATION_LINKS[0], index: number) => {
     const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { Mail, Phone, Send, ArrowRight, MessageSquare, Globe, ShieldCheck, CheckCircle, ChevronDown, X } from 'lucide-react';
+import { Mail, Phone, Send, ArrowRight, MessageSquare, Globe, CheckCircle, ChevronDown, X, ShieldCheck } from 'lucide-react';
 import { SEO } from '../components/layout';
 import { Squares, ScrollReveal } from '../components/animations';
 import { sendContactInquiry } from '../lib/api';

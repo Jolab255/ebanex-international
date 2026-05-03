@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Navbar from '../Navbar';
+import Navbar from '../layout/Navbar';
 
 describe('Navbar', () => {
   const renderWithRouter = (initialPath = '/') =>
@@ -27,7 +27,7 @@ describe('Navbar', () => {
   it('toggles mobile menu', () => {
     renderWithRouter();
 
-    const toggle = screen.getByRole('button');
+    const toggle = screen.getByLabelText(/Open menu/i);
     fireEvent.click(toggle);
     expect(screen.getByText(/Contact Expert/i)).toBeInTheDocument();
   });
