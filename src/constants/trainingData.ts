@@ -31,7 +31,7 @@ import riskMgmtImg from '../assets/risk management.webp';
 import strategicThinkingImg from '../assets/strategic thinking and decision making.webp';
 import teamDevImg from '../assets/team development and collaboration.webp';
 
-import barakaImg from '../assets/baraka.jpg';
+import barakaImg from '../assets/baraka.png';
 import enockImg from '../assets/Enock.jpg';
 import digitalTrustConfImg from '../assets/digital trust conference.jpg';
 import confSponsorshipImg from '../assets/conference sponsorship and past conference highliths.png';

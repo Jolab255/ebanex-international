@@ -5,7 +5,7 @@ import { Squares, ScrollReveal } from '../../components/animations';
 
 // Import co-founder images
 import enockImg from '../../assets/Enock.jpg';
-import barakaImg from '../../assets/baraka.jpg';
+import barakaImg from '../../assets/baraka.png';
 
 const FoundersMessageSection: React.FC = () => {
   return (
