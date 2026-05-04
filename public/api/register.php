@@ -1,13 +1,15 @@
 <?php
 /**
  * Ebanex International - Conference Registration API
- * Handles multipart form data and rich HTML email
+ * Uses SMTP instead of mail() for better compatibility
  */
 
 // Enable error reporting for debugging
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 error_reporting(E_ALL);
+
+require_once 'mailer.php';
 
 // ── SETTINGS ──────────────────────────────────────────────────────────
 $to_email = "yonahmatete@gmail.com";
@@ -36,11 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $input = file_get_contents("php://input");
 $json_data = json_decode($input, true);
 
-$fullName = htmlspecialchars($_POST['fullName'] ?? $json_data['fullName'] ?? 'N/A');
+$fullName = strip_tags($_POST['fullName'] ?? $json_data['fullName'] ?? 'N/A');
 $email = filter_var($_POST['email'] ?? $json_data['email'] ?? '', FILTER_SANITIZE_EMAIL);
-$phone = htmlspecialchars($_POST['phone'] ?? $json_data['phone'] ?? 'N/A');
-$institution = htmlspecialchars($_POST['institution'] ?? $json_data['institution'] ?? 'N/A');
-$role = htmlspecialchars($_POST['role'] ?? $json_data['role'] ?? 'N/A');
+$phone = strip_tags($_POST['phone'] ?? $json_data['phone'] ?? 'N/A');
+$institution = strip_tags($_POST['institution'] ?? $json_data['institution'] ?? 'N/A');
+$role = strip_tags($_POST['role'] ?? $json_data['role'] ?? 'N/A');
 
 $subject = $subject_prefix . $fullName;
 
@@ -79,18 +81,13 @@ $body .= $message_html . "\r\n\r\n";
 $body .= "--$boundary--";
 
 // ── SEND ─────────────────────────────────────────────────────────────
-// Additional params for mail() can help with some host configurations
-$additional_params = "-f $from_email";
-
-if (mail($to_email, $subject, $body, $headers, $additional_params)) {
+if (send_smtp_email($to_email, $subject, $body, $headers)) {
     echo json_encode(["ok" => true, "message" => "Registration transmitted successfully."]);
 } else {
-    $last_error = error_get_last();
-    error_log("Mail delivery failed: " . ($last_error ? $last_error['message'] : "Unknown error"));
+    error_log("SMTP delivery failed for registration");
     http_response_code(500);
     echo json_encode([
         "ok" => false,
-        "error" => "The registration service is currently unavailable. Please contact info@ebanexint.co.tz directly.",
-        "debug" => $last_error ? $last_error['message'] : "Unknown error"
+        "error" => "The registration service is currently unavailable. Please contact info@ebanexint.co.tz directly."
     ]);
 }
