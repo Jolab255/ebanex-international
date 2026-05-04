@@ -173,9 +173,9 @@ const TrainingApproachSection: React.FC = () => {
               minScale={0.35}
               textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
             >
-              <span 
+              <span
                 style={{
-                  backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                  backgroundImage: 'linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -185,7 +185,6 @@ const TrainingApproachSection: React.FC = () => {
             </FitText>
           </div>
         </ScrollReveal>
-      
       </div>
 
       {/* Carousel Container */}
@@ -194,12 +193,11 @@ const TrainingApproachSection: React.FC = () => {
           <ProgressSlider vertical={false} activeSlider="practical">
             {/* Split/Stack Layout */}
             <div className="relative h-full w-full flex flex-col lg:flex-row items-center">
-              
               {/* Content Side (The base layer) */}
-              <div 
+              <div
                 className="w-full lg:w-[45%] lg:ml-auto h-full relative border-[10px] border-black z-10"
                 style={{
-                  background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+                  background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
                 }}
               >
                 <TrainingOverlay />
@@ -215,7 +213,6 @@ const TrainingApproachSection: React.FC = () => {
                   ))}
                 </SliderContent>
               </div>
-
             </div>
           </ProgressSlider>
         </div>

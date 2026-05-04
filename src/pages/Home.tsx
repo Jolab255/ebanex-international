@@ -14,7 +14,7 @@ import {
 const Home: React.FC = () => {
   return (
     <>
-      <SEO 
+      <SEO
         title="Home | Ebanex International"
         description="Ebanex International is a global professional development institution building the capacity of people and organizations through elite training and strategic advisory."
         keywords="cybersecurity, training, digital transformation, consulting, advisory, Ebanex"

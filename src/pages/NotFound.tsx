@@ -7,7 +7,7 @@ import { ArrowRight, Home, Search, AlertTriangle } from 'lucide-react';
 const NotFound: React.FC = () => {
   return (
     <>
-      <SEO 
+      <SEO
         title="Page Not Found | Ebanex International"
         description="The page you're looking for doesn't exist or has been moved. Explore our training programs or contact us for assistance."
         canonical="https://ebanexint.co.tz/404"
@@ -86,8 +86,8 @@ const NotFound: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-lg text-slate-400 mb-8 leading-relaxed"
           >
-            The page you&apos;re looking for doesn&apos;t exist or has been moved. It might have been removed,
-            renamed, or you&apos;re using an outdated link.
+            The page you&apos;re looking for doesn&apos;t exist or has been moved. It might have
+            been removed, renamed, or you&apos;re using an outdated link.
           </motion.p>
 
           {/* Quick Links */}

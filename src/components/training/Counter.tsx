@@ -8,7 +8,12 @@ interface CounterProps {
   once?: boolean;
 }
 
-export const Counter: React.FC<CounterProps> = ({ target, suffix = '', duration = 2, once = false }) => {
+export const Counter: React.FC<CounterProps> = ({
+  target,
+  suffix = '',
+  duration = 2,
+  once = false,
+}) => {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once, margin: '-20px' });
@@ -22,7 +27,7 @@ export const Counter: React.FC<CounterProps> = ({ target, suffix = '', duration 
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-      
+
       setCount(Math.floor(progress * target));
 
       if (progress < 1) {

@@ -3,16 +3,16 @@ import DottedMap from './dotted-map';
 
 // ── Hub cities with lat/lng for markers ────────────────────────────
 const MARKERS = [
-  { lat: -6.7924, lng: 39.2083, size: 0.5 },   // Dar es Salaam
-  { lat: -1.2921, lng: 36.8219, size: 0.4 },   // Nairobi
-  { lat: 51.5074, lng: -0.1278, size: 0.4 },   // London
-  { lat: 25.2048, lng: 55.2708, size: 0.4 },   // Dubai
-  { lat: 1.3521, lng: 103.8198, size: 0.35 },  // Singapore
-  { lat: 40.7128, lng: -74.006, size: 0.35 },  // New York
+  { lat: -6.7924, lng: 39.2083, size: 0.5 }, // Dar es Salaam
+  { lat: -1.2921, lng: 36.8219, size: 0.4 }, // Nairobi
+  { lat: 51.5074, lng: -0.1278, size: 0.4 }, // London
+  { lat: 25.2048, lng: 55.2708, size: 0.4 }, // Dubai
+  { lat: 1.3521, lng: 103.8198, size: 0.35 }, // Singapore
+  { lat: 40.7128, lng: -74.006, size: 0.35 }, // New York
   { lat: -23.5505, lng: -46.6333, size: 0.3 }, // São Paulo
   { lat: -33.8688, lng: 151.2093, size: 0.3 }, // Sydney
-  { lat: 6.5244, lng: 3.3792, size: 0.35 },    // Lagos
-  { lat: -26.2041, lng: 28.0473, size: 0.3 },  // Johannesburg
+  { lat: 6.5244, lng: 3.3792, size: 0.35 }, // Lagos
+  { lat: -26.2041, lng: 28.0473, size: 0.3 }, // Johannesburg
 ];
 
 // ── Arcs between hubs (index pairs into MARKERS) ──────────────────
@@ -90,10 +90,7 @@ const DataFlowMap: React.FC<Props> = ({ className }) => {
     }
 
     // ── Bezier helpers ──
-    const getControlPoint = (
-      ax: number, ay: number,
-      bx: number, by: number,
-    ): [number, number] => {
+    const getControlPoint = (ax: number, ay: number, bx: number, by: number): [number, number] => {
       const mx = (ax + bx) / 2;
       const my = (ay + by) / 2;
       const dx = bx - ax;
@@ -105,9 +102,12 @@ const DataFlowMap: React.FC<Props> = ({ className }) => {
 
     const quadBezier = (
       t: number,
-      p0x: number, p0y: number,
-      cpx: number, cpy: number,
-      p1x: number, p1y: number,
+      p0x: number,
+      p0y: number,
+      cpx: number,
+      cpy: number,
+      p1x: number,
+      p1y: number,
     ): [number, number] => {
       const mt = 1 - t;
       return [
@@ -134,8 +134,10 @@ const DataFlowMap: React.FC<Props> = ({ className }) => {
       for (const [fromIdx, toIdx] of ARCS) {
         const [ax0, ay0] = hubPositions[fromIdx];
         const [bx0, by0] = hubPositions[toIdx];
-        const ax = ax0 * w, ay = ay0 * h;
-        const bx = bx0 * w, by = by0 * h;
+        const ax = ax0 * w,
+          ay = ay0 * h;
+        const bx = bx0 * w,
+          by = by0 * h;
         const [cpx, cpy] = getControlPoint(ax, ay, bx, by);
 
         ctx.beginPath();
@@ -159,8 +161,10 @@ const DataFlowMap: React.FC<Props> = ({ className }) => {
           const [fromIdx, toIdx] = ARCS[pkt.arcIdx];
           const [ax0, ay0] = hubPositions[fromIdx];
           const [bx0, by0] = hubPositions[toIdx];
-          let ax = ax0 * w, ay = ay0 * h;
-          let bx = bx0 * w, by = by0 * h;
+          let ax = ax0 * w,
+            ay = ay0 * h;
+          let bx = bx0 * w,
+            by = by0 * h;
 
           if (pkt.reverse) {
             [ax, ay, bx, by] = [bx, by, ax, ay];
@@ -206,9 +210,7 @@ const DataFlowMap: React.FC<Props> = ({ className }) => {
         const hx = hx0 * w;
         const hy = hy0 * h;
 
-        const pulsePhase = prefersReducedMotion
-          ? 0
-          : Math.sin(timestamp / 1500 + hx0 * 20) * 0.25;
+        const pulsePhase = prefersReducedMotion ? 0 : Math.sin(timestamp / 1500 + hx0 * 20) * 0.25;
         const outerR = Math.max(4, w * 0.006) * (1 + pulsePhase * 0.2);
         const outerGrad = ctx.createRadialGradient(hx, hy, 0, hx, hy, outerR);
         outerGrad.addColorStop(0, `rgba(59, 130, 246, ${0.45 + pulsePhase * 0.15})`);

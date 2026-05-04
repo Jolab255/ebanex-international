@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Globe3D: React.FC<{ className?: string }> = () => {
   return null;

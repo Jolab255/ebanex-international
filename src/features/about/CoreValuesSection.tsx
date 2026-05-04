@@ -5,18 +5,18 @@ import FeatureCard from '../home/components/FeatureCard';
 
 const CoreValuesSection: React.FC = () => {
   const values = [
-    { 
-      title: 'Excellence', 
+    {
+      title: 'Excellence',
       desc: 'We strive for the highest quality in everything we do, setting benchmarks for professional standards.',
       icon: <Sparkles />,
     },
-    { 
-      title: 'Innovation', 
+    {
+      title: 'Innovation',
       desc: 'Embracing forward-thinking approaches to solve complex challenges in the digital age.',
       icon: <Zap />,
     },
-    { 
-      title: 'Professionalism', 
+    {
+      title: 'Professionalism',
       desc: 'A commitment to excellence, respect, and responsibility in every interaction.',
       icon: <Handshake />,
     },
@@ -51,11 +51,13 @@ const CoreValuesSection: React.FC = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 sm:gap-x-10 sm:gap-y-12 max-w-7xl mx-auto">
             {values.map((value, i) => {
               const isMiddle = i % 3 === 1;
-              
+
               return (
-                <div 
-                  key={i} 
-                  className={isMiddle ? "lg:border-t-[10px] lg:border-l-[10px] lg:border-black" : ""}
+                <div
+                  key={i}
+                  className={
+                    isMiddle ? 'lg:border-t-[10px] lg:border-l-[10px] lg:border-black' : ''
+                  }
                 >
                   <FeatureCard feature={value} hasOutline={i !== 0} />
                 </div>

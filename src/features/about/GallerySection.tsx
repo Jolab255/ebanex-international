@@ -7,12 +7,30 @@ const GallerySection: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const galleryImages = [
-    { src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800', alt: 'Team meeting' },
-    { src: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800', alt: 'Training session' },
-    { src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800', alt: 'Workshop' },
-    { src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800', alt: 'Collaboration' },
-    { src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800', alt: 'Corporate Discussion' },
-    { src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800', alt: 'Digital Learning' },
+    {
+      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800',
+      alt: 'Team meeting',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=800',
+      alt: 'Training session',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=800',
+      alt: 'Workshop',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800',
+      alt: 'Collaboration',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800',
+      alt: 'Corporate Discussion',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800',
+      alt: 'Digital Learning',
+    },
   ];
 
   return (
@@ -41,27 +59,27 @@ const GallerySection: React.FC = () => {
         </div>
 
         {/* Gallery Container Box */}
-        <div 
+        <div
           className="w-full max-w-6xl p-4 sm:p-8 border-[10px] border-black shadow-none relative flex-1 overflow-y-auto scrollbar-hide"
           style={{
-            background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+            background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
           }}
         >
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 relative z-10 auto-rows-[150px] sm:auto-rows-[200px] grid-flow-dense">
             {galleryImages.map((img, idx) => {
               const spans = [
-                "col-span-2 row-span-2", // Image 0
-                "col-span-2 row-span-1", // Image 1
-                "col-span-1 row-span-1", // Image 2
-                "col-span-1 row-span-2", // Image 3
-                "col-span-2 row-span-1", // Image 4
-                "col-span-1 row-span-1", // Image 5
+                'col-span-2 row-span-2', // Image 0
+                'col-span-2 row-span-1', // Image 1
+                'col-span-1 row-span-1', // Image 2
+                'col-span-1 row-span-2', // Image 3
+                'col-span-2 row-span-1', // Image 4
+                'col-span-1 row-span-1', // Image 5
               ];
-              
+
               return (
                 <div
                   key={idx}
-                  className={`relative overflow-hidden cursor-pointer group border border-white/10 ${spans[idx] || ""}`}
+                  className={`relative overflow-hidden cursor-pointer group border border-white/10 ${spans[idx] || ''}`}
                   onClick={() => setSelectedImage(img.src)}
                 >
                   <img
@@ -75,7 +93,7 @@ const GallerySection: React.FC = () => {
               );
             })}
           </div>
-          
+
           {/* Decorative corner accent */}
           <div className="absolute top-0 right-0 w-24 h-24 bg-[#00BFFF]/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 overflow-hidden pointer-events-none" />
         </div>

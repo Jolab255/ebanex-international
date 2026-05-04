@@ -24,7 +24,9 @@ export interface ApiResponse<T = unknown> {
 }
 
 // In production, we assume the API is relative to the current origin
-const API_BASE = '/api';
+// We use import.meta.env.BASE_URL to ensure it works correctly when deployed in subdirectories (like /dev/)
+const BASE_PATH = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+const API_BASE = `${BASE_PATH}/api`;
 
 /**
  * Sends a contact inquiry to the PHP backend.
@@ -36,7 +38,7 @@ export async function sendContactInquiry(payload: ContactInquiryPayload): Promis
     const response = await fetch(`${API_BASE}/contact.php`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
+        Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
@@ -52,9 +54,9 @@ export async function sendContactInquiry(payload: ContactInquiryPayload): Promis
   } catch (err: unknown) {
     const error = err instanceof Error ? err : new Error(String(err));
     console.error('[sendContactInquiry] Error:', error);
-    return { 
-      ok: false, 
-      error: error.message || 'Something went wrong while sending your inquiry. Please try again.' 
+    return {
+      ok: false,
+      error: error.message || 'Something went wrong while sending your inquiry. Please try again.',
     };
   }
 }
@@ -63,15 +65,17 @@ export async function sendContactInquiry(payload: ContactInquiryPayload): Promis
  * Sends a conference registration to the PHP backend.
  * Recipient: yonahmatete@gmail.com
  */
-export async function sendConferenceRegistration(payload: ConferenceRegistrationPayload): Promise<ApiResponse> {
+export async function sendConferenceRegistration(
+  payload: ConferenceRegistrationPayload,
+): Promise<ApiResponse> {
   try {
     console.log('[sendConferenceRegistration] Payload:', payload);
 
     const response = await fetch(`${API_BASE}/register.php`, {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
     });
@@ -79,16 +83,20 @@ export async function sendConferenceRegistration(payload: ConferenceRegistration
     const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      throw new Error(data.error || 'The registration service is currently unavailable. Please contact info@ebanexint.co.tz directly.');
+      throw new Error(
+        data.error ||
+          'The registration service is currently unavailable. Please contact info@ebanexint.co.tz directly.',
+      );
     }
 
     return { ok: true, data };
   } catch (err: unknown) {
     const error = err instanceof Error ? err : new Error(String(err));
     console.error('[sendConferenceRegistration] Error:', error);
-    return { 
-      ok: false, 
-      error: error.message || 'Something went wrong while sending your registration. Please try again.' 
+    return {
+      ok: false,
+      error:
+        error.message || 'Something went wrong while sending your registration. Please try again.',
     };
   }
 }

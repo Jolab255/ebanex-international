@@ -30,9 +30,9 @@ const AboutContent: React.FC = () => {
         <div className="relative w-full max-w-5xl flex items-center justify-center lg:justify-end">
           {/* Background Image (Stacked Under, Left Side) */}
           <div className="absolute left-[-5%] lg:left-[-10%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[450px] lg:w-[550px] aspect-square z-0 opacity-100">
-            <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" 
-              alt="Corporate Building" 
+            <img
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
+              alt="Corporate Building"
               className="w-full h-full object-cover border-[10px] border-black shadow-[15px_15px_0px_0px_rgba(0,191,255,0.2)]"
             />
           </div>
@@ -41,22 +41,22 @@ const AboutContent: React.FC = () => {
           <div
             className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black shadow-none relative overflow-hidden z-10 ml-auto"
             style={{
-              background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+              background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
             }}
           >
             <div className="relative z-10 space-y-6">
               <p className="text-sm sm:text-base lg:text-lg text-white/90 leading-relaxed font-normal text-justify">
-                Ebanex International is a global consulting and training firm specializing in professional
-                capacity building, cybersecurity training, digital transformation, and institutional
-                strengthening.
+                Ebanex International is a global consulting and training firm specializing in
+                professional capacity building, cybersecurity training, digital transformation, and
+                institutional strengthening.
               </p>
               <p className="text-sm sm:text-base lg:text-lg text-white/90 leading-relaxed font-normal text-justify">
-                We support governments, organizations, and professionals through high-quality training,
-                advisory services, and knowledge transfer programs designed to deliver measurable results
-                and long-term institutional impact.
+                We support governments, organizations, and professionals through high-quality
+                training, advisory services, and knowledge transfer programs designed to deliver
+                measurable results and long-term institutional impact.
               </p>
             </div>
-            
+
             {/* Decorative corner accent */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-[#00BFFF]/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
           </div>

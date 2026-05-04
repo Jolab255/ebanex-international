@@ -6,14 +6,19 @@ import { Squares } from '../components/animations';
 const TermsOfService: React.FC = () => {
   return (
     <div className="bg-black min-h-screen text-white pt-24 pb-16">
-      <SEO 
+      <SEO
         title="Terms of Service | Ebanex International"
         description="Terms and conditions for utilizing Ebanex International's training and advisory services."
         canonical="https://ebanexint.co.tz/terms"
       />
-      
+
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <Squares speed={0.1} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.05)" />
+        <Squares
+          speed={0.1}
+          squareSize={40}
+          direction="diagonal"
+          borderColor="rgba(255,255,255,0.05)"
+        />
       </div>
 
       <div className="max-w-4xl mx-auto px-4 relative z-10">
@@ -23,42 +28,74 @@ const TermsOfService: React.FC = () => {
           className="bg-[#0a1628] border-[10px] border-black p-8 sm:p-12 shadow-[20px_20px_0px_0px_rgba(0,196,212,0.1)]"
           style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
         >
-          <h1 className="text-3xl sm:text-5xl font-black uppercase mb-8 tracking-tighter border-b-4 border-[#00BFFF] inline-block">Terms of Service</h1>
-          
+          <h1 className="text-3xl sm:text-5xl font-black uppercase mb-8 tracking-tighter border-b-4 border-[#00BFFF] inline-block">
+            Terms of Service
+          </h1>
+
           <div className="space-y-8 text-white/80 font-medium leading-relaxed uppercase tracking-widest text-[11px]">
             <section>
               <h2 className="text-[#00BFFF] font-black text-lg mb-4">1. Use of Services</h2>
-              <p>By accessing or using Ebanex International services, you acknowledge that you have read and agreed to these Terms and will comply with applicable professional standards. Our services include training programs, advisory engagements, and related offerings.</p>
+              <p>
+                By accessing or using Ebanex International services, you acknowledge that you have
+                read and agreed to these Terms and will comply with applicable professional
+                standards. Our services include training programs, advisory engagements, and related
+                offerings.
+              </p>
             </section>
 
             <section>
               <h2 className="text-[#00BFFF] font-black text-lg mb-4">2. Intellectual Property</h2>
-              <p>All training materials, curricula, and advisory content provided by Ebanex International remain our intellectual property. These materials may not be copied, reproduced, or distributed without prior written consent.</p>
+              <p>
+                All training materials, curricula, and advisory content provided by Ebanex
+                International remain our intellectual property. These materials may not be copied,
+                reproduced, or distributed without prior written consent.
+              </p>
             </section>
 
             <section>
               <h2 className="text-[#00BFFF] font-black text-lg mb-4">3. Service Delivery</h2>
-              <p>Ebanex International may deliver services through physical, virtual, or hybrid formats. We reserve the right to adjust delivery methods where necessary to maintain service quality, safety, or operational efficiency.</p>
+              <p>
+                Ebanex International may deliver services through physical, virtual, or hybrid
+                formats. We reserve the right to adjust delivery methods where necessary to maintain
+                service quality, safety, or operational efficiency.
+              </p>
             </section>
 
             <section>
               <h2 className="text-[#00BFFF] font-black text-lg mb-4">4. User Responsibilities</h2>
-              <p>Participants are responsible for ensuring that the use and application of knowledge gained from our services comply with their organization’s policies and applicable laws.</p>
+              <p>
+                Participants are responsible for ensuring that the use and application of knowledge
+                gained from our services comply with their organization’s policies and applicable
+                laws.
+              </p>
             </section>
 
             <section>
               <h2 className="text-[#00BFFF] font-black text-lg mb-4">5. Limitation of Liability</h2>
-              <p>Ebanex International provides training and advisory services in good faith and to the best of our professional ability. However, we are not responsible for how such knowledge is applied, and we do not accept liability for outcomes arising from its use.</p>
+              <p>
+                Ebanex International provides training and advisory services in good faith and to
+                the best of our professional ability. However, we are not responsible for how such
+                knowledge is applied, and we do not accept liability for outcomes arising from its
+                use.
+              </p>
             </section>
 
             <section>
               <h2 className="text-[#00BFFF] font-black text-lg mb-4">6. Changes to Services</h2>
-              <p>Ebanex International reserves the right to update or modify our services and offerings where necessary. Any significant changes will be communicated where applicable.</p>
+              <p>
+                Ebanex International reserves the right to update or modify our services and
+                offerings where necessary. Any significant changes will be communicated where
+                applicable.
+              </p>
             </section>
 
             <section>
               <h2 className="text-[#00BFFF] font-black text-lg mb-4">7. Governing Law</h2>
-              <p>These Terms are governed by the laws of the United Republic of Tanzania. For international engagements, separate contractual agreements may apply where appropriate.</p>
+              <p>
+                These Terms are governed by the laws of the United Republic of Tanzania. For
+                international engagements, separate contractual agreements may apply where
+                appropriate.
+              </p>
             </section>
 
             <section>

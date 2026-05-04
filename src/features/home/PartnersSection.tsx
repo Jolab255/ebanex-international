@@ -67,9 +67,10 @@ const PartnersSection: React.FC = () => {
                 minScale={0.35}
                 textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
               >
-                <span 
+                <span
                   style={{
-                    backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                    backgroundImage:
+                      'linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                   }}
@@ -117,9 +118,7 @@ const PartnersSection: React.FC = () => {
 
         {/* CTA Button */}
         <div className="flex justify-center mt-8">
-          <button
-            className="px-8 py-3 rounded-none border-2 border-black bg-black text-white font-bold uppercase tracking-widest text-xs hover:bg-[#00BFFF] hover:border-[#00BFFF] hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.3)]"
-          >
+          <button className="px-8 py-3 rounded-none border-2 border-black bg-black text-white font-bold uppercase tracking-widest text-xs hover:bg-[#00BFFF] hover:border-[#00BFFF] hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.3)]">
             See all partners
           </button>
         </div>

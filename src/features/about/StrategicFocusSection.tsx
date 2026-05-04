@@ -92,19 +92,16 @@ const StrategicFocusSection: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 w-full max-w-6xl">
           {focusAreas.map((area, idx) => (
-            <div
-              key={idx}
-              className="group relative"
-            >
+            <div key={idx} className="group relative">
               <div
                 className={`absolute inset-0 bg-[#00bfff] transform ${
                   idx % 2 === 0 ? 'rotate-1' : '-rotate-1'
                 } group-hover:rotate-0 transition-transform duration-300`}
               />
-              <div 
+              <div
                 className="relative p-8 lg:p-10 shadow-lg border-[10px] border-black group-hover:shadow-xl transition-all duration-300"
                 style={{
-                  background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+                  background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
                 }}
               >
                 <div className="flex items-start gap-4">

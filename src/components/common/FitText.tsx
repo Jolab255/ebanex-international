@@ -66,8 +66,8 @@ export default function FitText({
   }, [recalc]);
 
   return (
-    <span 
-      ref={containerRef} 
+    <span
+      ref={containerRef}
       className={['block w-full', containerClassName].filter(Boolean).join(' ')}
       style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
@@ -86,4 +86,3 @@ export default function FitText({
     </span>
   );
 }
-

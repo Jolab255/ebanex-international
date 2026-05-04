@@ -52,28 +52,28 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
   // For the last card, we keep it at 1 to avoid jitter at the end of scroll
   const isLast = index === totalCards - 1;
   const scale = useTransform(
-    progress, 
-    isLast ? [0, 1] : [end, end + sliceSize], 
-    isLast ? [1, 1] : [1, 0.95]
+    progress,
+    isLast ? [0, 1] : [end, end + sliceSize],
+    isLast ? [1, 1] : [1, 0.95],
   );
-  
+
   // Sticky offset from top
   const topOffset = 100 + index * 32;
 
   return (
     <motion.div
-      style={{ 
-        scale, 
-        zIndex: index + 1, 
-        top: topOffset 
+      style={{
+        scale,
+        zIndex: index + 1,
+        top: topOffset,
       }}
       className="sticky mx-auto w-full max-w-5xl mb-[10vh] transform-gpu will-change-transform backface-hidden"
     >
-      <div 
+      <div
         className="group relative overflow-hidden border border-white/10 shadow-[0_-15px_35px_rgba(0,0,0,0.7)] transform-gpu"
-        style={{ 
+        style={{
           background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
-          transform: 'translateZ(0)'
+          transform: 'translateZ(0)',
         }}
       >
         <div className="grid md:grid-cols-2">
@@ -101,12 +101,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
               {service.title}
             </h3>
 
-            <p className="text-white/60 text-base leading-relaxed mb-10">
-              {service.desc}
-            </p>
+            <p className="text-white/60 text-base leading-relaxed mb-10">{service.desc}</p>
 
             <div className="flex">
-              <Link 
+              <Link
                 to="/training"
                 className="px-8 py-4 bg-transparent border border-[#00BFFF] text-[#00BFFF] hover:bg-[#00BFFF] hover:text-black font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-300 inline-block"
               >
@@ -128,8 +126,8 @@ const CoreServicesSection: React.FC = () => {
   });
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       className="relative z-30 bg-black"
       style={{ height: `${CORE_SERVICES.length * 80 + 50}vh` }}
     >
@@ -153,7 +151,10 @@ const CoreServicesSection: React.FC = () => {
                 What We Deliver
               </span>
               <h2 className="text-5xl md:text-7xl font-heading font-black text-white uppercase tracking-tighter">
-                Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00BFFF] to-white">Services</span>
+                Core{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00BFFF] to-white">
+                  Services
+                </span>
               </h2>
             </ScrollReveal>
           </div>

@@ -58,7 +58,7 @@ const TestimonialsSection: React.FC = () => {
     {
       id: 6,
       description:
-        "If you&apos;re serious about cybersecurity, Ebanex is a must-have. It dramatically speeds up team development while keeping standards high.",
+        'If you&apos;re serious about cybersecurity, Ebanex is a must-have. It dramatically speeds up team development while keeping standards high.',
       image: 'https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=200',
       name: 'Emily Karter',
       company: 'Stripe',
@@ -152,9 +152,9 @@ const TestimonialsSection: React.FC = () => {
               minScale={0.35}
               textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
             >
-              <span 
+              <span
                 style={{
-                  backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                  backgroundImage: 'linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -164,7 +164,7 @@ const TestimonialsSection: React.FC = () => {
             </FitText>
           </div>
         </ScrollReveal>
-        
+
         <ScrollReveal yOffset={20} delay={0.2}>
           <div className="mt-4">
             <span className="text-[#00BFFF] font-black uppercase tracking-[0.4em] text-[clamp(0.7rem,1.2vw,0.85rem)] inline-block bg-black py-1.5 px-6">
@@ -225,8 +225,12 @@ const TestimonialsSection: React.FC = () => {
                         className="w-16 h-16 rounded-none border border-[#00BFFF]/40 object-cover"
                       />
                       <div>
-                        <p className="text-sm sm:text-base text-white font-black uppercase tracking-tighter">{testimonial.name}</p>
-                        <p className="text-[10px] sm:text-xs text-[#00BFFF] uppercase tracking-widest font-black">{testimonial.company}</p>
+                        <p className="text-sm sm:text-base text-white font-black uppercase tracking-tighter">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-[10px] sm:text-xs text-[#00BFFF] uppercase tracking-widest font-black">
+                          {testimonial.company}
+                        </p>
                       </div>
                     </div>
                   </div>

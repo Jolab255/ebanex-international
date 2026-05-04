@@ -1,6 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Users, ArrowRight, Zap, Star, CheckCircle, Activity, X, Send, ChevronDown, MessageSquare } from 'lucide-react';
+import {
+  Users,
+  ArrowRight,
+  Zap,
+  Star,
+  CheckCircle,
+  Activity,
+  X,
+  Send,
+  ChevronDown,
+  MessageSquare,
+} from 'lucide-react';
 import { SEO } from '../components/layout';
 import { Squares } from '../components/animations';
 import { Link } from 'react-router-dom';
@@ -42,7 +53,7 @@ const DigitalTrustConference: React.FC = () => {
   useEffect(() => {
     if (errors.form) {
       const timer = setTimeout(() => {
-        setErrors(prev => ({ ...prev, form: undefined }));
+        setErrors((prev) => ({ ...prev, form: undefined }));
       }, 3000);
       return () => clearTimeout(timer);
     }
@@ -64,7 +75,7 @@ const DigitalTrustConference: React.FC = () => {
     phone: '',
     institution: '',
     role: 'Delegate',
-    website: ''
+    website: '',
   });
 
   const { scrollYProgress } = useScroll({
@@ -93,7 +104,7 @@ const DigitalTrustConference: React.FC = () => {
     'Digital Transformation & Resilience',
     'Data Privacy & Protection',
     'Regulatory Trends & Compliance',
-    'Emerging Technology Trends, Risks and Opportunities'
+    'Emerging Technology Trends, Risks and Opportunities',
   ];
 
   const whatToExpect = [
@@ -101,7 +112,7 @@ const DigitalTrustConference: React.FC = () => {
     'Practical discussions based on real-world challenges and case scenarios',
     'Panel discussions on emerging risks and regulatory developments',
     'Networking opportunities with professionals across industries',
-    'Exposure to current tools, techniques, and frameworks'
+    'Exposure to current tools, techniques, and frameworks',
   ];
 
   const whoShouldAttend = [
@@ -113,7 +124,7 @@ const DigitalTrustConference: React.FC = () => {
     'Risk & Compliance Officers',
     'IT & Digital Transformation Leaders',
     'Government & Regulatory Officials',
-    'Anyone seeking to build practical knowledge in cybersecurity, artificial intelligence, and digital trust'
+    'Anyone seeking to build practical knowledge in cybersecurity, artificial intelligence, and digital trust',
   ];
 
   const whyAttend = [
@@ -121,14 +132,14 @@ const DigitalTrustConference: React.FC = () => {
     'Gain practical insights that can be applied within your organization',
     'Learn from experienced professionals across multiple industries',
     'Build professional networks and exchange ideas',
-    'Strengthen your understanding of digital trust and governance'
+    'Strengthen your understanding of digital trust and governance',
   ];
 
   const sections = [
     { title: 'Focus Areas', items: focusAreas, image: auditImg },
     { title: 'What to Expect', items: whatToExpect, image: cyberImg },
     { title: 'Who Should Attend', items: whoShouldAttend, image: cybersecurityImg },
-    { title: 'Why Attend', items: whyAttend, image: advisoryImg }
+    { title: 'Why Attend', items: whyAttend, image: advisoryImg },
   ];
 
   const fadeInUp = {
@@ -138,9 +149,9 @@ const DigitalTrustConference: React.FC = () => {
   };
 
   const overviewParagraphs = [
-    "As organizations continue to adopt digital technologies, the need for trust, resilience, and effective risk management has become increasingly critical.",
-    "The Ebanex Digital Trust Conference provides a platform for meaningful dialogue, knowledge sharing, and practical insights across critical areas of cybersecurity, IT governance, artificial intelligence, and digital risk.",
-    "The conference is designed to bridge the gap between strategy, regulation, and real-world implementation, equipping participants with knowledge that can be applied within their organizations."
+    'As organizations continue to adopt digital technologies, the need for trust, resilience, and effective risk management has become increasingly critical.',
+    'The Ebanex Digital Trust Conference provides a platform for meaningful dialogue, knowledge sharing, and practical insights across critical areas of cybersecurity, IT governance, artificial intelligence, and digital risk.',
+    'The conference is designed to bridge the gap between strategy, regulation, and real-world implementation, equipping participants with knowledge that can be applied within their organizations.',
   ];
 
   const firstParagraph = overviewParagraphs[0];
@@ -148,8 +159,8 @@ const DigitalTrustConference: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    setErrors(prev => ({ ...prev, [name]: undefined, form: undefined }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: undefined, form: undefined }));
   };
 
   const validate = (): boolean => {
@@ -170,47 +181,59 @@ const DigitalTrustConference: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Honeypot
     if (formData.website) {
       setSuccessMessage('Thank you for registering! We will contact you shortly.');
-      setFormData({ fullName: '', email: '', phone: '', institution: '', role: 'Delegate', website: '' });
-      return;
-    }
-
-    if (!validate()) return;
-
-    setIsSubmitting(true);
-    setErrors(prev => ({ ...prev, form: undefined }));
-
-    const result = await sendConferenceRegistration({
-      fullName: formData.fullName.trim(),
-      email: formData.email.trim(),
-      phone: formData.phone.trim(),
-      institution: formData.institution.trim(),
-      role: formData.role
-    });
-
-    setIsSubmitting(false);
-
-    if (result.ok) {
-      setSuccessMessage('Thank you for registering! We have received your details and will contact you shortly with further information.');
       setFormData({
         fullName: '',
         email: '',
         phone: '',
         institution: '',
         role: 'Delegate',
-        website: ''
+        website: '',
+      });
+      return;
+    }
+
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+    setErrors((prev) => ({ ...prev, form: undefined }));
+
+    const result = await sendConferenceRegistration({
+      fullName: formData.fullName.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      institution: formData.institution.trim(),
+      role: formData.role,
+    });
+
+    setIsSubmitting(false);
+
+    if (result.ok) {
+      setSuccessMessage(
+        'Thank you for registering! We have received your details and will contact you shortly with further information.',
+      );
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        institution: '',
+        role: 'Delegate',
+        website: '',
       });
     } else {
-      setErrors(prev => ({ ...prev, form: result.error || 'Unable to process registration. Please try again.' }));
+      setErrors((prev) => ({
+        ...prev,
+        form: result.error || 'Unable to process registration. Please try again.',
+      }));
     }
   };
 
   return (
     <div className="bg-black min-h-screen text-white">
-      <SEO 
+      <SEO
         title="Ebanex Digital Trust Conference | Ebanex International"
         description="Shaping the Future of Cybersecurity, AI, and Digital Trust. Join professionals, industry leaders, and institutions."
         keywords="Digital Trust, Conference, Cybersecurity Event, Africa, Data Privacy, Governance, AI"
@@ -219,9 +242,15 @@ const DigitalTrustConference: React.FC = () => {
       {/* Hero Section */}
       <section className="relative pt-6 pb-0 overflow-hidden bg-[linear-gradient(135deg,#000000_50%,#00BFFF_50%)]">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <Squares speed={0.13} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.08)" hoverFillColor="rgba(255,255,255,0.05)" />
+          <Squares
+            speed={0.13}
+            squareSize={40}
+            direction="diagonal"
+            borderColor="rgba(255,255,255,0.08)"
+            hoverFillColor="rgba(255,255,255,0.05)"
+          />
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 pb-20">
           <div className="max-w-5xl">
             {/* Header Title with Black BG - Aligned with Description Card */}
@@ -236,28 +265,41 @@ const DigitalTrustConference: React.FC = () => {
               <div className="w-full lg:w-[70%] relative z-40">
                 {/* Subtitle - Still indented relative to title/card */}
                 <div className="inline-flex items-center px-3 py-2 bg-[#00BFFF] text-black mb-6 mt-12 lg:mt-8 ml-8 sm:ml-16 lg:ml-20">
-                  <span className="text-[10px] font-black uppercase tracking-[0.1em]">Shaping the Future of Cybersecurity, AI, and Digital Trust</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.1em]">
+                    Shaping the Future of Cybersecurity, AI, and Digital Trust
+                  </span>
                 </div>
 
                 {/* Main Content Card - ml-4 on mobile, 0 on lg */}
                 <div
                   className="p-6 sm:p-10 border-[8px] border-black shadow-2xl relative overflow-hidden ml-4 lg:ml-0"
                   style={{
-                    background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+                    background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
                   }}
                 >
                   <div className="relative z-10">
                     <p className="text-base sm:text-lg text-white/90 font-medium leading-relaxed mb-8">
-                      The Ebanex Digital Trust Conference is a premier industry conference and engagement platform, bringing together professionals, industry leaders, and institutions from across the region and the African continent to explore emerging trends, risks, and innovations in cybersecurity, IT audit, artificial intelligence, and digital trust.
+                      The Ebanex Digital Trust Conference is a premier industry conference and
+                      engagement platform, bringing together professionals, industry leaders, and
+                      institutions from across the region and the African continent to explore
+                      emerging trends, risks, and innovations in cybersecurity, IT audit, artificial
+                      intelligence, and digital trust.
                     </p>
                     <div className="flex flex-wrap gap-3">
-                      <button 
+                      <button
                         onClick={() => setIsModalOpen(true)}
                         className="h-12 px-6 bg-[#00BFFF] text-black font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2 group"
                       >
-                        Register Now <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                        Register Now{' '}
+                        <ArrowRight
+                          size={14}
+                          className="group-hover:translate-x-1 transition-transform"
+                        />
                       </button>
-                      <Link to="/contact?service=Conference Sponsorship" className="h-12 px-6 border-2 border-white/20 text-white font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center gap-2">
+                      <Link
+                        to="/contact?service=Conference Sponsorship"
+                        className="h-12 px-6 border-2 border-white/20 text-white font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center gap-2"
+                      >
                         Partner With Us
                       </Link>
                     </div>
@@ -271,9 +313,9 @@ const DigitalTrustConference: React.FC = () => {
               <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[450px] lg:w-[550px] aspect-square z-10 hidden md:block opacity-90 lg:opacity-100">
                 <div className="relative w-full h-full">
                   <div className="absolute inset-0 bg-[#00BFFF]/5 z-20 pointer-events-none" />
-                  <img 
-                    src={cybersecurityImg} 
-                    alt="Digital Trust Conference" 
+                  <img
+                    src={cybersecurityImg}
+                    alt="Digital Trust Conference"
                     className="w-full h-full object-cover border-[10px] border-black shadow-[-20px_20px_0px_0px_rgba(0,191,255,0.1)]"
                   />
                 </div>
@@ -289,7 +331,13 @@ const DigitalTrustConference: React.FC = () => {
       {/* Overview Section */}
       <section id="overview" className="relative z-20 bg-black pt-0 pb-12 sm:pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
-          <Squares speed={0.13} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.08)" hoverFillColor="rgba(255,255,255,0.05)" />
+          <Squares
+            speed={0.13}
+            squareSize={40}
+            direction="diagonal"
+            borderColor="rgba(255,255,255,0.08)"
+            hoverFillColor="rgba(255,255,255,0.05)"
+          />
         </div>
         <div className="w-full px-4 sm:px-6 lg:px-[100px] relative z-10">
           <motion.div {...fadeInUp}>
@@ -316,7 +364,10 @@ const DigitalTrustConference: React.FC = () => {
                       className="overflow-hidden"
                     >
                       {remainingParagraphs.map((para, i) => (
-                        <p key={i} className="text-black text-lg font-light leading-relaxed text-justify mt-8">
+                        <p
+                          key={i}
+                          className="text-black text-lg font-light leading-relaxed text-justify mt-8"
+                        >
                           {para}
                         </p>
                       ))}
@@ -338,32 +389,37 @@ const DigitalTrustConference: React.FC = () => {
 
                 {/* Feature Cards Grid - Moved inside blue container and centered */}
                 <div className="flex justify-center w-full">
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="mt-12 relative p-1 border-[4px] border-black shadow-xl overflow-hidden bg-black/10 max-w-4xl w-full" 
+                    className="mt-12 relative p-1 border-[4px] border-black shadow-xl overflow-hidden bg-black/10 max-w-4xl w-full"
                   >
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 p-4 items-stretch">
                       {[
                         { label: 'Industry Insights', icon: <Star size={18} /> },
                         { label: 'Expert Networking', icon: <Users size={18} /> },
                         { label: 'Practical Strategy', icon: <Zap size={18} /> },
-                        { label: 'Emerging Trends', icon: <Activity size={18} /> }
+                        { label: 'Emerging Trends', icon: <Activity size={18} /> },
                       ].map((item, i) => (
-                        <div 
-                          key={i} 
+                        <div
+                          key={i}
                           className="p-3 border border-black/20 hover:border-white/30 transition-colors flex flex-col items-center text-center h-full min-h-[100px] justify-center"
-                          style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
+                          style={{
+                            background:
+                              'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
+                          }}
                         >
                           <div className="text-[#00BFFF] mb-2">{item.icon}</div>
-                          <div className="text-[8px] font-black uppercase tracking-widest leading-tight text-white">{item.label}</div>
+                          <div className="text-[8px] font-black uppercase tracking-widest leading-tight text-white">
+                            {item.label}
+                          </div>
                         </div>
                       ))}
                     </div>
                   </motion.div>
                 </div>
-                
+
                 {/* Decorative accent */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
               </div>
@@ -374,82 +430,127 @@ const DigitalTrustConference: React.FC = () => {
 
       {/* Specialized Content Grid Section */}
       <div className="relative w-full px-4 sm:px-6 lg:px-[100px] pb-0 bg-black z-20 overflow-visible">
-          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-              <Squares speed={0.13} squareSize={40} direction="diagonal" borderColor="rgba(255,255,255,0.08)" hoverFillColor="rgba(255,255,255,0.05)" />
-          </div>
-          <div ref={gridRef} className="relative" style={{ backgroundColor: '#00BFFF' }}>
-              <motion.div style={{ scale: waveScale, opacity: waveOpacity, rotate: waveRotate }} className="absolute -right-40 -bottom-40 w-[600px] h-[600px] pointer-events-none">
-                  <svg viewBox="0 0 200 200" className="w-full h-full">
-                      <defs>
-                          <radialGradient id="waveGradientTemplateGrid" cx="50%" cy="50%" r="50%">
-                              <stop offset="0%" stopColor="#00BFFF" stopOpacity="0.3" />
-                              <stop offset="100%" stopColor="#00BFFF" stopOpacity="0" />
-                          </radialGradient>
-                      </defs>
-                      <motion.circle style={{ scale: circle1Scale }} cx="100" cy="100" r="40" fill="none" stroke="url(#waveGradientTemplateGrid)" strokeWidth="8" />
-                      <motion.circle style={{ scale: circle2Scale }} cx="100" cy="100" r="70" fill="none" stroke="url(#waveGradientTemplateGrid)" strokeWidth="12" />
-                      <motion.circle style={{ scale: circle3Scale }} cx="100" cy="100" r="100" fill="none" stroke="url(#waveGradientTemplateGrid)" strokeWidth="16" />
-                  </svg>
-              </motion.div>
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <Squares
+            speed={0.13}
+            squareSize={40}
+            direction="diagonal"
+            borderColor="rgba(255,255,255,0.08)"
+            hoverFillColor="rgba(255,255,255,0.05)"
+          />
+        </div>
+        <div ref={gridRef} className="relative" style={{ backgroundColor: '#00BFFF' }}>
+          <motion.div
+            style={{ scale: waveScale, opacity: waveOpacity, rotate: waveRotate }}
+            className="absolute -right-40 -bottom-40 w-[600px] h-[600px] pointer-events-none"
+          >
+            <svg viewBox="0 0 200 200" className="w-full h-full">
+              <defs>
+                <radialGradient id="waveGradientTemplateGrid" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#00BFFF" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="#00BFFF" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              <motion.circle
+                style={{ scale: circle1Scale }}
+                cx="100"
+                cy="100"
+                r="40"
+                fill="none"
+                stroke="url(#waveGradientTemplateGrid)"
+                strokeWidth="8"
+              />
+              <motion.circle
+                style={{ scale: circle2Scale }}
+                cx="100"
+                cy="100"
+                r="70"
+                fill="none"
+                stroke="url(#waveGradientTemplateGrid)"
+                strokeWidth="12"
+              />
+              <motion.circle
+                style={{ scale: circle3Scale }}
+                cx="100"
+                cy="100"
+                r="100"
+                fill="none"
+                stroke="url(#waveGradientTemplateGrid)"
+                strokeWidth="16"
+              />
+            </svg>
+          </motion.div>
 
-              <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-[60px] pt-16 pb-16">
-                  <div className="text-center mb-10">
-                    <div className="inline-block bg-black py-4 px-8 border border-white/10 shadow-2xl">
-                      <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9]">
-                        Conference <span className="text-[#00BFFF]">Highlights</span>
-                      </h2>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
-                      {sections.map((section, idx) => (
-                          <div key={idx} className="flex h-full group">
-                              <div className="shadow-xl bg-[#0a1628] h-full w-full flex flex-col overflow-hidden border border-white/5 group-hover:border-[#00BFFF]/30 transition-all duration-500" style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}>
-                                  {/* Compact Image Section */}
-                                  <div className="relative h-28 overflow-hidden border-b-4 border-black">
-                                      <img 
-                                          src={section.image} 
-                                          alt={section.title}
-                                          className="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-110"
-                                      />
-                                  </div>
-
-                                  {/* Compact Content Section */}
-                                  <div className="p-4 flex flex-col flex-1">
-                                      <h4 className="text-sm font-black text-white mb-4 flex items-center gap-2 uppercase tracking-tight group-hover:text-[#00BFFF] transition-colors leading-tight min-h-[40px]">
-                                          <span className="w-1 h-5 bg-[#00BFFF] shrink-0"></span> {section.title}
-                                      </h4>
-                                      <ul className="space-y-3 flex-grow">
-                                          {section.items.map((item, i) => (
-                                              <li key={i} className="flex items-start gap-2 text-white/70 font-normal text-xs sm:text-sm leading-snug text-start">
-                                                  <CheckCircle className="w-3 h-3 text-[#00BFFF] shrink-0 mt-0.5" />
-                                                  {item}
-                                              </li>
-                                          ))}
-                                      </ul>
-                                  </div>
-                                  {/* Simple Accent Bar */}
-                                  <div className="h-1 w-0 group-hover:w-full bg-[#00BFFF] transition-all duration-500" />
-                              </div>
-                          </div>
-                      ))}
-                  </div>
+          <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-[60px] pt-16 pb-16">
+            <div className="text-center mb-10">
+              <div className="inline-block bg-black py-4 px-8 border border-white/10 shadow-2xl">
+                <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9]">
+                  Conference <span className="text-[#00BFFF]">Highlights</span>
+                </h2>
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+              {sections.map((section, idx) => (
+                <div key={idx} className="flex h-full group">
+                  <div
+                    className="shadow-xl bg-[#0a1628] h-full w-full flex flex-col overflow-hidden border border-white/5 group-hover:border-[#00BFFF]/30 transition-all duration-500"
+                    style={{
+                      background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
+                    }}
+                  >
+                    {/* Compact Image Section */}
+                    <div className="relative h-28 overflow-hidden border-b-4 border-black">
+                      <img
+                        src={section.image}
+                        alt={section.title}
+                        className="w-full h-full object-cover transition-transform duration-700 scale-100 group-hover:scale-110"
+                      />
+                    </div>
+
+                    {/* Compact Content Section */}
+                    <div className="p-4 flex flex-col flex-1">
+                      <h4 className="text-sm font-black text-white mb-4 flex items-center gap-2 uppercase tracking-tight group-hover:text-[#00BFFF] transition-colors leading-tight min-h-[40px]">
+                        <span className="w-1 h-5 bg-[#00BFFF] shrink-0"></span> {section.title}
+                      </h4>
+                      <ul className="space-y-3 flex-grow">
+                        {section.items.map((item, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start gap-2 text-white/70 font-normal text-xs sm:text-sm leading-snug text-start"
+                          >
+                            <CheckCircle className="w-3 h-3 text-[#00BFFF] shrink-0 mt-0.5" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {/* Simple Accent Bar */}
+                    <div className="h-1 w-0 group-hover:w-full bg-[#00BFFF] transition-all duration-500" />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
+        </div>
       </div>
 
       {/* CTA Section */}
-      <CtaSection 
+      <CtaSection
         mainHeader="BE PART OF THE CONVERSATION"
         headerSubtitle=""
-        title={<>Shaping the <span className="text-[#00BFFF]">Future</span> of Digital Trust</>}
+        title={
+          <>
+            Shaping the <span className="text-[#00BFFF]">Future</span> of Digital Trust
+          </>
+        }
         description="Join Ebanex International and industry professionals as we explore the future of cybersecurity, IT audit, and digital trust."
         primaryButtonText="Register Now"
         primaryButtonOnClick={() => setIsModalOpen(true)}
         secondaryButtonText="Partner With Us"
         secondaryButtonLink="/contact?service=Conference Sponsorship"
         tertiaryButtonText="Request More Information"
-        tertiaryButtonLink="/contact"
+        tertiaryButtonLink="/contact?service=Research Partnership"
       />
 
       {/* Registration Modal */}
@@ -468,7 +569,7 @@ const DigitalTrustConference: React.FC = () => {
               className="relative w-full max-w-2xl bg-[#0a1628] border-[10px] border-black shadow-[20px_20px_0px_0px_rgba(0,191,255,0.2)] p-8 sm:p-10 overflow-y-auto max-h-[90vh]"
               style={{ background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)' }}
             >
-              <button 
+              <button
                 onClick={() => setIsModalOpen(false)}
                 className="absolute top-4 right-4 text-white/40 hover:text-[#00BFFF] transition-colors z-50"
               >
@@ -505,72 +606,98 @@ const DigitalTrustConference: React.FC = () => {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-1.5 group">
-                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Full Name</label>
+                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                      Full Name
+                    </label>
                     <input
                       type="text"
                       name="fullName"
                       value={formData.fullName}
                       onChange={handleInputChange}
                       className={cn(
-                        "w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20",
-                        errors.fullName && "border-red-500"
+                        'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                        errors.fullName && 'border-red-500',
                       )}
                       placeholder="YOUR FULL NAME"
                     />
-                    {errors.fullName && <p className="text-[10px] text-red-500 font-black uppercase mt-1">{errors.fullName}</p>}
+                    {errors.fullName && (
+                      <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                        {errors.fullName}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-1.5 group">
-                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Email Address</label>
+                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                      Email Address
+                    </label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
                       className={cn(
-                        "w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20",
-                        errors.email && "border-red-500"
+                        'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                        errors.email && 'border-red-500',
                       )}
                       placeholder="EMAIL@INSTITUTION.COM"
                     />
-                    {errors.email && <p className="text-[10px] text-red-500 font-black uppercase mt-1">{errors.email}</p>}
+                    {errors.email && (
+                      <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-1.5 group">
-                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Phone Number</label>
+                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                      Phone Number
+                    </label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
                       className={cn(
-                        "w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20",
-                        errors.phone && "border-red-500"
+                        'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                        errors.phone && 'border-red-500',
                       )}
                       placeholder="+255 --- --- ---"
                     />
-                    {errors.phone && <p className="text-[10px] text-red-500 font-black uppercase mt-1">{errors.phone}</p>}
+                    {errors.phone && (
+                      <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-1.5 group">
-                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Institution</label>
+                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                      Institution
+                    </label>
                     <input
                       type="text"
                       name="institution"
                       value={formData.institution}
                       onChange={handleInputChange}
                       className={cn(
-                        "w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20",
-                        errors.institution && "border-red-500"
+                        'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                        errors.institution && 'border-red-500',
                       )}
                       placeholder="ORGANIZATION NAME"
                     />
-                    {errors.institution && <p className="text-[10px] text-red-500 font-black uppercase mt-1">{errors.institution}</p>}
+                    {errors.institution && (
+                      <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                        {errors.institution}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">Proposed Role</label>
+                  <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                    Proposed Role
+                  </label>
                   <div className="relative">
                     <select
                       name="role"
@@ -595,7 +722,7 @@ const DigitalTrustConference: React.FC = () => {
                   disabled={isSubmitting}
                   className="w-full py-4 bg-[#00BFFF] border-4 border-black text-black font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
                 >
-                  {isSubmitting ? 'Transmitting...' : 'Send Registration'} <Send size={18} />
+                  {isSubmitting ? 'Registering...' : 'Send Registration'} <Send size={18} />
                 </button>
               </form>
             </motion.div>
@@ -606,7 +733,7 @@ const DigitalTrustConference: React.FC = () => {
       {/* Success Notification */}
       <AnimatePresence>
         {successMessage && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -614,30 +741,32 @@ const DigitalTrustConference: React.FC = () => {
           >
             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
             <div className="relative bg-[#00BFFF] border-[10px] border-black p-8 sm:p-12 max-w-lg w-full text-center shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] pointer-events-auto">
-              <button 
+              <button
                 onClick={() => setSuccessMessage(null)}
                 className="absolute top-4 right-4 text-black/40 hover:text-black transition-colors"
               >
                 <X size={24} />
               </button>
-              
+
               <div className="bg-black w-20 h-20 flex items-center justify-center mx-auto mb-6">
                 <CheckCircle className="w-12 h-12 text-[#00BFFF]" />
               </div>
-              
-              <h3 className="text-black font-black text-2xl uppercase mb-4 tracking-tighter">Transmission Successful</h3>
+
+              <h3 className="text-black font-black text-2xl uppercase mb-4 tracking-tighter">
+                Registration Successful
+              </h3>
               <p className="text-black font-bold uppercase tracking-widest text-xs leading-relaxed">
                 {successMessage}
               </p>
-              
-              <button 
+
+              <button
                 onClick={() => {
                   setSuccessMessage(null);
                   setIsModalOpen(false);
                 }}
                 className="mt-10 w-full py-4 bg-black text-[#00BFFF] font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-black transition-all"
               >
-                Close Transmission
+                Close
               </button>
             </div>
           </motion.div>

@@ -129,7 +129,9 @@ const TopBar: React.FC = () => {
           >
             <div className="p-3 sm:p-4">
               <div className="flex items-center gap-3 mb-3">
-                <div className="text-[10px] text-white/40 uppercase tracking-widest">Social Links</div>
+                <div className="text-[10px] text-white/40 uppercase tracking-widest">
+                  Social Links
+                </div>
                 <button
                   onClick={() => setActivePanel(null)}
                   className="ml-auto p-1 text-white/40 hover:text-white transition-colors flex-shrink-0"

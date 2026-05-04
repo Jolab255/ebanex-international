@@ -6,7 +6,7 @@ import FeatureCard from './components/FeatureCard';
 
 const WhyEbanexGridSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  
+
   const features = [
     {
       title: 'Global Training',
@@ -26,8 +26,8 @@ const WhyEbanexGridSection: React.FC = () => {
   ];
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       className="relative z-30 pt-4 sm:pt-6 pb-16 sm:pb-24 w-full bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)]"
     >
       <div className="sticky top-0 h-screen w-full z-0 pointer-events-none overflow-hidden">
@@ -49,9 +49,10 @@ const WhyEbanexGridSection: React.FC = () => {
                 minScale={0.35}
                 textClassName="font-heading font-black leading-none uppercase tracking-tighter text-[clamp(1.25rem,6vw,3.5rem)]"
               >
-                <span 
+                <span
                   style={{
-                    backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                    backgroundImage:
+                      'linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                   }}
@@ -74,11 +75,13 @@ const WhyEbanexGridSection: React.FC = () => {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 sm:gap-x-10 sm:gap-y-12 max-w-7xl mx-auto">
             {features.map((feature, i) => {
               const isMiddle = i % 3 === 1;
-              
+
               return (
-                <div 
-                  key={i} 
-                  className={isMiddle ? "lg:border-t-[10px] lg:border-l-[10px] lg:border-black" : ""}
+                <div
+                  key={i}
+                  className={
+                    isMiddle ? 'lg:border-t-[10px] lg:border-l-[10px] lg:border-black' : ''
+                  }
                 >
                   <FeatureCard feature={feature} hasOutline={i !== 0} />
                 </div>

@@ -28,20 +28,25 @@ const HeroSection: React.FC = () => {
             </ScrollReveal>
           </div>
         </div>
-        
+
         {/* Breadcrumbs Area */}
         <ScrollReveal yOffset={20} delay={0.4}>
           <div className="inline-flex items-center gap-3 bg-black py-2.5 px-6">
-            <Link to="/" className="flex items-center gap-2 hover:text-[#00BFFF] transition-colors font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs text-slate-300">
+            <Link
+              to="/"
+              className="flex items-center gap-2 hover:text-[#00BFFF] transition-colors font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs text-slate-300"
+            >
               <Home size={14} className="sm:w-4 sm:h-4 text-[#00BFFF]" />
               <span>Home</span>
             </Link>
             <ChevronRight size={14} className="text-[#00BFFF] sm:w-4 sm:h-4 opacity-50" />
-            <span className="text-white font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs">Who We Are</span>
+            <span className="text-white font-black uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+              Who We Are
+            </span>
           </div>
         </ScrollReveal>
       </div>
-      
+
       {/* Decorative corner accents */}
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#00BFFF]/10 blur-[150px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00BFFF]/10 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />

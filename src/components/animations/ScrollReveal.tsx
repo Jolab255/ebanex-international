@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
 
-interface ScrollRevealProps extends HTMLMotionProps<"div"> {
+interface ScrollRevealProps extends HTMLMotionProps<'div'> {
   children: React.ReactNode;
   delay?: number;
   yOffset?: number;
@@ -21,7 +21,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     <motion.div
       initial={{ opacity: 0, y: yOffset }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: "-10% 0px" }}
+      viewport={{ once, margin: '-10% 0px' }}
       transition={{
         duration,
         delay,

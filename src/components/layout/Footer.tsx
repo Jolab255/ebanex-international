@@ -21,23 +21,23 @@ const Footer: React.FC = () => (
 
     {/* Main Footer Content */}
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 relative z-10">
-      <div 
+      <div
         className="p-8 sm:p-12 border-[10px] border-black shadow-2xl relative overflow-hidden"
         style={{
-          background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+          background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
         }}
       >
         {/* Subtle inner decoration */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-[#00BFFF]/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 relative z-10">
           {/* Brand Column */}
           <div className="lg:col-span-4">
             <div className="mb-6">
-              <span 
+              <span
                 className="text-3xl font-black tracking-tighter uppercase font-heading bg-clip-text text-transparent"
                 style={{
-                  backgroundImage: "linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)",
+                  backgroundImage: 'linear-gradient(135deg, #FFFFFF 0%, #00BFFF 50%, #FFFFFF 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -109,7 +109,11 @@ const Footer: React.FC = () => (
             </h4>
             <div className="flex gap-4 mb-8">
               {[
-                { icon: Linkedin, href: 'https://www.linkedin.com/company/ebanex-international/', label: 'LinkedIn' },
+                {
+                  icon: Linkedin,
+                  href: 'https://www.linkedin.com/company/ebanex-international/',
+                  label: 'LinkedIn',
+                },
                 { icon: Twitter, href: '#', label: 'Twitter' },
                 { icon: Youtube, href: '#', label: 'YouTube' },
               ].map((item) => (
@@ -146,9 +150,9 @@ const Footer: React.FC = () => (
             <span className="hidden md:block text-white/10">|</span>
             <p>
               Developed by{' '}
-              <a 
-                href="https://wa.me/255765929374" 
-                target="_blank" 
+              <a
+                href="https://wa.me/255765929374"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#00BFFF] hover:text-white transition-colors"
               >

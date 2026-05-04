@@ -6,15 +6,15 @@ import aboutVideo from '../../assets/aboutv.mp4';
 
 const TIPS = [
   "Cybersecurity is not just about technology; it's about people, processes, and a culture of vigilance.",
-  "Digital transformation can increase business margins by up to 20% through operational efficiency.",
-  "Continuous professional development is the single most important factor in long-term career resilience.",
-  "By 2025, 75% of the global workforce will be millennials, requiring new approaches to institutional leadership.",
-  "Organizations with strong digital trust foundations grow their revenue 10% faster than their peers.",
-  "Data literacy is becoming as fundamental as reading and writing in the modern corporate environment.",
-  "Effective risk management is not about avoiding risks, but about making informed decisions to take the right ones.",
-  "Soft skills like emotional intelligence are now ranked as top priorities by 92% of talent professionals.",
-  "A single cybersecurity breach can cost an organization an average of $4.45 million globally.",
-  "Strategic thinking is a skill that can be developed at any level of an organization, not just at the top."
+  'Digital transformation can increase business margins by up to 20% through operational efficiency.',
+  'Continuous professional development is the single most important factor in long-term career resilience.',
+  'By 2025, 75% of the global workforce will be millennials, requiring new approaches to institutional leadership.',
+  'Organizations with strong digital trust foundations grow their revenue 10% faster than their peers.',
+  'Data literacy is becoming as fundamental as reading and writing in the modern corporate environment.',
+  'Effective risk management is not about avoiding risks, but about making informed decisions to take the right ones.',
+  'Soft skills like emotional intelligence are now ranked as top priorities by 92% of talent professionals.',
+  'A single cybersecurity breach can cost an organization an average of $4.45 million globally.',
+  'Strategic thinking is a skill that can be developed at any level of an organization, not just at the top.',
 ];
 
 const HeroSection: React.FC = () => {
@@ -34,20 +34,16 @@ const HeroSection: React.FC = () => {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.log("Autoplay prevented:", error);
+      videoRef.current.play().catch((error) => {
+        console.log('Autoplay prevented:', error);
       });
     }
   }, []);
 
   return (
-    <section 
-      className="relative min-h-[85vh] lg:min-h-[90vh] w-full flex flex-col-reverse lg:flex-row overflow-hidden bg-black"
-    >
+    <section className="relative min-h-[85vh] lg:min-h-[90vh] w-full flex flex-col-reverse lg:flex-row overflow-hidden bg-black">
       {/* Dynamic Background Overlay */}
-      <motion.div 
-        className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_50%,rgba(0,191,255,0.05),transparent_70%)]"
-      />
+      <motion.div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_50%,rgba(0,191,255,0.05),transparent_70%)]" />
 
       {/* Left Content Half (40%) */}
       <div className="w-full lg:w-[40%] flex items-start justify-center lg:justify-end px-6 sm:px-12 lg:pr-0 xl:pr-0 pt-0 pb-12 lg:pt-0 lg:pb-20 relative z-20">
@@ -104,15 +100,15 @@ const HeroSection: React.FC = () => {
             </h1>
 
             {/* Description */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
               <p className="text-xs sm:text-sm text-white/60 max-w-xl leading-relaxed font-light border-l border-[#00BFFF]/20 pl-4 sm:pl-6 text-center md:text-left">
-                Ebanex International is a global training and advisory firm delivering
-                professional development, cybersecurity training, digital transformation capacity
-                building, and institutional strengthening solutions across industries.
+                Ebanex International is a global training and advisory firm delivering professional
+                development, cybersecurity training, digital transformation capacity building, and
+                institutional strengthening solutions across industries.
               </p>
             </motion.div>
 
@@ -123,14 +119,14 @@ const HeroSection: React.FC = () => {
               transition={{ delay: 1, duration: 0.8 }}
               className="flex flex-wrap gap-3 mt-8 justify-center md:justify-start"
             >
-              <button 
+              <button
                 onClick={() => navigate('/training')}
                 className="h-10 px-5 bg-[#00BFFF] text-black rounded-none font-bold text-[9px] uppercase tracking-[0.2em] hover:bg-white transition-all transform hover:-translate-y-1 shadow-[0_0_20px_rgba(0,191,255,0.4)] active:scale-95"
               >
                 View Training Programs
               </button>
-              <button 
-                onClick={() => navigate('/contact')}
+              <button
+                onClick={() => navigate('/contact?service=Strategic Advisory')}
                 className="h-10 px-5 border border-[#00BFFF]/30 text-white rounded-none font-bold text-[9px] uppercase tracking-[0.2em] hover:bg-[#00BFFF]/10 hover:border-[#00BFFF] transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2 group"
               >
                 Contact Us
@@ -165,7 +161,7 @@ const HeroSection: React.FC = () => {
                       Daily Insight
                     </span>
                   </div>
-                  
+
                   <p className="text-[11px] sm:text-xs text-white/40 leading-relaxed font-light max-w-md transition-colors group-hover:text-white/60 duration-500">
                     {dailyTip}
                   </p>
@@ -181,8 +177,8 @@ const HeroSection: React.FC = () => {
         <div className="w-full max-w-[1200px] max-h-[900px] relative z-10 overflow-hidden group">
           {/* Subtle Glow Frame */}
           <div className="absolute inset-0 border border-white/10 group-hover:border-[#00BFFF]/30 transition-colors duration-700 z-20 pointer-events-none" />
-          
-          <video 
+
+          <video
             ref={videoRef}
             autoPlay
             loop
@@ -197,7 +193,7 @@ const HeroSection: React.FC = () => {
 
           {/* Video Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 pointer-events-none" />
-          </div>
+        </div>
         {/* Background Decorative Element */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,rgba(0,191,255,0.03)_0%,transparent_70%)] pointer-events-none" />
       </div>
@@ -206,4 +202,3 @@ const HeroSection: React.FC = () => {
 };
 
 export default HeroSection;
-

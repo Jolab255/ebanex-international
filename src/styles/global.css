@@ -134,7 +134,7 @@ body {
 
 /* Resilience Text Effect (v2) */
 .resilience-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #00BFFF 50%, #0080FF 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #00bfff 50%, #0080ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent !important;
@@ -200,12 +200,12 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #00BFFF;
+  background: #00bfff;
   border-radius: 10px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #0080FF;
+  background: #0080ff;
 }
 
 @keyframes pulse {

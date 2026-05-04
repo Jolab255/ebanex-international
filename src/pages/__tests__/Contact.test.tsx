@@ -9,7 +9,7 @@ describe('Contact page form', () => {
     render(
       <BrowserRouter>
         <Contact />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     fireEvent.click(screen.getByRole('button', { name: /send inquiry/i }));
@@ -25,7 +25,7 @@ describe('Contact page form', () => {
     render(
       <BrowserRouter>
         <Contact />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     fireEvent.change(screen.getByPlaceholderText(/EXECUTIVE NAME/i), {
@@ -44,9 +44,6 @@ describe('Contact page form', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
-    expect(
-      await screen.findByText(/Your inquiry has been received/i),
-    ).toBeInTheDocument();
+    expect(await screen.findByText(/Your inquiry has been received/i)).toBeInTheDocument();
   });
 });
-

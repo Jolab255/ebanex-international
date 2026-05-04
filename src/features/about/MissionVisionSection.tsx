@@ -30,10 +30,10 @@ const MissionVisionSection: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-8 sm:gap-12 w-full max-w-6xl">
           {/* Mission Box */}
-          <motion.div 
+          <motion.div
             className="w-full p-8 sm:p-12 border-[10px] border-black shadow-none relative overflow-hidden h-full"
             style={{
-              background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+              background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
             }}
           >
             <div className="relative z-10 space-y-6">
@@ -56,10 +56,10 @@ const MissionVisionSection: React.FC = () => {
           </motion.div>
 
           {/* Vision Box */}
-          <motion.div 
+          <motion.div
             className="w-full p-8 sm:p-12 border-[10px] border-black shadow-none relative overflow-hidden h-full"
             style={{
-              background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)'
+              background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
             }}
           >
             <div className="relative z-10 space-y-6">

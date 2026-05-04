@@ -105,12 +105,12 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
 
   const currentPair = [
     clients[(activeSlide * 2) % clients.length],
-    clients[(activeSlide * 2 + 1) % clients.length]
+    clients[(activeSlide * 2 + 1) % clients.length],
   ];
 
   return (
-    <section 
-      ref={sectionRef} 
+    <section
+      ref={sectionRef}
       className="relative z-30 h-[90vh] flex flex-col justify-center overflow-hidden w-full bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)]"
     >
       <div className="sticky top-0 h-screen w-full z-0 pointer-events-none opacity-100 overflow-hidden">
@@ -213,7 +213,9 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
                   <div className="text-2xl sm:text-4xl font-black text-slate-950 mb-1 font-heading">
                     <Counter target={stat.value} suffix={stat.suffix} duration={1.5} once={false} />
                   </div>
-                  <div className="text-slate-900/80 text-[10px] sm:text-xs uppercase tracking-wider font-bold">{stat.label}</div>
+                  <div className="text-slate-900/80 text-[10px] sm:text-xs uppercase tracking-wider font-bold">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -239,7 +241,10 @@ const ClientCard: React.FC<{ client: Client }> = ({ client }) => {
   const isInView = useInView(cardRef, { once: false, margin: '-50px' });
 
   return (
-    <div ref={cardRef} className="group relative h-full border-[10px] border-black bg-black overflow-hidden">
+    <div
+      ref={cardRef}
+      className="group relative h-full border-[10px] border-black bg-black overflow-hidden"
+    >
       <img
         src={client.image}
         alt={client.name}
@@ -260,7 +265,10 @@ const ClientCard: React.FC<{ client: Client }> = ({ client }) => {
       <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 z-20">
         <div className="flex items-center gap-2 mb-2">
           <Icon size={14} style={{ color: client.accent }} />
-          <span className="text-[9px] font-bold uppercase tracking-[0.2em]" style={{ color: client.accent }}>
+          <span
+            className="text-[9px] font-bold uppercase tracking-[0.2em]"
+            style={{ color: client.accent }}
+          >
             {client.category}
           </span>
         </div>

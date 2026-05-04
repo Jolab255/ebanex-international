@@ -20,7 +20,7 @@ describe('TopBar', () => {
         <TopBar />
       </BrowserRouter>,
     );
-    
+
     // Find phone button (using the lucide-phone class or similar, but simpler to use role if available)
     // The button has a Phone icon. We can find by querySelector or role.
     const buttons = screen.getAllByRole('button');
@@ -35,7 +35,7 @@ describe('TopBar', () => {
         <TopBar />
       </BrowserRouter>,
     );
-    
+
     const buttons = screen.getAllByRole('button');
     fireEvent.click(buttons[1]); // Email is second in contactInfo
 

@@ -17,7 +17,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   ...props
 }) => {
   const baseClasses = 'animate-pulse bg-slate-800/50';
-  
+
   const variantClasses = {
     text: 'rounded h-4',
     circular: 'rounded-full',
@@ -46,7 +46,7 @@ export const SkeletonShimmer: React.FC<{ className?: string }> = ({ className })
     <div
       className={cn(
         'absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent',
-        className
+        className,
       )}
       style={{
         animation: 'shimmer 2s infinite',
@@ -83,17 +83,18 @@ export const SkeletonCard: React.FC<{
   className?: string;
 }> = ({ showImage = true, showTitle = true, showText = true, lines = 3, className }) => {
   return (
-    <div className={cn('glass rounded-2xl border border-white/10 p-6 space-y-4 relative overflow-hidden', className)}>
+    <div
+      className={cn(
+        'glass rounded-2xl border border-white/10 p-6 space-y-4 relative overflow-hidden',
+        className,
+      )}
+    >
       <SkeletonShimmer />
       {showImage && (
         <Skeleton variant="rounded" width="100%" height="200px" className="relative z-10" />
       )}
-      {showTitle && (
-        <Skeleton variant="text" width="70%" height="24px" className="relative z-10" />
-      )}
-      {showText && (
-        <SkeletonText lines={lines} className="relative z-10" />
-      )}
+      {showTitle && <Skeleton variant="text" width="70%" height="24px" className="relative z-10" />}
+      {showText && <SkeletonText lines={lines} className="relative z-10" />}
     </div>
   );
 };
@@ -102,14 +103,7 @@ export const SkeletonAvatar: React.FC<{
   size?: number;
   className?: string;
 }> = ({ size = 40, className }) => {
-  return (
-    <Skeleton
-      variant="circular"
-      width={size}
-      height={size}
-      className={className}
-    />
-  );
+  return <Skeleton variant="circular" width={size} height={size} className={className} />;
 };
 
 export const SkeletonImage: React.FC<{

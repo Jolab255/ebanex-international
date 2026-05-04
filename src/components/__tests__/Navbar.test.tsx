@@ -33,4 +33,3 @@ describe('Navbar', () => {
     expect(screen.getAllByText(/Contact Us/i).length).toBeGreaterThan(0);
   });
 });
-
