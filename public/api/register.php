@@ -1,7 +1,7 @@
 <?php
 /**
  * Ebanex International - Conference Registration API
- * Uses SMTP via local mailer for better compatibility
+ * Uses SMTP instead of mail() for better compatibility
  */
 
 // Enable error reporting for debugging
@@ -12,9 +12,7 @@ error_reporting(E_ALL);
 require_once 'mailer.php';
 
 // ── SETTINGS ──────────────────────────────────────────────────────────
-// Send to domain email (more reliable), then forward to external email
-$to_email_primary = "info@ebanexint.co.tz";  // Domain inbox - primary recipient
-$to_email_external = "yonahmatete@gmail.com"; // Gmail - secondary copy
+$to_email = "yonahmatete@gmail.com";
 $subject_prefix = "NEW CONFERENCE REGISTRATION: ";
 $from_email = "info@ebanexint.co.tz";
 
@@ -56,24 +54,16 @@ $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
-// HTML Message
-$message_html = "
-<html>
-<body style='font-family: sans-serif; line-height: 1.6; color: #333;'>
-    <div style='background: #004a99; padding: 20px; color: #ffffff;'>
-        <h2 style='margin:0;'>Digital Trust Conference Registration</h2>
-    </div>
-    <div style='padding: 20px; border: 1px solid #eee; background: #fff;'>
-        <p><strong>Full Name:</strong> $fullName</p>
-        <p><strong>Email:</strong> $email</p>
-        <p><strong>Phone:</strong> $phone</p>
-        <p><strong>Institution:</strong> $institution</p>
-        <p><strong>Role:</strong> $role</p>
-        <hr style='border:none; border-top:1px solid #eee; margin:20px 0;'>
-        <p style='font-size: 12px; color: #666;'>This registration was submitted via the Ebanex International website.</p>
-    </div>
-</body>
-</html>";
+// Build Content HTML
+$content_html = "
+    <div class='field'><div class='label'>Full Name</div><div class='value'>$fullName</div></div>
+    <div class='field'><div class='label'>Email Address</div><div class='value'>$email</div></div>
+    <div class='field'><div class='label'>Phone Number</div><div class='value'>$phone</div></div>
+    <div class='field'><div class='label'>Institution</div><div class='value'>$institution</div></div>
+    <div class='field'><div class='label'>Role / Position</div><div class='value'>$role</div></div>
+";
+
+$message_html = get_email_template("Conference Registration", $content_html, "This registration was submitted via the Ebanex International conference portal.");
 
 // Start Body
 $body = "--$boundary\r\n";
@@ -83,12 +73,7 @@ $body .= $message_html . "\r\n\r\n";
 $body .= "--$boundary--";
 
 // ── SEND ─────────────────────────────────────────────────────────────
-// Send to primary domain email first, then external email
-$sent_primary = send_smtp_email($to_email_primary, $subject, $body, $headers);
-$sent_external = send_smtp_email($to_email_external, $subject, $body, $headers);
-
-if ($sent_primary || $sent_external) {
-    error_log("Registration email sent: primary=$sent_primary, external=$sent_external");
+if (send_smtp_email($to_email, $subject, $body, $headers)) {
     echo json_encode(["ok" => true, "message" => "Registration transmitted successfully."]);
 } else {
     error_log("SMTP delivery failed for registration");
