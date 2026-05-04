@@ -1,75 +1,95 @@
 <?php
-// Enable error reporting for debugging (disable in final production)
+/**
+ * Ebanex International - Contact Inquiry API
+ * Handles multipart form data and rich HTML email
+ */
+
+// Enable error reporting for debugging
 ini_set('display_errors', 0);
+ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
+// ── SETTINGS ──────────────────────────────────────────────────────────
+$to_email = "yonahmatete@gmail.com";
+$subject_prefix = "NEW CONTACT INQUIRY: ";
+$from_email = "info@ebanexint.co.tz";
+
+// ── CORS HEADERS ──────────────────────────────────────────────────────
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Content-Type: application/json");
+header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
+// ── VALIDATION ────────────────────────────────────────────────────────
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
     echo json_encode(["ok" => false, "error" => "Method not allowed"]);
     exit;
 }
 
+// ── DATA PREPARATION ──────────────────────────────────────────────────
+// Try to get data from POST (multipart) or JSON
 $input = file_get_contents("php://input");
-$data = json_decode($input, true);
+$json_data = json_decode($input, true);
 
-if (!$data) {
-    http_response_code(400);
-    echo json_encode(["ok" => false, "error" => "Invalid input data"]);
-    exit;
-}
+$fullName = htmlspecialchars($_POST['fullName'] ?? $json_data['fullName'] ?? 'N/A');
+$email = filter_var($_POST['email'] ?? $json_data['email'] ?? '', FILTER_SANITIZE_EMAIL);
+$service = htmlspecialchars($_POST['service'] ?? $json_data['service'] ?? 'N/A');
+$messageContent = htmlspecialchars($_POST['message'] ?? $json_data['message'] ?? 'N/A');
 
-$fullName = htmlspecialchars($data['fullName'] ?? 'N/A');
-$email = filter_var($data['email'] ?? '', FILTER_VALIDATE_EMAIL) ? $data['email'] : 'N/A';
-$service = htmlspecialchars($data['service'] ?? 'N/A');
-$messageContent = htmlspecialchars($data['message'] ?? 'N/A');
+$subject = $subject_prefix . $fullName . " (" . $service . ")";
 
-$to = "yonahmatete@gmail.com";
-$subject = "NEW CONTACT INQUIRY: $fullName - $service";
-
-$message = "
-New Contact Inquiry received:
-
-Full Name: $fullName
-Email: $email
-Service: $service
-
-Message:
-$messageContent
-
----
-Sent via Ebanex International Website
-";
-
-// Better headers to prevent being flagged as spam
-$headers = "From: Ebanex Website <info@ebanexint.co.tz>\r\n";
+// ── EMAIL CONSTRUCTION (MULTIPART) ────────────────────────────────────
+$boundary = "PHP-mixed-" . md5(time());
+$headers = "From: Ebanex Website <$from_email>\r\n";
 $headers .= "Reply-To: $email\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "Content-Type: multipart/mixed; boundary=\"$boundary\"\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
-// Additional params for mail() can help with some host configurations
-$additional_params = "-f info@ebanexint.co.tz";
+// HTML Message
+$message_html = "
+<html>
+<body style='font-family: sans-serif; line-height: 1.6; color: #333;'>
+    <div style='background: #004a99; padding: 20px; color: #ffffff;'>
+        <h2 style='margin:0;'>New Contact Inquiry</h2>
+    </div>
+    <div style='padding: 20px; border: 1px solid #eee; background: #fff;'>
+        <p><strong>Full Name:</strong> $fullName</p>
+        <p><strong>Email:</strong> $email</p>
+        <p><strong>Service Interest:</strong> $service</p>
+        <hr style='border:none; border-top:1px solid #eee; margin:20px 0;'>
+        <p><strong>Message:</strong><br>" . nl2br($messageContent) . "</p>
+        <hr style='border:none; border-top:1px solid #eee; margin:20px 0;'>
+        <p style='font-size: 12px; color: #666;'>This inquiry was submitted via the Ebanex International website.</p>
+    </div>
+</body>
+</html>";
 
-try {
-    if (mail($to, $subject, $message, $headers, $additional_params)) {
-        echo json_encode(["ok" => true]);
-    } else {
-        // Log error internally
-        error_log("Failed to send email to $to via PHP mail()");
-        http_response_code(500);
-        echo json_encode(["ok" => false, "error" => "The contact service is currently unavailable. Please contact info@ebanexint.co.tz directly."]);
-    }
-} catch (Exception $e) {
-    error_log("Exception in contact.php: " . $e->getMessage());
+// Start Body
+$body = "--$boundary\r\n";
+$body .= "Content-Type: text/html; charset=\"UTF-8\"\r\n";
+$body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
+$body .= $message_html . "\r\n\r\n";
+$body .= "--$boundary--";
+
+// ── SEND ─────────────────────────────────────────────────────────────
+// Additional params for mail() can help with some host configurations
+$additional_params = "-f $from_email";
+
+if (mail($to_email, $subject, $body, $headers, $additional_params)) {
+    echo json_encode(["ok" => true, "message" => "Inquiry transmitted successfully."]);
+} else {
+    $last_error = error_get_last();
+    error_log("Mail delivery failed: " . ($last_error ? $last_error['message'] : "Unknown error"));
     http_response_code(500);
-    echo json_encode(["ok" => false, "error" => "An unexpected error occurred. Please try again later."]);
+    echo json_encode([
+        "ok" => false,
+        "error" => "The contact service is currently unavailable. Please contact info@ebanexint.co.tz directly.",
+        "debug" => $last_error ? $last_error['message'] : "Unknown error"
+    ]);
 }
