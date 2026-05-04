@@ -13,7 +13,9 @@ error_reporting(E_ALL);
 require_once 'mailer.php';
 
 // ── SETTINGS ──────────────────────────────────────────────────────────
-$to_email = "yonahmatete@gmail.com";
+// Send to domain email (more reliable), then forward to external email
+$to_email_primary = "info@ebanexint.co.tz";  // Domain inbox - primary recipient
+$to_email_external = "yonahmatete@gmail.com"; // Gmail - secondary copy
 $subject_prefix = "NEW CONTACT INQUIRY: ";
 $from_email = "info@ebanexint.co.tz";
 
@@ -78,10 +80,13 @@ $body = "--$boundary\r\n";
 $body .= "Content-Type: text/html; charset=\"UTF-8\"\r\n";
 $body .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
 $body .= $message_html . "\r\n\r\n";
-$body .= "--$boundary--";
-
 // ── SEND ─────────────────────────────────────────────────────────────
-if (send_smtp_email($to_email, $subject, $body, $headers)) {
+// Send to primary domain email first, then external email
+$sent_primary = send_smtp_email($to_email_primary, $subject, $body, $headers);
+$sent_external = send_smtp_email($to_email_external, $subject, $body, $headers);
+
+if ($sent_primary || $sent_external) {
+    error_log("Contact inquiry email sent: primary=$sent_primary, external=$sent_external");
     echo json_encode(["ok" => true, "message" => "Inquiry transmitted successfully."]);
 } else {
     error_log("SMTP delivery failed for contact inquiry");
