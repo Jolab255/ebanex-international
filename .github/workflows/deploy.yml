@@ -25,14 +25,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check Secrets
-        run: |
-          if [ -z "${{ secrets.FTP_SERVER }}" ]; then echo "FTP_SERVER is missing"; fi
-          if [ -z "${{ secrets.FTP_USERNAME }}" ]; then echo "FTP_USERNAME is missing"; fi
-          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then echo "FTP_PASSWORD is missing"; fi
-
       - name: Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
