@@ -1,7 +1,7 @@
 <?php
 /**
  * Ebanex International - Conference Registration API
- * Uses SMTP instead of mail() for better compatibility
+ * Uses SMTP via local mailer for better compatibility
  */
 
 // Enable error reporting for debugging
@@ -12,7 +12,9 @@ error_reporting(E_ALL);
 require_once 'mailer.php';
 
 // ── SETTINGS ──────────────────────────────────────────────────────────
-$to_email = "yonahmatete@gmail.com";
+// Send to domain email (more reliable), then forward to external email
+$to_email_primary = "info@ebanexint.co.tz";  // Domain inbox - primary recipient
+$to_email_external = "yonahmatete@gmail.com"; // Gmail - secondary copy
 $subject_prefix = "NEW CONFERENCE REGISTRATION: ";
 $from_email = "info@ebanexint.co.tz";
 
@@ -81,7 +83,12 @@ $body .= $message_html . "\r\n\r\n";
 $body .= "--$boundary--";
 
 // ── SEND ─────────────────────────────────────────────────────────────
-if (send_smtp_email($to_email, $subject, $body, $headers)) {
+// Send to primary domain email first, then external email
+$sent_primary = send_smtp_email($to_email_primary, $subject, $body, $headers);
+$sent_external = send_smtp_email($to_email_external, $subject, $body, $headers);
+
+if ($sent_primary || $sent_external) {
+    error_log("Registration email sent: primary=$sent_primary, external=$sent_external");
     echo json_encode(["ok" => true, "message" => "Registration transmitted successfully."]);
 } else {
     error_log("SMTP delivery failed for registration");
