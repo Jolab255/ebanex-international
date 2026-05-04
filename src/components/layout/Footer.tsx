@@ -62,7 +62,7 @@ const Footer: React.FC = () => (
                 <div className="w-8 h-8 rounded-none border border-[#00BFFF]/20 flex items-center justify-center bg-[#00BFFF]/5 group-hover:border-[#00BFFF]/50 transition-colors">
                   <Phone size={14} className="text-[#00BFFF]" />
                 </div>
-                <span>+255 745 326 627 / +255 703 027 412</span>
+                <span>+255 755 963 001 / +255 703 027 412</span>
               </div>
               <div className="flex items-center gap-3 text-white/60 text-sm group">
                 <div className="w-8 h-8 rounded-none border border-[#00BFFF]/20 flex items-center justify-center bg-[#00BFFF]/5 group-hover:border-[#00BFFF]/50 transition-colors">

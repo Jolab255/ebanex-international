@@ -231,13 +231,13 @@ const ITAuditAdvisory: React.FC = () => {
                                 {
                                   label: 'WhatsApp Expert',
                                   icon: <FaWhatsapp size={14} />,
-                                  href: 'https://wa.me/255745326627',
+                                  href: 'https://wa.me/255755963001',
                                   color: '#25D366',
                                 },
                                 {
                                   label: 'Call Specialist',
                                   icon: <FaPhoneAlt size={14} />,
-                                  href: 'tel:+255745326627',
+                                  href: 'tel:+255755963001',
                                   color: '#00BFFF',
                                 },
                                 {

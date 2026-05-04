@@ -14,8 +14,8 @@ const TopBar: React.FC = () => {
       id: 'phone',
       icon: Phone,
       label: 'Phone',
-      value: '+255 745 326 627',
-      href: 'tel:+255745326627',
+      value: '+255 755 963 001',
+      href: 'tel:+255755963001',
     },
     {
       id: 'email',
@@ -72,10 +72,10 @@ const TopBar: React.FC = () => {
               <div className="min-w-0 flex-1">
                 <div className="text-[10px] text-white/40 uppercase tracking-widest">Phone</div>
                 <a
-                  href="tel:+255745326627"
+                  href="tel:+255755963001"
                   className="text-white font-bold hover:text-[#00BFFF] transition-colors block truncate"
                 >
-                  +255 745 326 627
+                  +255 755 963 001
                 </a>
               </div>
               <button

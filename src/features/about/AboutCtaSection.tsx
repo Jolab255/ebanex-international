@@ -90,7 +90,7 @@ const AboutCtaSection: React.FC = () => (
             <div className="pt-8 border-t border-white/10 flex flex-col gap-6">
               <div className="flex flex-wrap justify-center sm:justify-start gap-4 sm:gap-8">
                 <a
-                  href="https://wa.me/255745326627"
+                  href="https://wa.me/255755963001"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-white hover:text-[#00BFFF] transition-colors group"
@@ -102,7 +102,7 @@ const AboutCtaSection: React.FC = () => (
                     <div className="text-[9px] uppercase tracking-[0.2em] text-white/40">
                       WhatsApp
                     </div>
-                    <div className="text-xs font-black">+255 745 326 627</div>
+                    <div className="text-xs font-black">+255 755 963 001</div>
                   </div>
                 </a>
 

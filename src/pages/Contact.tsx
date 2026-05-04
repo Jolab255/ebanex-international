@@ -222,7 +222,7 @@ const Contact: React.FC = () => {
                 {
                   icon: <Phone />,
                   title: 'Direct Line',
-                  content: '+255 745 326 627',
+                  content: '+255 755 963 001',
                   label: 'Global Support',
                 },
                 {
