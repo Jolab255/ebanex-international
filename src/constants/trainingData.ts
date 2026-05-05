@@ -69,7 +69,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Transform your workforce into your strongest security asset. Learn the psychological and behavioral drivers of security habits and how to build a resilient organizational culture.',
     longDescription:
       'Security is not just a technical challenge; it is a human one. Our Security Culture & Behavioral Change program is designed to address the psychological drivers behind security-related behaviors. We go beyond simple awareness training to focus on measurable behavioral shifts that reduce organizational risk.\n\nParticipants will learn how to design and implement a security culture roadmap that aligns with business objectives. We explore the latest research in behavioral science and how it can be applied to create lasting security habits. From gamification to nudge theory, we provide the tools needed to move from a culture of compliance to a culture of resilience.\n\nBuilding a strong culture requires a strategic approach. This program covers human risk assessment, internal communication strategies, and metrics for measuring cultural change. By the end of this course, you will be equipped to lead your organization through a profound cultural transformation, turning every employee into a proactive defender of your digital assets.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'All Staff, HR Managers, Dept Heads',
     image: cyberSkillsImg,
@@ -172,7 +172,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Master the mindset and techniques used by malicious hackers to exploit vulnerabilities before they do. Learn penetration testing, vulnerability assessment, and proactive defense.',
     longDescription:
       "Our Ethical Hacking & Threat Intelligence program is an intensive, hands-on experience designed to take security professionals to the next level. We don't just teach tools; we teach the adversarial mindset. Participants will work through real-world attack scenarios in our isolated lab environments, learning how to identify obscure vulnerabilities, pivot through compromised networks, and extract actionable threat intelligence from dark web sources.\n\nThis curriculum is built on the most current threat landscape. You will learn to bypass advanced perimeter defenses, exploit internal misconfigurations, and maintain persistence within a network—all within an ethical framework. We cover advanced topics including cloud exploitation, modern web application attacks, and physical security bypassing techniques.\n\nIntelligence is the key to defense. The threat intelligence module teaches you how to collect and analyze data on potential attackers, their motivations, and their specific methodologies. By combining offensive skills with strategic intelligence, you will be prepared to not just respond to threats, but to anticipate and neutralize them before they can impact your organization.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Security Analysts, Pen Testers, System Admins',
     image: ethicalHackingImg,
@@ -281,7 +281,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Bridge the critical gap between technical security controls and executive business strategy. Learn to quantify, govern, and mitigate IT risk across your enterprise ecosystem.',
     longDescription:
       "In an era where digital transformation is no longer optional, managing digital risk has become a boardroom priority. This program moves beyond the technical details of security to focus on how risk impacts the bottom line.\n\nParticipants will learn to implement robust risk governance frameworks that align technology investments with organizational risk appetite. We cover quantitative risk assessment methodologies that translate cyber threats into financial impact, enabling better-informed decision-making at the executive level.\n\nManaging risk in a connected ecosystem requires a comprehensive view. This program deep-dives into third-party risk management, regulatory compliance mapping, and digital asset valuation. By the end of this course, you will be equipped to lead your organization's digital risk strategy, ensuring resilience and competitive advantage in a volatile digital landscape.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Risk Managers, CISOs, IT Auditors, Executives',
     image: riskMgmtImg,
@@ -387,7 +387,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'When a breach happens, every second counts. Master the framework to detect, contain, and eradicate threats while minimizing critical business downtime.',
     longDescription:
       'Our Incident Response program is built on the philosophy that a breach is inevitable, but a disaster is not. This tactical training prepares your Blue Team to handle the high-pressure environment of a live attack.\n\nWe cover the entire IR lifecycle from initial detection and triage to containment, eradication, and post-incident recovery. Participants will participate in live "fire drills" where they must identify lateral movement, isolate compromised systems, and preserve forensic evidence while maintaining business operations.\n\nBeyond technical detection, we emphasize the importance of communication and process. You will learn to build actionable IR playbooks, manage stakeholders during a crisis, and meet regulatory breach notification requirements. This program transforms your response function from a reactive team into a well-oiled recovery machine.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Security Operations (SOC) Teams, Blue Teams',
     image: incidentResponseImg,
@@ -493,7 +493,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Transform privacy from a legal obligation into an engineering discipline. Equip your team to build compliant systems and protect personal data across its entire lifecycle.',
     longDescription:
       'Data privacy is no longer just for lawyers. In today\'s regulatory environment, privacy must be built into the code and architecture of every system.\n\nThis program bridges the gap between legal requirements (like GDPR and regional laws) and technical implementation. We cover "Privacy by Design" principles, data flow mapping, encryption-at-rest and in-transit, and how to handle Data Subject Access Requests (DSARs) at scale.\n\nParticipants will learn how to turn privacy into a competitive advantage by building trust with customers and navigating the complex global regulatory landscape. We provide practical tools and templates for conducting DPIAs and implementing technical controls that ensure compliance without sacrificing operational efficiency.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'DPOs, IT Architects, Developers, Legal Teams',
     image: cdpseImg,
@@ -602,7 +602,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Master the design, implementation, and management of modern enterprise networks. From software-defined networking to traditional routing and switching.',
     longDescription:
       'The Networking & Infrastructure program provides a comprehensive deep-dive into the backbone of modern business. We bridge the gap between legacy hardware-centric networking and modern Software-Defined Infrastructure (SDI).\n\nParticipants learn to design resilient architectures, implement advanced routing protocols, and secure network perimeters against modern threats. Our hands-on labs use industry-leading equipment and simulation tools to prepare you for real-world deployment challenges.\n\nInfrastructure is the foundation of digital agility. This program covers automation, SD-WAN, and high-availability design, ensuring your network can scale with the demands of your organization while maintaining 99.99% target uptime.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Network Engineers, System Architects, IT Admins',
     image: networkingImg,
@@ -708,7 +708,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Transition from physical servers to elastic, scalable cloud architectures. Master AWS, Azure, and Google Cloud along with enterprise virtualization techniques.',
     longDescription:
       'Our Cloud Computing program is designed to transform traditional IT professionals into Cloud Architects. We focus on the "well-architected" framework, teaching you how to build cost-effective, high-performing, and secure cloud environments.\n\nFrom serverless computing to containerization with Kubernetes, we cover the modern cloud stack. You will learn to implement Infrastructure as Code (IaC) using Terraform, ensuring that your deployments are repeatable and reliable.\n\nThe business case for cloud is just as important as the technology. We teach you FinOps principles to manage cloud spending and strategies for avoiding vendor lock-in. By the end of this program, you will be able to lead complex cloud migrations and design multi-cloud architectures that drive institutional innovation.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'System Admins, Architects, DevOps Engineers',
     image: cloudComputingImg,
@@ -809,7 +809,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Harness the power of Artificial Intelligence, Machine Learning, and Automation to drive institutional innovation and operational excellence.',
     longDescription:
       "Our AI & Emerging Technologies program bridges the gap between science fiction and business reality. We focus on practical applications of GenAI, Predictive Analytics, and Robotic Process Automation (RPA) in enterprise settings.\n\nParticipants will learn to identify high-value AI opportunities within their organizations and develop a strategic roadmap for implementation. We cover the technical foundations of machine learning and natural language processing, but also the critical human elements of ethics and governance.\n\nAutomation is the key to scaling innovation. This program includes hands-on workshops where you will build RPA workflows and explore the potential of low-code AI tools. By the end of this course, you will be prepared to lead your organization's AI journey, ensuring that your workforce is future-proofed and your operations are optimized.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Innovation Leads, Data Analysts, IT Managers',
     image: aiTechImg,
@@ -915,7 +915,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Equip your workforce with the mindset and technical skills required to navigate and lead in a digitally-driven economy.',
     longDescription:
       "Digital transformation is 20% technology and 80% people. This program focuses on building the cultural and technical agility required to thrive in a constantly evolving landscape.\n\nWe bridge the gap between legacy processes and modern digital business models. You will learn to implement agile and scrum methodologies, drive data-driven decision making, and lead your organization through complex change management initiatives.\n\nAgility is the new currency of business. This program teaches you to build high-performance, customer-centric teams and establish innovation hubs within your organization. By the end of this course, you will be prepared to lead your organization's digital journey, ensuring that you stay ahead of the competition.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Business Leaders, Change Agents, Project Managers',
     image: digitalTransformImg,
@@ -1015,7 +1015,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Master the deployment, management, and securing of enterprise server environments across Linux and Windows platforms.',
     longDescription:
       'Our Systems Administration program provides the tactical skills required to maintain high-availability infrastructure. From directory services to automated deployment, we cover the full lifecycle of enterprise systems.\n\nYou will learn to manage complex identity and access management (IAM) systems, implement robust backup and disaster recovery (DR) solutions, and harden servers against common attack vectors using both Linux and Windows platforms.\n\nOperations are the heartbeat of the IT organization. This program teaches you to use scripting and automation to reduce manual tasks, monitor service levels, and manage IT assets effectively. By the end of this course, you will be able to maintain stable, secure, and scalable infrastructure that meets the needs of your organization.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'System Admins, IT Support, Infrastructure Engineers',
     image: sysAdminImg,
@@ -1120,7 +1120,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Align IT strategy with business goals and ensure that technology investments deliver value and manage risks effectively.',
     longDescription:
       "Our IT Governance program focus on frameworks like COBIT and ISO 38500 to help leaders establish clear accountability and decision-making structures.\n\nGovernance is the foundation of digital success. You will learn to implement COBIT 2019 roadmaps, manage IT value with Val IT, and establish risk-based governance frameworks that ensure technology serves the business, not the other way around.\n\nInstitutional effectiveness depends on clear decision rights. This program teaches you to build high-performance governance committees, measure IT performance using balanced scorecards, and align technology strategy with organizational goals. By the end of this course, you will be prepared to lead your organization's digital governance journey.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'IT Directors, Board Members, GRC Managers',
     image: itGovImg,
@@ -1215,7 +1215,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Build institutional resilience by identifying, assessing, and mitigating risks across all levels of the organization.',
     longDescription:
       "This ERM program follows the ISO 31000 and COSO frameworks to help organizations integrate risk management into their overall strategy and culture.\n\nRisk is the other side of opportunity. You will learn to use sophisticated risk identification techniques, quantitative assessment models, and dynamic heatmaps to manage your organization's risk profile effectively.\n\nResilience is built through culture. This program teaches you to foster risk awareness throughout the organization, report effectively to the board, and implement robust business continuity plans. By the end of this course, you will be prepared to lead your organization's risk management strategy, ensuring that you can navigate uncertainty and achieve your organizational goals.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Risk Officers, Internal Auditors, Senior Managers',
     image: riskMgmtImg,
@@ -1316,7 +1316,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Master modern internal auditing techniques to provide independent assurance and add value to organizational operations.',
     longDescription:
       "Our Internal Audit program focus on the IIA standards and teaches auditors how to move from checklist-based auditing to risk-based, value-added assurance.\n\nYou will learn to design risk-based audit plans, implement sophisticated data analytics (CAATs), and provide assurance on complex internal control frameworks like COSO. We focus on both technical auditing skills and the human skills of communication and reporting.\n\nAssurance is the key to board confidence. This program teaches you to manage the internal audit activity effectively, conduct quality assurance reviews, and align your audit program with organizational risk. By the end of this course, you will be prepared to lead your organization's internal audit function, ensuring that it provides true strategic value.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Internal Auditors, Finance Managers, Compliance Officers',
     image: institutionalAdvisoryImg,
@@ -1423,7 +1423,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Navigate the complex global and regional regulatory landscape with confidence. Build a robust compliance framework for your organization.',
     longDescription:
       'Our Compliance program helps organizations move from "accidental compliance" to a structured, policy-driven approach that meets both local laws and global standards.\n\nYou will learn to implement robust compliance risk assessments, manage regulatory monitoring, and design effective policies for anti-money laundering (AML) and data protection. We cover international standards like ISO 37301 to ensure your compliance framework is world-class.\n\nEthics is the foundation of compliance. This program teaches you to foster an ethical corporate culture, manage whistleblower programs, and report effectively to the board. By the end of this course, you will be prepared to lead your organization\'s compliance journey, ensuring that you avoid major fines and build lasting institutional trust.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Compliance Officers, Legal Counsel, Directors',
     image: complianceImg,
@@ -1522,7 +1522,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Develop the essential leadership and management competencies required to lead teams effectively in a complex and rapidly changing digital environment.',
     longDescription:
       "Ebanex's Leadership program is designed for current and aspiring leaders who want to move beyond management to truly inspire and transform their teams.\n\nYou will learn to lead through digital transformation, manage high-performance cultures, and foster inclusive and diverse environments. We cover advanced strategic planning, agile leadership methodologies, and the emotional intelligence required for visionary leadership.\n\nInstitutional effectiveness depends on the quality of leadership. This program teaches you to influence stakeholders, handle complex crisis management scenarios, and sustain peak performance across your department. By the end of this course, you will be prepared to lead your organization into the future, ensuring that you can navigate complexity and drive lasting impact.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Managers, Team Leads, High-Potentials',
     image: leadershipMgmtImg,
@@ -1625,7 +1625,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Enhance your ability to think critically, anticipate market shifts, and make high-stakes decisions that drive institutional growth.',
     longDescription:
       'This program is designed for executives who need to move beyond operational excellence to truly visionary leadership. We cover frameworks for complexity, game theory, and long-term strategic planning.\n\nYou will learn to use scenario planning and forecasting to anticipate future shifts, apply game theory to business dilemmas, and develop "blue ocean" strategies that create new markets. We focus on both technical decision models and the human cognitive biases that can cloud judgment.\n\nInstitutional success is built on clear vision. This program teaches you to influence stakeholders, align diverse interests, and lead during periods of disruptive change. By the end of this executive retreat, you will be prepared to lead your organization\'s long-term strategy, ensuring lasting competitive advantage.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'C-Suite, Directors, Senior Strategists',
     image: strategicThinkingImg,
@@ -1720,7 +1720,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Master the art of high-impact communication, emotional intelligence, and interpersonal skills to drive productivity and collaboration.',
     longDescription:
       'Communication is the lifeblood of any organization. This program focuses on developing the "soft" skills that yield "hard" results in professional environments.\n\nYou will master advanced presentation skills, professional business writing, and the art of influencing stakeholders. We cover emotional intelligence (EQ) foundations, conflict resolution techniques, and digital communication etiquette for the modern workplace.\n\nCollaboration is built on understanding. This program teaches you to listen actively, negotiate effectively, and manage cross-cultural communications with ease. By the end of this workshop series, you will be a more confident, persuasive, and effective professional, driving productivity across your team.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'All Professionals, Client-facing Teams, Managers',
     image: communicationImg,
@@ -1824,7 +1824,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Build cohesive, high-performing teams that collaborate effectively across departments and geographies to achieve organizational goals.',
     longDescription:
       'High performance is not an accident; it is the result of intentional team dynamics and structured collaboration. This program helps teams move through the stages of development to peak performance.\n\nYou will learn to build trust and psychological safety, implement agile team rituals, and manage virtual teams across geographies. We cover the Belbin team roles, OKR setting, and the design of effective feedback loops.\n\nInstitutional success depends on unity. This program teaches teams to solve complex problems collectively, make faster decisions, and align departmental interests with organizational goals. By the end of this team intensive, you will have a more cohesive, accountable, and high-quality functional unit.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Departmental Teams, Project Teams, Unit Leads',
     image: teamDevImg,
@@ -1926,10 +1926,10 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     slug: 'cisa',
     badge: 'Certification Prep',
     description:
-      'Prepare for the Certified Information Systems Auditor (CISA) exam with our comprehensive bootcamp led by industry experts.',
+      'Prepare for the Certified Information Systems Auditor (CISA) exam through our comprehensive, expert led review program.',
     longDescription:
       "Our CISA prep program is world-renowned for its high pass rate. We cover the five domains of the CISA job practice in detail, with a focus on practical application and exam strategy.\n\nYou will master the Information System Auditing Process, Governance and Management of IT, and the protection of information assets. We utilize a massive database of over 2000 practice questions and conduct full-length mock examinations to ensure you are ready for the ISACA standard.\n\nInstitutional effectiveness relies on robust auditing. This program ensures you have the technical knowledge and the examination strategy required to achieve the gold standard in IT auditing, significantly boosting your career and your organization's assurance capability.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'IT Auditors, GRC Professionals, Consultants',
     image: cisaImg,
@@ -2026,7 +2026,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Certified Information Security Manager (CISM) prep. Transition from technical security to strategic security management.',
     longDescription:
       "The CISM certification is for those who manage, design, oversee and assess an enterprise's information security.\n\nThis program focuses on Information Security Governance, Risk Management, and Program Development. You will learn to align your security program with organizational goals, manage resources effectively, and design metrics that demonstrate the value of your security investments.\n\nManagement is a strategic discipline. This bootcamp prepares you for the CISM examination with high-fidelity simulations and intensive domain reviews, ensuring that you achieve the professional recognition required to lead an organization's security function.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Security Managers, IT Consultants, GRC Leads',
     image: cismImg,
@@ -2120,7 +2120,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Achieve the gold standard in cybersecurity certification. Our CISSP bootcamp covers all 8 domains of the Common Body of Knowledge (CBK).',
     longDescription:
       'The CISSP certification is the most globally recognized standard of achievement in the industry. This program is an intensive review of information security concepts and industry best practices.\n\nWe cover all 8 domains of the (ISC)2 CBK, from asset security to software development security. Our instructors use a proven methodology of domain deep-dives followed by intensive practice using simulated Computerized Adaptive Testing (CAT) formats.\n\nElite security requires deep knowledge. This bootcamp ensures you have the technical breadth and the management depth required to achieve the gold standard, opening doors to the most senior positions in the global cybersecurity industry.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Security Managers, Architects, Consultants',
     image: cisspImg,
@@ -2225,7 +2225,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Certified Ethical Hacker (CEH) prep. Learn to think like a hacker to better defend your organization.',
     longDescription:
       "The CEH program is the most comprehensive ethical hacking course on the globe to help information security professionals grasp the fundamentals of ethical hacking.\n\nYou will master footprinting, enumeration, and system hacking using over 3000 hacking tools. Our bootcamp includes intensive practical labs where you will learn to evade IDS, exploit wireless networks, and secure cloud and mobile platforms.\n\nYou need to think like a hacker to beat one. This program provides the technical mastery and the ethical framework required to become a certified professional, significantly enhancing your organization's offensive and defensive security capabilities.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Pen Testers, Security Analysts, Network Admins',
     image: cehImg,
@@ -2335,7 +2335,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Comprehensive preparation for Cisco Certified Network Associate and Professional exams using high-fidelity lab environments.',
     longDescription:
       "Our Cisco certification program provides the practical skills needed to install, configure, operate, and troubleshoot medium-size routed and switched networks.\n\nFrom network access to IP connectivity and security fundamentals, we cover the full Cisco curriculum. Our bootcamp features high-fidelity labs using both physical hardware and virtual environments, ensuring you are ready for real-world scenarios.\n\nInfrastructure is the heart of IT. This preparation ensures you have the technical mastery required to achieve globally recognized Cisco certifications, boosting your career and your organization's infrastructure capability.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Network Engineers, System Architects, Support Technicians',
     image: ccnaImg,
@@ -2437,7 +2437,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Certified Data Privacy Solutions Engineer (CDPSE) prep. Bridge the gap between technical privacy implementation and legal requirements.',
     longDescription:
       "CDPSE is the first experience-based, technical certification of its kind. It validates your ability to implement privacy by design into technology platforms and products.\n\nThis program covers Privacy Governance, Privacy Architecture, and Data Lifecycle Management. You will learn to implement technical privacy controls, manage data sovereignty, and design systems that respect user privacy by default.\n\nEngineering privacy is a strategic requirement. This preparation ensures you have the technical knowledge and the examination strategy required to achieve the gold standard in privacy engineering, significantly boosting your organization's trust and compliance.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'IT Architects, Privacy Engineers, Developers, DPOs',
     image: cdpseImg,
@@ -2534,7 +2534,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Prepare for the Certified Internal Auditor (CIA) exam, the only globally recognized certification for internal auditors.',
     longDescription:
       "Our CIA prep program covers the three parts of the CIA exam in depth, focusing on internal audit basics, practice, and business knowledge for internal auditing.\n\nYou will master the foundations of internal auditing, proficiency and due professional care, and managing the internal audit activity. Our bootcamp features intensive drills for all three parts of the exam, utilizing a massive database of IIA-aligned practice questions.\n\nInstitutional effectiveness depends on robust auditing. This preparation ensures you have the technical knowledge and the examination strategy required to achieve the CIA status, significantly boosting your career and your organization's internal assurance capability.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Internal Auditors, Risk Managers, Compliance Officers',
     image: ciaImg,
@@ -2631,7 +2631,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Certification in Risk Management Assurance (CRMA) prep. For internal auditors and risk management professionals who want to demonstrate their ability to provide risk assurance.',
     longDescription:
       "The CRMA validates your ability to provide assurance on core business processes in risk management and corporate governance.\n\nYou will master risk management governance, risk management processes, and the role of internal audit in providing risk assurance. We focus on strategic alignment and executive communication, ensuring you can lead risk-based assurance programs that drive organizational resilience.\n\nAssurance is the key to managing uncertainty. This preparation ensures you have the management-level knowledge and the examination strategy required to achieve the CRMA, significantly boosting your career and your organization's risk management capability.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Senior Internal Auditors, Risk Managers, Board Advisors',
     image: crmaImg,
@@ -2727,7 +2727,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Join global leaders, technology experts, and policy makers at our flagship annual conference focused on building trust in the digital age.',
     longDescription:
       "The Ebanex Digital Trust Conference is the premier annual gathering for stakeholders in the cybersecurity, data privacy, and digital governance ecosystem. This multi-day event features high-level keynote addresses, technical deep-dives, and strategic panel discussions designed to address the most pressing challenges of our time.\n\nParticipants will gain insights into emerging threats, regulatory shifts, and the technological innovations driving digital resilience. The conference also serves as a critical networking hub, connecting government officials, corporate executives, and technical practitioners across the continent.\n\nBuilding digital trust is a collective journey. Our annual conference provides the forum for sharing knowledge, fostering collaboration, and defining the future of Africa's digital landscape. Join us as we explore the intersection of technology, policy, and human trust.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'C-Suite, GRC Professionals, IT Leaders, Policy Makers',
     image: 'https://images.unsplash.com/photo-1540575861501-7ad05823c23d?q=80&w=1200',
@@ -2814,7 +2814,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Position your brand at the center of the digital trust conversation. Our sponsorship packages offer unique visibility and engagement opportunities.',
     longDescription:
       "Sponsoring the Ebanex Digital Trust Conference provides your organization with a unique platform to demonstrate leadership and commitment to a secure digital future. Our partners gain high-visibility access to a curated audience of decision-makers, regulators, and technical practitioners.\n\nFrom Title Sponsorship to specific Technical Track partnerships, we offer a range of packages designed to align with your organization's strategic goals. Our sponsorship team works closely with you to ensure maximum ROI through brand integration, speaking opportunities, and exclusive networking events.\n\nPartnering with Ebanex is more than just marketing; it is a statement of institutional excellence and a commitment to building a resilient digital ecosystem for Africa.",
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Technology Vendors, Financial Institutions, Service Providers',
     image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=1200',
@@ -2903,7 +2903,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       'Explore the legacy of Ebanex Digital Trust Conferences. Review past keynotes, session summaries, and the evolution of the digital trust conversation.',
     longDescription:
       'The "Past Events & Highlights" archive is a testament to Ebanex\'s long-term commitment to building digital resilience. Here, you can access white papers, session recordings, and gallery highlights from our previous conferences across the continent.\n\nReviewing our past events allows stakeholders to trace the evolution of cybersecurity threats and regulatory responses. It provides a valuable historical context for current challenges and showcases the collective impact of the Ebanex community over the years.\n\nThe journey of digital trust is documented through these events. We invite you to explore the milestones we have reached and the insights shared by some of the most influential voices in the digital ecosystem.',
-    duration: 'Instructor-Led',
+    duration: 'Instructor-led',
     hours: 'Interactive Sessions',
     audience: 'Researchers, Students, Prospective Delegates',
     image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200',

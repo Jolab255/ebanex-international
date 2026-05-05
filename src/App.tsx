@@ -19,7 +19,7 @@ const DigitalTrustConference = lazy(() => import('./pages/DigitalTrustConference
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App: React.FC = () => {
-  const basename = import.meta.env.DEV ? '/' : '/dev';
+  const basename = '/';
 
   return (
     <HelmetProvider>
