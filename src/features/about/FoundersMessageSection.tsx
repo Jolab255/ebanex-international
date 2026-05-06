@@ -51,7 +51,7 @@ const FoundersMessageSection: React.FC = () => {
                 </div>
                 <div className="flex gap-2">
                   <a
-                    href="https://www.linkedin.com/posts/isaca-tanzania-chapter_congratulations-mrbaraka-opiyo-cia-cisa-activity-7111588925013434369-VoQm"
+                    href="https://www.linkedin.com/in/baraka-opiyo-cia-cisa-crma-cism-crisc-cdpse-ccnp-396a8473"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-8 h-8 bg-black flex items-center justify-center hover:bg-[#00BFFF] hover:text-black text-[#00BFFF] transition-all border border-[#00BFFF]/20"
