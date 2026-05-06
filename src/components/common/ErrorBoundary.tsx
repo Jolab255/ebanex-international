@@ -92,7 +92,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
 
       return (
         <div className="min-h-[50vh] flex flex-col items-center justify-center bg-slate-950 px-4">
-          <div className="glass max-w-2xl w-full p-8 rounded-2xl border border-[#00BFFF]/30 text-center text-slate-100 shadow-[0_0_50px_rgba(0,191,255,0.1)]">
+          <div className="glass max-w-2xl w-full p-8 rounded-none border border-[#00BFFF]/30 text-center text-slate-100 shadow-none">
             <div className="w-16 h-16 bg-[#00BFFF]/10 rounded-full flex items-center justify-center mx-auto mb-6">
               {isChunkError ? (
                 <svg
