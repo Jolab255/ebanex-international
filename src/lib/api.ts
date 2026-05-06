@@ -17,6 +17,16 @@ export interface ConferenceRegistrationPayload {
   role: string;
 }
 
+export interface TrainingEnrollmentPayload {
+  fullName: string;
+  email: string;
+  phone: string;
+  institution?: string;
+  program: string;
+  sessionType: string;
+  trainingType: string;
+}
+
 export interface ApiResponse<T = unknown> {
   ok: boolean;
   data?: T;
@@ -97,6 +107,45 @@ export async function sendConferenceRegistration(
       ok: false,
       error:
         error.message || 'Something went wrong while sending your registration. Please try again.',
+    };
+  }
+}
+
+/**
+ * Sends a training enrollment to the PHP backend.
+ */
+export async function sendTrainingEnrollment(
+  payload: TrainingEnrollmentPayload,
+): Promise<ApiResponse> {
+  try {
+    console.log('[sendTrainingEnrollment] Payload:', payload);
+
+    const response = await fetch(`${API_BASE}/enroll.php`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(
+        data.error ||
+          'The enrollment service is currently unavailable. Please contact info@ebanexint.co.tz directly.',
+      );
+    }
+
+    return { ok: true, data };
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err : new Error(String(err));
+    console.error('[sendTrainingEnrollment] Error:', error);
+    return {
+      ok: false,
+      error:
+        error.message || 'Something went wrong while sending your enrollment. Please try again.',
     };
   }
 }

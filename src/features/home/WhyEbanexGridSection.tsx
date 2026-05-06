@@ -28,7 +28,7 @@ const WhyEbanexGridSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative z-30 pt-4 sm:pt-6 pb-16 sm:pb-24 w-full bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)]"
+      className="relative z-30 pt-4 sm:pt-6 pb-16 sm:pb-24 w-full bg-[linear-gradient(135deg,#00bfff_35%,#000000_35%,#000000_65%,#00bfff_65%)] sm:bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)]"
     >
       <div className="sticky top-0 h-screen w-full z-0 pointer-events-none overflow-hidden">
         <Squares

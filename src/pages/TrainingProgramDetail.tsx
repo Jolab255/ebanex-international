@@ -5,7 +5,17 @@ import { cn } from '../lib/utils';
 import { SEO } from '../components/layout';
 import { Squares } from '../components/animations';
 import { TRAINING_PROGRAMS, TrainingProgram } from '../constants/trainingData';
-import { CheckCircle, Clock, ArrowRight, Calendar, ChevronDown } from 'lucide-react';
+import { sendTrainingEnrollment } from '../lib/api';
+import {
+  CheckCircle,
+  Clock,
+  ArrowRight,
+  Calendar,
+  ChevronDown,
+  X,
+  Send,
+  Loader2,
+} from 'lucide-react';
 import {
   FaCertificate,
   FaClock,
@@ -17,6 +27,24 @@ import {
 // Import local assets for CTA
 import institutionalAdvisoryImg from '../assets/institutional-advisory.jpg';
 
+interface EnrollmentFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  institution: string;
+  sessionType: 'Physical' | 'Online';
+  trainingType: 'Group' | 'Private';
+  website: string; // Honeypot
+}
+
+interface EnrollmentFormErrors {
+  fullName?: string;
+  email?: string;
+  phone?: string;
+  institution?: string;
+  form?: string;
+}
+
 const TrainingProgramDetail: React.FC = () => {
   const { programId } = useParams<{ programId: string }>();
   const program: TrainingProgram | undefined = TRAINING_PROGRAMS[programId || ''];
@@ -25,6 +53,21 @@ const TrainingProgramDetail: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [showAllFaqs, setShowAllFaqs] = useState(false);
   const syllabusRef = useRef<HTMLDivElement>(null);
+
+  // Enrollment Modal State
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [formData, setFormData] = useState<EnrollmentFormData>({
+    fullName: '',
+    email: '',
+    phone: '',
+    institution: '',
+    sessionType: 'Physical',
+    trainingType: 'Group',
+    website: '',
+  });
+  const [errors, setErrors] = useState<EnrollmentFormErrors>({});
 
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -50,6 +93,84 @@ const TrainingProgramDetail: React.FC = () => {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 },
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: undefined, form: undefined }));
+  };
+
+  const validate = (): boolean => {
+    const nextErrors: EnrollmentFormErrors = {};
+
+    if (!formData.fullName.trim()) nextErrors.fullName = 'Full name is required.';
+    if (!formData.email.trim()) {
+      nextErrors.email = 'Email is required.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      nextErrors.email = 'Enter a valid email.';
+    }
+    if (!formData.phone.trim()) nextErrors.phone = 'Phone number is required.';
+    // Institution is optional
+
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Honeypot
+    if (formData.website) {
+      setSuccessMessage('Thank you for enrolling! We will contact you shortly.');
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        institution: '',
+        sessionType: 'Physical',
+        trainingType: 'Group',
+        website: '',
+      });
+      return;
+    }
+
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+    setErrors((prev) => ({ ...prev, form: undefined }));
+
+    const result = await sendTrainingEnrollment({
+      fullName: formData.fullName.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      institution: formData.institution.trim() || 'N/A',
+      program: program?.title || programId || 'Unknown Program',
+      sessionType: formData.sessionType,
+      trainingType: formData.trainingType,
+    });
+
+    setIsSubmitting(false);
+
+    if (result.ok) {
+      setSuccessMessage(
+        'Thank you for enrolling! We have received your details and will contact you shortly with further information.',
+      );
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        institution: '',
+        sessionType: 'Physical',
+        trainingType: 'Group',
+        website: '',
+      });
+    } else {
+      setErrors((prev) => ({
+        ...prev,
+        form: result.error || 'Unable to process enrollment. Please try again.',
+      }));
+    }
   };
 
   if (!program) {
@@ -160,12 +281,12 @@ const TrainingProgramDetail: React.FC = () => {
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-2 sm:gap-3 pt-3">
-                    <Link
-                      to={`/contact?service=${encodeURIComponent(program.title)}`}
+                    <button
+                      onClick={() => setIsModalOpen(true)}
                       className="bg-[#00C4D4] text-black px-4 sm:px-5 py-2 font-bold hover:bg-[#00b0c0] transition-all flex items-center gap-2 group text-xs sm:text-sm shadow-lg"
                     >
                       Enroll Now <ArrowRight size={14} />
-                    </Link>
+                    </button>
                     <Link
                       to="/contact?service=Corporate Group Quote"
                       className="bg-transparent text-white border-2 border-white/30 px-4 sm:px-5 py-2 font-bold hover:bg-white/10 transition-all flex items-center gap-2 group text-xs sm:text-sm shadow-lg"
@@ -645,12 +766,12 @@ const TrainingProgramDetail: React.FC = () => {
                     programs are tailored to your unique needs.
                   </p>
                   <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-4">
-                    <Link
-                      to={`/contact?service=${encodeURIComponent(program.title)}`}
+                    <button
+                      onClick={() => setIsModalOpen(true)}
                       className="h-12 px-8 bg-[#00C4D4] text-black font-black text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2"
                     >
-                      Request Corporate Training <ArrowRight size={14} />
-                    </Link>
+                      Enroll Now <ArrowRight size={14} />
+                    </button>
                     <Link
                       to="/training"
                       className="h-12 px-8 border-2 border-white text-white font-black text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center"
@@ -664,6 +785,292 @@ const TrainingProgramDetail: React.FC = () => {
             </div>
           </div>
         </section>
+
+        {/* Enrollment Modal */}
+        <AnimatePresence>
+          {isModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-6 lg:p-8"
+            >
+              <div
+                className="absolute inset-0 bg-black/90 backdrop-blur-xl"
+                onClick={() => !isSubmitting && setIsModalOpen(false)}
+              />
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                className="relative w-full max-w-2xl bg-black border-[10px] border-[#00C4D4] shadow-[30px_30px_0px_0px_rgba(0,196,212,0.15)] overflow-hidden flex flex-col"
+              >
+                <div className="p-6 sm:p-10">
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="absolute top-6 right-6 text-white/40 hover:text-[#00C4D4] transition-colors z-10"
+                  >
+                    <X size={24} />
+                  </button>
+
+                  <div className="relative mb-10">
+                    <span className="text-[10px] font-black text-[#00C4D4] uppercase tracking-[0.4em] mb-2 block">
+                      Enrollment Portal
+                    </span>
+                    <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter leading-none">
+                      Join the <span className="text-[#00C4D4]">Program</span>
+                    </h2>
+                    <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-1 h-12 bg-[#00C4D4]" />
+                  </div>
+
+                  {errors.form && (
+                    <div className="mb-6 p-4 bg-red-500/10 border-l-4 border-red-500 text-red-500 text-xs font-bold uppercase tracking-widest">
+                      {errors.form}
+                    </div>
+                  )}
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Honeypot */}
+                    <div className="hidden">
+                      <input
+                        type="text"
+                        name="website"
+                        tabIndex={-1}
+                        value={formData.website}
+                        onChange={handleInputChange}
+                        autoComplete="off"
+                      />
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                        Select Training Program
+                      </label>
+                      <div className="relative">
+                        <select
+                          name="program"
+                          value={formData.program || program?.title}
+                          onChange={(e) => {
+                            const selected = Object.values(TRAINING_PROGRAMS).find(
+                              (p) => p.title === e.target.value,
+                            );
+                            if (selected) {
+                              setFormData((prev) => ({ ...prev, program: selected.title }));
+                            }
+                          }}
+                          className="w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                        >
+                          {Object.values(TRAINING_PROGRAMS).map((p) => (
+                            <option key={p.slug} value={p.title} className="bg-black">
+                              {p.title}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
+                          <ChevronDown size={18} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-1.5 group">
+                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                          Full Name
+                        </label>
+                        <input
+                          type="text"
+                          name="fullName"
+                          value={formData.fullName}
+                          onChange={handleInputChange}
+                          className={cn(
+                            'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                            errors.fullName && 'border-red-500',
+                          )}
+                          placeholder="YOUR FULL NAME"
+                        />
+                        {errors.fullName && (
+                          <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                            {errors.fullName}
+                          </p>
+                        )}
+                      </div>
+                      <div className="space-y-1.5 group">
+                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                          Email Address
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className={cn(
+                            'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                            errors.email && 'border-red-500',
+                          )}
+                          placeholder="EMAIL@INSTITUTION.COM"
+                        />
+                        {errors.email && (
+                          <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                            {errors.email}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-1.5 group">
+                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className={cn(
+                            'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                            errors.phone && 'border-red-500',
+                          )}
+                          placeholder="+255 --- --- ---"
+                        />
+                        {errors.phone && (
+                          <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                            {errors.phone}
+                          </p>
+                        )}
+                      </div>
+                      <div className="space-y-1.5 group">
+                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                          Institution (Optional)
+                        </label>
+                        <input
+                          type="text"
+                          name="institution"
+                          value={formData.institution}
+                          onChange={handleInputChange}
+                          className={cn(
+                            'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                            errors.institution && 'border-red-500',
+                          )}
+                          placeholder="ORGANIZATION NAME"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-1.5">
+                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                          Session Preference
+                        </label>
+                        <div className="relative">
+                          <select
+                            name="sessionType"
+                            value={formData.sessionType}
+                            onChange={handleInputChange}
+                            className="w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                          >
+                            <option value="Physical" className="bg-black">
+                              Physical (In-Person)
+                            </option>
+                            <option value="Online" className="bg-black">
+                              Online (Virtual)
+                            </option>
+                          </select>
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
+                            <ChevronDown size={18} />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                          Training Type
+                        </label>
+                        <div className="relative">
+                          <select
+                            name="trainingType"
+                            value={formData.trainingType}
+                            onChange={handleInputChange}
+                            className="w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                          >
+                            <option value="Group" className="bg-black">
+                              Group Training
+                            </option>
+                            <option value="Private" className="bg-black">
+                              Private Training
+                            </option>
+                          </select>
+                          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
+                            <ChevronDown size={18} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-4 bg-[#00C4D4] border-4 border-black text-black font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          Processing... <Loader2 className="w-4 h-4 animate-spin" />
+                        </>
+                      ) : (
+                        <>
+                          Send Enrollment <Send size={18} />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Success Notification */}
+        <AnimatePresence>
+          {successMessage && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="fixed inset-0 z-[2000] flex items-center justify-center px-4 pointer-events-none"
+            >
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+              <div className="relative bg-[#00C4D4] border-[10px] border-black p-8 sm:p-12 max-w-lg w-full text-center shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] pointer-events-auto">
+                <button
+                  onClick={() => setSuccessMessage(null)}
+                  className="absolute top-4 right-4 text-black/40 hover:text-black transition-colors"
+                >
+                  <X size={24} />
+                </button>
+
+                <div className="bg-black w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-12 h-12 text-[#00C4D4]" />
+                </div>
+
+                <h3 className="text-black font-black text-2xl uppercase mb-4 tracking-tighter">
+                  Enrollment Successful
+                </h3>
+                <p className="text-black font-bold uppercase tracking-widest text-xs leading-relaxed">
+                  {successMessage}
+                </p>
+
+                <button
+                  onClick={() => {
+                    setSuccessMessage(null);
+                    setIsModalOpen(false);
+                  }}
+                  className="mt-10 w-full py-4 bg-black text-[#00C4D4] font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-black transition-all"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );

@@ -7,7 +7,11 @@ const FeatureCard: React.FC<{
 }> = ({ feature, hasOutline }) => {
   return (
     <div
-      className={`h-full relative overflow-hidden group ${hasOutline ? 'shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]' : ''}`}
+      className={`h-full relative overflow-hidden group ${
+        hasOutline
+          ? 'border-[10px] border-black lg:border-0 lg:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]'
+          : ''
+      }`}
     >
       {/* Cyber Circuit Decoration */}
       <div className="absolute top-0 left-0 w-full h-10 pointer-events-none z-20 opacity-70">

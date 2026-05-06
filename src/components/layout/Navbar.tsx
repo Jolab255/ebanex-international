@@ -210,17 +210,17 @@ const Navbar: React.FC = () => {
 
       <nav
         ref={navRef}
-        className="w-full z-[200] py-0 bg-black backdrop-blur-2xl border-b border-[#00BFFF]/10 fixed top-0 left-0"
+        className="w-full z-[200] py-0 bg-black backdrop-blur-2xl border-b border-[#00BFFF] lg:border-[#00BFFF]/10 fixed top-0 left-0"
         role="navigation"
         aria-label="Main Navigation"
         onClick={() => setActiveDropdown(null)}
       >
         <div
-          className="w-full px-4 sm:px-6 flex items-center h-16 sm:h-20 lg:h-24 relative z-[160]"
+          className="w-full px-2 sm:px-6 flex items-center h-16 sm:h-20 lg:h-24 relative z-[220] bg-black"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Logo Shield */}
-          <div className="relative z-50 bg-black h-full flex items-center pr-28 sm:pr-32 shrink-0 overflow-hidden">
+          <div className="relative z-[220] bg-black h-full flex items-center pr-32 sm:pr-32 shrink-0 overflow-hidden">
             <Link
               to="/"
               className="flex items-center h-full group transition-opacity duration-300"
@@ -234,7 +234,7 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Desktop Nav Area */}
+          {/* Desktop Nav Area ... */}
           <div className="hidden lg:flex flex-1 items-center justify-center h-full relative overflow-hidden pr-2">
             <div className="flex items-center gap-4 xl:gap-8 h-full">
               <div className="flex items-center gap-3 xl:gap-5 h-full shrink-0">
@@ -269,11 +269,33 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Toggle */}
           <button
-            className="lg:hidden ml-auto text-white p-2 focus:outline-none z-30"
+            className="lg:hidden ml-auto text-white p-2 focus:outline-none z-[220]"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            <AnimatePresence mode="wait">
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X size={28} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ opacity: 0, rotate: 90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: -90 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu size={28} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
         </div>
 
@@ -281,53 +303,51 @@ const Navbar: React.FC = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="lg:hidden fixed inset-0 z-[100] bg-black flex flex-col"
+              initial={{ y: '-100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '-100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="lg:hidden fixed inset-0 z-[200] bg-black flex flex-col h-[100dvh]"
             >
-              <div className="flex items-center justify-between px-4 h-16 border-b border-white/5">
-                <img src={logo} alt="" className="h-10 w-auto brightness-110" />
-                <button
-                  className="text-white p-2"
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Close menu"
+              <div
+                className="flex-1 overflow-y-auto pt-24 sm:pt-28 pb-12 px-6 space-y-4 custom-scrollbar"
+                data-lenis-prevent
+              >
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 }}
                 >
-                  <X size={28} />
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-y-auto py-8 px-6 space-y-4">
-                <Link
-                  to="/"
-                  className={cn(
-                    'block py-3 px-4 text-sm font-black uppercase tracking-widest',
-                    location.pathname === '/'
-                      ? 'bg-[#00BFFF] text-black'
-                      : 'text-white border-b border-white/5',
-                  )}
-                >
-                  Home
-                </Link>
+                  <Link
+                    to="/"
+                    className="block py-3 px-4 text-sm font-black uppercase tracking-widest border-b border-white/5 transition-colors text-white"
+                  >
+                    Home
+                  </Link>
+                </motion.div>
                 {NAVIGATION_LINKS.map((link, index) => {
                   const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
                   const isExpanded = mobileExpanded === link.label;
-                  const isEnabled = index < 2;
+                  const isActive = location.pathname === link.path;
+                  const isVisible = index < 4;
 
-                  if (!isEnabled) return null;
+                  if (!isVisible) return null;
 
                   return (
-                    <div key={link.path} className="space-y-2">
+                    <motion.div
+                      key={link.path}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + (index + 1) * 0.05 }}
+                      className="space-y-2"
+                    >
                       {hasDropdown ? (
                         <>
                           <button
                             onClick={() => toggleMobileExpanded(link.label)}
                             className={cn(
-                              'w-full flex items-center justify-between py-3 px-4 text-sm font-black uppercase tracking-widest transition-colors',
-                              isExpanded
-                                ? 'bg-[#00BFFF] text-black'
-                                : 'text-white border-b border-white/5',
+                              'w-full flex items-center justify-between py-3 px-4 text-sm font-black uppercase tracking-widest border-b border-white/5 transition-colors',
+                              isExpanded ? 'text-[#00BFFF]' : 'text-white',
                             )}
                           >
                             {link.label}
@@ -339,71 +359,91 @@ const Navbar: React.FC = () => {
                               )}
                             />
                           </button>
-                          {isExpanded && (
-                            <div className="mt-4 ml-2 border-l border-[#00BFFF]/20 space-y-2">
-                              {DROPDOWN_CONTENT[
-                                link.label as keyof typeof DROPDOWN_CONTENT
-                              ].categories.map((cat) => {
-                                const isCatExpanded = mobileCategoryExpanded === cat.title;
-                                return (
-                                  <div key={cat.title}>
-                                    <button
-                                      onClick={() => toggleMobileCategory(cat.title)}
-                                      className="w-full flex items-center justify-between py-3 px-6 text-[10px] font-black uppercase tracking-widest text-[#00BFFF]"
-                                    >
-                                      {cat.title}
-                                      <ChevronRight
-                                        size={14}
-                                        className={cn(
-                                          'transition-transform',
-                                          isCatExpanded ? 'rotate-90' : '',
-                                        )}
-                                      />
-                                    </button>
-                                    {isCatExpanded && (
-                                      <div className="ml-6 space-y-1 mb-4">
-                                        {cat.items.map((item) => (
-                                          <Link
-                                            key={item.path}
-                                            to={item.path}
-                                            className="block py-3 px-4 text-[11px] font-bold uppercase text-slate-400 active:text-[#00BFFF]"
+                          <AnimatePresence>
+                            {isExpanded && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                className="mt-4 ml-2 border-l border-[#00BFFF]/20 space-y-2 overflow-hidden"
+                              >
+                                {DROPDOWN_CONTENT[
+                                  link.label as keyof typeof DROPDOWN_CONTENT
+                                ].categories.map((cat) => {
+                                  const isCatExpanded = mobileCategoryExpanded === cat.title;
+                                  return (
+                                    <div key={cat.title}>
+                                      <button
+                                        onClick={() => toggleMobileCategory(cat.title)}
+                                        className="w-full flex items-center justify-between py-3 px-6 text-[10px] font-black uppercase tracking-widest text-[#00BFFF] text-left"
+                                      >
+                                        <span className="flex-1">{cat.title}</span>
+                                        <ChevronRight
+                                          size={14}
+                                          className={cn(
+                                            'transition-transform shrink-0 ml-2',
+                                            isCatExpanded ? 'rotate-90' : '',
+                                          )}
+                                        />
+                                      </button>
+                                      <AnimatePresence>
+                                        {isCatExpanded && (
+                                          <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: 'auto', opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.2 }}
+                                            className="ml-6 space-y-1 mb-4 overflow-hidden"
                                           >
-                                            {item.label}
-                                          </Link>
-                                        ))}
-                                      </div>
-                                    )}
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          )}
+                                            {cat.items.map((item) => (
+                                              <Link
+                                                key={item.path}
+                                                to={item.path}
+                                                className="block py-3 px-4 text-[11px] font-bold uppercase text-slate-400 active:text-[#00BFFF]"
+                                              >
+                                                {item.label}
+                                              </Link>
+                                            ))}
+                                          </motion.div>
+                                        )}
+                                      </AnimatePresence>
+                                    </div>
+                                  );
+                                })}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </>
                       ) : (
                         <Link
                           to={link.path}
                           className={cn(
-                            'block py-3 px-4 text-sm font-black uppercase tracking-widest',
-                            location.pathname === link.path
-                              ? 'bg-[#00BFFF] text-black'
-                              : 'text-white border-b border-white/5',
+                            'block py-3 px-4 text-sm font-black uppercase tracking-widest border-b border-white/5 transition-colors',
+                            isActive ? 'text-[#00BFFF]' : 'text-white',
                           )}
                         >
                           {link.label}
                         </Link>
                       )}
-                    </div>
+                    </motion.div>
                   );
                 })}
-              </div>
 
-              <div className="p-8 bg-black border-t border-white/5">
-                <Link
-                  to={getContactPath()}
-                  className="block w-full py-4 bg-[#00BFFF] text-black text-center font-black uppercase tracking-widest shadow-[5px_5px_0px_0px_rgba(255,255,255,0.1)]"
+                {/* Contact Us as the last item in the list */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="pt-4 pb-12"
                 >
-                  Contact Us
-                </Link>
+                  <Link
+                    to={getContactPath()}
+                    className="block w-full py-4 bg-[#00BFFF] text-black text-center font-black uppercase tracking-widest active:scale-95 transition-transform"
+                  >
+                    Contact Us
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           )}
@@ -478,8 +518,8 @@ const Navbar: React.FC = () => {
                             background: 'linear-gradient(135deg, #051020 0%, #0a1a2f 100%)',
                           }}
                         >
-                          <h3 className="text-[10px] font-black text-[#00BFFF] uppercase tracking-[0.15em] flex items-center gap-2 mb-4">
-                            <span className="w-1.5 h-1.5 bg-[#00BFFF] animate-pulse" />
+                          <h3 className="text-[10px] font-black text-[#00BFFF] uppercase tracking-[0.15em] flex items-center gap-2 mb-4 text-left">
+                            <span className="w-1.5 h-1.5 bg-[#00BFFF] animate-pulse shrink-0" />
                             {category.title}
                           </h3>
                           <ul className="space-y-2">
