@@ -81,7 +81,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -184,7 +184,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -293,7 +293,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -399,7 +399,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -506,7 +506,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -614,7 +614,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -721,7 +721,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -821,7 +821,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -927,7 +927,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1027,7 +1027,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1133,7 +1133,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1228,7 +1228,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1329,7 +1329,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1435,7 +1435,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1534,7 +1534,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1638,7 +1638,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1733,7 +1733,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1836,7 +1836,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -1941,7 +1941,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2038,7 +2038,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2132,7 +2132,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2237,7 +2237,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2347,7 +2347,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2450,7 +2450,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2547,7 +2547,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2644,7 +2644,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2739,7 +2739,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2827,7 +2827,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
@@ -2915,7 +2915,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     },
     instructor: {
       name: 'Baraka Opiyo',
-      role: 'Principal Instructor',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
       bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
       certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
       image: barakaImg,
