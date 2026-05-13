@@ -227,7 +227,7 @@ const TrainingProgramDetail: React.FC = () => {
               </div>
             </div>
 
-            <div className="relative w-full max-w-5xl flex items-center justify-center lg:justify-end">
+            <div className="relative w-full max-w-5xl flex flex-col lg:flex-row items-center justify-center lg:justify-end gap-8 lg:gap-0">
               <div className="hidden lg:block absolute left-[-5%] lg:left-[-10%] top-[40%] -translate-y-1/2 w-[350px] sm:w-[450px] lg:w-[500px] aspect-square z-0 opacity-100 cursor-default group">
                 <div className="relative w-full h-full border-[10px] border-black shadow-[15px_15px_0px_0px_rgba(0,196,212,0.2)] overflow-hidden">
                   <img
@@ -240,7 +240,7 @@ const TrainingProgramDetail: React.FC = () => {
                 </div>
               </div>
 
-              <div className="lg:hidden w-full max-w-[320px] sm:max-w-[380px] aspect-square mx-auto mb-[-60px] relative z-40 group cursor-default">
+              <div className="lg:hidden w-full max-w-[320px] sm:max-w-[380px] aspect-square mx-auto relative z-40 group cursor-default">
                 <div className="relative w-full h-full border-[8px] border-black shadow-2xl overflow-hidden ">
                   <img
                     src={program.image}
@@ -253,7 +253,7 @@ const TrainingProgramDetail: React.FC = () => {
               </div>
 
               <motion.div
-                className="w-full max-w-2xl p-5 sm:p-6 border-[10px] border-black relative overflow-hidden z-10 ml-auto"
+                className="w-full max-w-2xl p-5 sm:p-6 border-[10px] border-black relative overflow-hidden z-10 lg:ml-auto"
                 style={{
                   background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
                 }}

@@ -189,22 +189,12 @@ const TrainingApproachSection: React.FC = () => {
 
       {/* Carousel Container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full grow flex items-center justify-center">
-        <div className="relative w-full h-[50vh] sm:h-[55vh] lg:h-[60vh] overflow-visible">
+        <div className="relative w-full h-auto lg:h-[60vh] overflow-visible">
           <ProgressSlider vertical={false} activeSlider="practical">
             {/* Split/Stack Layout */}
-            <div className="relative h-full w-full flex flex-col lg:flex-row items-center">
-              {/* Content Side (The base layer) */}
-              <div
-                className="w-full lg:w-[45%] lg:ml-auto h-full relative border-[10px] border-black z-10"
-                style={{
-                  background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
-                }}
-              >
-                <TrainingOverlay />
-              </div>
-
-              {/* Image Side (The top layer - Stacking/Overflowing) */}
-              <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[90%] lg:w-[65%] h-[25vh] sm:h-[35vh] lg:h-[75%] z-20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-[10px] border-black overflow-hidden pointer-events-none sm:pointer-events-auto transform lg:-translate-x-12">
+            <div className="relative h-full w-full flex flex-col lg:flex-row items-stretch lg:items-center gap-6 lg:gap-0">
+              {/* Image Side (The top layer on desktop - Now first on mobile) */}
+              <div className="relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-0 w-full lg:w-[65%] h-[25vh] sm:h-[35vh] lg:h-[75%] z-20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-[10px] border-black overflow-hidden pointer-events-none sm:pointer-events-auto transform lg:-translate-x-12 order-first lg:order-none">
                 <SliderContent>
                   {trainingItems.map((item, index) => (
                     <SliderWrapper key={index} value={item.sliderName}>
@@ -212,6 +202,16 @@ const TrainingApproachSection: React.FC = () => {
                     </SliderWrapper>
                   ))}
                 </SliderContent>
+              </div>
+
+              {/* Content Side (The base layer) */}
+              <div
+                className="w-full lg:w-[45%] lg:ml-auto h-full min-h-[300px] relative border-[10px] border-black z-10"
+                style={{
+                  background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
+                }}
+              >
+                <TrainingOverlay />
               </div>
             </div>
           </ProgressSlider>
