@@ -6,6 +6,7 @@ import { SEO } from '../components/layout';
 import { Squares } from '../components/animations';
 import { TRAINING_PROGRAMS, TrainingProgram } from '../constants/trainingData';
 import { sendTrainingEnrollment } from '../lib/api';
+import { TurnstileCaptcha } from '../components/common';
 import {
   CheckCircle,
   Clock,
@@ -32,9 +33,11 @@ interface EnrollmentFormData {
   email: string;
   phone: string;
   institution: string;
+  program: string;
   sessionType: 'Physical' | 'Online';
   trainingType: 'Group' | 'Private';
   website: string; // Honeypot
+  captchaToken: string;
 }
 
 interface EnrollmentFormErrors {
@@ -63,9 +66,11 @@ const TrainingProgramDetail: React.FC = () => {
     email: '',
     phone: '',
     institution: '',
+    program: program?.title || '',
     sessionType: 'Physical',
     trainingType: 'Group',
     website: '',
+    captchaToken: '',
   });
   const [errors, setErrors] = useState<EnrollmentFormErrors>({});
 
@@ -113,6 +118,10 @@ const TrainingProgramDetail: React.FC = () => {
     if (!formData.phone.trim()) nextErrors.phone = 'Phone number is required.';
     // Institution is optional
 
+    if (!formData.captchaToken) {
+      nextErrors.form = 'Please complete the security check.';
+    }
+
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
@@ -128,9 +137,11 @@ const TrainingProgramDetail: React.FC = () => {
         email: '',
         phone: '',
         institution: '',
+        program: program?.title || '',
         sessionType: 'Physical',
         trainingType: 'Group',
         website: '',
+        captchaToken: '',
       });
       return;
     }
@@ -148,6 +159,8 @@ const TrainingProgramDetail: React.FC = () => {
       program: program?.title || programId || 'Unknown Program',
       sessionType: formData.sessionType,
       trainingType: formData.trainingType,
+      website: formData.website,
+      captchaToken: formData.captchaToken,
     });
 
     setIsSubmitting(false);
@@ -161,9 +174,11 @@ const TrainingProgramDetail: React.FC = () => {
         email: '',
         phone: '',
         institution: '',
+        program: program?.title || '',
         sessionType: 'Physical',
         trainingType: 'Group',
         website: '',
+        captchaToken: '',
       });
     } else {
       setErrors((prev) => ({
@@ -804,33 +819,33 @@ const TrainingProgramDetail: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="relative w-full max-w-2xl bg-black border-[10px] border-[#00C4D4] shadow-[30px_30px_0px_0px_rgba(0,196,212,0.15)] overflow-hidden flex flex-col"
+                className="relative w-full max-w-2xl bg-black border-[4px] sm:border-[6px] border-[#00C4D4] shadow-[20px_20px_0px_0px_rgba(0,196,212,0.15)] overflow-hidden flex flex-col"
               >
-                <div className="p-6 sm:p-10">
+                <div className="p-4 sm:p-6">
                   <button
                     onClick={() => setIsModalOpen(false)}
-                    className="absolute top-6 right-6 text-white/40 hover:text-[#00C4D4] transition-colors z-10"
+                    className="absolute top-4 right-4 text-white/40 hover:text-[#00C4D4] transition-colors z-10"
                   >
-                    <X size={24} />
+                    <X size={20} />
                   </button>
 
-                  <div className="relative mb-10">
-                    <span className="text-[10px] font-black text-[#00C4D4] uppercase tracking-[0.4em] mb-2 block">
+                  <div className="relative mb-4 sm:mb-6">
+                    <span className="text-[9px] font-black text-[#00C4D4] uppercase tracking-[0.4em] mb-1 block">
                       Enrollment Portal
                     </span>
-                    <h2 className="text-3xl sm:text-4xl font-black text-white uppercase tracking-tighter leading-none">
+                    <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tighter leading-none">
                       Join the <span className="text-[#00C4D4]">Program</span>
                     </h2>
-                    <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-1 h-12 bg-[#00C4D4]" />
+                    <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-1 h-10 bg-[#00C4D4]" />
                   </div>
 
                   {errors.form && (
-                    <div className="mb-6 p-4 bg-red-500/10 border-l-4 border-red-500 text-red-500 text-xs font-bold uppercase tracking-widest">
+                    <div className="mb-4 p-3 bg-red-500/10 border-l-4 border-red-500 text-red-500 text-[10px] font-bold uppercase tracking-widest">
                       {errors.form}
                     </div>
                   )}
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3">
                     {/* Honeypot */}
                     <div className="hidden">
                       <input
@@ -843,8 +858,8 @@ const TrainingProgramDetail: React.FC = () => {
                       />
                     </div>
 
-                    <div className="space-y-1.5">
-                      <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                    <div className="space-y-1">
+                      <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                         Select Training Program
                       </label>
                       <div className="relative">
@@ -859,7 +874,7 @@ const TrainingProgramDetail: React.FC = () => {
                               setFormData((prev) => ({ ...prev, program: selected.title }));
                             }
                           }}
-                          className="w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                          className="w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
                         >
                           {Object.values(TRAINING_PROGRAMS).map((p) => (
                             <option key={p.slug} value={p.title} className="bg-black">
@@ -867,15 +882,15 @@ const TrainingProgramDetail: React.FC = () => {
                             </option>
                           ))}
                         </select>
-                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
-                          <ChevronDown size={18} />
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
+                          <ChevronDown size={14} />
                         </div>
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-1.5 group">
-                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                    <div className="grid md:grid-cols-2 gap-2 sm:gap-3">
+                      <div className="space-y-1 group">
+                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                           Full Name
                         </label>
                         <input
@@ -884,19 +899,19 @@ const TrainingProgramDetail: React.FC = () => {
                           value={formData.fullName}
                           onChange={handleInputChange}
                           className={cn(
-                            'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                            'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
                             errors.fullName && 'border-red-500',
                           )}
                           placeholder="YOUR FULL NAME"
                         />
                         {errors.fullName && (
-                          <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                          <p className="text-[7px] text-red-500 font-black uppercase mt-1">
                             {errors.fullName}
                           </p>
                         )}
                       </div>
-                      <div className="space-y-1.5 group">
-                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                      <div className="space-y-1 group">
+                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                           Email Address
                         </label>
                         <input
@@ -905,22 +920,22 @@ const TrainingProgramDetail: React.FC = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           className={cn(
-                            'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                            'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
                             errors.email && 'border-red-500',
                           )}
                           placeholder="EMAIL@INSTITUTION.COM"
                         />
                         {errors.email && (
-                          <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                          <p className="text-[7px] text-red-500 font-black uppercase mt-1">
                             {errors.email}
                           </p>
                         )}
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-1.5 group">
-                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                    <div className="grid md:grid-cols-2 gap-2 sm:gap-3">
+                      <div className="space-y-1 group">
+                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                           Phone Number
                         </label>
                         <input
@@ -929,19 +944,19 @@ const TrainingProgramDetail: React.FC = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           className={cn(
-                            'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                            'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
                             errors.phone && 'border-red-500',
                           )}
                           placeholder="+255 --- --- ---"
                         />
                         {errors.phone && (
-                          <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                          <p className="text-[7px] text-red-500 font-black uppercase mt-1">
                             {errors.phone}
                           </p>
                         )}
                       </div>
-                      <div className="space-y-1.5 group">
-                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                      <div className="space-y-1 group">
+                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                           Institution (Optional)
                         </label>
                         <input
@@ -950,7 +965,7 @@ const TrainingProgramDetail: React.FC = () => {
                           value={formData.institution}
                           onChange={handleInputChange}
                           className={cn(
-                            'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                            'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
                             errors.institution && 'border-red-500',
                           )}
                           placeholder="ORGANIZATION NAME"
@@ -958,9 +973,9 @@ const TrainingProgramDetail: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="space-y-1.5">
-                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                    <div className="grid md:grid-cols-2 gap-2 sm:gap-3">
+                      <div className="space-y-1">
+                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                           Session Preference
                         </label>
                         <div className="relative">
@@ -968,7 +983,7 @@ const TrainingProgramDetail: React.FC = () => {
                             name="sessionType"
                             value={formData.sessionType}
                             onChange={handleInputChange}
-                            className="w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                            className="w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
                           >
                             <option value="Physical" className="bg-black">
                               Physical (In-Person)
@@ -977,13 +992,13 @@ const TrainingProgramDetail: React.FC = () => {
                               Online (Virtual)
                             </option>
                           </select>
-                          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
-                            <ChevronDown size={18} />
+                          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
+                            <ChevronDown size={14} />
                           </div>
                         </div>
                       </div>
-                      <div className="space-y-1.5">
-                        <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                      <div className="space-y-1">
+                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                           Training Type
                         </label>
                         <div className="relative">
@@ -991,7 +1006,7 @@ const TrainingProgramDetail: React.FC = () => {
                             name="trainingType"
                             value={formData.trainingType}
                             onChange={handleInputChange}
-                            className="w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                            className="w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
                           >
                             <option value="Group" className="bg-black">
                               Group Training
@@ -1000,25 +1015,33 @@ const TrainingProgramDetail: React.FC = () => {
                               Private Training
                             </option>
                           </select>
-                          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
-                            <ChevronDown size={18} />
+                          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
+                            <ChevronDown size={14} />
                           </div>
                         </div>
                       </div>
                     </div>
 
+                    <div className="flex justify-center py-0.5 sm:py-1 scale-[0.7] sm:scale-75">
+                      <TurnstileCaptcha
+                        onVerify={(token) =>
+                          setFormData((prev) => ({ ...prev, captchaToken: token }))
+                        }
+                      />
+                    </div>
+
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 bg-[#00C4D4] border-4 border-black text-black font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
+                      className="w-full py-2 sm:py-3 bg-[#00C4D4] border-[2px] border-black text-black font-black uppercase tracking-[0.2em] text-[8px] sm:text-[9px] flex items-center justify-center gap-2 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
                     >
                       {isSubmitting ? (
                         <>
-                          Processing... <Loader2 className="w-4 h-4 animate-spin" />
+                          Processing... <Loader2 className="w-3 h-3 animate-spin" />
                         </>
                       ) : (
                         <>
-                          Send Enrollment <Send size={18} />
+                          Send Enrollment <Send size={12} />
                         </>
                       )}
                     </button>

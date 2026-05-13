@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { SEO } from '../components/layout';
 import { Squares, ScrollReveal } from '../components/animations';
+import { TurnstileCaptcha } from '../components/common';
 import { sendContactInquiry } from '../lib/api';
 import { cn } from '../lib/utils';
 
@@ -24,6 +25,7 @@ interface ContactFormState {
   service: string;
   message: string;
   website: string; // Honeypot field
+  captchaToken: string;
 }
 
 interface ContactFormErrors {
@@ -44,6 +46,7 @@ const Contact: React.FC = () => {
     service: preSelectedService || 'Corporate Training',
     message: '',
     website: '', // Initialize honeypot
+    captchaToken: '',
   });
 
   // Update form if search params change
@@ -90,6 +93,10 @@ const Contact: React.FC = () => {
       nextErrors.message = 'Message is too short.';
     }
 
+    if (!form.captchaToken) {
+      nextErrors.form = 'Please complete the security check.';
+    }
+
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
@@ -103,7 +110,14 @@ const Contact: React.FC = () => {
       console.log('Bot detected via honeypot');
       // Silently fail or pretend it worked
       setSuccessMessage('Your inquiry has been received. Our team will contact you shortly.');
-      setForm({ fullName: '', email: '', service: 'Corporate Training', message: '', website: '' });
+      setForm({
+        fullName: '',
+        email: '',
+        service: 'Corporate Training',
+        message: '',
+        website: '',
+        captchaToken: '',
+      });
       return;
     }
 
@@ -117,6 +131,8 @@ const Contact: React.FC = () => {
       email: form.email.trim(),
       service: form.service.trim(),
       message: form.message.trim(),
+      website: form.website,
+      captchaToken: form.captchaToken,
     });
 
     setIsSubmitting(false);
@@ -136,6 +152,7 @@ const Contact: React.FC = () => {
       service: 'Corporate Training',
       message: '',
       website: '',
+      captchaToken: '',
     });
   };
 
@@ -273,16 +290,16 @@ const Contact: React.FC = () => {
             >
               <div className="absolute inset-0 bg-[#00C4D4] transform translate-x-3 translate-y-3" />
               <div
-                className="relative p-8 sm:p-10 border-[10px] border-black bg-[#0a1628]"
+                className="relative p-4 sm:p-10 border-[4px] sm:border-[10px] border-black bg-[#0a1628]"
                 style={{
                   background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
                 }}
               >
-                <h3 className="text-2xl font-black text-white uppercase mb-6 tracking-tighter flex items-center gap-4">
+                <h3 className="text-xl sm:text-2xl font-black text-white uppercase mb-6 tracking-tighter flex items-center gap-4">
                   <MessageSquare className="text-[#00C4D4]" /> Send us a message
                 </h3>
 
-                <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+                <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit} noValidate>
                   {/* Honeypot field - hidden from users */}
                   <div className="hidden" aria-hidden="true">
                     <input
@@ -298,7 +315,7 @@ const Contact: React.FC = () => {
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="p-4 bg-red-500/20 border-2 border-red-500 text-red-200 text-xs font-black uppercase tracking-widest"
+                      className="p-3 bg-red-500/20 border-2 border-red-500 text-red-200 text-[10px] font-black uppercase tracking-widest"
                     >
                       {errors.form}
                     </motion.div>
@@ -313,25 +330,25 @@ const Contact: React.FC = () => {
                         className="fixed inset-0 z-[2000] flex items-center justify-center px-4 pointer-events-none"
                       >
                         <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-                        <div className="relative bg-[#00C4D4] border-[10px] border-black p-8 sm:p-12 max-w-lg w-full text-center shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] pointer-events-auto">
+                        <div className="relative bg-[#00C4D4] border-[6px] sm:border-[10px] border-black p-6 sm:p-12 max-w-lg w-full text-center shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] pointer-events-auto">
                           <button
                             onClick={() => setSuccessMessage(null)}
                             className="absolute top-4 right-4 text-black/40 hover:text-black transition-colors"
                           >
                             <X size={24} />
                           </button>
-                          <div className="bg-black w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                            <CheckCircle className="w-12 h-12 text-[#00C4D4]" />
+                          <div className="bg-black w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mx-auto mb-6">
+                            <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12 text-[#00C4D4]" />
                           </div>
-                          <h3 className="text-black font-black text-2xl uppercase mb-4 tracking-tighter">
+                          <h3 className="text-black font-black text-xl sm:text-2xl uppercase mb-4 tracking-tighter">
                             Message Sent
                           </h3>{' '}
-                          <p className="text-black font-bold uppercase tracking-widest text-xs leading-relaxed">
+                          <p className="text-black font-bold uppercase tracking-widest text-[10px] sm:text-xs leading-relaxed">
                             {successMessage}
                           </p>
                           <button
                             onClick={() => setSuccessMessage(null)}
-                            className="mt-10 w-full py-4 bg-black text-[#00C4D4] font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-black transition-all"
+                            className="mt-8 sm:mt-10 w-full py-4 bg-black text-[#00C4D4] font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-black transition-all"
                           >
                             Close
                           </button>
@@ -340,9 +357,9 @@ const Contact: React.FC = () => {
                     )}
                   </AnimatePresence>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-1.5 group">
-                      <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                  <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
+                    <div className="space-y-1 group">
+                      <label className="text-[7px] sm:text-[8px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                         Full Name
                       </label>
                       <input
@@ -351,20 +368,20 @@ const Contact: React.FC = () => {
                         value={form.fullName}
                         onChange={handleChange}
                         className={cn(
-                          'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                          'w-full bg-black border-[2px] border-black p-2 sm:p-3 text-white font-bold text-[9px] sm:text-xs focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
                           errors.fullName && 'border-red-500',
                         )}
                         placeholder="EXECUTIVE NAME"
                       />
                       {errors.fullName && (
-                        <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                        <p className="text-[8px] text-red-500 font-black uppercase mt-1">
                           {errors.fullName}
                         </p>
                       )}
                     </div>
 
-                    <div className="space-y-1.5 group">
-                      <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                    <div className="space-y-1 group">
+                      <label className="text-[7px] sm:text-[8px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                         Corporate Email
                       </label>
                       <input
@@ -373,21 +390,21 @@ const Contact: React.FC = () => {
                         value={form.email}
                         onChange={handleChange}
                         className={cn(
-                          'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
+                          'w-full bg-black border-[2px] border-black p-2 sm:p-3 text-white font-bold text-[9px] sm:text-xs focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
                           errors.email && 'border-red-500',
                         )}
                         placeholder="OFFICIAL@ENTERPRISE.COM"
                       />
                       {errors.email && (
-                        <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                        <p className="text-[8px] text-red-500 font-black uppercase mt-1">
                           {errors.email}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                  <div className="space-y-1">
+                    <label className="text-[7px] sm:text-[8px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                       Inquiry Category
                     </label>
                     <div className="relative">
@@ -395,7 +412,7 @@ const Contact: React.FC = () => {
                         name="service"
                         value={form.service}
                         onChange={handleChange}
-                        className="w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                        className="w-full bg-black border-[2px] border-black p-2 sm:p-3 text-white font-bold text-[9px] sm:text-xs focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
                       >
                         <option value="Corporate Training">Corporate Training</option>
                         <option value="Cyber Lab Access">Cyber Lab Access</option>
@@ -413,13 +430,13 @@ const Contact: React.FC = () => {
                           )}
                       </select>
                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
-                        <ChevronDown size={18} />
+                        <ChevronDown size={16} />
                       </div>
                     </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-[9px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
+                  <div className="space-y-1">
+                    <label className="text-[7px] sm:text-[8px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
                       Institutional Request Details
                     </label>
                     <textarea
@@ -427,24 +444,30 @@ const Contact: React.FC = () => {
                       value={form.message}
                       onChange={handleChange}
                       className={cn(
-                        'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20 min-h-[140px] resize-none',
+                        'w-full bg-black border-[2px] border-black p-2 sm:p-3 text-white font-bold text-[9px] sm:text-xs focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20 min-h-[60px] sm:min-h-[120px] resize-none',
                         errors.message && 'border-red-500',
                       )}
                       placeholder="DESCRIBE YOUR ORGANIZATIONAL NEEDS..."
                     />
                     {errors.message && (
-                      <p className="text-[9px] text-red-500 font-black uppercase mt-1">
+                      <p className="text-[7px] text-red-500 font-black uppercase mt-1">
                         {errors.message}
                       </p>
                     )}
                   </div>
 
+                  <div className="flex justify-center py-0.5 sm:py-1 scale-[0.75] sm:scale-90">
+                    <TurnstileCaptcha
+                      onVerify={(token) => setForm((prev) => ({ ...prev, captchaToken: token }))}
+                    />
+                  </div>
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-[#00C4D4] border-4 border-black text-black font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
+                    className="w-full py-2.5 sm:py-3.5 bg-[#00C4D4] border-[2px] sm:border-[3px] border-black text-black font-black uppercase tracking-[0.2em] text-[9px] sm:text-[10px] flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Inquiry'} <Send size={18} />
+                    {isSubmitting ? 'Sending...' : 'Send Inquiry'} <Send size={14} />
                   </button>
                 </form>
               </div>

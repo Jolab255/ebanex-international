@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { SEO } from '../components/layout';
 import { Squares } from '../components/animations';
+import { TurnstileCaptcha } from '../components/common';
 import { Link } from 'react-router-dom';
 import { CtaSection } from '../features/home';
 import { sendConferenceRegistration } from '../lib/api';
@@ -32,6 +33,7 @@ interface RegistrationFormState {
   institution: string;
   role: string;
   website: string; // Honeypot
+  captchaToken: string;
 }
 
 interface RegistrationFormErrors {
@@ -76,6 +78,7 @@ const DigitalTrustConference: React.FC = () => {
     institution: '',
     role: 'Delegate',
     website: '',
+    captchaToken: '',
   });
 
   const { scrollYProgress } = useScroll({
@@ -175,6 +178,10 @@ const DigitalTrustConference: React.FC = () => {
     if (!formData.phone.trim()) nextErrors.phone = 'Phone number is required.';
     if (!formData.institution.trim()) nextErrors.institution = 'Institution is required.';
 
+    if (!formData.captchaToken) {
+      nextErrors.form = 'Please complete the security check.';
+    }
+
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
@@ -192,6 +199,7 @@ const DigitalTrustConference: React.FC = () => {
         institution: '',
         role: 'Delegate',
         website: '',
+        captchaToken: '',
       });
       return;
     }
@@ -207,6 +215,8 @@ const DigitalTrustConference: React.FC = () => {
       phone: formData.phone.trim(),
       institution: formData.institution.trim(),
       role: formData.role,
+      website: formData.website,
+      captchaToken: formData.captchaToken,
     });
 
     setIsSubmitting(false);
@@ -222,6 +232,7 @@ const DigitalTrustConference: React.FC = () => {
         institution: '',
         role: 'Delegate',
         website: '',
+        captchaToken: '',
       });
     } else {
       setErrors((prev) => ({
@@ -591,7 +602,7 @@ const DigitalTrustConference: React.FC = () => {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6 relative z-10" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-4 relative z-10" noValidate>
                 {/* Honeypot field - hidden from users */}
                 <div className="hidden" aria-hidden="true">
                   <input
@@ -604,9 +615,9 @@ const DigitalTrustConference: React.FC = () => {
                   />
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-1.5 group">
-                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="space-y-1 group">
+                    <label className="text-[7px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                       Full Name
                     </label>
                     <input
@@ -615,19 +626,19 @@ const DigitalTrustConference: React.FC = () => {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       className={cn(
-                        'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                        'w-full bg-black border-[2px] border-black p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
                         errors.fullName && 'border-red-500',
                       )}
                       placeholder="YOUR FULL NAME"
                     />
                     {errors.fullName && (
-                      <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                      <p className="text-[7px] text-red-500 font-black uppercase mt-1">
                         {errors.fullName}
                       </p>
                     )}
                   </div>
-                  <div className="space-y-1.5 group">
-                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                  <div className="space-y-1 group">
+                    <label className="text-[7px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                       Email Address
                     </label>
                     <input
@@ -636,22 +647,21 @@ const DigitalTrustConference: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       className={cn(
-                        'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                        'w-full bg-black border-[2px] border-black p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
                         errors.email && 'border-red-500',
                       )}
                       placeholder="EMAIL@INSTITUTION.COM"
                     />
                     {errors.email && (
-                      <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                      <p className="text-[7px] text-red-500 font-black uppercase mt-1">
                         {errors.email}
                       </p>
                     )}
-                  </div>
-                </div>
+                  </div>                </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="space-y-1.5 group">
-                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="space-y-1 group">
+                    <label className="text-[7px] sm:text-[8px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                       Phone Number
                     </label>
                     <input
@@ -660,19 +670,19 @@ const DigitalTrustConference: React.FC = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className={cn(
-                        'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                        'w-full bg-black border-[3px] border-black p-2 sm:p-3 text-white font-bold text-[10px] sm:text-xs focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
                         errors.phone && 'border-red-500',
                       )}
                       placeholder="+255 --- --- ---"
                     />
                     {errors.phone && (
-                      <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                      <p className="text-[9px] text-red-500 font-black uppercase mt-1">
                         {errors.phone}
                       </p>
                     )}
                   </div>
-                  <div className="space-y-1.5 group">
-                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                  <div className="space-y-1 group">
+                    <label className="text-[7px] sm:text-[8px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                       Institution
                     </label>
                     <input
@@ -681,21 +691,21 @@ const DigitalTrustConference: React.FC = () => {
                       value={formData.institution}
                       onChange={handleInputChange}
                       className={cn(
-                        'w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                        'w-full bg-black border-[3px] border-black p-2 sm:p-3 text-white font-bold text-[10px] sm:text-xs focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
                         errors.institution && 'border-red-500',
                       )}
                       placeholder="ORGANIZATION NAME"
                     />
                     {errors.institution && (
-                      <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                      <p className="text-[9px] text-red-500 font-black uppercase mt-1">
                         {errors.institution}
                       </p>
                     )}
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                <div className="space-y-1">
+                  <label className="text-[7px] sm:text-[8px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                     Proposed Role
                   </label>
                   <div className="relative">
@@ -703,7 +713,7 @@ const DigitalTrustConference: React.FC = () => {
                       name="role"
                       value={formData.role}
                       onChange={handleInputChange}
-                      className="w-full bg-black border-[3px] border-black p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                      className="w-full bg-black border-[3px] border-black p-2 sm:p-3 text-white font-bold text-[10px] sm:text-xs focus:border-[#00BFFF] outline-none appearance-none cursor-pointer uppercase tracking-tight"
                     >
                       <option value="Delegate">Delegate / Attendee</option>
                       <option value="Speaker">Speaker / Presenter</option>
@@ -717,10 +727,16 @@ const DigitalTrustConference: React.FC = () => {
                   </div>
                 </div>
 
+                <div className="flex justify-center py-1 scale-[0.75] sm:scale-90">
+                  <TurnstileCaptcha
+                    onVerify={(token) => setFormData((prev) => ({ ...prev, captchaToken: token }))}
+                  />
+                </div>
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 bg-[#00BFFF] border-4 border-black text-black font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
+                  className="w-full py-2.5 sm:py-3.5 bg-[#00BFFF] border-4 border-black text-black font-black uppercase tracking-[0.2em] text-[10px] flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
                 >
                   {isSubmitting ? 'Registering...' : 'Send Registration'} <Send size={18} />
                 </button>

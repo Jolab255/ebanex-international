@@ -11,15 +11,28 @@ ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'mailer.php';
+require_once 'security.php';
 
 // ── SETTINGS ──────────────────────────────────────────────────────────
 $to_email_primary = "info@ebanexint.co.tz";
 $to_email_external = "yonahmatete@gmail.com";
 $subject_prefix = "NEW CONTACT INQUIRY: ";
 $from_email = "info@ebanexint.co.tz";
+// Cloudflare Turnstile Secret Key is defined in security.php
 
 // ── CORS HEADERS ──────────────────────────────────────────────────────
-header("Access-Control-Allow-Origin: *");
+$allowed_origins = [
+    "https://ebanexint.co.tz",
+    "https://www.ebanexint.co.tz",
+    "http://localhost:5173", // Vite default
+    "http://localhost:3000"
+];
+
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: $origin");
+}
+
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
@@ -40,10 +53,35 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $input = file_get_contents("php://input");
 $json_data = json_decode($input, true);
 
-$fullName = strip_tags($_POST['fullName'] ?? $json_data['fullName'] ?? 'N/A');
+// Honeypot check (hidden field to catch bots)
+$honeypot = $_POST['website'] ?? $json_data['website'] ?? '';
+if (!empty($honeypot)) {
+    error_log("Bot detected via honeypot: $honeypot");
+    echo json_encode(["ok" => true, "message" => "Inquiry transmitted successfully."]); // Fake success to fool bots
+    exit;
+}
+
+// Turnstile Validation
+$captcha_token = $_POST['captchaToken'] ?? $json_data['captchaToken'] ?? '';
+if (!validate_turnstile($captcha_token)) {
+    error_log("Turnstile validation failed for contact inquiry.");
+    http_response_code(403);
+    echo json_encode(["ok" => false, "error" => "Security validation failed. Please try again."]);
+    exit;
+}
+
+// Rate Limiting (e.g., max 3 contact requests per hour per IP)
+if (!check_rate_limit('contact', 3, 3600)) {
+    error_log("Rate limit exceeded for contact inquiry from " . $_SERVER['REMOTE_ADDR']);
+    http_response_code(429);
+    echo json_encode(["ok" => false, "error" => "Too many requests. Please try again later."]);
+    exit;
+}
+
+$fullName = htmlspecialchars(strip_tags($_POST['fullName'] ?? $json_data['fullName'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
 $email = filter_var($_POST['email'] ?? $json_data['email'] ?? '', FILTER_SANITIZE_EMAIL);
-$service = strip_tags($_POST['service'] ?? $json_data['service'] ?? 'N/A');
-$messageContent = strip_tags($_POST['message'] ?? $json_data['message'] ?? 'N/A');
+$service = htmlspecialchars(strip_tags($_POST['service'] ?? $json_data['service'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$messageContent = htmlspecialchars(strip_tags($_POST['message'] ?? $json_data['message'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
 
 $subject = $subject_prefix . $fullName . " (" . $service . ")";
 

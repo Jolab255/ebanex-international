@@ -7,6 +7,8 @@ export interface ContactInquiryPayload {
   email: string;
   service: string;
   message: string;
+  website?: string;
+  captchaToken?: string;
 }
 
 export interface ConferenceRegistrationPayload {
@@ -15,6 +17,8 @@ export interface ConferenceRegistrationPayload {
   phone: string;
   institution: string;
   role: string;
+  website?: string;
+  captchaToken?: string;
 }
 
 export interface TrainingEnrollmentPayload {
@@ -25,6 +29,8 @@ export interface TrainingEnrollmentPayload {
   program: string;
   sessionType: string;
   trainingType: string;
+  website?: string;
+  captchaToken?: string;
 }
 
 export interface ApiResponse<T = unknown> {

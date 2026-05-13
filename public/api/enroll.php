@@ -10,15 +10,28 @@ ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
 require_once 'mailer.php';
+require_once 'security.php';
 
 // ── SETTINGS ──────────────────────────────────────────────────────────
 $to_email_primary = "info@ebanexint.co.tz";
 $to_email_external = "yonahmatete@gmail.com";
 $subject_prefix = "NEW TRAINING ENROLLMENT: ";
 $from_email = "info@ebanexint.co.tz";
+// Cloudflare Turnstile Secret Key is defined in security.php
 
 // ── CORS HEADERS ──────────────────────────────────────────────────────
-header("Access-Control-Allow-Origin: *");
+$allowed_origins = [
+    "https://ebanexint.co.tz",
+    "https://www.ebanexint.co.tz",
+    "http://localhost:5173",
+    "http://localhost:3000"
+];
+
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowed_origins)) {
+    header("Access-Control-Allow-Origin: $origin");
+}
+
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header('Content-Type: application/json');
@@ -39,13 +52,38 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $input = file_get_contents("php://input");
 $json_data = json_decode($input, true);
 
-$fullName = strip_tags($_POST['fullName'] ?? $json_data['fullName'] ?? 'N/A');
+// Honeypot check (hidden field to catch bots)
+$honeypot = $_POST['website'] ?? $json_data['website'] ?? '';
+if (!empty($honeypot)) {
+    error_log("Bot detected via honeypot: $honeypot");
+    echo json_encode(["ok" => true, "message" => "Enrollment transmitted successfully."]); // Fake success to fool bots
+    exit;
+}
+
+// Turnstile Validation
+$captcha_token = $_POST['captchaToken'] ?? $json_data['captchaToken'] ?? '';
+if (!validate_turnstile($captcha_token)) {
+    error_log("Turnstile validation failed for enrollment.");
+    http_response_code(403);
+    echo json_encode(["ok" => false, "error" => "Security validation failed. Please try again."]);
+    exit;
+}
+
+// Rate Limiting (e.g., max 3 enrollment requests per hour per IP)
+if (!check_rate_limit('enroll', 3, 3600)) {
+    error_log("Rate limit exceeded for enrollment from " . $_SERVER['REMOTE_ADDR']);
+    http_response_code(429);
+    echo json_encode(["ok" => false, "error" => "Too many requests. Please try again later."]);
+    exit;
+}
+
+$fullName = htmlspecialchars(strip_tags($_POST['fullName'] ?? $json_data['fullName'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
 $email = filter_var($_POST['email'] ?? $json_data['email'] ?? '', FILTER_SANITIZE_EMAIL);
-$phone = strip_tags($_POST['phone'] ?? $json_data['phone'] ?? 'N/A');
-$institution = strip_tags($_POST['institution'] ?? $json_data['institution'] ?? 'N/A');
-$program = strip_tags($_POST['program'] ?? $json_data['program'] ?? 'N/A');
-$sessionType = strip_tags($_POST['sessionType'] ?? $json_data['sessionType'] ?? 'N/A');
-$trainingType = strip_tags($_POST['trainingType'] ?? $json_data['trainingType'] ?? 'N/A');
+$phone = htmlspecialchars(strip_tags($_POST['phone'] ?? $json_data['phone'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$institution = htmlspecialchars(strip_tags($_POST['institution'] ?? $json_data['institution'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$program = htmlspecialchars(strip_tags($_POST['program'] ?? $json_data['program'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$sessionType = htmlspecialchars(strip_tags($_POST['sessionType'] ?? $json_data['sessionType'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$trainingType = htmlspecialchars(strip_tags($_POST['trainingType'] ?? $json_data['trainingType'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
 
 $subject = $subject_prefix . $program . " - " . $fullName;
 

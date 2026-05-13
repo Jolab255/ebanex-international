@@ -24,6 +24,7 @@ import { TRAINING_PROGRAMS, TrainingProgram } from '../constants/trainingData';
 import { TrainingApproachSection } from '../features/home';
 import { cn } from '../lib/utils';
 import { sendTrainingEnrollment } from '../lib/api';
+import { TurnstileCaptcha } from '../components/common';
 
 // Import local assets for fallback and CTA
 import capacityBuildingImg from '../assets/capacity-building.jpg';
@@ -41,6 +42,7 @@ interface EnrollmentFormData {
   sessionType: 'Physical' | 'Online';
   trainingType: 'Group' | 'Private';
   website: string; // Honeypot
+  captchaToken: string;
 }
 
 interface EnrollmentFormErrors {
@@ -68,6 +70,7 @@ const EnrollmentModal: React.FC<{
     trainingType: 'Group',
     selectedProgramSlug: program?.slug || '',
     website: '',
+    captchaToken: '',
   });
   const [errors, setErrors] = useState<EnrollmentFormErrors>({});
 
@@ -97,6 +100,9 @@ const EnrollmentModal: React.FC<{
     if (!program && !formData.selectedProgramSlug) {
       nextErrors.form = 'Please select a training program.';
     }
+    if (!formData.captchaToken) {
+      nextErrors.form = 'Please complete the security check.';
+    }
 
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
@@ -117,6 +123,7 @@ const EnrollmentModal: React.FC<{
         trainingType: 'Group',
         selectedProgramSlug: program?.slug || '',
         website: '',
+        captchaToken: '',
       });
       return;
     }
@@ -137,6 +144,8 @@ const EnrollmentModal: React.FC<{
       program: programTitle,
       sessionType: formData.sessionType,
       trainingType: formData.trainingType,
+      website: formData.website,
+      captchaToken: formData.captchaToken,
     });
 
     setIsSubmitting(false);
@@ -154,6 +163,7 @@ const EnrollmentModal: React.FC<{
         trainingType: 'Group',
         selectedProgramSlug: program?.slug || '',
         website: '',
+        captchaToken: '',
       });
     } else {
       setErrors((prev) => ({
@@ -186,33 +196,33 @@ const EnrollmentModal: React.FC<{
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-2xl bg-black border-[10px] border-[#00BFFF] shadow-[30px_30px_0px_0px_rgba(0,191,255,0.15)] overflow-hidden flex flex-col"
+              className="relative w-full max-w-2xl bg-black border-[4px] sm:border-[6px] border-[#00BFFF] shadow-[20px_20px_0px_0px_rgba(0,191,255,0.15)] overflow-hidden flex flex-col"
             >
-              <div className="p-6 sm:p-10">
+              <div className="p-4 sm:p-6">
                 <button
                   onClick={onClose}
-                  className="absolute top-6 right-6 text-white/40 hover:text-[#00BFFF] transition-colors z-10"
+                  className="absolute top-4 right-4 text-white/40 hover:text-[#00BFFF] transition-colors z-10"
                 >
-                  <X size={24} />
+                  <X size={20} />
                 </button>
 
-                <div className="relative mb-10">
-                  <span className="text-[10px] font-black text-[#00BFFF] uppercase tracking-[0.4em] mb-2 block">
+                <div className="relative mb-4 sm:mb-6">
+                  <span className="text-[9px] font-black text-[#00BFFF] uppercase tracking-[0.4em] mb-1 block">
                     Enrollment Portal
                   </span>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tighter leading-none">
+                  <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tighter leading-none">
                     {program ? `Join ${program.title}` : 'Enroll in a Program'}
                   </h2>
-                  <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-1 h-12 bg-[#00BFFF]" />
+                  <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-1 h-10 bg-[#00BFFF]" />
                 </div>
 
                 {errors.form && (
-                  <div className="mb-6 p-4 bg-red-500/10 border-l-4 border-red-500 text-red-500 text-xs font-bold uppercase tracking-widest">
+                  <div className="mb-4 p-3 bg-red-500/10 border-l-4 border-red-500 text-red-500 text-[10px] font-bold uppercase tracking-widest">
                     {errors.form}
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3">
                   {/* Honeypot */}
                   <div className="hidden">
                     <input
@@ -225,8 +235,8 @@ const EnrollmentModal: React.FC<{
                     />
                   </div>
 
-                  <div className="space-y-1.5">
-                    <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                  <div className="space-y-1">
+                    <label className="text-[7px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                       Select Training Program
                     </label>
                     <div className="relative">
@@ -234,7 +244,7 @@ const EnrollmentModal: React.FC<{
                         name="selectedProgramSlug"
                         value={formData.selectedProgramSlug}
                         onChange={handleInputChange}
-                        className="w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                        className="w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00BFFF] outline-none appearance-none cursor-pointer uppercase tracking-tight"
                       >
                         <option value="" className="bg-black">
                           -- CHOOSE A PROGRAM --
@@ -245,15 +255,15 @@ const EnrollmentModal: React.FC<{
                           </option>
                         ))}
                       </select>
-                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00BFFF]">
-                        <ChevronDown size={18} />
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#00BFFF]">
+                        <ChevronDown size={14} />
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-1.5 group">
-                      <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                  <div className="grid md:grid-cols-2 gap-2 sm:gap-3">
+                    <div className="space-y-1 group">
+                      <label className="text-[7px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                         Full Name
                       </label>
                       <input
@@ -262,19 +272,19 @@ const EnrollmentModal: React.FC<{
                         value={formData.fullName}
                         onChange={handleInputChange}
                         className={cn(
-                          'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                          'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
                           errors.fullName && 'border-red-500',
                         )}
                         placeholder="YOUR FULL NAME"
                       />
                       {errors.fullName && (
-                        <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                        <p className="text-[7px] text-red-500 font-black uppercase mt-1">
                           {errors.fullName}
                         </p>
                       )}
                     </div>
-                    <div className="space-y-1.5 group">
-                      <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                    <div className="space-y-1 group">
+                      <label className="text-[7px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                         Email Address
                       </label>
                       <input
@@ -283,22 +293,22 @@ const EnrollmentModal: React.FC<{
                         value={formData.email}
                         onChange={handleInputChange}
                         className={cn(
-                          'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                          'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
                           errors.email && 'border-red-500',
                         )}
                         placeholder="EMAIL@INSTITUTION.COM"
                       />
                       {errors.email && (
-                        <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                        <p className="text-[7px] text-red-500 font-black uppercase mt-1">
                           {errors.email}
                         </p>
                       )}
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-1.5 group">
-                      <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                  <div className="grid md:grid-cols-2 gap-2 sm:gap-3">
+                    <div className="space-y-1 group">
+                      <label className="text-[7px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                         Phone Number
                       </label>
                       <input
@@ -307,19 +317,19 @@ const EnrollmentModal: React.FC<{
                         value={formData.phone}
                         onChange={handleInputChange}
                         className={cn(
-                          'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                          'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
                           errors.phone && 'border-red-500',
                         )}
                         placeholder="+255 --- --- ---"
                       />
                       {errors.phone && (
-                        <p className="text-[10px] text-red-500 font-black uppercase mt-1">
+                        <p className="text-[7px] text-red-500 font-black uppercase mt-1">
                           {errors.phone}
                         </p>
                       )}
                     </div>
-                    <div className="space-y-1.5 group">
-                      <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                    <div className="space-y-1 group">
+                      <label className="text-[7px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                         Institution (Optional)
                       </label>
                       <input
@@ -328,7 +338,7 @@ const EnrollmentModal: React.FC<{
                         value={formData.institution}
                         onChange={handleInputChange}
                         className={cn(
-                          'w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
+                          'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00BFFF] outline-none transition-all placeholder:text-white/20',
                           errors.institution && 'border-red-500',
                         )}
                         placeholder="ORGANIZATION NAME"
@@ -336,9 +346,9 @@ const EnrollmentModal: React.FC<{
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-1.5">
-                      <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                  <div className="grid md:grid-cols-2 gap-2 sm:gap-3">
+                    <div className="space-y-1">
+                      <label className="text-[7px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                         Session Preference
                       </label>
                       <div className="relative">
@@ -346,7 +356,7 @@ const EnrollmentModal: React.FC<{
                           name="sessionType"
                           value={formData.sessionType}
                           onChange={handleInputChange}
-                          className="w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                          className="w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00BFFF] outline-none appearance-none cursor-pointer uppercase tracking-tight"
                         >
                           <option value="Physical" className="bg-black">
                             Physical (In-Person)
@@ -355,13 +365,13 @@ const EnrollmentModal: React.FC<{
                             Online (Virtual)
                           </option>
                         </select>
-                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00BFFF]">
-                          <ChevronDown size={18} />
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#00BFFF]">
+                          <ChevronDown size={14} />
                         </div>
                       </div>
                     </div>
-                    <div className="space-y-1.5">
-                      <label className="text-[9px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
+                    <div className="space-y-1">
+                      <label className="text-[7px] font-black uppercase text-[#00BFFF] tracking-widest ml-1">
                         Training Type
                       </label>
                       <div className="relative">
@@ -369,7 +379,7 @@ const EnrollmentModal: React.FC<{
                           name="trainingType"
                           value={formData.trainingType}
                           onChange={handleInputChange}
-                          className="w-full bg-white/5 border-[3px] border-white/10 p-3.5 text-white font-bold text-sm focus:border-[#00BFFF] outline-none appearance-none cursor-pointer uppercase tracking-tight"
+                          className="w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00BFFF] outline-none appearance-none cursor-pointer uppercase tracking-tight"
                         >
                           <option value="Group" className="bg-black">
                             Group Training
@@ -378,25 +388,31 @@ const EnrollmentModal: React.FC<{
                             Private Training
                           </option>
                         </select>
-                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#00BFFF]">
-                          <ChevronDown size={18} />
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#00BFFF]">
+                          <ChevronDown size={14} />
                         </div>
                       </div>
                     </div>
                   </div>
 
+                  <div className="flex justify-center py-0.5 sm:py-1 scale-[0.7] sm:scale-75">
+                    <TurnstileCaptcha
+                      onVerify={(token) => setFormData((prev) => ({ ...prev, captchaToken: token }))}
+                    />
+                  </div>
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-[#00BFFF] border-4 border-black text-black font-black uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
+                    className="w-full py-2 sm:py-3 bg-[#00BFFF] border-[2px] border-black text-black font-black uppercase tracking-[0.2em] text-[8px] sm:text-[9px] flex items-center justify-center gap-2 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
                   >
                     {isSubmitting ? (
                       <>
-                        Processing... <Loader2 className="w-4 h-4 animate-spin" />
+                        Processing... <Loader2 className="w-3 h-3 animate-spin" />
                       </>
                     ) : (
                       <>
-                        Send Enrollment <Send size={18} />
+                        Send Enrollment <Send size={12} />
                       </>
                     )}
                   </button>

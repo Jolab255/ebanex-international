@@ -21,3 +21,4 @@ export {
 } from './Skeleton';
 export { default as ThemeToggle } from './ThemeToggle';
 export { default as CookieConsent } from './CookieConsent';
+export { default as TurnstileCaptcha } from './TurnstileCaptcha';
