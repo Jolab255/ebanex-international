@@ -431,7 +431,7 @@ export const CTASection: React.FC = () => {
       transition={{ duration: 0.8 }}
       viewport={{ once: false }}
     >
-      <div className="relative min-h-[500px] flex items-center">
+      <div className="relative min-h-[600px] flex items-center">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80"

@@ -318,7 +318,7 @@ const TrainingProgramDetail: React.FC = () => {
 
         {/* Info Cards Section */}
         <section className="w-full bg-black pt-8 sm:pt-12 pb-[30px] relative z-20 overflow-hidden">
-          <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute inset-0 z-0 pointer-events-none hidden lg:block">
             <Squares
               speed={0.13}
               squareSize={40}
@@ -328,7 +328,7 @@ const TrainingProgramDetail: React.FC = () => {
             />
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-6">
               {[
                 {
                   icon: <FaCertificate />,
@@ -356,19 +356,19 @@ const TrainingProgramDetail: React.FC = () => {
                   desc: 'High-fidelity simulation environments for practical learning',
                 },
               ].map((badge, i) => (
-                <div key={i} className="group relative aspect-square">
+                <div key={i} className={cn("group relative aspect-square", i === 4 && "hidden lg:block")}>
                   <div className="absolute inset-0 bg-[#00C4D4] transform rotate-1 group-hover:rotate-0 transition-transform" />
                   <div
-                    className="relative p-4 border-[4px] border-black h-full flex flex-col items-center justify-center text-center bg-[#0a1628]"
+                    className="relative p-3 sm:p-4 border-[3px] sm:border-[4px] border-black h-full flex flex-col items-center justify-center text-center bg-[#0a1628]"
                     style={{
                       background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
                     }}
                   >
-                    <div className="text-2xl text-[#00C4D4] mb-3">{badge.icon}</div>
-                    <h3 className="text-[10px] font-black text-[#00C4D4] uppercase tracking-widest mb-2">
+                    <div className="text-xl sm:text-2xl text-[#00C4D4] mb-2 sm:mb-3">{badge.icon}</div>
+                    <h3 className="text-[8px] sm:text-[10px] font-black text-[#00C4D4] uppercase tracking-widest mb-1 sm:mb-2">
                       {badge.title}
                     </h3>
-                    <p className="text-[10px] sm:text-xs text-white/90 leading-tight">
+                    <p className="text-[9px] sm:text-xs text-white/90 leading-tight">
                       {badge.desc}
                     </p>
                   </div>
@@ -489,7 +489,7 @@ const TrainingProgramDetail: React.FC = () => {
               </svg>
             </motion.div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-[100px] py-20">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 lg:px-[100px] pt-20 pb-[10px] sm:py-20">
               <motion.div id="syllabus" className="mb-20">
                 <h2 className="text-3xl sm:text-4xl font-black text-black uppercase mb-12">
                   Curriculum Focus
@@ -757,7 +757,7 @@ const TrainingProgramDetail: React.FC = () => {
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
             <div className="relative w-full max-w-4xl flex items-center justify-center lg:justify-start">
-              <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-square z-0 opacity-100">
+              <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-[4/5] z-0 opacity-100">
                 <img
                   src={institutionalAdvisoryImg}
                   className="w-full h-full object-cover border-[10px] border-black"

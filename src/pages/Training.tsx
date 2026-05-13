@@ -1009,7 +1009,7 @@ const Training: React.FC = () => {
 
           {/* CTA Card */}
           <div className="relative w-full max-w-4xl flex items-center justify-center lg:justify-start">
-            <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-square z-[-1] opacity-100">
+            <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-[4/5] z-[-1] opacity-100">
               <img
                 src={capacityBuildingImg}
                 className="w-full h-full object-cover rounded-none border-[10px] border-black"
