@@ -29,6 +29,8 @@ export interface TrainingEnrollmentPayload {
   program: string;
   sessionType: string;
   trainingType: string;
+  groupSize?: number;
+  totalCost?: string;
   website?: string;
   captchaToken?: string;
 }

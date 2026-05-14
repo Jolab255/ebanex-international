@@ -5,7 +5,11 @@
 
 // Define Turnstile Secret Key centrally if not already defined
 if (!defined('TURNSTILE_SECRET_KEY')) {
-    // Replace with your actual secret key in production
+    /** 
+     * PRODUCTION NOTE: 
+     * The key below is a Cloudflare 'Always Passes' test key.
+     * Replace with your actual Secret Key from the Cloudflare Dashboard.
+     */
     define('TURNSTILE_SECRET_KEY', "0x4AAAAAADOqU_3fOCvYrar0F36ofq-Fr8g");
 }
 

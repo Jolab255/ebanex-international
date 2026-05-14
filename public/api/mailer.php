@@ -2,11 +2,19 @@
 /**
  * SMTP Helper Function
  * Sends email via local SMTP relay
+ * 
+ * PRODUCTION NOTE: 
+ * For production, update $smtp_host and $smtp_port to your actual SMTP server.
+ * You may also need to implement AUTH LOGIN if your server requires it.
  */
 function send_smtp_email($to, $subject, $body, $headers) {
-    $smtp_host = 'localhost';
-    $smtp_port = 25;
+    $smtp_host = 'localhost'; // Change to e.g. 'smtp.gmail.com' for production
+    $smtp_port = 25;           // Change to 465 or 587 for production
     $from_header = '';
+    
+    // Dot-stuffing: Any line starting with a period must have an extra period added
+    // to prevent premature end-of-data signal in SMTP.
+    $body = str_replace("\n.", "\n..", $body);
     
     // Extract From address from headers
     foreach (explode("\r\n", $headers) as $header) {
@@ -29,7 +37,7 @@ function send_smtp_email($to, $subject, $body, $headers) {
             return false;
         }
         
-        fputs($socket, "HELO localhost\r\n");
+        fputs($socket, "HELO ebanexint.co.tz\r\n");
         fgets($socket, 1024);
         
         // Extract email from "Name <email>" format

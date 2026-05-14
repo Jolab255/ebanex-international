@@ -84,90 +84,70 @@ $institution = htmlspecialchars(strip_tags($_POST['institution'] ?? $json_data['
 $program = htmlspecialchars(strip_tags($_POST['program'] ?? $json_data['program'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
 $sessionType = htmlspecialchars(strip_tags($_POST['sessionType'] ?? $json_data['sessionType'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
 $trainingType = htmlspecialchars(strip_tags($_POST['trainingType'] ?? $json_data['trainingType'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$groupSize = htmlspecialchars(strip_tags($_POST['groupSize'] ?? $json_data['groupSize'] ?? '1'), ENT_QUOTES, 'UTF-8');
+$totalCost = htmlspecialchars(strip_tags($_POST['totalCost'] ?? $json_data['totalCost'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
 
 $subject = $subject_prefix . $program . " - " . $fullName;
 
-// ── EMAIL CONSTRUCTION (HTML with proper encoding) ────────────────────────────────────
-$boundary = "PHP-mixed-" . md5(time());
+// ── EMAIL CONSTRUCTION (HTML using helper) ────────────────────────────────────
+$content_html = "
+    <div class='field'>
+        <div class='label'>Training Program</div>
+        <div class='value'>$program</div>
+    </div>
+    <div class='field'>
+        <div class='label'>Session Type</div>
+        <div class='value'>$sessionType</div>
+    </div>
+    <div class='field'>
+        <div class='label'>Training Type</div>
+        <div class='value'>$trainingType</div>
+    </div>";
+
+if ($trainingType === 'Group') {
+    $personLabel = ($groupSize == 1) ? "Person" : "People";
+    $content_html .= "
+    <div class='field'>
+        <div class='label'>Group Size</div>
+        <div class='value'>$groupSize $personLabel</div>
+    </div>";
+}
+
+$content_html .= "
+    <div class='field'>
+        <div class='label'>Total Investment</div>
+        <div class='value'>$totalCost</div>
+    </div>
+    <div class='field'>
+        <div class='label'>Applicant Name</div>
+        <div class='value'>$fullName</div>
+    </div>
+    <div class='field'>
+        <div class='label'>Email Address</div>
+        <div class='value'>$email</div>
+    </div>
+    <div class='field'>
+        <div class='label'>Phone Number</div>
+        <div class='value'>$phone</div>
+    </div>
+    <div class='field'>
+        <div class='label'>Institution</div>
+        <div class='value'>$institution</div>
+    </div>";
+
+$message_html = get_email_template("Training Program Enrollment", $content_html, "This enrollment was submitted via the Ebanex International training portal.");
+
+// Build headers
 $headers = "From: Ebanex Website <$from_email>\r\n";
 $headers .= "Reply-To: $email\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
-
-// HTML Message with inline styles
-$message_html = "<!DOCTYPE html>
-<html>
-<head>
-<meta charset=\"UTF-8\">
-<style type=\"text/css\">
-  body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-  .container { max-width: 600px; margin: 0 auto; }
-  .header { background: #004a99; padding: 20px; color: white; text-align: center; }
-  .header h2 { margin: 0; font-size: 24px; }
-  .content { padding: 20px; background: #f9f9f9; border: 1px solid #ddd; }
-  .field { margin: 12px 0; padding: 10px; background: white; border-left: 3px solid #004a99; }
-  .label { font-weight: bold; color: #004a99; font-size: 12px; text-transform: uppercase; }
-  .value { margin-top: 5px; color: #333; }
-  .footer { padding: 10px; font-size: 12px; color: #999; text-align: center; border-top: 1px solid #ddd; margin-top: 20px; }
-</style>
-</head>
-<body>
-<div class=\"container\">
-  <div class=\"header\">
-    <h2>Training Program Enrollment</h2>
-  </div>
-  <div class=\"content\">
-    <div class=\"field\">
-      <div class=\"label\">Program</div>
-      <div class=\"value\">$program</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Session Type</div>
-      <div class=\"value\">$sessionType</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Training Type</div>
-      <div class=\"value\">$trainingType</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Full Name</div>
-      <div class=\"value\">$fullName</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Email Address</div>
-      <div class=\"value\">$email</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Phone Number</div>
-      <div class=\"value\">$phone</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Institution</div>
-      <div class=\"value\">$institution</div>
-    </div>
-    <div class=\"footer\">
-      This enrollment was submitted via the Ebanex International training portal.
-    </div>
-  </div>
-</div>
-</body>
-</html>";
-
-// Encode HTML content with quoted-printable to avoid line-length issues
-$encoded_html = quoted_printable_encode($message_html);
-
-// Build MIME message body
-$body = "--$boundary\r\n";
-$body .= "Content-Type: text/html; charset=\"UTF-8\"\r\n";
-$body .= "Content-Transfer-Encoding: quoted-printable\r\n\r\n";
-$body .= $encoded_html . "\r\n\r\n";
-$body .= "--$boundary--";
 
 // ── SEND ─────────────────────────────────────────────────────────────
 // Send to domain email first (more reliable), then external
-$sent_primary = send_smtp_email($to_email_primary, $subject, $body, $headers);
-$sent_external = send_smtp_email($to_email_external, $subject, $body, $headers);
+$sent_primary = send_smtp_email($to_email_primary, $subject, $message_html, $headers);
+$sent_external = send_smtp_email($to_email_external, $subject, $message_html, $headers);
 
 if ($sent_primary || $sent_external) {
     error_log("Enrollment sent: domain=$sent_primary, external=$sent_external");

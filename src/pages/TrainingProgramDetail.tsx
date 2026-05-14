@@ -7,6 +7,7 @@ import { Squares } from '../components/animations';
 import { TRAINING_PROGRAMS, TrainingProgram } from '../constants/trainingData';
 import { sendTrainingEnrollment } from '../lib/api';
 import { TurnstileCaptcha } from '../components/common';
+import { EnrollmentModal } from '../components/training';
 import {
   CheckCircle,
   Clock,
@@ -28,31 +29,12 @@ import {
 // Import local assets for CTA
 import institutionalAdvisoryImg from '../assets/institutional-advisory.jpg';
 
-interface EnrollmentFormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  institution: string;
-  program: string;
-  sessionType: 'Physical' | 'Online';
-  trainingType: 'Group' | 'Private';
-  groupSize: number;
-  acceptedTerms: boolean;
-  website: string; // Honeypot
-  captchaToken: string;
-}
-
-interface EnrollmentFormErrors {
-  fullName?: string;
-  email?: string;
-  phone?: string;
-  institution?: string;
-  acceptedTerms?: string;
-  form?: string;
-}
-
-const CISA_PRICE_TZS = 1000000;
-const TZS_TO_USD = 2600; // Approximate conversion rate
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.6 },
+};
 
 const TrainingProgramDetail: React.FC = () => {
   const { programId } = useParams<{ programId: string }>();
@@ -65,37 +47,9 @@ const TrainingProgramDetail: React.FC = () => {
 
   // Enrollment Modal State
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [showPriceNotice, setShowPriceNotice] = useState(false);
-  const [formData, setFormData] = useState<EnrollmentFormData>({
-    fullName: '',
-    email: '',
-    phone: '',
-    institution: '',
-    program: program?.title || '',
-    sessionType: 'Physical',
-    trainingType: 'Group',
-    groupSize: 1,
-    acceptedTerms: false,
-    website: '',
-    captchaToken: '',
-  });
-  const [errors, setErrors] = useState<EnrollmentFormErrors>({});
 
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const isCisa = programId === 'cisa' || formData.program.includes('CISA');
-
-  const calculateTotalCost = () => {
-    if (!isCisa) return null;
-    const count = formData.trainingType === 'Private' ? 1 : formData.groupSize;
-    return count * CISA_PRICE_TZS;
-  };
-
-  const totalCost = calculateTotalCost();
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: syllabusRef,
     offset: ['start end', 'end start'],
   });
 
@@ -112,112 +66,6 @@ const TrainingProgramDetail: React.FC = () => {
   const circle1Scale = useTransform(smoothProgress, [0, 1], [1, 1.1]);
   const circle2Scale = useTransform(smoothProgress, [0, 1], [1, 1.15]);
   const circle3Scale = useTransform(smoothProgress, [0, 1], [1, 1.2]);
-
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    
-    if (type === 'checkbox') {
-      const checked = (e.target as HTMLInputElement).checked;
-      setFormData((prev) => ({ ...prev, [name]: checked }));
-      setErrors((prev) => ({ ...prev, [name]: undefined, form: undefined }));
-      return;
-    }
-
-    if (name === 'trainingType' && value === 'Private' && isCisa) {
-      setShowPriceNotice(true);
-    }
-
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: undefined, form: undefined }));
-  };
-
-  const validate = (): boolean => {
-    const nextErrors: EnrollmentFormErrors = {};
-
-    if (!formData.fullName.trim()) nextErrors.fullName = 'Full name is required.';
-    if (!formData.email.trim()) {
-      nextErrors.email = 'Email is required.';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-      nextErrors.email = 'Enter a valid email.';
-    }
-    if (!formData.phone.trim()) nextErrors.phone = 'Phone number is required.';
-    // Institution is optional
-
-    if (!formData.captchaToken) {
-      nextErrors.form = 'Please complete the security check.';
-    }
-
-    setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Honeypot
-    if (formData.website) {
-      setSuccessMessage('Thank you for enrolling! We will contact you shortly.');
-      setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        institution: '',
-        program: program?.title || '',
-        sessionType: 'Physical',
-        trainingType: 'Group',
-        website: '',
-        captchaToken: '',
-      });
-      return;
-    }
-
-    if (!validate()) return;
-
-    setIsSubmitting(true);
-    setErrors((prev) => ({ ...prev, form: undefined }));
-
-    const result = await sendTrainingEnrollment({
-      fullName: formData.fullName.trim(),
-      email: formData.email.trim(),
-      phone: formData.phone.trim(),
-      institution: formData.institution.trim() || 'N/A',
-      program: program?.title || programId || 'Unknown Program',
-      sessionType: formData.sessionType,
-      trainingType: formData.trainingType,
-      website: formData.website,
-      captchaToken: formData.captchaToken,
-    });
-
-    setIsSubmitting(false);
-
-    if (result.ok) {
-      setSuccessMessage(
-        'Thank you for enrolling! We have received your details and will contact you shortly with further information.',
-      );
-      setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        institution: '',
-        program: program?.title || '',
-        sessionType: 'Physical',
-        trainingType: 'Group',
-        website: '',
-        captchaToken: '',
-      });
-    } else {
-      setErrors((prev) => ({
-        ...prev,
-        form: result.error || 'Unable to process enrollment. Please try again.',
-      }));
-    }
-  };
 
   if (!program) {
     return <Navigate to="/training" replace />;
@@ -841,303 +689,18 @@ const TrainingProgramDetail: React.FC = () => {
             </div>
           </div>
         </section>
-
-        {/* Enrollment Modal */}
-        <AnimatePresence>
-          {isModalOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[1000] flex items-center justify-center p-4 sm:p-6 lg:p-8"
-            >
-              <div
-                className="absolute inset-0 bg-black/90 backdrop-blur-xl"
-                onClick={() => !isSubmitting && setIsModalOpen(false)}
-              />
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="relative w-full max-w-2xl bg-black border-[4px] sm:border-[6px] border-[#00C4D4] shadow-[20px_20px_0px_0px_rgba(0,196,212,0.15)] overflow-hidden flex flex-col"
-              >
-                <div className="p-4 sm:p-6">
-                  <button
-                    onClick={() => setIsModalOpen(false)}
-                    className="absolute top-4 right-4 text-white/40 hover:text-[#00C4D4] transition-colors z-10"
-                  >
-                    <X size={20} />
-                  </button>
-
-                  <div className="relative mb-4 sm:mb-6">
-                    <span className="text-[9px] font-black text-[#00C4D4] uppercase tracking-[0.4em] mb-1 block">
-                      Enrollment Portal
-                    </span>
-                    <h2 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tighter leading-none">
-                      Join the <span className="text-[#00C4D4]">Program</span>
-                    </h2>
-                    <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-1 h-10 bg-[#00C4D4]" />
-                  </div>
-
-                  {errors.form && (
-                    <div className="mb-4 p-3 bg-red-500/10 border-l-4 border-red-500 text-red-500 text-[10px] font-bold uppercase tracking-widest">
-                      {errors.form}
-                    </div>
-                  )}
-
-                  <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-3">
-                    {/* Honeypot */}
-                    <div className="hidden">
-                      <input
-                        type="text"
-                        name="website"
-                        tabIndex={-1}
-                        value={formData.website}
-                        onChange={handleInputChange}
-                        autoComplete="off"
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
-                        Select Training Program
-                      </label>
-                      <div className="relative">
-                        <select
-                          name="program"
-                          value={formData.program || program?.title}
-                          onChange={(e) => {
-                            const selected = Object.values(TRAINING_PROGRAMS).find(
-                              (p) => p.title === e.target.value,
-                            );
-                            if (selected) {
-                              setFormData((prev) => ({ ...prev, program: selected.title }));
-                            }
-                          }}
-                          className="w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
-                        >
-                          {Object.values(TRAINING_PROGRAMS).map((p) => (
-                            <option key={p.slug} value={p.title} className="bg-black">
-                              {p.title}
-                            </option>
-                          ))}
-                        </select>
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
-                          <ChevronDown size={14} />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-2 sm:gap-3">
-                      <div className="space-y-1 group">
-                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
-                          Full Name
-                        </label>
-                        <input
-                          type="text"
-                          name="fullName"
-                          value={formData.fullName}
-                          onChange={handleInputChange}
-                          className={cn(
-                            'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
-                            errors.fullName && 'border-red-500',
-                          )}
-                          placeholder="YOUR FULL NAME"
-                        />
-                        {errors.fullName && (
-                          <p className="text-[7px] text-red-500 font-black uppercase mt-1">
-                            {errors.fullName}
-                          </p>
-                        )}
-                      </div>
-                      <div className="space-y-1 group">
-                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
-                          Email Address
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className={cn(
-                            'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
-                            errors.email && 'border-red-500',
-                          )}
-                          placeholder="EMAIL@INSTITUTION.COM"
-                        />
-                        {errors.email && (
-                          <p className="text-[7px] text-red-500 font-black uppercase mt-1">
-                            {errors.email}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-2 sm:gap-3">
-                      <div className="space-y-1 group">
-                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
-                          Phone Number
-                        </label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className={cn(
-                            'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
-                            errors.phone && 'border-red-500',
-                          )}
-                          placeholder="+255 --- --- ---"
-                        />
-                        {errors.phone && (
-                          <p className="text-[7px] text-red-500 font-black uppercase mt-1">
-                            {errors.phone}
-                          </p>
-                        )}
-                      </div>
-                      <div className="space-y-1 group">
-                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
-                          Institution (Optional)
-                        </label>
-                        <input
-                          type="text"
-                          name="institution"
-                          value={formData.institution}
-                          onChange={handleInputChange}
-                          className={cn(
-                            'w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none transition-all placeholder:text-white/20',
-                            errors.institution && 'border-red-500',
-                          )}
-                          placeholder="ORGANIZATION NAME"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-2 sm:gap-3">
-                      <div className="space-y-1">
-                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
-                          Session Preference
-                        </label>
-                        <div className="relative">
-                          <select
-                            name="sessionType"
-                            value={formData.sessionType}
-                            onChange={handleInputChange}
-                            className="w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
-                          >
-                            <option value="Physical" className="bg-black">
-                              Physical (In-Person)
-                            </option>
-                            <option value="Online" className="bg-black">
-                              Online (Virtual)
-                            </option>
-                          </select>
-                          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
-                            <ChevronDown size={14} />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="space-y-1">
-                        <label className="text-[7px] font-black uppercase text-[#00C4D4] tracking-widest ml-1">
-                          Training Type
-                        </label>
-                        <div className="relative">
-                          <select
-                            name="trainingType"
-                            value={formData.trainingType}
-                            onChange={handleInputChange}
-                            className="w-full bg-white/5 border-[2px] border-white/10 p-1.5 sm:p-2 text-white font-bold text-[8px] sm:text-[10px] focus:border-[#00C4D4] outline-none appearance-none cursor-pointer uppercase tracking-tight"
-                          >
-                            <option value="Group" className="bg-black">
-                              Group Training
-                            </option>
-                            <option value="Private" className="bg-black">
-                              Private Training
-                            </option>
-                          </select>
-                          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[#00C4D4]">
-                            <ChevronDown size={14} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex justify-center py-0.5 sm:py-1 scale-[0.7] sm:scale-75">
-                      <TurnstileCaptcha
-                        onVerify={(token) =>
-                          setFormData((prev) => ({ ...prev, captchaToken: token }))
-                        }
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-2 sm:py-3 bg-[#00C4D4] border-[2px] border-black text-black font-black uppercase tracking-[0.2em] text-[8px] sm:text-[9px] flex items-center justify-center gap-2 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          Processing... <Loader2 className="w-3 h-3 animate-spin" />
-                        </>
-                      ) : (
-                        <>
-                          Send Enrollment <Send size={12} />
-                        </>
-                      )}
-                    </button>
-                  </form>
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Success Notification */}
-        <AnimatePresence>
-          {successMessage && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="fixed inset-0 z-[2000] flex items-center justify-center px-4 pointer-events-none"
-            >
-              <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-              <div className="relative bg-[#00C4D4] border-[10px] border-black p-8 sm:p-12 max-w-lg w-full text-center shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] pointer-events-auto">
-                <button
-                  onClick={() => setSuccessMessage(null)}
-                  className="absolute top-4 right-4 text-black/40 hover:text-black transition-colors"
-                >
-                  <X size={24} />
-                </button>
-
-                <div className="bg-black w-20 h-20 flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-12 h-12 text-[#00C4D4]" />
-                </div>
-
-                <h3 className="text-black font-black text-2xl uppercase mb-4 tracking-tighter">
-                  Enrollment Successful
-                </h3>
-                <p className="text-black font-bold uppercase tracking-widest text-xs leading-relaxed">
-                  {successMessage}
-                </p>
-
-                <button
-                  onClick={() => {
-                    setSuccessMessage(null);
-                    setIsModalOpen(false);
-                  }}
-                  className="mt-10 w-full py-4 bg-black text-[#00C4D4] font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-black transition-all"
-                >
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
-    </>
-  );
-};
+    </div>
 
-export default TrainingProgramDetail;
+    <EnrollmentModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      program={program}
+      themeColor="#00C4D4"
+    />
+    </>
+    );
+    };
+
+    export default TrainingProgramDetail;
+

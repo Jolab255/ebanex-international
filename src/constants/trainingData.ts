@@ -36,6 +36,7 @@ export interface TrainingProgram {
   hours: string;
   audience: string;
   image: string;
+  price?: number;
   testimonial: {
     text: string;
     author: string;
@@ -58,6 +59,10 @@ export interface TrainingProgram {
   industries: { title: string; desc: string }[];
   stats: { metric: number; suffix: string; label: string }[];
   faqs: { question: string; answer: string }[];
+  price?: {
+    amount: number;
+    currency: string;
+  };
 }
 
 export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
@@ -1933,6 +1938,7 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
     hours: 'Interactive Sessions',
     audience: 'IT Auditors, GRC Professionals, Consultants',
     image: cisaImg,
+    price: 1000000,
     testimonial: {
       text: 'I had attempted the CISA exam twice before enrolling in the Ebanex bootcamp, and both times I was overwhelmed by the sheer breadth of the domains. The Ebanex instructors provided the specific "exam-mindset" and structural clarity I was missing. Their focus on the ISACA job practice and the intensive, timed mock examinations gave me the confidence to handle the most complex scenario-based questions. I passed with a score well above the requirement on my first try after the course. The Ebanex question database is, without a doubt, the most accurate representation of the real exam I have seen.',
       author: 'Grace Mutua',
