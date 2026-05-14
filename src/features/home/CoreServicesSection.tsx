@@ -78,7 +78,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
       >
         <div className="grid md:grid-cols-2">
           {/* Image Side */}
-          <div className="relative h-48 sm:h-64 md:h-auto overflow-hidden">
+          <div className="relative h-[202px] sm:h-64 md:h-auto overflow-hidden">
             <img
               src={service.image}
               alt={service.title}
@@ -134,13 +134,12 @@ const CoreServicesSection: React.FC = () => {
       setIsMobile(width < 768);
       
       if (width < 768) {
-        // PIXEL-BASED HEIGHT for mobile
-        const mobilePxHeight = CORE_SERVICES.length * 400 + 250;
+        // Adjusted height for mobile with pb-65
+        const mobilePxHeight = CORE_SERVICES.length * 480 + 65;
         setHeightValue(`${mobilePxHeight}px`);
       } else if (width < 1024) {
-        // PIXEL-BASED HEIGHT for tablets (iPad, etc.)
-        // Reduced to tighten the gap significantly
-        const tabletPxHeight = CORE_SERVICES.length * 400 + 150;
+        // Adjusted height for tablets with pb-65
+        const tabletPxHeight = CORE_SERVICES.length * 500 + 95;
         setHeightValue(`${tabletPxHeight}px`);
       } else {
         setHeightValue(`${CORE_SERVICES.length * 80 + 50}vh`);
@@ -187,7 +186,7 @@ const CoreServicesSection: React.FC = () => {
         </div>
 
         {/* Stacking Cards Container */}
-        <div className="px-4 pb-8 sm:pb-12 md:pb-[30vh]">
+        <div className="px-4 pb-[65px] md:pb-[30vh]">
           {CORE_SERVICES.map((service, i) => (
             <ServiceCard
               key={i}
