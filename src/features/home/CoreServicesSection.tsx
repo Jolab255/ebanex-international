@@ -135,12 +135,9 @@ const CoreServicesSection: React.FC = () => {
       setIsMobile(width < 768);
       
       // Granular range definitions for consistent experience
-      if (width < 480) {
-        // Compact Mobile
+      if (width < 768) {
+        // All Mobile sizes (Compact and Regular)
         setHeightValue(`${CORE_SERVICES.length * 85}vh`);
-      } else if (width < 768) {
-        // Regular Mobile
-        setHeightValue(`${CORE_SERVICES.length * 80}vh`);
       } else if (width < 1024) {
         // Tablet
         setHeightValue(`${CORE_SERVICES.length * 75 + 20}vh`);
