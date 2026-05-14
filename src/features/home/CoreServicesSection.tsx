@@ -131,8 +131,8 @@ const CoreServicesSection: React.FC = () => {
   React.useEffect(() => {
     const updateHeight = () => {
       if (window.innerWidth < 768) {
-        // Shorter scroll track for mobile
-        setHeightValue(`${CORE_SERVICES.length * 60 + 20}vh`);
+        // Slightly more height than before to prevent cutting off the last card
+        setHeightValue(`${CORE_SERVICES.length * 75 + 40}vh`);
       } else {
         // Original scroll track for desktop
         setHeightValue(`${CORE_SERVICES.length * 80 + 50}vh`);
@@ -180,7 +180,7 @@ const CoreServicesSection: React.FC = () => {
         </div>
 
         {/* Stacking Cards Container */}
-        <div className="px-4 pb-20 md:pb-[30vh]">
+        <div className="px-4 pb-48 md:pb-[30vh]">
           {CORE_SERVICES.map((service, i) => (
             <ServiceCard
               key={i}
