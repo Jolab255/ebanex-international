@@ -132,7 +132,7 @@ const CoreServicesSection: React.FC = () => {
     const updateHeight = () => {
       if (window.innerWidth < 768) {
         // Slightly more height than before to prevent cutting off the last card
-        setHeightValue(`${CORE_SERVICES.length * 75 + 40}vh`);
+        setHeightValue(`${CORE_SERVICES.length * 75 + 25}vh`);
       } else {
         // Original scroll track for desktop
         setHeightValue(`${CORE_SERVICES.length * 80 + 50}vh`);
