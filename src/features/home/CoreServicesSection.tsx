@@ -139,8 +139,8 @@ const CoreServicesSection: React.FC = () => {
         setHeightValue(`${mobilePxHeight}px`);
       } else if (width < 1024) {
         // PIXEL-BASED HEIGHT for tablets (iPad, etc.)
-        // Consistent scroll track regardless of tablet aspect ratio
-        const tabletPxHeight = CORE_SERVICES.length * 520 + 300;
+        // Reduced to tighten the gap significantly
+        const tabletPxHeight = CORE_SERVICES.length * 400 + 150;
         setHeightValue(`${tabletPxHeight}px`);
       } else {
         setHeightValue(`${CORE_SERVICES.length * 80 + 50}vh`);
