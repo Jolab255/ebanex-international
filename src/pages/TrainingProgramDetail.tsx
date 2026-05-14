@@ -36,6 +36,8 @@ interface EnrollmentFormData {
   program: string;
   sessionType: 'Physical' | 'Online';
   trainingType: 'Group' | 'Private';
+  groupSize: number;
+  acceptedTerms: boolean;
   website: string; // Honeypot
   captchaToken: string;
 }
@@ -45,8 +47,12 @@ interface EnrollmentFormErrors {
   email?: string;
   phone?: string;
   institution?: string;
+  acceptedTerms?: string;
   form?: string;
 }
+
+const CISA_PRICE_TZS = 1000000;
+const TZS_TO_USD = 2600; // Approximate conversion rate
 
 const TrainingProgramDetail: React.FC = () => {
   const { programId } = useParams<{ programId: string }>();
@@ -61,6 +67,7 @@ const TrainingProgramDetail: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [showPriceNotice, setShowPriceNotice] = useState(false);
   const [formData, setFormData] = useState<EnrollmentFormData>({
     fullName: '',
     email: '',
@@ -69,12 +76,24 @@ const TrainingProgramDetail: React.FC = () => {
     program: program?.title || '',
     sessionType: 'Physical',
     trainingType: 'Group',
+    groupSize: 1,
+    acceptedTerms: false,
     website: '',
     captchaToken: '',
   });
   const [errors, setErrors] = useState<EnrollmentFormErrors>({});
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const isCisa = programId === 'cisa' || formData.program.includes('CISA');
+
+  const calculateTotalCost = () => {
+    if (!isCisa) return null;
+    const count = formData.trainingType === 'Private' ? 1 : formData.groupSize;
+    return count * CISA_PRICE_TZS;
+  };
+
+  const totalCost = calculateTotalCost();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
@@ -101,7 +120,19 @@ const TrainingProgramDetail: React.FC = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
+    
+    if (type === 'checkbox') {
+      const checked = (e.target as HTMLInputElement).checked;
+      setFormData((prev) => ({ ...prev, [name]: checked }));
+      setErrors((prev) => ({ ...prev, [name]: undefined, form: undefined }));
+      return;
+    }
+
+    if (name === 'trainingType' && value === 'Private' && isCisa) {
+      setShowPriceNotice(true);
+    }
+
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({ ...prev, [name]: undefined, form: undefined }));
   };
@@ -206,8 +237,9 @@ const TrainingProgramDetail: React.FC = () => {
           canonical={`https://ebanexint.co.tz/training/${program.slug}`}
         />
 
-        {/* Hero Section */}
-        <section className="relative z-30 flex flex-col justify-start pt-12 sm:pt-16 pb-8 sm:pb-10 w-full bg-[linear-gradient(135deg,#000000_50%,#00C4D4_50%)] overflow-hidden">
+        <div className="flex flex-col gap-[25px] sm:gap-0">
+          {/* Hero Section */}
+          <section className="relative z-30 flex flex-col justify-start pt-12 sm:pt-16 pb-8 sm:pb-10 w-full bg-[#00C4D4] sm:bg-[linear-gradient(135deg,#000000_50%,#00C4D4_50%)] overflow-hidden">
           <div className="absolute inset-0 z-0 pointer-events-none">
             <Squares
               speed={0.13}
@@ -726,7 +758,7 @@ const TrainingProgramDetail: React.FC = () => {
               <motion.div className="mt-12 flex justify-center relative z-10">
                 <button
                   onClick={() => setShowAllFaqs(!showAllFaqs)}
-                  className="bg-transparent text-white border-2 border-[#00C4D4] px-8 py-3 font-black hover:bg-[#00C4D4] hover:text-black active:scale-95 transition-all flex items-center gap-2 group text-xs uppercase tracking-widest"
+                  className="bg-black text-[#00C4D4] border-2 border-[#00C4D4] px-8 py-3 font-black hover:bg-[#00C4D4] hover:text-black active:scale-95 transition-all flex items-center gap-2 group text-xs uppercase tracking-widest"
                 >
                   {showAllFaqs ? 'Show Less' : 'View All FAQs'}
                   <ChevronDown
@@ -756,16 +788,25 @@ const TrainingProgramDetail: React.FC = () => {
             />
           </div>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full flex flex-col items-center">
+            {/* Header */}
+            <div className="text-center mb-8 relative z-50">
+              <div className="select-none inline-block bg-black py-3 px-8 border border-white/10 shadow-2xl">
+                <h2 className="text-2xl sm:text-3xl font-black font-heading text-white uppercase tracking-tight">
+                  TAKE THE <span className="text-[#00C4D4]">NEXT STEP</span>
+                </h2>
+              </div>
+            </div>
+
             <div className="relative w-full max-w-4xl flex items-center justify-center lg:justify-start">
-              <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-[4/5] z-0 opacity-100">
+              <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-square z-0 opacity-100">
                 <img
                   src={institutionalAdvisoryImg}
-                  className="w-full h-full object-cover border-[10px] border-black"
-                  alt=""
+                  className="w-full h-full object-cover border-[10px] border-black shadow-none"
+                  alt="Decoration"
                 />
               </div>
               <div
-                className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-10 overflow-hidden bg-[#0a1628]"
+                className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-10 overflow-hidden"
                 style={{
                   background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
                 }}
@@ -780,16 +821,16 @@ const TrainingProgramDetail: React.FC = () => {
                     institutional effectiveness of your organization. Our comprehensive training
                     programs are tailored to your unique needs.
                   </p>
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-4">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-3 mb-10">
                     <button
                       onClick={() => setIsModalOpen(true)}
-                      className="h-12 px-8 bg-[#00C4D4] text-black font-black text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2"
+                      className="h-11 sm:h-12 px-6 bg-[#00C4D4] text-black rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1 active:scale-95 flex items-center gap-2"
                     >
                       Enroll Now <ArrowRight size={14} />
                     </button>
                     <Link
                       to="/training"
-                      className="h-12 px-8 border-2 border-white text-white font-black text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center"
+                      className="h-11 sm:h-12 px-6 border-2 border-white text-white rounded-none font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95 flex items-center justify-center"
                     >
                       View All Programs
                     </Link>
