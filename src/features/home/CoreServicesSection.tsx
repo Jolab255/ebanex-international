@@ -58,8 +58,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
     isLast ? [1, 1] : [1, 0.95],
   );
 
-  // Sticky offset from top - reduced on mobile for better fit
-  const topOffset = isMobile ? 70 + index * 20 : 100 + index * 32;
+  // Sticky offset from top - tightly packed on mobile to save vertical space
+  const topOffset = isMobile ? 60 + index * 12 : 100 + index * 32;
 
   return (
     <motion.div
@@ -136,9 +136,8 @@ const CoreServicesSection: React.FC = () => {
       
       // Granular range definitions for consistent experience
       if (width < 768) {
-        // All Mobile sizes (Compact and Regular)
-        // Significantly reduced from 85vh to 45vh to kill the gap
-        setHeightValue(`${CORE_SERVICES.length * 45}vh`);
+        // Balanced multiplier to ensure visibility while minimizing dead air
+        setHeightValue(`${CORE_SERVICES.length * 72}vh`);
       } else if (width < 1024) {
         // Tablet
         setHeightValue(`${CORE_SERVICES.length * 75 + 20}vh`);
@@ -189,7 +188,7 @@ const CoreServicesSection: React.FC = () => {
         </div>
 
         {/* Stacking Cards Container */}
-        <div className="px-4 pb-12 sm:pb-16 md:pb-[30vh]">
+        <div className="px-4 pb-20 sm:pb-24 md:pb-[30vh]">
           {CORE_SERVICES.map((service, i) => (
             <ServiceCard
               key={i}
