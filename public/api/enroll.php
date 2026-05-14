@@ -91,49 +91,71 @@ $subject = $subject_prefix . $program . " - " . $fullName;
 
 // ── EMAIL CONSTRUCTION (HTML using helper) ────────────────────────────────────
 $content_html = "
-    <div class='field'>
-        <div class='label'>Training Program</div>
-        <div class='value'>$program</div>
-    </div>
-    <div class='field'>
-        <div class='label'>Session Type</div>
-        <div class='value'>$sessionType</div>
-    </div>
-    <div class='field'>
-        <div class='label'>Training Type</div>
-        <div class='value'>$trainingType</div>
-    </div>";
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Training Program</div>
+            <div style='font-size: 16px; color: #FFFFFF; font-weight: bold;'>$program</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+                <tr>
+                    <td width='50%' style='vertical-align: top;'>
+                        <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Session Type</div>
+                        <div style='font-size: 14px; color: #FFFFFF;'>$sessionType</div>
+                    </td>
+                    <td width='50%' style='vertical-align: top;'>
+                        <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Training Type</div>
+                        <div style='font-size: 14px; color: #FFFFFF;'>$trainingType</div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>";
 
 if ($trainingType === 'Group') {
     $personLabel = ($groupSize == 1) ? "Person" : "People";
     $content_html .= "
-    <div class='field'>
-        <div class='label'>Group Size</div>
-        <div class='value'>$groupSize $personLabel</div>
-    </div>";
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Group Size</div>
+            <div style='font-size: 14px; color: #FFFFFF;'>$groupSize $personLabel</div>
+        </td>
+    </tr>";
 }
 
 $content_html .= "
-    <div class='field'>
-        <div class='label'>Total Investment</div>
-        <div class='value'>$totalCost</div>
-    </div>
-    <div class='field'>
-        <div class='label'>Applicant Name</div>
-        <div class='value'>$fullName</div>
-    </div>
-    <div class='field'>
-        <div class='label'>Email Address</div>
-        <div class='value'>$email</div>
-    </div>
-    <div class='field'>
-        <div class='label'>Phone Number</div>
-        <div class='value'>$phone</div>
-    </div>
-    <div class='field'>
-        <div class='label'>Institution</div>
-        <div class='value'>$institution</div>
-    </div>";
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Total Investment</div>
+            <div style='font-size: 18px; color: #00BFFF; font-weight: 900;'>$totalCost</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 30px 0 10px 0;'>
+            <div style='font-size: 12px; font-weight: 900; color: #FFFFFF; text-transform: uppercase; letter-spacing: 2px;'>Applicant Details</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Full Name</div>
+            <div style='font-size: 14px; color: #FFFFFF;'>$fullName</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Contact Information</div>
+            <div style='font-size: 14px; color: #FFFFFF; margin-bottom: 4px;'>Email: $email</div>
+            <div style='font-size: 14px; color: #FFFFFF;'>Phone: $phone</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Institution</div>
+            <div style='font-size: 14px; color: #FFFFFF;'>$institution</div>
+        </td>
+    </tr>";
 
 $message_html = get_email_template("Training Program Enrollment", $content_html, "This enrollment was submitted via the Ebanex International training portal.");
 

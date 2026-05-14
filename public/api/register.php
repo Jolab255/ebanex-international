@@ -85,79 +85,47 @@ $role = htmlspecialchars(strip_tags($_POST['role'] ?? $json_data['role'] ?? 'N/A
 
 $subject = $subject_prefix . $fullName;
 
-// ── EMAIL CONSTRUCTION (HTML with proper encoding) ────────────────────────────────────
-$boundary = "PHP-mixed-" . md5(time());
+// ── EMAIL CONSTRUCTION (HTML using helper) ────────────────────────────────────
+$content_html = "
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Full Name</div>
+            <div style='font-size: 16px; color: #FFFFFF; font-weight: bold;'>$fullName</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Institution</div>
+            <div style='font-size: 14px; color: #FFFFFF;'>$institution</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Role / Position</div>
+            <div style='font-size: 14px; color: #FFFFFF;'>$role</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Contact Information</div>
+            <div style='font-size: 14px; color: #FFFFFF; margin-bottom: 4px;'>Email: $email</div>
+            <div style='font-size: 14px; color: #FFFFFF;'>Phone: $phone</div>
+        </td>
+    </tr>";
+
+$message_html = get_email_template("Digital Trust Conference Registration", $content_html, "This registration was submitted via the Ebanex International conference portal.");
+
+// Build headers
 $headers = "From: Ebanex Website <$from_email>\r\n";
 $headers .= "Reply-To: $email\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
-
-// HTML Message with inline styles
-$message_html = "<!DOCTYPE html>
-<html>
-<head>
-<meta charset=\"UTF-8\">
-<style type=\"text/css\">
-  body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-  .container { max-width: 600px; margin: 0 auto; }
-  .header { background: #004a99; padding: 20px; color: white; text-align: center; }
-  .header h2 { margin: 0; font-size: 24px; }
-  .content { padding: 20px; background: #f9f9f9; border: 1px solid #ddd; }
-  .field { margin: 12px 0; padding: 10px; background: white; border-left: 3px solid #004a99; }
-  .label { font-weight: bold; color: #004a99; font-size: 12px; text-transform: uppercase; }
-  .value { margin-top: 5px; color: #333; }
-  .footer { padding: 10px; font-size: 12px; color: #999; text-align: center; border-top: 1px solid #ddd; margin-top: 20px; }
-</style>
-</head>
-<body>
-<div class=\"container\">
-  <div class=\"header\">
-    <h2>Digital Trust Conference Registration</h2>
-  </div>
-  <div class=\"content\">
-    <div class=\"field\">
-      <div class=\"label\">Full Name</div>
-      <div class=\"value\">$fullName</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Email Address</div>
-      <div class=\"value\">$email</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Phone Number</div>
-      <div class=\"value\">$phone</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Institution</div>
-      <div class=\"value\">$institution</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Role / Position</div>
-      <div class=\"value\">$role</div>
-    </div>
-    <div class=\"footer\">
-      This registration was submitted via the Ebanex International conference portal.
-    </div>
-  </div>
-</div>
-</body>
-</html>";
-
-// Encode HTML content with quoted-printable to avoid line-length issues
-$encoded_html = quoted_printable_encode($message_html);
-
-// Build MIME message body
-$body = "--$boundary\r\n";
-$body .= "Content-Type: text/html; charset=\"UTF-8\"\r\n";
-$body .= "Content-Transfer-Encoding: quoted-printable\r\n\r\n";
-$body .= $encoded_html . "\r\n\r\n";
-$body .= "--$boundary--";
 
 // ── SEND ─────────────────────────────────────────────────────────────
 // Send to domain email first (more reliable), then external
-$sent_primary = send_smtp_email($to_email_primary, $subject, $body, $headers);
-$sent_external = send_smtp_email($to_email_external, $subject, $body, $headers);
+$sent_primary = send_smtp_email($to_email_primary, $subject, $message_html, $headers);
+$sent_external = send_smtp_email($to_email_external, $subject, $message_html, $headers);
 
 if ($sent_primary || $sent_external) {
     error_log("Registration sent: domain=$sent_primary, external=$sent_external");

@@ -68,105 +68,65 @@ function send_smtp_email($to, $subject, $body, $headers) {
 /**
  * Generates a branded HTML email template
  */
-function get_email_template($title, $content_html, $footer_text = "This message was sent via the Ebanex International website.") {
-    $cyber_blue = "#3b82f6";
-    $deep_navy = "#0a0a0a"; // Even darker for that "cyber" feel
-    $text_white = "#f8fafc";
-    $text_muted = "#94a3b8";
+function get_email_template($title, $content_html, $footer_text = "This message was sent via the Ebanex International training portal.") {
+    $cyber_blue = "#00BFFF"; // Ebanex theme blue
+    $bg_dark = "#050B14";
+    $card_bg = "#0A121E";
+    $border_color = "#1E293B";
+    $text_primary = "#FFFFFF";
+    $text_secondary = "#94A3B8";
 
     return "
-    <!DOCTYPE html>
-    <html lang='en'>
+    <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+    <html xmlns='http://www.w3.org/1999/xhtml'>
     <head>
-        <meta charset='UTF-8'>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap');
-            body { 
-                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-                background-color: #020617; 
-                margin: 0; 
-                padding: 40px 20px; 
-                color: $text_white; 
-            }
-            .container { 
-                max-width: 600px; 
-                margin: 0 auto; 
-                background-color: $deep_navy; 
-                border-radius: 12px; 
-                overflow: hidden; 
-                border: 1px solid rgba(59, 130, 246, 0.2);
-                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-            }
-            .header { 
-                background: linear-gradient(135deg, #1e293b 0%, #020617 100%);
-                padding: 40px; 
-                text-align: center; 
-                border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-            }
-            .header h1 { 
-                font-family: 'Space Grotesk', sans-serif;
-                font-size: 24px; 
-                margin: 0; 
-                color: $cyber_blue; 
-                text-transform: uppercase; 
-                letter-spacing: 2px;
-            }
-            .content { 
-                padding: 40px; 
-                line-height: 1.6; 
-            }
-            .field { 
-                margin-bottom: 24px; 
-                padding-bottom: 12px; 
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
-            }
-            .label { 
-                font-size: 11px; 
-                text-transform: uppercase; 
-                letter-spacing: 1px; 
-                color: $cyber_blue; 
-                font-weight: 700; 
-                margin-bottom: 4px; 
-            }
-            .value { 
-                font-size: 16px; 
-                color: $text_white; 
-            }
-            .footer { 
-                padding: 30px 40px; 
-                background-color: rgba(0, 0, 0, 0.3); 
-                text-align: center; 
-                font-size: 12px; 
-                color: $text_muted; 
-            }
-            .badge {
-                display: inline-block;
-                padding: 4px 12px;
-                border-radius: 9999px;
-                background: rgba(59, 130, 246, 0.1);
-                color: $cyber_blue;
-                font-size: 10px;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 1px;
-                margin-bottom: 16px;
-            }
-        </style>
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+        <title>$title</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
     </head>
-    <body>
-        <div class='container'>
-            <div class='header'>
-                <div class='badge'>Institutional Intelligence</div>
-                <h1>$title</h1>
-            </div>
-            <div class='content'>
-                $content_html
-            </div>
-            <div class='footer'>
-                <p>$footer_text</p>
-                <p>&copy; " . date('Y') . " Ebanex International. All rights reserved.</p>
-            </div>
-        </div>
+    <body style='margin: 0; padding: 0; background-color: $bg_dark; font-family: \"Segoe UI\", Helvetica, Arial, sans-serif;'>
+        <table border='0' cellpadding='0' cellspacing='0' width='100%' style='background-color: $bg_dark;'>
+            <tr>
+                <td align='center' style='padding: 40px 0 40px 0;'>
+                    <table border='0' cellpadding='0' cellspacing='0' width='600' style='background-color: $card_bg; border: 1px solid $border_color; border-radius: 4px; border-top: 4px solid $cyber_blue;'>
+                        <!-- Header -->
+                        <tr>
+                            <td align='center' style='padding: 40px 40px 20px 40px;'>
+                                <div style='font-size: 10px; font-weight: 900; color: $cyber_blue; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px;'>
+                                    Institutional Intelligence
+                                </div>
+                                <h1 style='color: $text_primary; font-size: 24px; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0;'>
+                                    $title
+                                </h1>
+                            </td>
+                        </tr>
+                        
+                        <!-- Content -->
+                        <tr>
+                            <td style='padding: 20px 40px 40px 40px;'>
+                                <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+                                    $content_html
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <!-- Footer -->
+                        <tr>
+                            <td style='padding: 30px 40px 30px 40px; background-color: rgba(0,0,0,0.2); border-top: 1px solid $border_color;'>
+                                <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+                                    <tr>
+                                        <td style='color: $text_secondary; font-size: 12px; line-height: 18px; text-align: center;'>
+                                            <p style='margin: 0 0 10px 0;'>$footer_text</p>
+                                            <p style='margin: 0; font-weight: bold; color: $cyber_blue;'>&copy; " . date('Y') . " Ebanex International. All rights reserved.</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
     </body>
     </html>";
 }

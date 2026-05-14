@@ -85,75 +85,46 @@ $messageContent = htmlspecialchars(strip_tags($_POST['message'] ?? $json_data['m
 
 $subject = $subject_prefix . $fullName . " (" . $service . ")";
 
-// ── EMAIL CONSTRUCTION (HTML with proper encoding) ────────────────────────────────────
-$boundary = "PHP-mixed-" . md5(time());
+// ── EMAIL CONSTRUCTION (HTML using helper) ────────────────────────────────────
+$content_html = "
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Service Interest</div>
+            <div style='font-size: 16px; color: #FFFFFF; font-weight: bold;'>$service</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Full Name</div>
+            <div style='font-size: 14px; color: #FFFFFF;'>$fullName</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Email Address</div>
+            <div style='font-size: 14px; color: #FFFFFF;'>$email</div>
+        </td>
+    </tr>
+    <tr>
+        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Message</div>
+            <div style='font-size: 14px; color: #FFFFFF; line-height: 1.6; white-space: pre-wrap;'>$messageContent</div>
+        </td>
+    </tr>";
+
+$message_html = get_email_template("New Contact Inquiry", $content_html, "This inquiry was submitted via the Ebanex International contact form.");
+
+// Build headers
 $headers = "From: Ebanex Website <$from_email>\r\n";
 $headers .= "Reply-To: $email\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
+$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
-
-// HTML Message with inline styles
-$message_html = "<!DOCTYPE html>
-<html>
-<head>
-<meta charset=\"UTF-8\">
-<style type=\"text/css\">
-  body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-  .container { max-width: 600px; margin: 0 auto; }
-  .header { background: #004a99; padding: 20px; color: white; text-align: center; }
-  .header h2 { margin: 0; font-size: 24px; }
-  .content { padding: 20px; background: #f9f9f9; border: 1px solid #ddd; }
-  .field { margin: 12px 0; padding: 10px; background: white; border-left: 3px solid #004a99; }
-  .label { font-weight: bold; color: #004a99; font-size: 12px; text-transform: uppercase; }
-  .value { margin-top: 5px; color: #333; }
-  .footer { padding: 10px; font-size: 12px; color: #999; text-align: center; border-top: 1px solid #ddd; margin-top: 20px; }
-</style>
-</head>
-<body>
-<div class=\"container\">
-  <div class=\"header\">
-    <h2>New Contact Inquiry</h2>
-  </div>
-  <div class=\"content\">
-    <div class=\"field\">
-      <div class=\"label\">Full Name</div>
-      <div class=\"value\">$fullName</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Email Address</div>
-      <div class=\"value\">$email</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Service Interest</div>
-      <div class=\"value\">$service</div>
-    </div>
-    <div class=\"field\">
-      <div class=\"label\">Message</div>
-      <div class=\"value\" style=\"white-space: pre-wrap;\">$messageContent</div>
-    </div>
-    <div class=\"footer\">
-      This inquiry was submitted via the Ebanex International contact form.
-    </div>
-  </div>
-</div>
-</body>
-</html>";
-
-// Encode HTML content with quoted-printable to avoid line-length issues
-$encoded_html = quoted_printable_encode($message_html);
-
-// Build MIME message body
-$body = "--$boundary\r\n";
-$body .= "Content-Type: text/html; charset=\"UTF-8\"\r\n";
-$body .= "Content-Transfer-Encoding: quoted-printable\r\n\r\n";
-$body .= $encoded_html . "\r\n\r\n";
-$body .= "--$boundary--";
 
 // ── SEND ─────────────────────────────────────────────────────────────
 // Send to domain email first (more reliable), then external
-$sent_primary = send_smtp_email($to_email_primary, $subject, $body, $headers);
-$sent_external = send_smtp_email($to_email_external, $subject, $body, $headers);
+$sent_primary = send_smtp_email($to_email_primary, $subject, $message_html, $headers);
+$sent_external = send_smtp_email($to_email_external, $subject, $message_html, $headers);
 
 if ($sent_primary || $sent_external) {
     error_log("Contact inquiry sent: domain=$sent_primary, external=$sent_external");
