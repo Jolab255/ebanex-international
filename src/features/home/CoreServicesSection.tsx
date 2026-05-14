@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Squares, ScrollReveal } from '../../components/animations';
@@ -42,9 +42,10 @@ interface ServiceCardProps {
   index: number;
   totalCards: number;
   progress: MotionValue<number>;
+  isMobile: boolean;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, progress }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, progress, isMobile }) => {
   const sliceSize = 1 / totalCards;
   const end = (index + 1) * sliceSize;
 
@@ -57,8 +58,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
     isLast ? [1, 1] : [1, 0.95],
   );
 
-  // Sticky offset from top
-  const topOffset = 100 + index * 32;
+  // Sticky offset from top - reduced on mobile for better fit
+  const topOffset = isMobile ? 70 + index * 20 : 100 + index * 32;
 
   return (
     <motion.div
@@ -78,7 +79,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
       >
         <div className="grid md:grid-cols-2">
           {/* Image Side */}
-          <div className="relative h-64 md:h-auto overflow-hidden">
+          <div className="relative h-48 sm:h-64 md:h-auto overflow-hidden">
             <img
               src={service.image}
               alt={service.title}
@@ -89,24 +90,24 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
           </div>
 
           {/* Content Side */}
-          <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
-            <div className="flex items-center gap-4 mb-6">
+          <div className="p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+            <div className="flex items-center gap-4 mb-4 md:mb-6">
               <span className="text-[#00BFFF] font-black text-xs uppercase tracking-[0.3em]">
                 Service 0{index + 1}
               </span>
               <div className="h-[1px] w-8 bg-[#00BFFF]/30" />
             </div>
 
-            <h3 className="text-2xl md:text-3xl font-heading font-black text-white uppercase leading-tight mb-6">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-black text-white uppercase leading-tight mb-4 md:mb-6">
               {service.title}
             </h3>
 
-            <p className="text-white/60 text-base leading-relaxed mb-10">{service.desc}</p>
+            <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-6 md:mb-10">{service.desc}</p>
 
             <div className="flex">
               <Link
                 to="/training"
-                className="px-8 py-4 bg-transparent border border-[#00BFFF] text-[#00BFFF] hover:bg-[#00BFFF] hover:text-black font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-300 inline-block"
+                className="px-6 py-3 sm:px-8 sm:py-4 bg-transparent border border-[#00BFFF] text-[#00BFFF] hover:bg-[#00BFFF] hover:text-black font-black text-[10px] uppercase tracking-[0.2em] transition-all duration-300 inline-block"
               >
                 Explore Programs
               </Link>
@@ -125,23 +126,33 @@ const CoreServicesSection: React.FC = () => {
     offset: ['start start', 'end end'],
   });
 
-  // Responsive height adjustment to prevent huge gaps on mobile
-  const [heightValue, setHeightValue] = React.useState(`${CORE_SERVICES.length * 80 + 50}vh`);
+  const [heightValue, setHeightValue] = useState(`${CORE_SERVICES.length * 80 + 50}vh`);
+  const [isMobile, setIsMobile] = useState(false);
 
-  React.useEffect(() => {
-    const updateHeight = () => {
-      if (window.innerWidth < 768) {
-        // Shorter scroll track for mobile - no additional base height
-        setHeightValue(`${CORE_SERVICES.length * 75}vh`);
+  useEffect(() => {
+    const updateLayout = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      
+      // Granular range definitions for consistent experience
+      if (width < 480) {
+        // Compact Mobile
+        setHeightValue(`${CORE_SERVICES.length * 85}vh`);
+      } else if (width < 768) {
+        // Regular Mobile
+        setHeightValue(`${CORE_SERVICES.length * 80}vh`);
+      } else if (width < 1024) {
+        // Tablet
+        setHeightValue(`${CORE_SERVICES.length * 75 + 20}vh`);
       } else {
-        // Original scroll track for desktop
+        // Desktop
         setHeightValue(`${CORE_SERVICES.length * 80 + 50}vh`);
       }
     };
     
-    updateHeight();
-    window.addEventListener('resize', updateHeight);
-    return () => window.removeEventListener('resize', updateHeight);
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+    return () => window.removeEventListener('resize', updateLayout);
   }, []);
 
   return (
@@ -169,7 +180,7 @@ const CoreServicesSection: React.FC = () => {
               <span className="text-[#00BFFF] font-black uppercase tracking-[0.5em] text-xs mb-4 block">
                 What We Deliver
               </span>
-              <h2 className="text-5xl md:text-7xl font-heading font-black text-white uppercase tracking-tighter">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-heading font-black text-white uppercase tracking-tighter">
                 Core{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00BFFF] to-white">
                   Services
@@ -180,7 +191,7 @@ const CoreServicesSection: React.FC = () => {
         </div>
 
         {/* Stacking Cards Container */}
-        <div className="px-4 pb-48 md:pb-[30vh]">
+        <div className="px-4 pb-24 sm:pb-32 md:pb-[30vh]">
           {CORE_SERVICES.map((service, i) => (
             <ServiceCard
               key={i}
@@ -188,6 +199,7 @@ const CoreServicesSection: React.FC = () => {
               index={i}
               totalCards={CORE_SERVICES.length}
               progress={scrollYProgress}
+              isMobile={isMobile}
             />
           ))}
         </div>
