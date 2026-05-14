@@ -137,7 +137,8 @@ const CoreServicesSection: React.FC = () => {
       // Granular range definitions for consistent experience
       if (width < 768) {
         // All Mobile sizes (Compact and Regular)
-        setHeightValue(`${CORE_SERVICES.length * 85}vh`);
+        // Significantly reduced from 85vh to 45vh to kill the gap
+        setHeightValue(`${CORE_SERVICES.length * 45}vh`);
       } else if (width < 1024) {
         // Tablet
         setHeightValue(`${CORE_SERVICES.length * 75 + 20}vh`);
@@ -188,7 +189,7 @@ const CoreServicesSection: React.FC = () => {
         </div>
 
         {/* Stacking Cards Container */}
-        <div className="px-4 pb-24 sm:pb-32 md:pb-[30vh]">
+        <div className="px-4 pb-12 sm:pb-16 md:pb-[30vh]">
           {CORE_SERVICES.map((service, i) => (
             <ServiceCard
               key={i}
