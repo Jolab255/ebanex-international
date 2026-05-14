@@ -14,8 +14,6 @@ import { sendTrainingEnrollment } from '../../lib/api';
 import { TurnstileCaptcha } from '../common';
 import { TRAINING_PROGRAMS, TrainingProgram } from '../../constants/trainingData';
 
-const TZS_TO_USD = 2600;
-
 interface EnrollmentFormData {
   fullName: string;
   email: string;
@@ -86,8 +84,7 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
     if (!programPrice) return 'Contact for Quote';
     const count = formData.trainingType === 'Individual' ? 1 : (formData.groupSize || 1);
     const total = count * programPrice;
-    const usd = (total / TZS_TO_USD).toFixed(0);
-    return `${total.toLocaleString()} TZS (Approx. $${usd} USD)`;
+    return `TZS ${total.toLocaleString()}`;
   };
 
   const totalCostDisplay = calculateTotalCostFormatted();
@@ -531,14 +528,13 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
                       >
                         <div className="flex justify-between items-center">
                           <div>
-                            <p className="text-[9px] font-black uppercase opacity-60" style={{ color: themeColor }}>Estimated Investment</p>
+                            <p className="text-[9px] font-black uppercase opacity-60" style={{ color: themeColor }}>Training Fee</p>
                             <p className="text-[14px] font-black text-white uppercase tracking-tight">
                               {totalCostDisplay}
                             </p>
                           </div>
-                          {isCisa && (
+                          {isCisa && formData.trainingType === 'Group' && (
                             <div className="text-right">
-                              <p className="text-[8px] font-bold text-white/40 uppercase tracking-widest">Fee Structure</p>
                               <p className="text-[9px] font-black text-white/80 uppercase">1,000,000 TZS / Person</p>
                             </div>
                           )}
@@ -618,7 +614,7 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
                         {/* Total Investment Highlight */}
                         <div className="px-3 py-3 bg-white/5 border-t border-white/10 flex justify-between items-center">
                           <div>
-                            <p className="text-[8px] font-black uppercase tracking-[0.2em] mb-0.5" style={{ color: themeColor }}>Total Investment</p>
+                            <p className="text-[8px] font-black uppercase tracking-[0.2em] mb-0.5" style={{ color: themeColor }}>Training Fee</p>
                             <p className="text-lg font-black text-white leading-none">
                               {totalCostDisplay}
                             </p>
@@ -649,7 +645,7 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
                             </div>
                           </div>
                           <span className="text-[9px] sm:text-[10px] font-bold text-white/60 uppercase leading-tight select-none">
-                            I confirm accuracy and agree to Ebanex training policies.
+                            I confirm that the information provided is accurate.
                           </span>
                         </label>
                         {errors.acceptedTerms && (
@@ -693,7 +689,10 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
                         type="button"
                         onClick={(e) => handleSubmit(e)}
                         disabled={isSubmitting}
-                        animate={errors.form || errors.acceptedTerms ? { x: [0, -10, 10, -10, 10, 0] } : {}}
+                        animate={errors.form || errors.acceptedTerms ? { 
+                          x: [0, -15, 15, -15, 15, -15, 15, 0],
+                          rotate: [0, -2, 2, -2, 2, 0]
+                        } : {}}
                         transition={{ duration: 0.4 }}
                         className="flex-[2] py-2 sm:py-3 border-[2px] border-black text-black font-black uppercase tracking-[0.2em] text-[10px] sm:text-[11px] flex items-center justify-center gap-2 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
                         style={{ backgroundColor: themeColor }}
@@ -788,9 +787,9 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
             >
               <h3 className="text-black font-black text-xl uppercase mb-4">Training Cost Notice</h3>
               <p className="text-black font-bold text-sm mb-6 uppercase tracking-tight leading-relaxed">
-                The investment for the {isCisa ? 'CISA' : 'this'} program is <br />
-                <span className="text-2xl font-black">1,000,000 TZS</span> <br />
-                per person (Approx. $385 USD)
+                The training fee for {isCisa ? 'CISA' : 'this'} program is <br />
+                <span className="text-2xl font-black">TZS 1,000,000</span> <br />
+                per person
               </p>
               <button
                 onClick={() => setShowPriceNotice(false)}
