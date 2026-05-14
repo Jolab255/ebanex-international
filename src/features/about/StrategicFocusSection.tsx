@@ -66,7 +66,7 @@ const StrategicFocusSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-[80vh] flex flex-col justify-center py-16 sm:py-20 lg:py-24 w-full bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] overflow-visible">
+    <section className="relative min-h-[80vh] flex flex-col justify-center py-16 sm:py-20 lg:py-24 w-full bg-[#00BFFF] sm:bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] overflow-visible">
       {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Squares

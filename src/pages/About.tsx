@@ -20,17 +20,19 @@ const About: React.FC = () => {
         keywords="about ebanex, mission, vision, core values, leadership"
         canonical="https://ebanexint.co.tz/about"
       />
-      <HeroSection />
-      <AboutContent />
-      {/* Gallery & Moments — hidden, preserved for future use */}
-      <div className="hidden">
-        <GallerySection />
+      <div className="flex flex-col gap-[25px] sm:gap-0">
+        <HeroSection />
+        <AboutContent />
+        {/* Gallery & Moments — hidden, preserved for future use */}
+        <div className="hidden">
+          <GallerySection />
+        </div>
+        <MissionVisionSection />
+        <CoreValuesSection />
+        <FoundersMessageSection />
+        <StrategicFocusSection />
+        <AboutCtaSection />
       </div>
-      <MissionVisionSection />
-      <CoreValuesSection />
-      <FoundersMessageSection />
-      <StrategicFocusSection />
-      <AboutCtaSection />
     </div>
   );
 };

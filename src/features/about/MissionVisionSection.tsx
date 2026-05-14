@@ -5,7 +5,7 @@ import { Squares, ScrollReveal } from '../../components/animations';
 
 const MissionVisionSection: React.FC = () => {
   return (
-    <section className="relative z-30 min-h-[70vh] flex flex-col justify-center py-12 sm:py-16 w-full bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] overflow-hidden">
+    <section className="relative z-30 min-h-[70vh] flex flex-col justify-center py-12 sm:py-16 w-full bg-[#00BFFF] sm:bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Squares
           speed={0.13}

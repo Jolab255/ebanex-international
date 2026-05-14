@@ -5,7 +5,7 @@ import { Squares, ScrollReveal } from '../../components/animations';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative w-full min-h-[40vh] bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] overflow-hidden flex flex-col justify-center items-center text-center">
+    <section className="relative w-full min-h-[30vh] sm:min-h-[40vh] bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] overflow-hidden flex flex-col justify-center items-center text-center">
       {/* Background Squares */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Squares

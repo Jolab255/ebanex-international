@@ -3,7 +3,7 @@ import { Squares, ScrollReveal } from '../../components/animations';
 
 const AboutContent: React.FC = () => {
   return (
-    <section className="relative z-30 h-[80vh] flex flex-col justify-center py-8 sm:py-12 w-full bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] overflow-hidden">
+    <section className="relative z-30 min-h-fit sm:h-[80vh] flex flex-col justify-center py-16 sm:py-12 w-full bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Squares
           speed={0.13}
@@ -27,19 +27,19 @@ const AboutContent: React.FC = () => {
         </div>
 
         {/* Content Container (Matching CTA style) */}
-        <div className="relative w-full max-w-5xl flex items-center justify-center lg:justify-end">
+        <div className="relative w-full max-w-5xl flex flex-col lg:block items-center justify-center lg:justify-end">
           {/* Background Image (Stacked Under, Left Side) */}
-          <div className="absolute left-[-5%] lg:left-[-10%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[450px] lg:w-[550px] aspect-square z-0 opacity-100">
+          <div className="relative lg:absolute lg:left-[-10%] lg:top-1/2 lg:-translate-y-1/2 w-[calc(100%+2rem)] -mx-4 lg:mx-0 lg:w-[550px] aspect-[16/10] lg:aspect-square z-0 opacity-100 order-1 lg:order-none -mb-20 lg:mb-0 px-0">
             <img
               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
               alt="Corporate Building"
-              className="w-full h-full object-cover border-[10px] border-black shadow-[15px_15px_0px_0px_rgba(0,191,255,0.2)]"
+              className="w-full h-full object-cover border-[10px] border-black shadow-none"
             />
           </div>
 
           {/* Main Content Box */}
           <div
-            className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black shadow-none relative overflow-hidden z-10 ml-auto"
+            className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black shadow-none relative overflow-hidden z-20 ml-auto order-2 lg:order-none"
             style={{
               background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
             }}

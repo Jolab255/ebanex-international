@@ -9,7 +9,7 @@ import barakaImg from '../../assets/baraka.png';
 
 const FoundersMessageSection: React.FC = () => {
   return (
-    <section className="relative h-auto flex flex-col justify-center py-12 sm:py-16 w-full bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] overflow-hidden">
+    <section className="relative h-auto flex flex-col justify-center py-12 sm:py-16 w-full bg-[#00BFFF] sm:bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)] overflow-hidden">
       {/* Background Squares */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Squares
@@ -33,10 +33,10 @@ const FoundersMessageSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Content Container - Overlapping Layout squeezed to edges */}
-        <div className="relative w-full flex items-center justify-center min-h-[500px] lg:min-h-[550px]">
+        {/* Desktop Layout (sm and above) */}
+        <div className="hidden sm:flex relative w-full items-center justify-center min-h-[500px] lg:min-h-[550px]">
           {/* Baraka Opiyo Image (Left) */}
-          <div className="absolute left-[-10px] lg:left-[-20px] top-1/2 -translate-y-1/2 z-10 w-[280px] sm:w-[350px] lg:w-[450px] aspect-[4/5] hidden sm:block">
+          <div className="absolute left-[-10px] lg:left-[-20px] top-1/2 -translate-y-1/2 z-10 w-[280px] sm:w-[350px] lg:w-[450px] aspect-[4/5]">
             <div className="relative w-full h-full">
               <img
                 src={barakaImg}
@@ -71,7 +71,7 @@ const FoundersMessageSection: React.FC = () => {
           </div>
 
           {/* Enock Nkaina Image (Right) */}
-          <div className="absolute right-[-10px] lg:right-[-20px] top-1/2 -translate-y-1/2 z-10 w-[280px] sm:w-[350px] lg:w-[450px] aspect-[4/5] hidden sm:block">
+          <div className="absolute right-[-10px] lg:right-[-20px] top-1/2 -translate-y-1/2 z-10 w-[280px] sm:w-[350px] lg:w-[450px] aspect-[4/5]">
             <div className="relative w-full h-full">
               <img
                 src={enockImg}
@@ -165,6 +165,75 @@ const FoundersMessageSection: React.FC = () => {
             {/* Decorative corner accent */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-[#00BFFF]/5 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
           </motion.div>
+        </div>
+
+        {/* Mobile Layout (stacked) */}
+        <div className="flex sm:hidden flex-col gap-12 w-full">
+          {/* Enock Message */}
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-full max-w-[300px] aspect-[4/5]">
+              <img
+                src={enockImg}
+                alt="Enock Nkaina"
+                className="w-full h-full object-cover border-[10px] border-black"
+              />
+            </div>
+            <div
+              className="w-full p-6 border-[10px] border-black"
+              style={{
+                background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
+              }}
+            >
+              <blockquote className="text-sm font-medium text-white leading-relaxed italic mb-4">
+                &ldquo;In a world where digital boundaries are constantly shifting, the greatest
+                asset any organization possesses is its people. At Ebanex, we invest in that human
+                potential to build resilient institutions.&rdquo;
+              </blockquote>
+              <div className="flex items-center justify-end">
+                <div className="text-right">
+                  <h3 className="text-xs font-black text-[#00BFFF] uppercase tracking-widest">
+                    Enock Nkaina
+                  </h3>
+                  <p className="text-white/40 text-[8px] uppercase font-bold">
+                    Co-Founder & Director
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Baraka Message */}
+          <div className="flex flex-col items-center gap-6">
+            <div className="w-full max-w-[300px] aspect-[4/5]">
+              <img
+                src={barakaImg}
+                alt="Baraka Opiyo"
+                className="w-full h-full object-cover border-[10px] border-black"
+              />
+            </div>
+            <div
+              className="w-full p-6 border-[10px] border-black"
+              style={{
+                background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
+              }}
+            >
+              <blockquote className="text-sm font-medium text-white leading-relaxed italic mb-4">
+                &ldquo;Our vision was born from a simple belief: that sustainable development
+                requires empowered people. Every training program we design and institution we
+                strengthen is a step toward a more secure global community.&rdquo;
+              </blockquote>
+              <div className="flex items-center justify-end">
+                <div className="text-right">
+                  <h3 className="text-xs font-black text-[#00BFFF] uppercase tracking-widest">
+                    Baraka Opiyo
+                  </h3>
+                  <p className="text-white/40 text-[8px] uppercase font-bold">
+                    Co-Founder & Director
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

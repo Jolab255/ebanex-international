@@ -23,7 +23,7 @@ const CoreValuesSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative pt-8 sm:pt-12 pb-16 sm:pb-24 w-full bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] overflow-visible">
+    <section className="relative pt-8 sm:pt-12 pb-16 sm:pb-24 w-full bg-[#00BFFF] sm:bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] overflow-visible">
       {/* Background */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Squares
@@ -49,20 +49,11 @@ const CoreValuesSection: React.FC = () => {
 
         <div className="w-full flex items-start justify-center">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 sm:gap-x-10 sm:gap-y-12 max-w-7xl mx-auto">
-            {values.map((value, i) => {
-              const isMiddle = i % 3 === 1;
-
-              return (
-                <div
-                  key={i}
-                  className={
-                    isMiddle ? 'lg:border-t-[10px] lg:border-l-[10px] lg:border-black' : ''
-                  }
-                >
-                  <FeatureCard feature={value} hasOutline={i !== 0} />
-                </div>
-              );
-            })}
+            {values.map((value, i) => (
+              <div key={i}>
+                <FeatureCard feature={value} hasOutline={true} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
