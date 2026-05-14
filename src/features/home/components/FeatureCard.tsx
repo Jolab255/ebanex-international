@@ -8,9 +8,7 @@ const FeatureCard: React.FC<{
   return (
     <div
       className={`h-full relative overflow-hidden group ${
-        hasOutline
-          ? 'border-[10px] border-black lg:border-0 lg:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]'
-          : ''
+        hasOutline ? 'border-[10px] border-black' : ''
       }`}
     >
       {/* Cyber Circuit Decoration */}
@@ -30,7 +28,7 @@ const FeatureCard: React.FC<{
       </div>
 
       <div
-        className="h-full p-6 sm:p-8 lg:p-10 flex flex-col items-start relative z-10 shadow-2xl"
+        className="h-full p-6 sm:p-8 lg:p-10 flex flex-col items-start relative z-10"
         style={{
           background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
         }}

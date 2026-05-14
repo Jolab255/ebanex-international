@@ -27,6 +27,7 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  const [isMobileView, setIsMobileView] = useState(false);
   const isInView = useInView(sectionRef, { once: false, margin: '-100px' });
 
   const clients = [
@@ -84,11 +85,21 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
   const totalSlides = Math.ceil(clients.length / 2);
 
   useEffect(() => {
+    const updateMobileView = () => {
+      setIsMobileView(window.innerWidth < 640);
+    };
+
+    updateMobileView();
+    window.addEventListener('resize', updateMobileView);
+    return () => window.removeEventListener('resize', updateMobileView);
+  }, []);
+
+  useEffect(() => {
     if (isPaused || !isInView) return;
 
     const interval = setInterval(() => {
       handleNext();
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [isPaused, isInView, activeSlide]);
@@ -111,7 +122,7 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
   return (
     <section
       ref={sectionRef}
-      className="relative z-30 h-[90vh] flex flex-col justify-center overflow-hidden w-full bg-[linear-gradient(135deg,#000000_50%,#00bfff_50%)]"
+      className="relative z-30 h-[90vh] flex flex-col justify-center overflow-hidden w-full bg-black"
     >
       <div className="sticky top-0 h-screen w-full z-0 pointer-events-none opacity-100 overflow-hidden">
         <Squares
@@ -162,15 +173,15 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
             </button>
           </div>
 
-          <div className="flex gap-6 max-w-6xl mx-auto h-[220px] sm:h-[260px]">
-            <div className="flex-1 relative overflow-hidden">
+          <div className={`flex ${isMobileView ? 'flex-col min-h-[560px]' : 'flex-row h-[220px] sm:h-[260px]'} gap-6 max-w-6xl mx-auto w-full`}>
+            <div className="flex-1 relative overflow-hidden h-full">
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={`left-${activeSlide}`}
                   className="absolute inset-0"
-                  initial={{ y: direction === 'next' ? '100%' : '-100%' }}
-                  animate={{ y: 0 }}
-                  exit={{ y: direction === 'next' ? '-100%' : '100%' }}
+                  initial={isMobileView ? { x: direction === 'next' ? '100%' : '-100%' } : { y: direction === 'next' ? '100%' : '-100%' }}
+                  animate={isMobileView ? { x: 0 } : { y: 0 }}
+                  exit={isMobileView ? { x: direction === 'next' ? '-100%' : '100%' } : { y: direction === 'next' ? '-100%' : '100%' }}
                   transition={{ type: 'spring', stiffness: 20, damping: 10 }}
                 >
                   <ClientCard client={currentPair[0]} />
@@ -178,14 +189,14 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
               </AnimatePresence>
             </div>
 
-            <div className="flex-1 relative overflow-hidden">
+            <div className="flex-1 relative overflow-hidden h-full">
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={`right-${activeSlide}`}
                   className="absolute inset-0"
-                  initial={{ y: direction === 'next' ? '-100%' : '100%' }}
-                  animate={{ y: 0 }}
-                  exit={{ y: direction === 'next' ? '100%' : '-100%' }}
+                  initial={isMobileView ? { x: direction === 'next' ? '-100%' : '100%' } : { y: direction === 'next' ? '-100%' : '100%' }}
+                  animate={isMobileView ? { x: 0 } : { y: 0 }}
+                  exit={isMobileView ? { x: direction === 'next' ? '100%' : '-100%' } : { y: direction === 'next' ? '100%' : '-100%' }}
                   transition={{ type: 'spring', stiffness: 20, damping: 10 }}
                 >
                   <ClientCard client={currentPair[1]} />
@@ -203,17 +214,17 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
             viewport={{ once: false }}
             className="w-full px-8 sm:px-12 pr-16 sm:pr-32 mt-8"
           >
-            <div className="flex flex-wrap justify-end gap-8 sm:gap-16">
+            <div className="flex flex-nowrap justify-center sm:justify-end gap-8 sm:gap-16">
               {[
                 { value: 20, suffix: '+', label: 'Certifications Offered' },
                 { value: 15, suffix: '+', label: 'Years of Experience' },
                 { value: 10, suffix: '+', label: 'Strategic Partners' },
               ].map((stat, idx) => (
-                <div key={idx} className="text-center">
-                  <div className="text-2xl sm:text-4xl font-black text-slate-950 mb-1 font-heading">
+                <div key={idx} className="text-center bg-[#00BFFF] px-4 py-4">
+                  <div className="text-2xl sm:text-4xl font-black text-black mb-1 font-heading">
                     <Counter target={stat.value} suffix={stat.suffix} duration={1.5} once={false} />
                   </div>
-                  <div className="text-slate-900/80 text-[10px] sm:text-xs uppercase tracking-wider font-bold">
+                  <div className="text-black/90 text-[10px] sm:text-xs uppercase tracking-wider font-bold">
                     {stat.label}
                   </div>
                 </div>

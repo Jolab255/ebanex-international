@@ -28,7 +28,7 @@ const WhyEbanexGridSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative z-30 pt-4 sm:pt-6 pb-16 sm:pb-24 w-full bg-[linear-gradient(135deg,#00bfff_35%,#000000_35%,#000000_65%,#00bfff_65%)] sm:bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)]"
+      className="relative z-30 pt-4 sm:pt-6 pb-16 sm:pb-24 w-full bg-[#00bfff] sm:bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)]"
     >
       <div className="sticky top-0 h-screen w-full z-0 pointer-events-none overflow-hidden">
         <Squares
@@ -74,16 +74,9 @@ const WhyEbanexGridSection: React.FC = () => {
         <div className="w-full flex items-start justify-center">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 sm:gap-x-10 sm:gap-y-12 max-w-7xl mx-auto">
             {features.map((feature, i) => {
-              const isMiddle = i % 3 === 1;
-
               return (
-                <div
-                  key={i}
-                  className={
-                    isMiddle ? 'lg:border-t-[10px] lg:border-l-[10px] lg:border-black' : ''
-                  }
-                >
-                  <FeatureCard feature={feature} hasOutline={i !== 0} />
+                <div key={i}>
+                  <FeatureCard feature={feature} hasOutline={true} />
                 </div>
               );
             })}

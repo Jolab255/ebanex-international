@@ -72,16 +72,7 @@ const CtaSection: React.FC<CtaSectionProps> = ({
       </div>
 
       {/* CTA Card Container */}
-      <div className="relative w-full max-w-4xl flex items-center justify-center lg:justify-start">
-        {/* Background Image (Stacked Under) */}
-        <div className="absolute right-[-10%] lg:right-[-15%] top-1/2 -translate-y-1/2 w-[300px] sm:w-[400px] lg:w-[500px] aspect-square z-[-1] opacity-100">
-          <img
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" // High-end architectural business visual
-            className="w-full h-full object-cover rounded-none border-[10px] border-black"
-            alt="Decoration"
-          />
-        </div>
-
+      <div className="relative w-full max-w-4xl flex flex-col items-center justify-center">
         {/* CTA Card */}
         <div
           className="w-full max-w-2xl p-4 sm:p-8 border-[10px] border-black relative z-10 overflow-hidden"
@@ -182,6 +173,15 @@ const CtaSection: React.FC<CtaSectionProps> = ({
 
           {/* Decorative corner accent */}
           <div className="absolute top-0 right-0 w-24 h-24 bg-[#00BFFF]/10 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2" />
+        </div>
+
+        {/* Bottom Image */}
+        <div className="absolute left-1/2 -translate-x-1/2 w-[180%] sm:w-[220%] max-w-none bottom-0 z-0 overflow-visible -mb-8 sm:-mb-12">
+          <img
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
+            className="w-full h-[360px] sm:h-[480px] object-cover object-bottom border-[10px] border-black rounded-none"
+            alt="Decoration"
+          />
         </div>
       </div>
     </div>
