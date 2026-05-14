@@ -42,7 +42,7 @@ const CtaSection: React.FC<CtaSectionProps> = ({
   tertiaryButtonText,
   tertiaryButtonLink,
 }) => (
-  <section className="relative z-40 overflow-visible bg-[#00BFFF] sm:bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col items-center justify-center pt-4 pb-12 sm:pt-6 sm:pb-16 px-4">
+  <section className="relative z-40 mt-[20px] sm:mt-0 overflow-visible bg-[#00BFFF] sm:bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col items-center justify-center pt-4 pb-12 sm:pt-6 sm:pb-16 px-4">
     {/* Background */}
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
       <Squares

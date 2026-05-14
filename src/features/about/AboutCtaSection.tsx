@@ -16,7 +16,7 @@ const WhatsAppIcon = ({ size = 20 }: { size?: number }) => (
 );
 
 const AboutCtaSection: React.FC = () => (
-  <section className="h-auto relative z-40 overflow-visible bg-[#00BFFF] sm:bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col items-center justify-center py-12 px-4">
+  <section className="h-auto relative z-40 mt-[20px] sm:mt-0 overflow-visible bg-[#00BFFF] sm:bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col items-center justify-center pt-6 pb-12 sm:py-12 px-4">
     {/* Background */}
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
       <Squares

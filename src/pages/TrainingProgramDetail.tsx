@@ -624,7 +624,7 @@ const TrainingProgramDetail: React.FC = () => {
         {/* Final CTA */}
         <section
           id="register"
-          className="min-h-[90vh] relative z-40 bg-[#00C4D4] sm:bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center px-4 overflow-hidden"
+          className="min-h-[70vh] sm:min-h-[90vh] relative z-40 bg-[#00C4D4] sm:bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center pt-10 sm:pt-0 px-4 overflow-hidden"
         >
           <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             <Squares

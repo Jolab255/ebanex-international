@@ -552,7 +552,7 @@ const Training: React.FC = () => {
       />
 
       {/* CTA Section — Training Page */}
-      <section className="relative overflow-hidden bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col items-center justify-center py-10 sm:py-14 px-4">
+      <section className="relative overflow-hidden bg-[linear-gradient(135deg,#00bfff_50%,#000000_50%)] flex flex-col items-center justify-center pt-4 pb-10 sm:py-14 px-4">
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
           <Squares
             speed={0.13}
