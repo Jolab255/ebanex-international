@@ -67,7 +67,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
         zIndex: index + 1,
         top: topOffset,
       }}
-      className="sticky mx-auto w-full max-w-5xl mb-[10vh] transform-gpu will-change-transform backface-hidden"
+      className="sticky mx-auto w-full max-w-5xl mb-8 md:mb-[10vh] transform-gpu will-change-transform backface-hidden"
     >
       <div
         className="group relative overflow-hidden border border-white/10 shadow-[0_-15px_35px_rgba(0,0,0,0.7)] transform-gpu"
@@ -125,11 +125,30 @@ const CoreServicesSection: React.FC = () => {
     offset: ['start start', 'end end'],
   });
 
+  // Responsive height adjustment to prevent huge gaps on mobile
+  const [heightValue, setHeightValue] = React.useState(`${CORE_SERVICES.length * 80 + 50}vh`);
+
+  React.useEffect(() => {
+    const updateHeight = () => {
+      if (window.innerWidth < 768) {
+        // Shorter scroll track for mobile
+        setHeightValue(`${CORE_SERVICES.length * 60 + 20}vh`);
+      } else {
+        // Original scroll track for desktop
+        setHeightValue(`${CORE_SERVICES.length * 80 + 50}vh`);
+      }
+    };
+    
+    updateHeight();
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
+
   return (
     <section
       ref={sectionRef}
       className="relative z-30 bg-black"
-      style={{ height: `${CORE_SERVICES.length * 80 + 50}vh` }}
+      style={{ height: heightValue }}
     >
       {/* Background decoration - Optimized to be sticky so canvas size is viewport-bound */}
       <div className="sticky top-0 h-screen w-full z-0 overflow-hidden pointer-events-none">
@@ -144,7 +163,7 @@ const CoreServicesSection: React.FC = () => {
 
       <div className="relative z-10 -mt-[100vh]">
         {/* Header */}
-        <div className="pt-16 pb-16 text-center">
+        <div className="pt-16 pb-12 md:pb-16 text-center">
           <div className="max-w-7xl mx-auto px-4">
             <ScrollReveal yOffset={20}>
               <span className="text-[#00BFFF] font-black uppercase tracking-[0.5em] text-xs mb-4 block">
@@ -161,7 +180,7 @@ const CoreServicesSection: React.FC = () => {
         </div>
 
         {/* Stacking Cards Container */}
-        <div className="px-4 pb-[30vh]">
+        <div className="px-4 pb-20 md:pb-[30vh]">
           {CORE_SERVICES.map((service, i) => (
             <ServiceCard
               key={i}
