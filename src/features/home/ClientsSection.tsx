@@ -175,14 +175,14 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
 
           <div className={`flex ${isMobileView ? 'flex-col min-h-[560px]' : 'flex-row h-[220px] sm:h-[260px]'} gap-6 max-w-6xl mx-auto w-full`}>
             <div className="flex-1 relative overflow-hidden h-full">
-              <AnimatePresence mode="popLayout" initial={false}>
+              <AnimatePresence initial={false}>
                 <motion.div
                   key={`left-${activeSlide}`}
-                  className="absolute inset-0"
+                  className="absolute inset-0 will-change-transform"
                   initial={isMobileView ? { x: direction === 'next' ? '100%' : '-100%' } : { y: direction === 'next' ? '100%' : '-100%' }}
                   animate={isMobileView ? { x: 0 } : { y: 0 }}
                   exit={isMobileView ? { x: direction === 'next' ? '-100%' : '100%' } : { y: direction === 'next' ? '-100%' : '100%' }}
-                  transition={{ type: 'spring', stiffness: 20, damping: 10 }}
+                  transition={isMobileView ? { duration: 0.4, ease: 'easeInOut' } : { type: 'spring', stiffness: 20, damping: 10 }}
                 >
                   <ClientCard client={currentPair[0]} />
                 </motion.div>
@@ -190,14 +190,14 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
             </div>
 
             <div className="flex-1 relative overflow-hidden h-full">
-              <AnimatePresence mode="popLayout" initial={false}>
+              <AnimatePresence initial={false}>
                 <motion.div
                   key={`right-${activeSlide}`}
-                  className="absolute inset-0"
+                  className="absolute inset-0 will-change-transform"
                   initial={isMobileView ? { x: direction === 'next' ? '-100%' : '100%' } : { y: direction === 'next' ? '-100%' : '100%' }}
                   animate={isMobileView ? { x: 0 } : { y: 0 }}
                   exit={isMobileView ? { x: direction === 'next' ? '100%' : '-100%' } : { y: direction === 'next' ? '100%' : '-100%' }}
-                  transition={{ type: 'spring', stiffness: 20, damping: 10 }}
+                  transition={isMobileView ? { duration: 0.4, ease: 'easeInOut' } : { type: 'spring', stiffness: 20, damping: 10 }}
                 >
                   <ClientCard client={currentPair[1]} />
                 </motion.div>
