@@ -50,7 +50,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
   const end = (index + 1) * sliceSize;
 
   // Scale down the card slightly as the next one comes in
-  // For the last card, we keep it at 1 to avoid jitter at the end of scroll
   const isLast = index === totalCards - 1;
   const scale = useTransform(
     progress,
@@ -58,8 +57,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
     isLast ? [1, 1] : [1, 0.95],
   );
 
-  // Sticky offset from top - tightly packed on mobile to save vertical space
-  const topOffset = isMobile ? 60 + index * 12 : 100 + index * 32;
+  // Tight sticky offset for mobile
+  const topOffset = isMobile ? 64 + index * 10 : 100 + index * 32;
 
   return (
     <motion.div
@@ -68,7 +67,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
         zIndex: index + 1,
         top: topOffset,
       }}
-      className="sticky mx-auto w-full max-w-5xl mb-8 md:mb-[10vh] transform-gpu will-change-transform backface-hidden"
+      className="sticky mx-auto w-full max-w-5xl mb-6 md:mb-[10vh] transform-gpu will-change-transform backface-hidden"
     >
       <div
         className="group relative overflow-hidden border border-white/10 shadow-[0_-15px_35px_rgba(0,0,0,0.7)] transform-gpu"
@@ -91,18 +90,18 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service, index, totalCards, p
 
           {/* Content Side */}
           <div className="p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col justify-center">
-            <div className="flex items-center gap-4 mb-4 md:mb-6">
+            <div className="flex items-center gap-4 mb-3 md:mb-6">
               <span className="text-[#00BFFF] font-black text-xs uppercase tracking-[0.3em]">
                 Service 0{index + 1}
               </span>
               <div className="h-[1px] w-8 bg-[#00BFFF]/30" />
             </div>
 
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-black text-white uppercase leading-tight mb-4 md:mb-6">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-heading font-black text-white uppercase leading-tight mb-3 md:mb-6">
               {service.title}
             </h3>
 
-            <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-6 md:mb-10">{service.desc}</p>
+            <p className="text-white/60 text-sm sm:text-base leading-relaxed mb-5 md:mb-10">{service.desc}</p>
 
             <div className="flex">
               <Link
@@ -134,15 +133,15 @@ const CoreServicesSection: React.FC = () => {
       const width = window.innerWidth;
       setIsMobile(width < 768);
       
-      // Granular range definitions for consistent experience
       if (width < 768) {
-        // Balanced multiplier to ensure visibility while minimizing dead air
-        setHeightValue(`${CORE_SERVICES.length * 72}vh`);
+        // PIXEL-BASED HEIGHT for mobile
+        // 480px scroll track per card + 400px base for header and viewport compensation
+        // This makes the scroll distance identical on ALL mobile devices
+        const mobilePxHeight = CORE_SERVICES.length * 480 + 400;
+        setHeightValue(`${mobilePxHeight}px`);
       } else if (width < 1024) {
-        // Tablet
         setHeightValue(`${CORE_SERVICES.length * 75 + 20}vh`);
       } else {
-        // Desktop
         setHeightValue(`${CORE_SERVICES.length * 80 + 50}vh`);
       }
     };
@@ -158,7 +157,6 @@ const CoreServicesSection: React.FC = () => {
       className="relative z-30 bg-black"
       style={{ height: heightValue }}
     >
-      {/* Background decoration - Optimized to be sticky so canvas size is viewport-bound */}
       <div className="sticky top-0 h-screen w-full z-0 overflow-hidden pointer-events-none">
         <Squares
           speed={0.13}
@@ -171,7 +169,7 @@ const CoreServicesSection: React.FC = () => {
 
       <div className="relative z-10 -mt-[100vh]">
         {/* Header */}
-        <div className="pt-16 pb-12 md:pb-16 text-center">
+        <div className="pt-16 pb-8 md:pb-16 text-center">
           <div className="max-w-7xl mx-auto px-4">
             <ScrollReveal yOffset={20}>
               <span className="text-[#00BFFF] font-black uppercase tracking-[0.5em] text-xs mb-4 block">
@@ -188,7 +186,7 @@ const CoreServicesSection: React.FC = () => {
         </div>
 
         {/* Stacking Cards Container */}
-        <div className="px-4 pb-20 sm:pb-24 md:pb-[30vh]">
+        <div className="px-4 pb-12 sm:pb-20 md:pb-[30vh]">
           {CORE_SERVICES.map((service, i) => (
             <ServiceCard
               key={i}
