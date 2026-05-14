@@ -148,7 +148,7 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ showStats = true }) => 
 
         {/* Cards Container with Stacking Animation */}
         <div
-          className="relative px-4 sm:px-6"
+          className="relative px-4 sm:px-6 touch-pan-y"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
