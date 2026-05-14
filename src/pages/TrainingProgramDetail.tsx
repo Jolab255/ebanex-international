@@ -545,7 +545,7 @@ const TrainingProgramDetail: React.FC = () => {
 
         {/* Instructor Section */}
         {programId === 'cisa' && (
-          <section className="relative flex flex-col justify-center py-16 sm:py-24 w-full bg-[linear-gradient(135deg,#000000_50%,#00C4D4_50%)] overflow-visible z-20">
+          <section className="relative flex flex-col justify-center py-16 sm:py-24 w-full bg-[#00C4D4] sm:bg-[linear-gradient(135deg,#000000_50%,#00C4D4_50%)] overflow-visible z-20">
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
               <Squares
                 speed={0.13}
@@ -615,7 +615,7 @@ const TrainingProgramDetail: React.FC = () => {
         {/* FAQ Section */}
         <section
           id="faqs"
-          className="relative w-full py-16 sm:py-24 px-4 sm:px-6 bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] overflow-hidden isolate"
+          className="relative w-full py-16 sm:py-24 px-4 sm:px-6 bg-[#00C4D4] sm:bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] overflow-hidden isolate"
         >
           <div className="absolute inset-0 z-0 pointer-events-none">
             <Squares
@@ -744,7 +744,7 @@ const TrainingProgramDetail: React.FC = () => {
         {/* Final CTA */}
         <section
           id="register"
-          className="min-h-[90vh] relative z-40 bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center px-4 overflow-hidden"
+          className="min-h-[90vh] relative z-40 bg-[#00C4D4] sm:bg-[linear-gradient(135deg,#00C4D4_50%,#000000_50%)] flex flex-col items-center justify-center px-4 overflow-hidden"
         >
           <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
             <Squares
