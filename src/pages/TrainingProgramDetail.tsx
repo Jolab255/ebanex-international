@@ -556,16 +556,16 @@ const TrainingProgramDetail: React.FC = () => {
               />
             </div>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full relative z-10">
-              <div className="relative w-full max-w-5xl flex items-center justify-center lg:justify-end mx-auto">
-                <div className="absolute left-[-5%] lg:left-[-10%] top-1/2 -translate-y-1/2 w-[280px] sm:w-[400px] lg:w-[480px] aspect-[4/5] z-20">
+              <div className="relative w-full max-w-5xl flex flex-col lg:block items-center justify-center lg:justify-end mx-auto">
+                <div className="relative lg:absolute lg:left-[-10%] lg:top-1/2 lg:-translate-y-1/2 w-full max-w-[400px] lg:w-[480px] aspect-[4/5] z-20 mb-[-60px] lg:mb-0">
                   <img
                     src={program.instructor.image}
-                    className="w-full h-full object-cover border-[10px] border-black"
+                    className="w-full h-full object-cover border-[10px] border-black shadow-none"
                     alt=""
                   />
                 </div>
                 <div
-                  className="w-full max-w-2xl p-6 sm:p-10 border-[10px] border-black relative z-30 ml-auto bg-[#0a1628]"
+                  className="w-full max-w-2xl p-6 sm:p-10 pt-20 lg:pt-10 border-[10px] border-black relative z-10 ml-auto"
                   style={{
                     background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
                   }}
