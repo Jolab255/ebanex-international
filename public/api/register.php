@@ -120,12 +120,16 @@ $headers = "From: Ebanex Website <$from_email>\r\n";
 $headers .= "Reply-To: $email\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+$headers .= "Content-Transfer-Encoding: base64\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
 // ── SEND ─────────────────────────────────────────────────────────────
+// Encode body to base64 and wrap at 76 chars (industry standard for email)
+$encoded_message = chunk_split(base64_encode($message_html));
+
 // Send to domain email first (more reliable), then external
-$sent_primary = send_smtp_email($to_email_primary, $subject, $message_html, $headers);
-$sent_external = send_smtp_email($to_email_external, $subject, $message_html, $headers);
+$sent_primary = send_smtp_email($to_email_primary, $subject, $encoded_message, $headers);
+$sent_external = send_smtp_email($to_email_external, $subject, $encoded_message, $headers);
 
 if ($sent_primary || $sent_external) {
     error_log("Registration sent: domain=$sent_primary, external=$sent_external");

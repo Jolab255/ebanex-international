@@ -170,6 +170,12 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     if (e) e.preventDefault();
 
+    // Reset errors briefly to trigger animations if they persist
+    setErrors({});
+    
+    // Small delay to allow state to clear before re-validating
+    await new Promise(resolve => setTimeout(resolve, 10));
+
     // Validate all steps before submission
     if (!validateStep(1) || !validateStep(2) || !validateStep(3)) {
       // If validation fails on an earlier step, move back to it
@@ -683,10 +689,12 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
                         Continue <ArrowRight size={12} />
                       </button>
                     ) : (
-                      <button
+                      <motion.button
                         type="button"
                         onClick={(e) => handleSubmit(e)}
                         disabled={isSubmitting}
+                        animate={errors.form || errors.acceptedTerms ? { x: [0, -10, 10, -10, 10, 0] } : {}}
+                        transition={{ duration: 0.4 }}
                         className="flex-[2] py-2 sm:py-3 border-[2px] border-black text-black font-black uppercase tracking-[0.2em] text-[10px] sm:text-[11px] flex items-center justify-center gap-2 hover:bg-white transition-all active:scale-95 disabled:opacity-50"
                         style={{ backgroundColor: themeColor }}
                       >
@@ -695,9 +703,21 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
                         ) : (
                           <>Submit Enrollment <Send size={12} /></>
                         )}
-                      </button>
+                      </motion.button>
                     )}
                   </div>
+
+                  {currentStep === 3 && (errors.acceptedTerms || errors.form) && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-center p-2 bg-red-500/20 border border-red-500/50"
+                    >
+                      <p className="text-[9px] text-red-500 font-black uppercase tracking-widest">
+                        {errors.acceptedTerms || errors.form}
+                      </p>
+                    </motion.div>
+                  )}
                 </div>
               </div>
             </motion.div>
