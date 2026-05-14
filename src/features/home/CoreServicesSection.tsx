@@ -134,10 +134,8 @@ const CoreServicesSection: React.FC = () => {
       setIsMobile(width < 768);
       
       if (width < 768) {
-        // PIXEL-BASED HEIGHT for mobile
-        // 480px scroll track per card + 400px base for header and viewport compensation
-        // This makes the scroll distance identical on ALL mobile devices
-        const mobilePxHeight = CORE_SERVICES.length * 480 + 400;
+        // Reduced multipliers to tighten the gap
+        const mobilePxHeight = CORE_SERVICES.length * 400 + 250;
         setHeightValue(`${mobilePxHeight}px`);
       } else if (width < 1024) {
         setHeightValue(`${CORE_SERVICES.length * 75 + 20}vh`);
@@ -186,7 +184,7 @@ const CoreServicesSection: React.FC = () => {
         </div>
 
         {/* Stacking Cards Container */}
-        <div className="px-4 pb-12 sm:pb-20 md:pb-[30vh]">
+        <div className="px-4 pb-8 sm:pb-12 md:pb-[30vh]">
           {CORE_SERVICES.map((service, i) => (
             <ServiceCard
               key={i}
