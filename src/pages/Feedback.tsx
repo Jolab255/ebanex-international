@@ -432,7 +432,7 @@ const Feedback: React.FC = () => {
 
                       <div className="flex justify-center pt-4 opacity-80 hover:opacity-100 transition-opacity">
                         <div className="scale-75 sm:scale-90">
-                          <TurnstileCaptcha onVerify={(token) => setForm((prev) => ({ ...prev, captchaToken: token }))} />
+                          <TurnstileCaptcha size="normal" onVerify={(token) => setForm((prev) => ({ ...prev, captchaToken: token }))} />
                         </div>
                       </div>
 
