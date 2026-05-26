@@ -35,6 +35,16 @@ export interface TrainingEnrollmentPayload {
   captchaToken?: string;
 }
 
+export interface FeedbackPayload {
+  fullName: string;
+  email: string;
+  rating: string;
+  category: string;
+  message: string;
+  website?: string;
+  captchaToken?: string;
+}
+
 export interface ApiResponse<T = unknown> {
   ok: boolean;
   data?: T;
@@ -75,6 +85,39 @@ export async function sendContactInquiry(payload: ContactInquiryPayload): Promis
     return {
       ok: false,
       error: error.message || 'Something went wrong while sending your inquiry. Please try again.',
+    };
+  }
+}
+
+/**
+ * Sends feedback to the PHP backend.
+ */
+export async function sendFeedback(payload: FeedbackPayload): Promise<ApiResponse> {
+  try {
+    console.log('[sendFeedback] Payload:', payload);
+
+    const response = await fetch(`${API_BASE}/feedback.php`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to send feedback via local API');
+    }
+
+    return { ok: true, data };
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err : new Error(String(err));
+    console.error('[sendFeedback] Error:', error);
+    return {
+      ok: false,
+      error: error.message || 'Something went wrong while sending your feedback. Please try again.',
     };
   }
 }
