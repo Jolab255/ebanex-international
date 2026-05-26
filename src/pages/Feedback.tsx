@@ -441,7 +441,7 @@ const Feedback: React.FC = () => {
                         disabled={isSubmitting}
                         className="w-full py-4 bg-[#00BFFF] border-[3px] border-black text-black font-black uppercase tracking-[0.2em] text-[9px] flex items-center justify-center gap-3 hover:bg-white hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] transition-all active:scale-[0.98] disabled:opacity-50"
                       >
-                        {isSubmitting ? 'Transmitting...' : 'Submit Evaluation'} <Send size={16} />
+                        {isSubmitting ? 'Submitting...' : 'Submit Evaluation'} <Send size={16} />
                       </button>
                     </form>
                   </div>

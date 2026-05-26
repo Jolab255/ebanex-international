@@ -164,6 +164,7 @@ $sent_primary = send_smtp_email($to_email_primary, $subject, $encoded_message, $
 $sent_external = send_smtp_email($to_email_external, $subject, $encoded_message, $headers);
 
 if ($sent_primary || $sent_external) {
+    error_log("Feedback sent: domain=$sent_primary, external=$sent_external");
     echo json_encode(["ok" => true, "message" => "Evaluation submitted successfully."]);
 } else {
     http_response_code(500);
