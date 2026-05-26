@@ -36,10 +36,14 @@ export interface TrainingEnrollmentPayload {
 }
 
 export interface FeedbackPayload {
-  fullName: string;
-  email: string;
-  rating: string;
-  category: string;
+  fullName?: string;
+  email?: string;
+  trainingProgram: string;
+  presentationSkills: string;
+  knowledge: string;
+  confidence: string;
+  engagement: string;
+  timeManagement: string;
   message: string;
   website?: string;
   captchaToken?: string;

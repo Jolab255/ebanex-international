@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLenis } from 'lenis/react';
 import {
   X,
   ArrowRight,
@@ -68,6 +69,7 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
     captchaToken: '',
   });
   const [errors, setErrors] = useState<EnrollmentFormErrors>({});
+  const lenis = useLenis();
 
   // Reset form when program prop changes
   useEffect(() => {
@@ -75,6 +77,21 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
       setFormData((prev) => ({ ...prev, selectedProgramSlug: program.slug }));
     }
   }, [program]);
+
+  // Handle Lenis scrolling and body lock
+  useEffect(() => {
+    if (isOpen || successMessage || showPriceNotice) {
+      document.body.style.overflow = 'hidden';
+      lenis?.stop();
+    } else {
+      document.body.style.overflow = '';
+      lenis?.start();
+    }
+    return () => {
+      document.body.style.overflow = '';
+      lenis?.start();
+    };
+  }, [isOpen, successMessage, showPriceNotice, lenis]);
 
   const isCisa = formData.selectedProgramSlug === 'cisa' || 
                  (TRAINING_PROGRAMS[formData.selectedProgramSlug]?.title || '').includes('CISA');
@@ -267,7 +284,10 @@ export const EnrollmentModal: React.FC<EnrollmentModalProps> = ({
               className="relative w-full max-w-2xl bg-black border-[4px] sm:border-[6px] shadow-[20px_20px_0px_0px_rgba(0,0,0,0.3)] overflow-hidden flex flex-col max-h-[90vh]"
               style={{ borderColor: themeColor }}
             >
-              <div className="p-4 sm:p-6 overflow-y-auto scrollbar-hide">
+              <div 
+                className="p-4 sm:p-6 overflow-y-auto scrollbar-hide"
+                data-lenis-prevent
+              >
                 <button
                   onClick={onClose}
                   className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors z-10"

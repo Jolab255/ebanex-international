@@ -1,7 +1,7 @@
 <?php
 /**
- * Ebanex International - Feedback API
- * Handles feedback submissions and sends emails
+ * Ebanex International - Trainer Evaluation API
+ * Handles detailed trainer feedback and sends emails (Anonymous Supported)
  */
 
 // Enable error reporting for debugging
@@ -15,7 +15,7 @@ require_once 'security.php';
 // ── SETTINGS ──────────────────────────────────────────────────────────
 $to_email_primary = "info@ebanexint.co.tz";
 $to_email_external = "yonahmatete@gmail.co.tz";
-$subject_prefix = "NEW FEEDBACK RECEIVED: ";
+$subject_prefix = "NEW TRAINER EVALUATION: ";
 $from_email = "info@ebanexint.co.tz";
 
 // ── CORS HEADERS ──────────────────────────────────────────────────────
@@ -54,14 +54,14 @@ $json_data = json_decode($input, true);
 $honeypot = $_POST['website'] ?? $json_data['website'] ?? '';
 if (!empty($honeypot)) {
     error_log("Bot detected via honeypot: $honeypot");
-    echo json_encode(["ok" => true, "message" => "Feedback submitted successfully."]); 
+    echo json_encode(["ok" => true, "message" => "Evaluation submitted successfully."]); 
     exit;
 }
 
 // Turnstile Validation
 $captcha_token = $_POST['captchaToken'] ?? $json_data['captchaToken'] ?? '';
 if (!validate_turnstile($captcha_token)) {
-    error_log("Turnstile validation failed for feedback submission.");
+    error_log("Turnstile validation failed for trainer evaluation.");
     http_response_code(403);
     echo json_encode(["ok" => false, "error" => "Security validation failed. Please try again."]);
     exit;
@@ -69,32 +69,36 @@ if (!validate_turnstile($captcha_token)) {
 
 // Rate Limiting
 if (!check_rate_limit('feedback', 5, 3600)) {
-    error_log("Rate limit exceeded for feedback submission from " . $_SERVER['REMOTE_ADDR']);
+    error_log("Rate limit exceeded for trainer evaluation from " . $_SERVER['REMOTE_ADDR']);
     http_response_code(429);
     echo json_encode(["ok" => false, "error" => "Too many requests. Please try again later."]);
     exit;
 }
 
-$fullName = htmlspecialchars(strip_tags($_POST['fullName'] ?? $json_data['fullName'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
-$email = filter_var($_POST['email'] ?? $json_data['email'] ?? '', FILTER_SANITIZE_EMAIL);
-$rating = htmlspecialchars(strip_tags($_POST['rating'] ?? $json_data['rating'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
-$category = htmlspecialchars(strip_tags($_POST['category'] ?? $json_data['category'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+// Handle Potential Missing Fields for Anonymous Feedback
+$fullName = htmlspecialchars(strip_tags($_POST['fullName'] ?? $json_data['fullName'] ?? 'ANONYMOUS'), ENT_QUOTES, 'UTF-8');
+$email = filter_var($_POST['email'] ?? $json_data['email'] ?? 'anonymous@ebanexint.co.tz', FILTER_SANITIZE_EMAIL);
+if (empty($fullName)) $fullName = "ANONYMOUS";
+if (empty($email)) $email = "anonymous@ebanexint.co.tz";
+
+$program = htmlspecialchars(strip_tags($_POST['trainingProgram'] ?? $json_data['trainingProgram'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+
+$presSkills = htmlspecialchars(strip_tags($_POST['presentationSkills'] ?? $json_data['presentationSkills'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$knowledge = htmlspecialchars(strip_tags($_POST['knowledge'] ?? $json_data['knowledge'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$confidence = htmlspecialchars(strip_tags($_POST['confidence'] ?? $json_data['confidence'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$engagement = htmlspecialchars(strip_tags($_POST['engagement'] ?? $json_data['engagement'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+$timeMgmt = htmlspecialchars(strip_tags($_POST['timeManagement'] ?? $json_data['timeManagement'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
+
 $messageContent = htmlspecialchars(strip_tags($_POST['message'] ?? $json_data['message'] ?? 'N/A'), ENT_QUOTES, 'UTF-8');
 
-$subject = $subject_prefix . $fullName . " (" . $rating . "/5 Stars)";
+$subject = $subject_prefix . $fullName . " [" . $program . "]";
 
 // ── EMAIL CONSTRUCTION (HTML using helper) ────────────────────────────────────
 $content_html = "
     <tr>
         <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
-            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Rating</div>
-            <div style='font-size: 16px; color: #FFFFFF; font-weight: bold;'>$rating / 5 Stars</div>
-        </td>
-    </tr>
-    <tr>
-        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
-            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Category</div>
-            <div style='font-size: 16px; color: #FFFFFF; font-weight: bold;'>$category</div>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Training Program</div>
+            <div style='font-size: 16px; color: #FFFFFF; font-weight: bold;'>$program</div>
         </td>
     </tr>
     <tr>
@@ -110,13 +114,40 @@ $content_html = "
         </td>
     </tr>
     <tr>
+        <td style='padding: 20px 0; border-bottom: 1px solid #1E293B;'>
+            <div style='font-size: 12px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;'>Evaluation Ratings</div>
+            <table width='100%' cellpadding='0' cellspacing='0'>
+                <tr>
+                    <td style='padding: 5px 0; font-size: 13px; color: #94A3B8;'>Presentation Skills:</td>
+                    <td style='padding: 5px 0; font-size: 13px; color: #FFFFFF; font-weight: bold; text-align: right;'>$presSkills</td>
+                </tr>
+                <tr>
+                    <td style='padding: 5px 0; font-size: 13px; color: #94A3B8;'>Subject Knowledge:</td>
+                    <td style='padding: 5px 0; font-size: 13px; color: #FFFFFF; font-weight: bold; text-align: right;'>$knowledge</td>
+                </tr>
+                <tr>
+                    <td style='padding: 5px 0; font-size: 13px; color: #94A3B8;'>Subject Confidence:</td>
+                    <td style='padding: 5px 0; font-size: 13px; color: #FFFFFF; font-weight: bold; text-align: right;'>$confidence</td>
+                </tr>
+                <tr>
+                    <td style='padding: 5px 0; font-size: 13px; color: #94A3B8;'>Class Engagement:</td>
+                    <td style='padding: 5px 0; font-size: 13px; color: #FFFFFF; font-weight: bold; text-align: right;'>$engagement</td>
+                </tr>
+                <tr>
+                    <td style='padding: 5px 0; font-size: 13px; color: #94A3B8;'>Time Management:</td>
+                    <td style='padding: 5px 0; font-size: 13px; color: #FFFFFF; font-weight: bold; text-align: right;'>$timeMgmt</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
         <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
-            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Feedback Message</div>
+            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Comments & Suggestions</div>
             <div style='font-size: 14px; color: #FFFFFF; line-height: 1.6; white-space: pre-wrap;'>$messageContent</div>
         </td>
     </tr>";
 
-$message_html = get_email_template("New Client Feedback", $content_html, "This feedback was submitted via the Ebanex International feedback form.");
+$message_html = get_email_template("New Trainer Evaluation", $content_html, "This evaluation was submitted anonymously via the Ebanex International evaluation portal.");
 
 // Build headers
 $headers = "From: Ebanex Website <$from_email>\r\n";
@@ -133,11 +164,11 @@ $sent_primary = send_smtp_email($to_email_primary, $subject, $encoded_message, $
 $sent_external = send_smtp_email($to_email_external, $subject, $encoded_message, $headers);
 
 if ($sent_primary || $sent_external) {
-    echo json_encode(["ok" => true, "message" => "Feedback submitted successfully."]);
+    echo json_encode(["ok" => true, "message" => "Evaluation submitted successfully."]);
 } else {
     http_response_code(500);
     echo json_encode([
         "ok" => false,
-        "error" => "The feedback service is currently unavailable. Please contact info@ebanexint.co.tz directly."
+        "error" => "The evaluation service is currently unavailable. Please contact info@ebanexint.co.tz directly."
     ]);
 }
