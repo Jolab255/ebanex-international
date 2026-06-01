@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+Disallow: /api/           # Block API endpoints
+Disallow: /src/           # Block raw src paths if exposed
+Disallow: /node_modules/  # Block node_modules
+
+# Sitemap URL
+Sitemap: https://ebanexint.co.tz/sitemap.xml
