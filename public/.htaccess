@@ -4,6 +4,9 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
   
+  # Exclude sitemap.xml and robots.txt explicitly from rewrites
+  RewriteRule ^(sitemap\.xml|robots\.txt)$ - [L]
+  
   # If the request is for a real file or directory, serve it directly
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
