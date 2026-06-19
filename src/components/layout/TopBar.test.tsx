@@ -26,7 +26,7 @@ describe('TopBar', () => {
     const buttons = screen.getAllByRole('button');
     fireEvent.click(buttons[0]); // Phone is first in contactInfo
 
-    expect(screen.getByText('+255 745 326 627')).toBeInTheDocument();
+    expect(screen.getByText('+255 755 963 001')).toBeInTheDocument();
   });
 
   it('displays email when panel is active', () => {

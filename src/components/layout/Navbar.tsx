@@ -6,6 +6,7 @@ import { useLenis } from 'lenis/react';
 import { NAVIGATION_LINKS } from '../../constants';
 import { cn } from '../../lib/utils';
 import logo from '../../assets/ebanex-logo.png';
+import cyberSecurityLabImg from '../../assets/cyber_security_lab.jpg';
 import { Squares } from '../animations';
 
 const DROPDOWN_CONTENT = {
@@ -29,6 +30,7 @@ const DROPDOWN_CONTENT = {
       {
         title: 'Practical & Hands-On Workshops & Masterclasses',
         items: [
+          { label: 'Cyber Security Essentials (Register Now)', path: '/cyber-security-essentials' },
           { label: 'Ethical Hacking & Threat Intelligence', path: '/training/ethical-hacking' },
           { label: 'Incident Response Training', path: '/training/incident-response' },
           { label: 'Networking & Infrastructure', path: '/training/networking' },
@@ -56,6 +58,18 @@ const DROPDOWN_CONTENT = {
       },
     ],
   },
+  'Events': {
+    overview:
+      'Ebanex International hosts elite corporate conferences, masterclasses, and hands-on workshops designed to foster professional capability and institutional resilience.',
+    categories: [
+      {
+        title: 'Upcoming Events',
+        items: [
+          { label: 'Cyber Security Essentials (29 Jun – 03 Jul)', path: '/cyber-security-essentials' },
+        ],
+      },
+    ],
+  },
   'Corporate Solutions': {
     overview:
       'Tailored institutional strengthening programs designed for enterprise-level resilience and operational excellence.',
@@ -65,6 +79,9 @@ const DROPDOWN_CONTENT = {
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAlertVisible, setIsAlertVisible] = useState(() => {
+    return sessionStorage.getItem('eventAlertDismissed') !== 'true';
+  });
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [mobileCategoryExpanded, setMobileCategoryExpanded] = useState<string | null>(null);
@@ -86,7 +103,7 @@ const Navbar: React.FC = () => {
       window.removeEventListener('scroll', updateNavBottom);
       window.removeEventListener('resize', updateNavBottom);
     };
-  }, []);
+  }, [isAlertVisible]);
 
   useEffect(() => {
     setIsOpen(false);
@@ -130,7 +147,15 @@ const Navbar: React.FC = () => {
     setMobileCategoryExpanded(mobileCategoryExpanded === title ? null : title);
   };
 
-  const visibleLinks = NAVIGATION_LINKS.slice(0, 5);
+  const isEventPage = location.pathname === '/cyber-security-essentials' || location.pathname === '/training/cyber-security-essentials';
+
+  const visibleLinks = [
+    NAVIGATION_LINKS[0], // About Us
+    NAVIGATION_LINKS[1], // Training Programs
+    NAVIGATION_LINKS[2], // IT Audit & Advisory Services
+    NAVIGATION_LINKS[3], // Ebanex Digital Trust Conference
+    { label: 'Events', path: '/cyber-security-essentials' },
+  ];
 
   const getContactPath = () => {
     const path = location.pathname;
@@ -147,7 +172,7 @@ const Navbar: React.FC = () => {
     const isActive = location.pathname === link.path;
 
     // Inactive tabs based on your request
-    const isInactive = index >= 4;
+    const isInactive = index >= 5;
 
     if (isInactive) return null;
 
@@ -167,6 +192,11 @@ const Navbar: React.FC = () => {
             )}
           >
             {link.label}
+            {link.label === 'Events' && !isEventPage && (
+              <span className="inline-flex items-center px-1.5 py-0.5 bg-red-600 text-white text-[7px] font-black uppercase tracking-wider select-none leading-none animate-alert-glow-blink ml-1">
+                NEW
+              </span>
+            )}
             <ChevronDown
               size={10}
               className={cn(
@@ -192,6 +222,15 @@ const Navbar: React.FC = () => {
 
   return (
     <>
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes alert-glow-blink {
+          0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.9)); }
+          50% { opacity: 0.15; filter: drop-shadow(0 0 1px rgba(239, 68, 68, 0.1)); }
+        }
+        .animate-alert-glow-blink {
+          animation: alert-glow-blink 1.4s infinite ease-in-out;
+        }
+      `}} />
       <AnimatePresence>
         {activeDropdown && (
           <motion.div
@@ -215,6 +254,34 @@ const Navbar: React.FC = () => {
         aria-label="Main Navigation"
         onClick={() => setActiveDropdown(null)}
       >
+        {isAlertVisible && !isEventPage && (
+          <div
+            className="w-full bg-[#050507] text-white py-1 px-4 flex items-center justify-between gap-3 border-b border-red-500/20 select-none relative z-[230]"
+            onClick={(e) => e.stopPropagation()}
+          >
+              <div className="flex-1 flex items-center justify-center gap-2">
+                <Link
+                  to="/cyber-security-essentials"
+                  className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] hover:text-red-400 transition-colors flex flex-wrap items-center justify-center gap-1.5 text-center text-red-300"
+                >
+                  <span className="text-red-500 font-black animate-alert-glow-blink">NEW EVENT:</span>
+                  Cyber Security Essentials (29 Jun – 03 Jul) — Register Now
+                  <ChevronRight size={12} className="inline shrink-0 text-red-500 animate-pulse" />
+                </Link>
+              </div>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsAlertVisible(false);
+                  sessionStorage.setItem('eventAlertDismissed', 'true');
+                }}
+                className="p-0.5 hover:bg-white/5 text-slate-500 hover:text-white transition-all shrink-0"
+                aria-label="Dismiss Alert"
+              >
+                <X size={12} />
+              </button>
+            </div>
+        )}
         <div
           className="w-full px-2 sm:px-6 flex items-center h-16 sm:h-20 lg:h-24 relative z-[220] bg-black"
           onClick={(e) => e.stopPropagation()}
@@ -228,7 +295,7 @@ const Navbar: React.FC = () => {
             >
               <img
                 src={logo}
-                alt=""
+                alt="Ebanex International"
                 className="h-full w-auto object-contain transition-transform duration-300 brightness-110 scale-[2.5] origin-left"
               />
             </Link>
@@ -325,13 +392,10 @@ const Navbar: React.FC = () => {
                     Home
                   </Link>
                 </motion.div>
-                {NAVIGATION_LINKS.map((link, index) => {
+                {visibleLinks.map((link, index) => {
                   const hasDropdown = DROPDOWN_CONTENT[link.label as keyof typeof DROPDOWN_CONTENT];
                   const isExpanded = mobileExpanded === link.label;
                   const isActive = location.pathname === link.path;
-                  const isVisible = index < 4;
-
-                  if (!isVisible) return null;
 
                   return (
                     <motion.div
@@ -350,7 +414,14 @@ const Navbar: React.FC = () => {
                               isExpanded ? 'text-[#00BFFF]' : 'text-white',
                             )}
                           >
-                            {link.label}
+                            <span className="flex items-center gap-1.5">
+                              {link.label}
+                              {link.label === 'Events' && !isEventPage && (
+                                <span className="inline-flex items-center px-1.5 py-0.5 bg-red-600 text-white text-[7px] font-black uppercase tracking-wider select-none leading-none animate-alert-glow-blink">
+                                  NEW
+                                </span>
+                              )}
+                            </span>
                             <ChevronDown
                               size={18}
                               className={cn(
@@ -402,7 +473,14 @@ const Navbar: React.FC = () => {
                                                 to={item.path}
                                                 className="block py-3 px-4 text-[11px] font-bold uppercase text-slate-400 active:text-[#00BFFF]"
                                               >
-                                                {item.label}
+                                                <span className="flex items-center gap-1.5">
+                                                  {item.label}
+                                                  {item.path === '/cyber-security-essentials' && (
+                                                    <span className="inline-flex items-center px-1.5 py-0.5 bg-red-600 text-white text-[7px] font-black uppercase tracking-wider select-none leading-none animate-alert-glow-blink">
+                                                      NEW
+                                                    </span>
+                                                  )}
+                                                </span>
                                               </Link>
                                             ))}
                                           </motion.div>
@@ -529,7 +607,14 @@ const Navbar: React.FC = () => {
                                   to={item.path}
                                   className="text-[13px] text-white/80 font-normal hover:text-[#00BFFF] hover:translate-x-1 transition-all block py-0.5 relative group/link"
                                 >
-                                  {item.label}
+                                  <span className="flex items-center gap-1.5">
+                                    {item.label}
+                                    {item.path === '/cyber-security-essentials' && (
+                                      <span className="inline-flex items-center px-1.5 py-0.5 bg-red-600 text-white text-[7px] font-black uppercase tracking-wider select-none leading-none scale-90 origin-left animate-alert-glow-blink">
+                                        NEW
+                                      </span>
+                                    )}
+                                  </span>
                                   <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#00BFFF]/50 group-hover/link:w-full transition-all duration-300" />
                                 </Link>
                               </li>
@@ -574,6 +659,55 @@ const Navbar: React.FC = () => {
                               className="inline-flex items-center gap-2 px-6 py-3 bg-[#00BFFF] text-black text-[9px] font-black uppercase tracking-[0.2em] hover:bg-white transition-all w-full justify-center"
                             >
                               Full Catalog <ChevronRight size={12} />
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Visual CTA Card for Cyber Security Essentials */}
+                  {activeDropdown === 'Events' && (
+                    <motion.div
+                      className="group relative h-full"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <div className="absolute inset-0 bg-[#00bfff]/20 transform rotate-1 group-hover:rotate-0 transition-transform duration-500" />
+                      <div
+                        className="relative p-0 border-[1px] border-[#00BFFF]/30 shadow-2xl transition-all duration-300 h-full flex flex-col group-hover:border-[#00BFFF] group-hover:-translate-y-1 overflow-hidden"
+                        style={{ background: 'linear-gradient(135deg, #051020 0%, #0a1a2f 100%)' }}
+                      >
+                        {/* Floating Blinking NEW badge */}
+                        {!isEventPage && (
+                          <div className="absolute top-4 right-4 z-20">
+                            <span className="inline-flex items-center px-2 py-0.5 bg-red-600 text-white text-[8px] font-black uppercase tracking-wider select-none leading-none animate-alert-glow-blink border border-red-500/30">
+                              NEW EVENT
+                            </span>
+                          </div>
+                        )}
+                        <div className="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity">
+                          <img
+                            src={cyberSecurityLabImg}
+                            alt="Cyber Security Lab"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <div className="relative z-10 p-6 flex flex-col h-full bg-gradient-to-t from-black via-black/40 to-transparent">
+                          <div className="mt-auto">
+                            <h3 className="text-[12px] font-black text-[#00BFFF] uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
+                              <span className="w-2 h-2 bg-[#00BFFF] animate-pulse" />
+                              Cyber Security Essentials
+                            </h3>
+                            <p className="text-[10px] text-white/70 font-bold uppercase tracking-widest leading-relaxed mb-6">
+                              Elite hands-on training and masterclass. Morogoro (29 Jun – 03 Jul).
+                            </p>
+                            <Link
+                              to="/cyber-security-essentials"
+                              className="inline-flex items-center gap-2 px-6 py-3 bg-[#00BFFF] text-black text-[9px] font-black uppercase tracking-[0.2em] hover:bg-white transition-all w-full justify-center"
+                            >
+                              Register Now <ChevronRight size={12} />
                             </Link>
                           </div>
                         </div>

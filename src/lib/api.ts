@@ -49,6 +49,22 @@ export interface FeedbackPayload {
   captchaToken?: string;
 }
 
+export interface CyberSecurityEssentialsPayload {
+  fullName: string;
+  jobTitle: string;
+  organization: string;
+  department?: string;
+  email: string;
+  phone: string;
+  participantsCount: number;
+  participantCategory: string;
+  preferredPayment: string;
+  invoiceRequired: string;
+  specialRequests?: string;
+  website?: string;
+  captchaToken?: string;
+}
+
 export interface ApiResponse<T = unknown> {
   ok: boolean;
   data?: T;
@@ -201,6 +217,45 @@ export async function sendTrainingEnrollment(
       ok: false,
       error:
         error.message || 'Something went wrong while sending your enrollment. Please try again.',
+    };
+  }
+}
+
+/**
+ * Sends a Cyber Security Essentials registration to the PHP backend.
+ */
+export async function sendCyberSecurityEssentialsRegistration(
+  payload: CyberSecurityEssentialsPayload,
+): Promise<ApiResponse> {
+  try {
+    console.log('[sendCyberSecurityEssentialsRegistration] Payload:', payload);
+
+    const response = await fetch(`${API_BASE}/cyber-security-essentials.php`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(
+        data.error ||
+          'The registration service is currently unavailable. Please contact info@ebanexint.co.tz directly.',
+      );
+    }
+
+    return { ok: true, data };
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err : new Error(String(err));
+    console.error('[sendCyberSecurityEssentialsRegistration] Error:', error);
+    return {
+      ok: false,
+      error:
+        error.message || 'Something went wrong while sending your registration. Please try again.',
     };
   }
 }

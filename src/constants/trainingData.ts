@@ -2986,4 +2986,76 @@ export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {
       },
     ],
   },
+  'cyber-security-essentials': {
+    title: 'Cyber Security Essentials',
+    slug: 'cyber-security-essentials',
+    badge: 'Open for Registration',
+    description:
+      'Equip yourself and your team with practical, real-world skills to identify digital risks, protect critical assets, and build safe cyber practices.',
+    longDescription:
+      'Cyber Security Essentials is a comprehensive 5-day training program designed by Ebanex International to build practical, real-world competence. This program focuses on training professionals across IT, audit, compliance, and management to detect vulnerabilities, implement key security controls, and protect sensitive organizational assets.\n\nOver the course of 5 full days (40 CPE Hours), participants will learn the essential principles of cyber hygiene, how to identify phishing and social engineering attacks, and strategies to secure business infrastructure. The training will take place from June 29 to July 3, 2026 at the Timeless Hotel in Morogoro, Tanzania.',
+    duration: '29 Jun – 03 Jul 2026',
+    hours: '40 CPE Hours',
+    audience: 'IT Admins, Auditors, Compliance Teams, Managers',
+    image: cyberSkillsImg,
+    testimonial: {
+      text: 'The Cyber Security Essentials training provided by Ebanex gave our compliance team the exact practical tools we needed to identify vulnerabilities and assess our overall posture. Highly recommended for any organization.',
+      author: 'David Mwangi',
+      role: 'Compliance Director, Apex Bank',
+    },
+    instructor: {
+      name: 'Baraka Opiyo',
+      role: 'Executive Director – Training & Capacity Building | Lead Trainer',
+      bio: 'Baraka is a seasoned cybersecurity professional, Technology Auditor, ISACA Global exam item writer, and accredited CISA trainer with over 14 years of experience. He specializes in cybersecurity, Technology Audit, Artificial Intelligence, IT Risk Advisory, and Data Privacy',
+      certs: ['CDPSE', 'CISA', 'CISM', 'CRISC', 'CCNA'],
+      image: barakaImg,
+      stats: [
+        { number: '12+', label: 'Years Exp' },
+        { number: '5k+', label: 'Trained' },
+        { number: '200+', label: 'Engagements' },
+      ],
+    },
+    skills: {
+      technical: [
+        'Risk Identification & Mitigations',
+        'Vulnerability Assessment Basics',
+        'Data Privacy & Protection Controls',
+        'Secure Systems Configuration',
+      ],
+      business: [
+        'Incident Reporting & Coordination',
+        'Compliance & ISO/NIST Mapping',
+        'Cyber Security Policy & Hygiene',
+        'Team Awareness Training',
+      ],
+    },
+    evaluation: [
+      { phase: 'Phase 1: Pre-Assessment', desc: 'Evaluating base cybersecurity knowledge' },
+      { phase: 'Phase 2: Practical Labs', desc: 'Interactive threat exercises and simulations' },
+      { phase: 'Phase 3: Case Reviews', desc: 'Analyzing real-world breaches and mitigations' },
+      { phase: 'Phase 4: Post-Assessment', desc: 'Final evaluation for 40 CPE certification' },
+    ],
+    industries: [
+      { title: 'Financial Services', desc: 'Securing transaction systems and compliance audit preparation' },
+      { title: 'Public Sector / Gov', desc: 'Protecting citizen records and national network infrastructure' },
+      { title: 'Healthcare', desc: 'Enforcing HIPAA-level patient data privacy regulations' },
+      { title: 'Telecommunications', desc: 'Hardening high-bandwidth gateways and system environments' },
+    ],
+    stats: [
+      { metric: 40, suffix: ' Hrs', label: 'CPE Certification' },
+      { metric: 5, suffix: ' Days', label: 'Full Immersion' },
+      { metric: 100, suffix: '%', label: 'Practical Focus' },
+      { metric: 25, suffix: ' Jun', label: 'Early Bird Deadline' },
+    ],
+    faqs: [
+      {
+        question: 'Who should attend this training?',
+        answer: 'This training is open to all professionals including IT managers, system administrators, auditors, compliance teams, operations staff, and security teams who wish to build a strong foundation in modern cybersecurity skills.',
+      },
+      {
+        question: 'Will I get CPE credits?',
+        answer: 'Yes, this course awards 40 CPE (Continuing Professional Education) hours certified by Ebanex International upon successful completion of the full 5-day program.',
+      },
+    ],
+  },
 };

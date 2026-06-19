@@ -1,8 +1,22 @@
+import React from 'react';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import * as api from '../../lib/api';
 import Contact from '../Contact';
+
+vi.mock('../../components/common', async (importOriginal) => {
+  const actual = await importOriginal<any>();
+  return {
+    ...actual,
+    TurnstileCaptcha: ({ onVerify }: any) => {
+      React.useEffect(() => {
+        onVerify('mock-captcha-token');
+      }, []);
+      return <div data-testid="mock-turnstile" />;
+    },
+  };
+});
 
 describe('Contact page form', () => {
   it('validates required fields', async () => {

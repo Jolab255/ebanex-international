@@ -17,6 +17,7 @@ const TermsOfService = lazy(() => import('./pages/TermsOfService'));
 const TrainingProgramDetail = lazy(() => import('./pages/TrainingProgramDetail'));
 const ITAuditAdvisory = lazy(() => import('./pages/ITAuditAdvisory'));
 const DigitalTrustConference = lazy(() => import('./pages/DigitalTrustConference'));
+const CyberSecurityEssentials = lazy(() => import('./pages/CyberSecurityEssentials'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App: React.FC = () => {
@@ -74,12 +75,29 @@ const App: React.FC = () => {
                           </Suspense>
                         }
                       />
+                      {/* Direct route for Cyber Security Essentials */}
+                      <Route
+                        path="/training/cyber-security-essentials"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <CyberSecurityEssentials />
+                          </Suspense>
+                        }
+                      />
                       {/* Dynamic Template Route for all Training Programs */}
                       <Route
                         path="/training/:programId"
                         element={
                           <Suspense fallback={<PageLoader />}>
                             <TrainingProgramDetail />
+                          </Suspense>
+                        }
+                      />
+                      <Route
+                        path="/cyber-security-essentials"
+                        element={
+                          <Suspense fallback={<PageLoader />}>
+                            <CyberSecurityEssentials />
                           </Suspense>
                         }
                       />

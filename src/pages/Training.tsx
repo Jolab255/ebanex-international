@@ -17,7 +17,7 @@ import {
   CheckCircle,
   ChevronDown,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SEO } from '../components/layout';
 import { Squares, ScrollReveal } from '../components/animations';
 import { TRAINING_PROGRAMS, TrainingProgram } from '../constants/trainingData';
@@ -374,11 +374,16 @@ const ProgramCarousel: React.FC<{
 };
 
 const Training: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedProgram, setSelectedProgram] = useState<TrainingProgram | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEnrollModalOpen, setIsEnrollModalOpen] = useState(false);
 
   const openOverview = (slug: string) => {
+    if (slug === 'cyber-security-essentials') {
+      navigate('/cyber-security-essentials');
+      return;
+    }
     const program = TRAINING_PROGRAMS[slug];
     if (program) {
       setSelectedProgram(program);
@@ -387,6 +392,10 @@ const Training: React.FC = () => {
   };
 
   const openEnroll = (slug: string) => {
+    if (slug === 'cyber-security-essentials') {
+      navigate('/cyber-security-essentials');
+      return;
+    }
     const program = TRAINING_PROGRAMS[slug];
     if (program) {
       setSelectedProgram(program);
@@ -419,6 +428,7 @@ const Training: React.FC = () => {
       title: 'Practical & Hands-On Workshops & Masterclasses',
       icon: <Code className="w-8 h-8" />,
       items: [
+        { label: 'Cyber Security Essentials', slug: 'cyber-security-essentials' },
         { label: 'Ethical Hacking & Threat Intelligence', slug: 'ethical-hacking' },
         { label: 'Incident Response Training', slug: 'incident-response' },
         { label: 'Networking & Infrastructure', slug: 'networking' },

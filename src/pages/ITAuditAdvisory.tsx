@@ -321,7 +321,12 @@ const ITAuditAdvisory: React.FC = () => {
         <div className="w-full px-4 sm:px-6 lg:px-[100px] relative z-10">
           <motion.div {...fadeInUp}>
             <div className="w-full">
-              <div className="w-full bg-[#00BFFF] p-6 sm:p-10 border-[8px] border-black shadow-2xl relative">
+              <div
+                className="w-full p-6 sm:p-10 border-[8px] border-black shadow-2xl relative"
+                style={{
+                  background: 'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
+                }}
+              >
                 <div className="mb-8">
                   <div className="inline-block bg-black py-4 px-8 border border-white/10 shadow-2xl">
                     <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black font-heading text-white uppercase tracking-tighter leading-[0.9]">
@@ -329,7 +334,7 @@ const ITAuditAdvisory: React.FC = () => {
                     </h2>
                   </div>
                 </div>
-                <p className="text-black text-lg font-light leading-relaxed text-justify">
+                <p className="text-white/90 text-lg font-light leading-relaxed text-justify">
                   {firstParagraph}
                 </p>
 
@@ -345,7 +350,7 @@ const ITAuditAdvisory: React.FC = () => {
                       {remainingParagraphs.map((para, i) => (
                         <p
                           key={i}
-                          className="text-black text-lg font-light leading-relaxed text-justify mt-8"
+                          className="text-white/90 text-lg font-light leading-relaxed text-justify mt-8"
                         >
                           {para}
                         </p>
@@ -357,7 +362,7 @@ const ITAuditAdvisory: React.FC = () => {
                 {remainingParagraphs.length > 0 && (
                   <motion.button
                     onClick={() => setIsOverviewExpanded(!isOverviewExpanded)}
-                    className="mt-8 text-black hover:text-white font-black flex items-center gap-2 transition-colors uppercase tracking-widest text-xs"
+                    className="mt-8 text-[#00BFFF] hover:text-white font-black flex items-center gap-2 transition-colors uppercase tracking-widest text-xs"
                   >
                     {isOverviewExpanded ? 'Show Less' : 'Read More'}
                     <motion.span animate={{ rotate: isOverviewExpanded ? 180 : 0 }}>
@@ -372,7 +377,7 @@ const ITAuditAdvisory: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="mt-12 relative p-1 border-[4px] border-black shadow-xl overflow-hidden bg-black/10 max-w-4xl w-full"
+                    className="mt-12 relative p-1 border-[4px] border-black shadow-xl overflow-hidden bg-black/40 max-w-4xl w-full"
                   >
                     <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 p-4 items-stretch">
                       {[
@@ -383,10 +388,9 @@ const ITAuditAdvisory: React.FC = () => {
                       ].map((item, i) => (
                         <div
                           key={i}
-                          className="p-3 border border-black/20 hover:border-white/30 transition-colors flex flex-col items-center text-center h-full min-h-[100px] justify-center"
+                          className="p-3 border border-white/10 hover:border-[#00BFFF]/30 transition-colors flex flex-col items-center text-center h-full min-h-[100px] justify-center"
                           style={{
-                            background:
-                              'radial-gradient(circle at 50% 50%, #16476A 0%, #051020 100%)',
+                            background: 'rgba(255,255,255,0.03)',
                           }}
                         >
                           <div className="text-[#00BFFF] mb-2">{item.icon}</div>
