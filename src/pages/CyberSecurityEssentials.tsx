@@ -591,7 +591,7 @@ const CyberSecurityEssentials: React.FC = () => {
               }}
             >
               {/* Top Row: Title/Info and Action Button */}
-              <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 pb-8 border-b border-white/10">
+              <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 border-t lg:border-t-0 lg:border-b border-white/10 pt-8 lg:pt-0 pb-0 lg:pb-8 order-2 lg:order-1">
                 <div className="text-start">
                   <div className="inline-block bg-black py-2 px-4 border border-white/10 mb-3">
                     <span className="text-[#00BFFF] text-[10px] font-black uppercase tracking-[0.3em]">
@@ -622,7 +622,7 @@ const CyberSecurityEssentials: React.FC = () => {
               </div>
 
               {/* Bottom Grid: 4 Info Cards spanning full width */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 order-1 lg:order-2">
                 {[
                   {
                     label: 'Early Bird Fee',
