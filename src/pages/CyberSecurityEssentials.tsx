@@ -344,36 +344,36 @@ const CyberSecurityEssentials: React.FC = () => {
                       Secure your seat today. Complete the registration form to enroll in the Cyber Security Essentials Training hosted by Ebanex International in Morogoro, Tanzania from 29 June to 03 July 2026.
                     </p>
                     
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-row gap-3 w-full">
                       <button
                         onClick={() => {
                           setCurrentStep(1);
                           setIsFormOpen(true);
                         }}
-                        className="h-12 px-6 bg-[#00BFFF] text-black font-black text-[10px] uppercase tracking-widest hover:bg-white transition-all flex items-center gap-2 group shadow-[0_0_20px_rgba(0,191,255,0.4)]"
+                        className="flex-1 sm:flex-none justify-center h-12 px-3 sm:px-6 bg-[#00BFFF] text-black font-black text-[8px] sm:text-[10px] uppercase tracking-wider sm:tracking-widest hover:bg-white transition-all flex items-center gap-1.5 sm:gap-2 group shadow-[0_0_20px_rgba(0,191,255,0.4)]"
                       >
-                        Register Now{' '}
+                        <span className="whitespace-nowrap">Register Now</span>
                         <ArrowRight
-                          size={14}
-                          className="group-hover:translate-x-1 transition-transform"
+                          size={12}
+                          className="group-hover:translate-x-1 transition-transform shrink-0"
                         />
                       </button>
 
-                      <div className="relative">
+                      <div className="relative flex-1 sm:flex-none">
                         <button
                           onClick={() => setIsExpertContactVisible(!isExpertContactVisible)}
-                          className={`h-12 px-6 border-2 font-black text-[10px] uppercase tracking-widest transition-all flex items-center gap-2 z-50 relative ${
+                          className={`w-full h-12 px-3 sm:px-6 border-2 font-black text-[8px] sm:text-[10px] uppercase tracking-wider sm:tracking-widest transition-all flex items-center justify-center gap-1.5 sm:gap-2 z-50 relative ${
                             isExpertContactVisible
                               ? 'bg-white text-black border-white'
                               : 'border-white/20 text-white hover:bg-white hover:text-black'
                           }`}
                         >
                           {isExpertContactVisible ? (
-                            <>
-                              Close Options <X size={14} />
-                            </>
+                            <span className="flex items-center gap-1.5 sm:gap-2 justify-center">
+                              Close Options <X size={12} className="shrink-0" />
+                            </span>
                           ) : (
-                            <>Speak to an Expert</>
+                            <span className="whitespace-nowrap">Speak to an Expert</span>
                           )}
                         </button>
 
