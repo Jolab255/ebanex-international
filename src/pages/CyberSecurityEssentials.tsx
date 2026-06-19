@@ -319,6 +319,18 @@ const CyberSecurityEssentials: React.FC = () => {
 
             <div className="relative w-full flex flex-col lg:flex-row items-center">
               
+              {/* Mobile-only event image */}
+              <div className="block md:hidden w-full px-4 mt-12 mb-[-4rem] relative z-20">
+                <div className="relative aspect-video w-full">
+                  <div className="absolute inset-0 bg-[#00BFFF]/5 z-20 pointer-events-none" />
+                  <img
+                    src={cyberImg}
+                    alt="Cyber Security Essentials"
+                    className="w-full h-full object-cover border-[6px] border-black shadow-[-10px_10px_0px_0px_rgba(0,191,255,0.1)]"
+                  />
+                </div>
+              </div>
+
               {/* Left Column: Details & Actions */}
               <div className="w-full lg:w-[70%] relative z-40">
                 <div
