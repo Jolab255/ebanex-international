@@ -823,7 +823,7 @@ const CyberSecurityEssentials: React.FC = () => {
                               errors.organization ? 'border-red-500' : 'focus:border-[var(--theme-color)]'
                             )}
                             style={{ '--theme-color': themeColor } as React.CSSProperties}
-                            placeholder="Tanzania Revenue Authority"
+                            placeholder="e.g Ebanex International"
                           />
                           {errors.organization && (
                             <p className="text-[9px] text-red-500 font-black uppercase mt-1">{errors.organization}</p>
@@ -1242,7 +1242,7 @@ const CyberSecurityEssentials: React.FC = () => {
               </p>
 
               <div className="mt-8 border-t border-black/10 pt-6 text-[9px] text-black/60 uppercase tracking-wider font-bold">
-                🔒 Secured transaction  ·  Ebanex International
+                Ebanex International
               </div>
 
               <button
