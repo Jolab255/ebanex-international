@@ -31,6 +31,7 @@ const DROPDOWN_CONTENT = {
         title: 'Practical & Hands-On Workshops & Masterclasses',
         items: [
           { label: 'Cyber Security Essentials (Register Now)', path: '/cyber-security-essentials' },
+          { label: 'Practical IT Audit Workshop (Register Now)', path: '/practical-it-audit-workshop' },
           { label: 'Ethical Hacking & Threat Intelligence', path: '/training/ethical-hacking' },
           { label: 'Incident Response Training', path: '/training/incident-response' },
           { label: 'Networking & Infrastructure', path: '/training/networking' },
@@ -65,6 +66,7 @@ const DROPDOWN_CONTENT = {
       {
         title: 'Upcoming Events',
         items: [
+          { label: 'Practical IT Audit Workshop (24 Aug – 28 Aug)', path: '/practical-it-audit-workshop' },
           { label: 'Cyber Security Essentials (29 Jun – 03 Jul)', path: '/cyber-security-essentials' },
         ],
       },
@@ -147,14 +149,14 @@ const Navbar: React.FC = () => {
     setMobileCategoryExpanded(mobileCategoryExpanded === title ? null : title);
   };
 
-  const isEventPage = location.pathname === '/cyber-security-essentials' || location.pathname === '/training/cyber-security-essentials';
+  const isEventPage = location.pathname === '/practical-it-audit-workshop' || location.pathname === '/training/practical-it-audit-workshop';
 
   const visibleLinks = [
     NAVIGATION_LINKS[0], // About Us
     NAVIGATION_LINKS[1], // Training Programs
     NAVIGATION_LINKS[2], // IT Audit & Advisory Services
     NAVIGATION_LINKS[3], // Ebanex Digital Trust Conference
-    { label: 'Events', path: '/cyber-security-essentials' },
+    { label: 'Events', path: '/practical-it-audit-workshop' },
   ];
 
   const getContactPath = () => {
@@ -261,11 +263,11 @@ const Navbar: React.FC = () => {
           >
               <div className="flex-1 flex items-center justify-center gap-2">
                 <Link
-                  to="/cyber-security-essentials"
+                  to="/practical-it-audit-workshop"
                   className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] hover:text-red-400 transition-colors flex flex-wrap items-center justify-center gap-1.5 text-center text-red-300"
                 >
                   <span className="text-red-500 font-black animate-alert-glow-blink">NEW EVENT:</span>
-                  Cyber Security Essentials (29 Jun – 03 Jul) — Register Now
+                  Practical IT Audit Workshop (24 Aug – 28 Aug) — Register Now
                   <ChevronRight size={12} className="inline shrink-0 text-red-500 animate-pulse" />
                 </Link>
               </div>
@@ -475,7 +477,7 @@ const Navbar: React.FC = () => {
                                               >
                                                 <span className="flex items-center gap-1.5">
                                                   {item.label}
-                                                  {item.path === '/cyber-security-essentials' && (
+                                                  {item.path === '/practical-it-audit-workshop' && (
                                                     <span className="inline-flex items-center px-1.5 py-0.5 bg-red-600 text-white text-[7px] font-black uppercase tracking-wider select-none leading-none animate-alert-glow-blink">
                                                       NEW
                                                     </span>
@@ -609,7 +611,7 @@ const Navbar: React.FC = () => {
                                 >
                                   <span className="flex items-center gap-1.5">
                                     {item.label}
-                                    {item.path === '/cyber-security-essentials' && (
+                                    {item.path === '/practical-it-audit-workshop' && (
                                       <span className="inline-flex items-center px-1.5 py-0.5 bg-red-600 text-white text-[7px] font-black uppercase tracking-wider select-none leading-none scale-90 origin-left animate-alert-glow-blink">
                                         NEW
                                       </span>
@@ -698,13 +700,13 @@ const Navbar: React.FC = () => {
                           <div className="mt-auto">
                             <h3 className="text-[12px] font-black text-[#00BFFF] uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
                               <span className="w-2 h-2 bg-[#00BFFF] animate-pulse" />
-                              Cyber Security Essentials
+                              Practical IT Audit Workshop
                             </h3>
                             <p className="text-[10px] text-white/70 font-bold uppercase tracking-widest leading-relaxed mb-6">
-                              Elite hands-on training and masterclass. Morogoro (29 Jun – 03 Jul).
+                              Elite hands-on training and masterclass. Zanzibar (24 Aug – 28 Aug).
                             </p>
                             <Link
-                              to="/cyber-security-essentials"
+                              to="/practical-it-audit-workshop"
                               className="inline-flex items-center gap-2 px-6 py-3 bg-[#00BFFF] text-black text-[9px] font-black uppercase tracking-[0.2em] hover:bg-white transition-all w-full justify-center"
                             >
                               Register Now <ChevronRight size={12} />

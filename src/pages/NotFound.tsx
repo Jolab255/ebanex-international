@@ -156,8 +156,8 @@ const NotFound: React.FC = () => {
           >
             <AlertTriangle className="w-4 h-4" />
             Need help? Contact us at{' '}
-            <a href="mailto:info@ebanex.com" className="text-blue-400 hover:underline">
-              info@ebanex.com
+            <a href="mailto:info@ebanexint.co.tz" className="text-blue-400 hover:underline">
+              info@ebanexint.co.tz
             </a>
           </motion.p>
         </div>

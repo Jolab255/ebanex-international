@@ -1,6 +1,6 @@
 <?php
 /**
- * Ebanex International - Cyber Security Essentials Registration API
+ * Ebanex International - Practical IT Audit Workshop Registration API
  * Uses SMTP instead of mail()
  */
 
@@ -15,7 +15,7 @@ require_once 'security.php';
 // ── SETTINGS ──────────────────────────────────────────────────────────
 $to_email_primary = "info@ebanexint.co.tz";
 $to_email_external = "yonahmatete@gmail.com";
-$subject_prefix = "NEW CYBER SECURITY ESSENTIALS REGISTRATION: ";
+$subject_prefix = "NEW PRACTICAL IT AUDIT WORKSHOP REGISTRATION: ";
 $from_email = "info@ebanexint.co.tz";
 
 // ── CORS HEADERS ──────────────────────────────────────────────────────
@@ -61,15 +61,15 @@ if (!empty($honeypot)) {
 // Turnstile Validation
 $captcha_token = $_POST['captchaToken'] ?? $json_data['captchaToken'] ?? '';
 if (!validate_turnstile($captcha_token)) {
-    error_log("Turnstile validation failed for cyber security essentials registration.");
+    error_log("Turnstile validation failed for practical IT audit workshop registration.");
     http_response_code(403);
     echo json_encode(["ok" => false, "error" => "Security validation failed. Please try again."]);
     exit;
 }
 
 // Rate Limiting (max 3 requests per hour per IP)
-if (!check_rate_limit('cyber_security_essentials', 3, 3600)) {
-    error_log("Rate limit exceeded for cyber security essentials registration from " . $_SERVER['REMOTE_ADDR']);
+if (!check_rate_limit('practical_it_audit_workshop', 3, 3600)) {
+    error_log("Rate limit exceeded for practical IT audit workshop registration from " . $_SERVER['REMOTE_ADDR']);
     http_response_code(429);
     echo json_encode(["ok" => false, "error" => "Too many requests. Please try again later."]);
     exit;
@@ -95,7 +95,7 @@ $content_html = "
     <tr>
         <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
             <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Training Course</div>
-            <div style='font-size: 16px; color: #FFFFFF; font-weight: bold;'>Cyber Security Essentials</div>
+            <div style='font-size: 16px; color: #FFFFFF; font-weight: bold;'>Practical IT Audit Workshop</div>
         </td>
     </tr>
     <tr>
@@ -196,7 +196,7 @@ $content_html = "
     </tr>
 ";
 
-$message_html = get_email_template("Cyber Security Essentials Registration", $content_html, "This registration was submitted via the Ebanex International cyber security essentials portal.");
+$message_html = get_email_template("Practical IT Audit Workshop Registration", $content_html, "This registration was submitted via the Ebanex International practical IT audit workshop portal.");
 
 // Build headers
 $headers = "From: Ebanex Website <$from_email>\r\n";
@@ -214,10 +214,10 @@ $sent_primary = send_smtp_email($to_email_primary, $subject, $encoded_message, $
 $sent_external = send_smtp_email($to_email_external, $subject, $encoded_message, $headers);
 
 if ($sent_primary || $sent_external) {
-    error_log("Cyber Security Essentials Registration sent: domain=$sent_primary, external=$sent_external");
+    error_log("Practical IT Audit Workshop Registration sent: domain=$sent_primary, external=$sent_external");
     echo json_encode(["ok" => true, "message" => "Registration transmitted successfully."]);
 } else {
-    error_log("SMTP delivery failed for cyber security essentials registration");
+    error_log("SMTP delivery failed for practical IT audit workshop registration");
     http_response_code(500);
     echo json_encode([
         "ok" => false,
