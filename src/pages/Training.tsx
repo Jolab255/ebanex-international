@@ -12,19 +12,12 @@ import {
   ExternalLink,
   CheckCircle2,
   Award,
-  Send,
-  Loader2,
-  CheckCircle,
-  ChevronDown,
-} from 'lucide-react';
+  } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SEO } from '../components/layout';
 import { Squares, ScrollReveal } from '../components/animations';
 import { TRAINING_PROGRAMS, TrainingProgram } from '../constants/trainingData';
 import { TrainingApproachSection } from '../features/home';
-import { cn } from '../lib/utils';
-import { sendTrainingEnrollment } from '../lib/api';
-import { TurnstileCaptcha } from '../components/common';
 
 import { EnrollmentModal } from '../components/training';
 

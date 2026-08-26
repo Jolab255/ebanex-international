@@ -5,8 +5,6 @@ import { cn } from '../lib/utils';
 import { SEO } from '../components/layout';
 import { Squares } from '../components/animations';
 import { TRAINING_PROGRAMS, TrainingProgram } from '../constants/trainingData';
-import { sendTrainingEnrollment } from '../lib/api';
-import { TurnstileCaptcha } from '../components/common';
 import { EnrollmentModal } from '../components/training';
 import {
   CheckCircle,
@@ -14,10 +12,7 @@ import {
   ArrowRight,
   Calendar,
   ChevronDown,
-  X,
-  Send,
-  Loader2,
-} from 'lucide-react';
+  } from 'lucide-react';
 import {
   FaCertificate,
   FaClock,

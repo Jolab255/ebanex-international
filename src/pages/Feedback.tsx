@@ -5,8 +5,6 @@ import {
   CheckCircle,
   X,
   Send,
-  ShieldCheck,
-  BookOpen,
   ArrowRight,
   ClipboardCheck,
   Shield,
@@ -88,7 +86,7 @@ const ratingOptions: RatingValue[] = ['Excellent', 'Very Good', 'Good', 'Fair', 
 
 const Feedback: React.FC = () => {
   const [step, setStep] = useState<'selection' | 'form'>('selection');
-  const [selectedDomain, setSelectedDomain] = useState<Domain | null>(null);
+  const [, setSelectedDomain] = useState<Domain | null>(null);
 
   const [form, setForm] = useState<FeedbackFormState>({
     trainingProgram: '',
@@ -276,7 +274,7 @@ const Feedback: React.FC = () => {
               Trainer <span className="text-[#00BFFF]">Evaluation</span>
             </h2>
             <p className="text-[10px] sm:text-xs text-slate-400 font-medium uppercase tracking-widest leading-relaxed max-w-2xl">
-              Your insights drive our excellence. Please select the specific CISA domain to provide your professional feedback on the facilitator's performance.
+              Your insights drive our excellence. Please select the specific CISA domain to provide your professional feedback on the facilitator&apos;s performance.
             </p>
           </div>
 

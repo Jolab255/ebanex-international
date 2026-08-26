@@ -1,24 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Calendar,
-  MapPin,
-  Award,
-  DollarSign,
-  Users,
   CheckCircle,
   AlertCircle,
-  Shield,
   ArrowRight,
   X,
-  ArrowLeft,
   Send,
   Loader2,
   FileText,
   Globe,
   Lock,
   Building,
-  Check,
   ChevronDown
 } from 'lucide-react';
 import { FaWhatsapp, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
@@ -261,7 +253,7 @@ const PracticalItAuditWorkshop: React.FC = () => {
           form: response.error || 'Something went wrong. Please check your network connection and try again.'
         }));
       }
-    } catch (err) {
+    } catch {
       setErrors((prev) => ({
         ...prev,
         form: 'The registration service is temporarily offline. Please contact info@ebanexint.co.tz directly.'
