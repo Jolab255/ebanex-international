@@ -33,7 +33,7 @@ export function DottedMap({
 }: DottedMapProps) {
   const svgContent = useMemo(() => {
     // Use precomputed map data
-    const map = new DottedMapClass({ map: mapData });
+    const map = new DottedMapClass({ map: mapData as any });
 
     // Add marker pins
     markers.forEach((marker) => {

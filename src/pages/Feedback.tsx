@@ -295,7 +295,7 @@ const Feedback: React.FC = () => {
                   <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-0 bg-[length:100%_2px,3px_100%]" />
                   <div className="flex items-start sm:items-center gap-5 relative z-10">
                     <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-black/40 border border-[#00BFFF]/20 flex items-center justify-center text-[#00BFFF] group-hover:border-[#00BFFF]/50 group-hover:scale-105 transition-all">
-                      {React.cloneElement(domain.icon as React.ReactElement, { size: 18 })}
+                      {React.cloneElement(domain.icon as React.ReactElement<{size?: number}>, { size: 18 })}
                     </div>
                     <div className="space-y-0.5">
                       <span className="text-[9px] font-black text-[#00BFFF] uppercase tracking-widest block opacity-70">

@@ -59,10 +59,6 @@ export interface TrainingProgram {
   industries: { title: string; desc: string }[];
   stats: { metric: number; suffix: string; label: string }[];
   faqs: { question: string; answer: string }[];
-  price?: {
-    amount: number;
-    currency: string;
-  };
 }
 
 export const TRAINING_PROGRAMS: Record<string, TrainingProgram> = {

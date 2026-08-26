@@ -36,7 +36,7 @@ const FeatureCard: React.FC<{
         <div className="text-[#00BFFF] mb-4 sm:mb-6 mt-4 min-h-[30px]">
           {feature.icon &&
             React.isValidElement(feature.icon) &&
-            React.cloneElement(feature.icon as React.ReactElement, { size: 28 })}
+            React.cloneElement(feature.icon as React.ReactElement<{size?: number}>, { size: 28 })}
         </div>
 
         <h3 className="text-lg sm:text-xl font-black font-heading mb-2 sm:mb-3 tracking-tight uppercase text-white">
