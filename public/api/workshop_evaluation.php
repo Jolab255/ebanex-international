@@ -11,7 +11,7 @@ require_once 'mailer.php';
 require_once 'security.php';
 
 $to_email_primary = "info@ebanexint.co.tz";
-$to_email_external = "yonahmatete@gmail.co.tz";
+$to_email_external = "yonahmatete@gmail.com";
 $subject_prefix = "NEW WORKSHOP EVALUATION: Practical IT Audit Workshop";
 $from_email = "info@ebanexint.co.tz";
 
@@ -67,10 +67,7 @@ function s($key, $data) {
     return htmlspecialchars(strip_tags($data[$key] ?? ''), ENT_QUOTES, 'UTF-8');
 }
 
-$fullName = s('fullName', $json_data);
-$organization = s('organization', $json_data);
-$jobTitle = s('jobTitle', $json_data);
-$contact = s('contact', $json_data);
+$fullName = "Anonymous";
 
 $fields = [
     'day1', 'day2', 'day3', 'day4', 'day5', 'relevance', 'balance', 'usefulness', 'depth',
@@ -88,15 +85,6 @@ foreach($fields as $f) {
 $subject = $subject_prefix . " - " . ($fullName ?: "Anonymous");
 
 $content_html = "
-    <tr>
-        <td style='padding: 15px 0; border-bottom: 1px solid #1E293B;'>
-            <div style='font-size: 10px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px;'>Participant Details</div>
-            <div style='font-size: 14px; color: #FFFFFF;'>Name: {$fullName}</div>
-            <div style='font-size: 14px; color: #FFFFFF;'>Organization: {$organization}</div>
-            <div style='font-size: 14px; color: #FFFFFF;'>Job Title: {$jobTitle}</div>
-            <div style='font-size: 14px; color: #FFFFFF;'>Contact: {$contact}</div>
-        </td>
-    </tr>
     <tr>
         <td style='padding: 20px 0; border-bottom: 1px solid #1E293B;'>
             <div style='font-size: 12px; font-weight: 900; color: #00BFFF; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;'>A. Workshop Content</div>

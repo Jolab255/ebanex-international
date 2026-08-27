@@ -12,7 +12,6 @@ type RatingValue = 'Excellent' | 'Very Good' | 'Good' | 'Fair' | 'Poor' | '';
 const ratingOptions: RatingValue[] = ['Excellent', 'Very Good', 'Good', 'Fair', 'Poor'];
 
 const initialForm: WorkshopEvaluationPayload = {
-  fullName: '', organization: '', jobTitle: '', contact: '',
   day1: '', day2: '', day3: '', day4: '', day5: '',
   relevance: '', balance: '', usefulness: '', depth: '',
   knowledge: '', clearly: '', responsiveness: '', pace: '', materials: '',
@@ -61,10 +60,7 @@ const WorkshopEvaluation: React.FC = () => {
 
   const validateStep = (): boolean => {
     const nextErrors: Record<string, string> = {};
-    if (formStep === 1) {
-      if (!form.fullName) nextErrors.fullName = 'Required';
-    }
-    if (formStep === 5) {
+    if (formStep === 4) {
       if (!form.captchaToken) nextErrors.form = 'Security check required.';
     }
     setErrors(nextErrors);
@@ -194,9 +190,9 @@ const WorkshopEvaluation: React.FC = () => {
                     <div className="mb-8 border-b border-white/10 pb-6">
                        <h2 className="text-2xl font-black uppercase text-[#00BFFF] mb-2">Participant Evaluation Form</h2>
                        <div className="flex items-center gap-3">
-                          <p className="text-xs text-slate-300 uppercase">Step {formStep} of 5</p>
+                          <p className="text-xs text-slate-300 uppercase">Step {formStep} of 4</p>
                           <div className="flex-1 h-1 bg-black overflow-hidden flex">
-                             <div className="h-full bg-[#00BFFF] transition-all duration-300" style={{ width: `${(formStep / 5) * 100}%` }} />
+                             <div className="h-full bg-[#00BFFF] transition-all duration-300" style={{ width: `${(formStep / 4) * 100}%` }} />
                           </div>
                        </div>
                     </div>
@@ -205,21 +201,6 @@ const WorkshopEvaluation: React.FC = () => {
                       {errors.form && <div id="form-error-msg" className="p-4 bg-red-500/10 border-2 border-red-500 text-red-200 text-[10px] font-black uppercase tracking-widest">{errors.form}</div>}
 
                       {formStep === 1 && (
-                        <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-4">
-                          <h3 className="text-xl font-black text-white uppercase border-b border-[#00BFFF]/30 pb-2">Participant Details</h3>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                            <div>
-                               <input type="text" name="fullName" value={form.fullName} onChange={handleChange} placeholder="Full Name *" className={cn("w-full bg-black/50 border p-3 text-sm text-white focus:border-[#00BFFF] outline-none", errors.fullName ? "border-red-500" : "border-white/10")} required />
-                               {errors.fullName && <p className="text-red-500 text-[10px] uppercase font-bold mt-1">{errors.fullName}</p>}
-                            </div>
-                            <input type="text" name="organization" value={form.organization} onChange={handleChange} placeholder="Organization" className="w-full bg-black/50 border border-white/10 p-3 text-sm text-white focus:border-[#00BFFF] outline-none" />
-                            <input type="text" name="jobTitle" value={form.jobTitle} onChange={handleChange} placeholder="Job Title" className="w-full bg-black/50 border border-white/10 p-3 text-sm text-white focus:border-[#00BFFF] outline-none" />
-                            <input type="text" name="contact" value={form.contact} onChange={handleChange} placeholder="Email / Phone" className="w-full bg-black/50 border border-white/10 p-3 text-sm text-white focus:border-[#00BFFF] outline-none" />
-                          </div>
-                        </motion.div>
-                      )}
-
-                      {formStep === 2 && (
                         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-2">
                           <h3 className="text-xl font-black text-white uppercase border-b border-[#00BFFF]/30 pb-2 mb-4">A. Workshop Content</h3>
                           <RatingRow label="Day 1: Identity and Access Management Audits" name="day1" />
@@ -234,7 +215,7 @@ const WorkshopEvaluation: React.FC = () => {
                         </motion.div>
                       )}
 
-                      {formStep === 3 && (
+                      {formStep === 2 && (
                         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-2">
                           <h3 className="text-xl font-black text-white uppercase border-b border-[#00BFFF]/30 pb-2 mb-4">B. Facilitator(s) and Delivery</h3>
                           <RatingRow label="Facilitator's knowledge of subject matter" name="knowledge" />
@@ -245,7 +226,7 @@ const WorkshopEvaluation: React.FC = () => {
                         </motion.div>
                       )}
 
-                      {formStep === 4 && (
+                      {formStep === 3 && (
                         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-2">
                           <h3 className="text-xl font-black text-white uppercase border-b border-[#00BFFF]/30 pb-2 mb-4">C. Venue, Food and Logistics</h3>
                           <RatingRow label="Suitability of the venue (Zanzibar Beach Resort)" name="suitability" />
@@ -259,7 +240,7 @@ const WorkshopEvaluation: React.FC = () => {
                         </motion.div>
                       )}
 
-                      {formStep === 5 && (
+                      {formStep === 4 && (
                         <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
                           <div className="space-y-4">
                             <h3 className="text-xl font-black text-white uppercase border-b border-[#00BFFF]/30 pb-2">D. Overall Assessment</h3>
@@ -311,7 +292,7 @@ const WorkshopEvaluation: React.FC = () => {
                             <ArrowLeft size={16} /> Back
                           </button>
                         )}
-                        {formStep < 5 ? (
+                        {formStep < 4 ? (
                           <button type="button" onClick={handleNext} className="flex-1 py-4 bg-[#00BFFF] border-[3px] border-black text-black font-black uppercase tracking-[0.2em] text-[9px] flex items-center justify-center gap-3 hover:bg-white transition-all active:scale-[0.98]">
                             Next Step <ArrowRight size={16} />
                           </button>

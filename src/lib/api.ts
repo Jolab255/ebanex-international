@@ -316,11 +316,6 @@ export async function sendPracticalItAuditWorkshopRegistration(
 }
 
 export interface WorkshopEvaluationPayload {
-  fullName: string;
-  organization: string;
-  jobTitle: string;
-  contact: string;
-  
   day1: string;
   day2: string;
   day3: string;
