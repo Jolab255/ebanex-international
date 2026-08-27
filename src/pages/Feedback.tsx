@@ -246,7 +246,7 @@ const Feedback: React.FC = () => {
   );
 
   return (
-    <div className="bg-black min-h-screen text-white overflow-x-hidden">
+    <div className="bg-black text-white overflow-x-hidden">
       <SEO
         title="Trainer Evaluation | Ebanex International"
         description="Anonymous professional evaluation for CISA domains."

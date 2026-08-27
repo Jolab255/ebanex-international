@@ -314,3 +314,83 @@ export async function sendPracticalItAuditWorkshopRegistration(
     };
   }
 }
+
+export interface WorkshopEvaluationPayload {
+  fullName: string;
+  organization: string;
+  jobTitle: string;
+  contact: string;
+  
+  day1: string;
+  day2: string;
+  day3: string;
+  day4: string;
+  day5: string;
+  relevance: string;
+  balance: string;
+  usefulness: string;
+  depth: string;
+  
+  knowledge: string;
+  clearly: string;
+  responsiveness: string;
+  pace: string;
+  materials: string;
+  
+  suitability: string;
+  setup: string;
+  food: string;
+  tea: string;
+  environment: string;
+  cleanliness: string;
+  registration: string;
+  value: string;
+  
+  overall: string;
+  
+  q1: string;
+  q2: string;
+  q3: string;
+  q4: string;
+  q5: string;
+  q6: string;
+
+  website?: string;
+  captchaToken?: string;
+}
+
+export async function sendWorkshopEvaluation(
+  payload: WorkshopEvaluationPayload,
+): Promise<ApiResponse> {
+  try {
+    console.log("[sendWorkshopEvaluation] Payload:", payload);
+
+    const response = await fetch(`${API_BASE}/workshop_evaluation.php`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(
+        data.error ||
+          "The evaluation service is currently unavailable. Please contact info@ebanexint.co.tz directly.",
+      );
+    }
+
+    return { ok: true, data };
+  } catch (err: unknown) {
+    const error = err instanceof Error ? err : new Error(String(err));
+    console.error("[sendWorkshopEvaluation] Error:", error);
+    return {
+      ok: false,
+      error:
+        error.message || "Something went wrong while sending your evaluation. Please try again.",
+    };
+  }
+}
